@@ -21,7 +21,7 @@ node ./index.js --tileWidth <integer> --tileHeight <integer> --input <path> --ou
 An example usage:
 
 ```
-node ./index.js --tileWidth 25 --tileHeight 25 --input ./images/buch-tileset.png --output ./images/buch-tileset-extruded.png
+node ./index.js --tileWidth 25 --tileHeight 25 --input ./tilesets/buch-tileset.png --output ./tilesets/buch-tileset-extruded.png
 ```
 
 Additional usage information:

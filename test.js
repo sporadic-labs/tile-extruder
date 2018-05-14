@@ -9,16 +9,16 @@ const cb = (err, stdout, stderr) => {
 };
 
 exec(
-  "node ./index.js -w 16 -h 16 -i ./images/buch-tileset.png -o ./images/buch-tileset-extruded.png",
+  "node ./index.js -w 16 -h 16 -i ./tilesets/buch-tileset.png -o ./tilesets/buch-tileset-extruded.png",
   cb
 );
 
 exec(
-  "node ./index.js -w 8 -h 8 -i ./images/arachne-tileset.png -o ./images/arachne-tileset-extruded.png",
+  "node ./index.js -w 8 -h 8 -i ./tilesets/arachne-tileset.png -o ./tilesets/arachne-tileset-extruded.png",
   cb
 );
 
 exec(
-  "node ./index.js -w 16 -h 16 -i ./images/mario-tileset.png -o ./images/mario-tileset-extruded.png",
+  "node ./index.js -w 16 -h 16 -i ./tilesets/mario-tileset.png -o ./tilesets/mario-tileset-extruded.png",
   cb
 );
