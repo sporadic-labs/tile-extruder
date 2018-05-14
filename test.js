@@ -8,17 +8,13 @@ const cb = (err, stdout, stderr) => {
   console.log(stdout);
 };
 
-exec(
-  "node ./index.js -w 16 -h 16 -i ./tilesets/buch-tileset.png -o ./tilesets/buch-tileset-extruded.png",
-  cb
-);
+const tilesets = [
+  { path: "./tilesets/buch-tileset", w: 16, h: 16 },
+  { path: "./tilesets/arachne-tileset", w: 8, h: 8 },
+  { path: "./tilesets/mario-tileset", w: 16, h: 16 },
+  { path: "./tilesets/test-tileset", w: 64, h: 64 }
+];
 
-exec(
-  "node ./index.js -w 8 -h 8 -i ./tilesets/arachne-tileset.png -o ./tilesets/arachne-tileset-extruded.png",
-  cb
-);
-
-exec(
-  "node ./index.js -w 16 -h 16 -i ./tilesets/mario-tileset.png -o ./tilesets/mario-tileset-extruded.png",
-  cb
-);
+tilesets.map(({ path, w, h }) => {
+  exec(`node ./index.js -w ${w} -h ${h} -i ${path}.png -o ${path}-extruded.png`, cb);
+});

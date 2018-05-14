@@ -62,35 +62,26 @@ if (!outputPath) {
       const tw = tileWidth;
       const th = tileHeight;
 
+      // Copy the tile
       extrudedImage.blit(image, destX + 1, destY + 1, srcX, srcY, tw, th);
 
-      for (let dx = 0; dx < tw; dx++) {
-        const firstRowColor = image.getPixelColor(srcX + dx, srcY);
-        extrudedImage.setPixelColor(firstRowColor, destX + dx + 1, destY);
+      // Extrude the top row
+      extrudedImage.blit(image, destX + 1, destY, srcX, srcY, tw, 1);
 
-        const lastRowColor = image.getPixelColor(srcX + dx, srcY + th - 1);
-        extrudedImage.setPixelColor(lastRowColor, destX + dx + 1, destY + th + 1);
-      }
+      // Extrude the bottom row
+      extrudedImage.blit(image, destX + 1, destY + th + 1, srcX, srcY + th - 1, tw, 1);
 
-      for (let dy = 0; dy < th; dy++) {
-        const firstColColor = image.getPixelColor(srcX, srcY + dy);
-        extrudedImage.setPixelColor(firstColColor, destX, destY + dy + 1);
+      // Extrude left column
+      extrudedImage.blit(image, destX, destY + 1, srcX, srcY, 1, th);
 
-        const lastColColor = image.getPixelColor(srcX + tw - 1, srcY + dy);
-        extrudedImage.setPixelColor(lastColColor, destX + tw + 1, destY + dy + 1);
-      }
+      // Extrude the right column
+      extrudedImage.blit(image, destX + tw + 1, destY + 1, srcX + tw - 1, srcY, 1, th);
 
-      const topLeftColor = image.getPixelColor(srcX, srcY);
-      extrudedImage.setPixelColor(topLeftColor, destX, destY);
-
-      const topRightColor = image.getPixelColor(srcX + tw - 1, srcY);
-      extrudedImage.setPixelColor(topRightColor, destX + th + 1, destY);
-
-      const bottomLeftColor = image.getPixelColor(srcX, srcY + th - 1);
-      extrudedImage.setPixelColor(bottomLeftColor, destX, destY + th + 1);
-
-      const bottomRightColor = image.getPixelColor(srcX + tw - 1, srcY + th - 1);
-      extrudedImage.setPixelColor(bottomRightColor, destX + tw + 1, destY + th + 1);
+      // Corners, order: TL, TR, BL, BR
+      extrudedImage.blit(image, destX, destY, srcX, srcY, 1, 1);
+      extrudedImage.blit(image, destX + th + 1, destY, srcX + tw - 1, srcY, 1, 1);
+      extrudedImage.blit(image, destX, destY + th + 1, srcX, srcY + th - 1, 1, 1);
+      extrudedImage.blit(image, destX + tw + 1, destY + th + 1, srcX + tw - 1, srcY + th - 1, 1, 1);
     }
   }
 
