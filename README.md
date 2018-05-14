@@ -45,6 +45,22 @@ Options:
   -h, --help                  output usage information
 ```
 
+## Using the Extruded Tileset
+
+This tool was built for a Phaser & Tiled project, so here's how to integrate with that pipeline.
+
+If you've already built a map in Tiled with a non-extruded tileset and are looking to replace it with an extruded tileset, you've got a couple options:
+
+* Extrude the tileset and then update your existing tileset in Tiled. In the "Tilesets" panel, click on the edit tileset icon (the wrench) and then click on "Tileset Properties" under the Tileset menu bar item. Edit the "Image" field, replacing the tileset image with the new extruded image and updating to the margin and spacing.
+* If you'd rather leave your Tiled file alone, you can just adjust things on the Phaser side. See this [example](https://github.com/sporadic-labs/tile-extruder/blob/master/phaser-test/main.js). You want to load the extruded tileset image, and then when you create your tileset, specify the appropriate margin and spacing:
+
+```
+// Parameters: name in Tiled, phaser cache key, tile width, tile height, margin, spacing
+const tileset = map.addTilesetImage("tileset", "tileset-extruded", 48, 48, 1, 2);
+```
+
+Note: extruded tilesets from the CLI currently only output with 1px margin and 2px spacing. Spacing is the number of pixels between neighboring tiles and margin is the number of pixels between the edges of the image and the tiles.
+
 ## Tileset Sources
 
 * Dungeon Tileset by Buch - [Source](https://opengameart.org/content/top-down-dungeon-tileset)
