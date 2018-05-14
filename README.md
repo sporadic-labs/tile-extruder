@@ -1,6 +1,12 @@
 # Tile Extruder
 
-A tiny Node app to extrude tiles in tilesets to avoid bleeding issues. See relevant [Phaser issue](https://github.com/photonstorm/phaser/issues/3229)
+A tiny Node app to extrude tiles in tilesets to avoid bleeding issues.
+
+![demo](./images/demo.png)
+
+![explanation](./images/explanation.png)
+
+You can read more about the bleeding problem and solution [here](http://rotorz.com/unity/tile-system/docs/edge-correction).
 
 ## Installation
 
