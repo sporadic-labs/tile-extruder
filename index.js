@@ -79,7 +79,7 @@ if (!outputPath) {
 
       // Corners, order: TL, TR, BL, BR
       extrudedImage.blit(image, destX, destY, srcX, srcY, 1, 1);
-      extrudedImage.blit(image, destX + th + 1, destY, srcX + tw - 1, srcY, 1, 1);
+      extrudedImage.blit(image, destX + tw + 1, destY, srcX + tw - 1, srcY, 1, 1);
       extrudedImage.blit(image, destX, destY + th + 1, srcX, srcY + th - 1, 1, 1);
       extrudedImage.blit(image, destX + tw + 1, destY + th + 1, srcX + tw - 1, srcY + th - 1, 1, 1);
     }
