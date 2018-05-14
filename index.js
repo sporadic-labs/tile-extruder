@@ -5,7 +5,6 @@
  *  - Allow for margin (pixels between tiles and edge of tileset image) and spacing (pixels between
  *    tiles) in the input image
  *  - Allow for customizable extrusion amount
- *  - Allow JPEG
  */
 
 const Jimp = require("jimp");
