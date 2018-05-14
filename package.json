@@ -1,0 +1,30 @@
+{
+  "name": "tile-extruder",
+  "version": "1.0.0",
+  "description": "A tiny Node app to extrude tiles in tilesets to avoid bleeding issues. See relevant [Phaser issue](https://github.com/photonstorm/phaser/issues/3229)",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./test.js",
+    "start": "node ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sporadic-labs/tile-extruder.git"
+  },
+  "prettier": {
+    "printWidth": 100
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sporadic-labs/tile-extruder/issues"
+  },
+  "homepage": "https://github.com/sporadic-labs/tile-extruder#readme",
+  "dependencies": {
+    "commander": "^2.15.1",
+    "jimp": "^0.2.28"
+  },
+  "devDependencies": {
+    "prettier": "^1.12.1"
+  }
+}
