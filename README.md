@@ -21,13 +21,19 @@ npm install
 Open a terminal in the folder and run a command with the following arguments:
 
 ```
-node ./index.js --tileWidth <integer> --tileHeight <integer> --input <path> --output <path>
+node ./index.js [args]
 ```
 
-An example usage:
+An example usage for a 8 x 16 tile size tileset with no margin or spacing:
 
 ```
-node ./index.js --tileWidth 25 --tileHeight 25 --input ./tilesets/buch-tileset.png --output ./tilesets/buch-tileset-extruded.png
+node ./index.js --tileWidth 8 --tileHeight 16 --input ./tilesets/borders-tileset.png --output ./tilesets/borders-tileset-extruded.png
+```
+
+An example usage for a 16 x 16 tile size tileset with 5px margin and 10px spacing:
+
+```
+node ./index.js --tileWidth 16 --tileHeight 16 --margin 5 --spacing 10 --input ./tilesets/mario-tileset.png --output ./tilesets/mario-tileset-extruded.png
 ```
 
 Additional usage information:
@@ -37,13 +43,22 @@ A small CLI to extrude tiles. Use --help for more information.
 
 Options:
 
-  -V, --version               output the version number
-  -w, --tileWidth <integer>   tile width in pixels
-  -h, --tileHeight <integer>  tile height in pixels
-  -i, --input <path>          the path to the tileset you want to extrude
-  -o, --output <path>         the path to output the extruded tileset image
-  -h, --help                  output usage information
+  -V, --version                 output the version number
+  -w, --tileWidth <integer>     tile width in pixels
+  -h, --tileHeight <integer>    tile height in pixels
+  -i, --input <path>            the path to the tileset you want to extrude
+  -o, --output <path>           the path to output the extruded tileset image
+  -c, --color [hex=0x00000000]  RGBA hex color to use for the background color, only matters if there's margin                                or spacing (default: transparent)
+  -m, --margin [integer=0]      number of pixels between tiles and the edge of the tileset image (default: 0)
+  -s, --spacing [integer=0]     number of pixels between neighboring tiles (default: 0)
+  -h, --help                    output usage information
 ```
+
+## Terminology
+
+_Spacing_ is the number of pixels between neighboring tiles. _Margin_ is the number of pixels between the edges of the image and the tiles. Or, more visually explained:
+
+![Margin and spacing](./images/margin-and-spacing.png)
 
 ## Using the Extruded Tileset
 
@@ -59,7 +74,7 @@ If you've already built a map in Tiled with a non-extruded tileset and are looki
 const tileset = map.addTilesetImage("tileset", "tileset-extruded", 48, 48, 1, 2);
 ```
 
-Note: extruded tilesets from the CLI currently only output with 1px margin and 2px spacing. Spacing is the number of pixels between neighboring tiles and margin is the number of pixels between the edges of the image and the tiles.
+Note: you'll have to adjust your margin & spacing because of the extrusion. If you had no margin & spacing, then the new margin is 1px and the spacing is 2px.
 
 ## Tileset Sources
 
