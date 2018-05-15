@@ -15,7 +15,7 @@ const toInt = v => parseInt(v, 10);
 const toHex = v => parseInt(v, 16);
 
 program
-  .version("1.0.0")
+  .version("1.1.0")
   .description("A small CLI to extrude tiles. Use --help for more information.")
   .option("-w, --tileWidth <integer>", "tile width in pixels", toInt)
   .option("-h, --tileHeight <integer>", "tile height in pixels", toInt)
