@@ -11,12 +11,14 @@ const Jimp = require("jimp");
 const path = require("path");
 const program = require("commander");
 
+const toInt = v => parseInt(v, 10);
 const toHex = v => parseInt(v, 16);
+
 program
   .version("1.0.0")
   .description("A small CLI to extrude tiles. Use --help for more information.")
-  .option("-w, --tileWidth <integer>", "tile width in pixels", parseInt)
-  .option("-h, --tileHeight <integer>", "tile height in pixels", parseInt)
+  .option("-w, --tileWidth <integer>", "tile width in pixels", toInt)
+  .option("-h, --tileHeight <integer>", "tile height in pixels", toInt)
   .option(
     "-c, --color [hex=0x00000000]",
     "RGBA hex color to use for the background color (defaults to transparent)",
