@@ -9,13 +9,31 @@ const cb = (err, stdout, stderr) => {
 };
 
 const tilesets = [
-  { path: "./tilesets/buch-tileset", w: 16, h: 16 },
-  { path: "./tilesets/arachne-tileset", w: 8, h: 8 },
-  { path: "./tilesets/mario-tileset", w: 16, h: 16 },
-  { path: "./tilesets/test-tileset", w: 64, h: 64 },
-  { path: "./tilesets/borders-tileset", w: 8, h: 16 }
+  { i: "./tilesets/buch-tileset.png", o: "./tilesets/buch-tileset-extruded.png", w: 16, h: 16 },
+  { i: "./tilesets/arachne-tileset.png", o: "./tilesets/arachne-tileset-extruded.png", w: 8, h: 8 },
+  { i: "./tilesets/mario-tileset.png", o: "./tilesets/mario-tileset-extruded.png", w: 16, h: 16 },
+  { i: "./tilesets/test-tileset.png", o: "./tilesets/test-tileset-extruded.png", w: 64, h: 64 },
+  {
+    i: "./tilesets/borders-tileset.png",
+    o: "./tilesets/borders-tileset-extruded.png",
+    w: 8,
+    h: 16
+  },
+  {
+    i: "./tilesets/mario-tileset-10-spacing-5-margin.png",
+    o: "./tilesets/mario-tileset-10-spacing-5-margin-extruded.png",
+    w: 16,
+    h: 16,
+    m: 5,
+    s: 10,
+    c: "0x7088ff"
+  }
 ];
 
-tilesets.map(({ path, w, h }) => {
-  exec(`node ./index.js -w ${w} -h ${h} -i ${path}.png -o ${path}-extruded.png`, cb);
+tilesets.map(args => {
+  const stringArgs = Object.entries(args)
+    .map(([flag, val]) => `-${flag} ${val}`)
+    .join(" ");
+  console.log(`Running: ${stringArgs}`);
+  exec(`node ./index.js ${stringArgs}`, cb);
 });
