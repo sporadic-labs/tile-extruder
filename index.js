@@ -19,25 +19,20 @@ program
   .description("A small CLI to extrude tiles. Use --help for more information.")
   .option("-w, --tileWidth <integer>", "tile width in pixels", toInt)
   .option("-h, --tileHeight <integer>", "tile height in pixels", toInt)
+  .option("-i, --input <path>", "the path to the tileset you want to extrude")
+  .option("-o, --output <path>", "the path to output the extruded tileset image")
   .option(
     "-c, --color [hex=0x00000000]",
-    "RGBA hex color to use for the background color (defaults to transparent)",
+    "RGBA hex color to use for the background color, only matters if there's margin or spacing (default: transparent)",
     toHex
   )
   .option(
     "-m, --margin [integer=0]",
-    "number of pixels between tiles and the edge of the tileset image (defaults to 0)",
+    "number of pixels between tiles and the edge of the tileset image",
     toInt,
     0
   )
-  .option(
-    "-s, --spacing [integer=0]",
-    "number of pixels between neighboring tiles (defaults to 0)",
-    toInt,
-    0
-  )
-  .option("-i, --input <path>", "the path to the tileset you want to extrude")
-  .option("-o, --output <path>", "the path to output the extruded tileset image")
+  .option("-s, --spacing [integer=0]", "number of pixels between neighboring tiles", toInt, 0)
   .parse(process.argv);
 
 const {
