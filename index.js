@@ -1,10 +1,10 @@
 /**
- * Takes a tileset with no margin/spacing and extrudes the tiles by 1px.
+ * Takes a tileset and extrudes the tiles by 1px.
  *
  * TODO:
- *  - Allow for margin (pixels between tiles and edge of tileset image) and spacing (pixels between
- *    tiles) in the input image
  *  - Allow for customizable extrusion amount
+ *  - Repacking large images?
+ *  - Web app
  */
 
 const Jimp = require("jimp");
