@@ -11,11 +11,17 @@ const Jimp = require("jimp");
 const path = require("path");
 const program = require("commander");
 
+const toHex = v => parseInt(v, 16);
 program
   .version("1.0.0")
   .description("A small CLI to extrude tiles. Use --help for more information.")
   .option("-w, --tileWidth <integer>", "tile width in pixels", parseInt)
   .option("-h, --tileHeight <integer>", "tile height in pixels", parseInt)
+  .option(
+    "-c, --color [hex=0x00000000]",
+    "RGBA hex color to use for the background color (defaults to transparent)",
+    toHex
+  )
   .option("-i, --input <path>", "the path to the tileset you want to extrude")
   .option("-o, --output <path>", "the path to output the extruded tileset image")
   .parse(process.argv);
@@ -51,7 +57,7 @@ if (!outputPath) {
   const newWidth = (tileWidth + 2) * cols;
   const newHeight = (tileHeight + 2) * rows;
 
-  const extrudedImage = await new Jimp(newWidth, newHeight, 0x000000ff);
+  const extrudedImage = await new Jimp(newWidth, newHeight, color);
 
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
