@@ -6,7 +6,7 @@ A tiny Node app to extrude tiles in tilesets to avoid bleeding issues.
 
 ![explanation](./images/explanation.png)
 
-You can read more about the bleeding problem and solution [here](http://rotorz.com/unity/tile-system/docs/edge-correction).
+You can read more about the bleeding problem and solution [here](http://rotorz.com/unity/tile-system/docs/edge-correction). This CLI app handles both tilesets with and without margin & spacing.
 
 ## Installation
 
