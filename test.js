@@ -35,5 +35,5 @@ tilesets.map(args => {
     .map(([flag, val]) => `-${flag} ${val}`)
     .join(" ");
   console.log(`Running: ${stringArgs}`);
-  exec(`node ./index.js ${stringArgs}`, cb);
+  exec(`node ./bin/tile-extruder ${stringArgs}`, cb);
 });
