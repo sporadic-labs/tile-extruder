@@ -16,8 +16,12 @@
   "prettier": {
     "printWidth": 100
   },
+  "files": ["lib", "bin"],
   "author": "",
   "license": "ISC",
+  "bin": {
+    "tile-extruder": "./bin/tile-extruder"
+  },
   "bugs": {
     "url": "https://github.com/sporadic-labs/tile-extruder/issues"
   },
