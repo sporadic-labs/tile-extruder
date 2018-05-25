@@ -10,30 +10,32 @@ You can read more about the bleeding problem and solution [here](http://rotorz.c
 
 ## Installation
 
-Make sure you have [node](https://nodejs.org/en/) installed. [Download](https://github.com/sporadic-labs/tile-extruder/archive/master.zip) or [clone](x-github-client://openRepo/https://github.com/sporadic-labs/tile-extruder) the repository, open a terminal in the folder and run:
+Make sure you have [node](https://nodejs.org/en/) and npm installed:
 
 ```
-npm install
+npm install --global tile-extruder
 ```
+
+(Or, you can run tile-extruder directly without globally installing in npm 5.2 and greater via `npx tile-extruder`.)
 
 ## Usage
 
 Open a terminal in the folder and run a command with the following arguments:
 
 ```
-node ./index.js [args]
+tile-extruder [args]
 ```
 
 An example usage for a 8 x 16 tile size tileset with no margin or spacing:
 
 ```
-node ./index.js --tileWidth 8 --tileHeight 16 --input ./tilesets/borders-tileset.png --output ./tilesets/borders-tileset-extruded.png
+tile-extruder --tileWidth 8 --tileHeight 16 --input ./tilesets/borders-tileset.png --output ./tilesets/borders-tileset-extruded.png
 ```
 
 An example usage for a 16 x 16 tile size tileset with 5px margin and 10px spacing:
 
 ```
-node ./index.js --tileWidth 16 --tileHeight 16 --margin 5 --spacing 10 --input ./tilesets/mario-tileset.png --output ./tilesets/mario-tileset-extruded.png
+tile-extruder --tileWidth 16 --tileHeight 16 --margin 5 --spacing 10 --input ./tilesets/mario-tileset.png --output ./tilesets/mario-tileset-extruded.png
 ```
 
 Additional usage information:
