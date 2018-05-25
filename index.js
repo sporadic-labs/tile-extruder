@@ -5,6 +5,7 @@
  *  - Allow for customizable extrusion amount
  *  - Repacking large images?
  *  - Web app
+ *  - Restructure this so that the exported module is more easily consumable by other scripts
  */
 
 const Jimp = require("jimp");
