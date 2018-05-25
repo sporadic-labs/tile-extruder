@@ -11,14 +11,25 @@
 const Jimp = require("jimp");
 const path = require("path");
 
+/**
+ *
+ * @param {integer} tileWidth - tile width in pixels
+ * @param {integer} tileHeight - tile height in pixels
+ * @param {string} inputPath - the path to the tileset you want to extrude
+ * @param {string} outputPath - the path to output the extruded tileset image
+ * @param {object} [options] - optional settings
+ * @param {integer} [options.margin=0] - number of pixels between tiles and the edge of the tileset
+ * image
+ * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles
+ * @param {number} [options.color=0x00000000] - RGBA hex color to use for the background color, only
+ * matters if there's margin or spacing (default: transparent)
+ */
 module.exports = function tileExtruder(
   tileWidth,
   tileHeight,
-  margin,
-  spacing,
-  color,
   inputPath,
-  outputPath
+  outputPath,
+  { margin = 0, spacing = 0, color = 0x00000000 } = {}
 ) {
   (async () => {
     const image = await Jimp.read(inputPath).catch(err => {

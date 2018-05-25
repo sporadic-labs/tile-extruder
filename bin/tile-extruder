@@ -54,4 +54,4 @@ if (!outputPath) {
   program.help();
 }
 
-tileExtruder(tileWidth, tileHeight, margin, spacing, color, inputPath, outputPath);
+tileExtruder(tileWidth, tileHeight, inputPath, outputPath, { margin, spacing, color });
