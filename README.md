@@ -8,6 +8,8 @@ A tiny Node app to extrude tiles in tilesets to avoid bleeding issues.
 
 You can read more about the bleeding problem and solution [here](http://rotorz.com/unity/tile-system/docs/edge-correction). This CLI app handles both tilesets with and without margin & spacing.
 
+Interested in learning more about how to use tilemaps in Phaser 3? Check out my [blog post series](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6) about building modular worlds with tilemaps. It explains the concept of a tilemap, and of course, it uses extruded tiles 😉.
+
 ## Installation
 
 Make sure you have [node](https://nodejs.org/en/) and npm installed:
