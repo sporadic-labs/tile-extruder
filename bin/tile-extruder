@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const program = require("commander");
-const tileExtruder = require("../index");
+const { extrudeTilesetToImage } = require("../src/index");
 
 const toInt = v => parseInt(v, 10);
 const toHex = v => parseInt(v, 16);
@@ -54,4 +54,4 @@ if (!outputPath) {
   program.help();
 }
 
-tileExtruder(tileWidth, tileHeight, inputPath, outputPath, { margin, spacing, color });
+extrudeTilesetToImage(tileWidth, tileHeight, inputPath, outputPath, { margin, spacing, color });
