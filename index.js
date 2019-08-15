@@ -11,7 +11,7 @@
 const Jimp = require("jimp");
 
 /**
- *
+ * @async
  * @param {integer} tileWidth - tile width in pixels
  * @param {integer} tileHeight - tile height in pixels
  * @param {string} inputPath - the path to the tileset you want to extrude
