@@ -151,6 +151,8 @@ Note: you'll have to adjust your margin & spacing because of the extrusion. If y
 
 ## Changelog
 
+* 2.0.0
+  * Restructure to export three methods - `extrudeTilesetToImage`, `extrudeTilesetToBuffer`,`extrudeTilesetToJimp` - to make it easier to integrate the library into other tools like [create-phaser-app](https://github.com/simiancraft/create-phaser-app/).
 * 1.2.0
   * Update jimp dependency to latest (0.6.4)
   * Make underlying library return a promise (to address [#6](https://github.com/sporadic-labs/tile-extruder/issues/6), thanks [@the-simian](https://github.com/the-simian))
