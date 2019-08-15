@@ -1,11 +1,10 @@
 /**
- * Utils to  and extrudes the tiles by 1px.
+ * Utils to extrude the tiles in a tileset by 1px.
  *
  * TODO:
  *  - Allow for customizable extrusion amount
  *  - Repacking large images?
  *  - Web app
- *  - Restructure this so that the exported module is more easily consumable by other scripts
  */
 
 const Jimp = require("jimp");
