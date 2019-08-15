@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl">
+  <title data-ice="title">Home | tile-extruder</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="A tiny Node app to extrude tiles in tilesets to avoid bleeding issues. See relevant [Phaser issue](https://github.com/photonstorm/phaser/issues/3229)"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="tile-extruder"><meta property="twitter:description" content="A tiny Node app to extrude tiles in tilesets to avoid bleeding issues. See relevant [Phaser issue](https://github.com/photonstorm/phaser/issues/3229)"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/sporadic-labs/tile-extruder"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToBuffer">extrudeTilesetToBuffer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToImage">extrudeTilesetToImage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToJimp">extrudeTilesetToJimp</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="tile-extruder">Tile Extruder</h1><p>A tiny Node app to extrude tiles in tilesets to avoid bleeding issues.</p>
+<p><img src="./doc-source/images/demo.png" alt="demo"></p>
+<p><img src="./doc-source/images/explanation.png" alt="explanation"></p>
+<p>You can read more about the bleeding problem and solution <a href="http://rotorz.com/unity/tile-system/docs/edge-correction"><del>here</del></a> (note: rotorz site is down as of 12/27/18, you can try this <a href="https://web.archive.org/web/20180411151113/http://rotorz.com/unity/tile-system/docs/edge-correction">archived version of the page</a> until the site is restored). This CLI app handles both tilesets with and without margin &amp; spacing.</p>
+<p>Interested in learning more about how to use tilemaps in Phaser 3? Check out my <a href="https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6">blog post series</a> about building modular worlds with tilemaps. It explains the concept of a tilemap, and of course, it uses extruded tiles &#x1F609;.</p>
+<h2 id="usage">Usage</h2><p>There are two ways to use the tool to extrude a tileset image. If you just need to extrude some tilesets, you can use it as a command line tool. If you need to do something that requires more control (like integrating tile-extruder into build pipeline), you can use it as a JS library.</p>
+<h3 id="usage-as-a-command-line-tool">Usage as a Command Line Tool</h3><p>Make sure you have <a href="https://nodejs.org/en/">node</a> installed and then run:</p>
+<pre><code><code class="source-code prettyprint">npm install --global tile-extruder</code>
+</code></pre><p>(Or, you can run tile-extruder directly without globally installing in npm 5.2 and greater via <code>npx tile-extruder</code>!)</p>
+<p>Once you&apos;ve got it installed, open a terminal and run a command with the following arguments:</p>
+<pre><code><code class="source-code prettyprint">tile-extruder [args]</code>
+</code></pre><p>An example usage for a 8 x 16 tile size tileset with no margin or spacing:</p>
+<pre><code><code class="source-code prettyprint">tile-extruder --tileWidth 8 --tileHeight 16 --input ./tilesets/borders-tileset.png --output ./tilesets/borders-tileset-extruded.png</code>
+</code></pre><p>An example usage for a 16 x 16 tile size tileset with 5px margin and 10px spacing:</p>
+<pre><code><code class="source-code prettyprint">tile-extruder --tileWidth 16 --tileHeight 16 --margin 5 --spacing 10 --input ./tilesets/mario-tileset.png --output ./tilesets/mario-tileset-extruded.png</code>
+</code></pre><p>Additional usage information:</p>
+<pre><code><code class="source-code prettyprint">A small CLI to extrude tiles. Use --help for more information.
+
+Options:
+
+  -V, --version                 output the version number
+  -w, --tileWidth &lt;integer&gt;     tile width in pixels
+  -h, --tileHeight &lt;integer&gt;    tile height in pixels
+  -i, --input &lt;path&gt;            the path to the tileset you want to extrude
+  -o, --output &lt;path&gt;           the path to output the extruded tileset image
+  -c, --color [hex=0x00000000]  RGBA hex color to use for the background color, only matters if there&apos;s margin                                or spacing (default: transparent)
+  -m, --margin [integer=0]      number of pixels between tiles and the edge of the tileset image (default: 0)
+  -s, --spacing [integer=0]     number of pixels between neighboring tiles (default: 0)
+  -h, --help                    output usage information</code>
+</code></pre><p>A note on terminology, <em>spacing</em> is the number of pixels between neighboring tiles, while <em>margin</em> is the number of pixels between the edges of the image and the tiles. Or, more visually explained:</p>
+<p><img src="./doc-source/images/margin-and-spacing.png" alt="Margin and spacing"></p>
+<h3 id="usage-as-a-library">Usage as a Library</h3><p>If you&apos;re reading this on npm/GitHub, you can read the documentation online <a href="https://sporadic-labs.github.io/tile-extruder">here</a> which includes API documentation. Also, see <a href="https://github.com/sporadic-labs/tile-extruder/tree/master/examples/node">node examples</a> folder for code.</p>
+<p>Install the library as a dependency in your Node project:</p>
+<pre><code><code class="source-code prettyprint">npm install tile-extruder</code>
+</code></pre><p>This exposes three utility functions, which all extrude a given tileset image, but differ in terms of their output.</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">const {
+  extrudeTilesetToImage,
+  extrudeTilesetToBuffer,
+  extrudeTilesetToJimp
+} = require(&quot;tile-extruder&quot;);</code>
+</code></pre>
+<p>Saving to disk:</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">const { extrudeTilesetToImage } = require(&quot;tile-extruder&quot;);
+
+async function main() {
+  try {
+    await extrudeTilesetToImage(16, 16, &quot;./buch-tileset.png&quot;, &quot;./buch-tileset-extruded.png&quot;);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+main();</code>
+</code></pre>
+<p>Obtaining the extruded tileset as a buffer and then minifying it before saving:</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">const { extrudeTilesetToBuffer } = require(&quot;../../src/index&quot;);
+const imagemin = require(&quot;imagemin&quot;);
+const imageminPngquant = require(&quot;imagemin-pngquant&quot;);
+const fs = require(&quot;fs&quot;);
+
+async function main() {
+  const buffer = await extrudeTilesetToBuffer(16, 16, &quot;./buch-tileset.png&quot;);
+  const minifiedBuffer = await imagemin.buffer(buffer, {
+    plugins: [
+      imageminPngquant({
+        quality: [0.6, 0.8] // See https://github.com/imagemin/imagemin-pngquant
+      })
+    ]
+  });
+  fs.writeFileSync(&quot;./buch-tileset-extruded-minified.png&quot;, minifiedBuffer);
+}
+
+main();</code>
+</code></pre>
+<h3 id="using-the-extruded-tileset">Using the Extruded Tileset</h3><p>This tool was built for a Phaser &amp; Tiled project, so here&apos;s how to integrate with that pipeline.</p>
+<p>If you&apos;ve already built a map in Tiled with a non-extruded tileset and are looking to replace it with an extruded tileset, you&apos;ve got a couple options:</p>
+<ul>
+<li>Extrude the tileset and then update your existing tileset in Tiled. In the &quot;Tilesets&quot; panel, click on the edit tileset icon (the wrench) and then click on &quot;Tileset Properties&quot; under the Tileset menu bar item. Edit the &quot;Image&quot; field, replacing the tileset image with the new extruded image and updating to the margin and spacing.</li>
+<li>If you&apos;d rather leave your Tiled file alone, you can just adjust things on the Phaser side. See this <a href="https://github.com/sporadic-labs/tile-extruder/blob/master/examples/phaser/main.js">example</a>. You want to load the extruded tileset image, and then when you create your tileset, specify the appropriate margin and spacing:</li>
+</ul>
+<pre><code class="lang-js"><code class="source-code prettyprint">// Parameters: name in Tiled, phaser cache key, tile width, tile height, margin, spacing
+const tileset = map.addTilesetImage(&quot;tileset&quot;, &quot;tileset-extruded&quot;, 48, 48, 1, 2);</code>
+</code></pre>
+<p>Note: you&apos;ll have to adjust your margin &amp; spacing because of the extrusion. If you had no margin &amp; spacing, then the new margin is 1px and the spacing is 2px.</p>
+<h2 id="tileset-sources">Tileset Sources</h2><ul>
+<li>Dungeon Tileset by Buch - <a href="https://opengameart.org/content/top-down-dungeon-tileset">Source</a></li>
+<li>Minirouge Tileset by Arachne - <a href="https://forums.tigsource.com/index.php?topic=14166.0">Source</a></li>
+<li>Mario Tileset - <a href="http://rmrk.net/index.php?topic=37002.0">Source</a></li>
+</ul>
+<h2 id="changelog">Changelog</h2><ul>
+<li>1.2.0<ul>
+<li>Update jimp dependency to latest (0.6.4)</li>
+<li>Make underlying library return a promise (to address <a href="https://github.com/sporadic-labs/tile-extruder/issues/6">#6</a>, thanks <a href="https://github.com/the-simian">@the-simian</a>)</li>
+<li>Cleaner error handling</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

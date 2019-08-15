@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../">
+  <title data-ice="title">Function | tile-extruder</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="A tiny Node app to extrude tiles in tilesets to avoid bleeding issues. See relevant [Phaser issue](https://github.com/photonstorm/phaser/issues/3229)"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="tile-extruder"><meta property="twitter:description" content="A tiny Node app to extrude tiles in tilesets to avoid bleeding issues. See relevant [Phaser issue](https://github.com/photonstorm/phaser/issues/3229)"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/sporadic-labs/tile-extruder"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToBuffer">extrudeTilesetToBuffer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToImage">extrudeTilesetToImage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToJimp">extrudeTilesetToJimp</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">Function</h1>
+<div data-ice="summaries"><table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Static Public Summary</td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          <span data-ice="async">async</span>
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToBuffer">extrudeTilesetToBuffer</a></span></span><span class="code" data-ice="signature">(tileWidth: <span>integer</span>, tileHeight: <span>integer</span>, inputPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>Buffer</span>&gt;</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Accepts an image path and returns a Promise that resolves to a Buffer containing the extruded
+tileset image.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          <span data-ice="async">async</span>
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToImage">extrudeTilesetToImage</a></span></span><span class="code" data-ice="signature">(tileWidth: <span>integer</span>, tileHeight: <span>integer</span>, inputPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, outputPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>Buffer</span>&gt;</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Accepts an image path and saves out an extruded version of the tileset to <code>outputPath</code>.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          <span data-ice="async">async</span>
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToJimp">extrudeTilesetToJimp</a></span></span><span class="code" data-ice="signature">(tileWidth: <span>integer</span>, tileHeight: <span>integer</span>, inputPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>Image</span>&gt;</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Accepts an image path and returns a Jimp image object containing the extruded image.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<div data-ice="details"><h2 data-ice="title">Static Public </h2>
+
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-extrudeTilesetToBuffer">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    <span data-ice="async">async</span>
+    
+    <span class="code" data-ice="name">extrudeTilesetToBuffer</span><span class="code" data-ice="signature">(tileWidth: <span>integer</span>, tileHeight: <span>integer</span>, inputPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>Buffer</span>&gt;</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber31">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToBuffer} from &apos;<span><a href="file/src/index.js.html#lineNumber31">tile-extruder/src/index.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Accepts an image path and returns a Promise that resolves to a Buffer containing the extruded
+tileset image.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">tileWidth</td>
+      <td data-ice="type" class="code"><span>integer</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>tile width in pixels</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">tileHeight</td>
+      <td data-ice="type" class="code"><span>integer</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>tile height in pixels</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">inputPath</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the path to the tileset you want to extrude</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">options</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
+      <td data-ice="description"><p>optional settings</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" class="code" data-depth="1">options.mime</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: Jimp.AUTO</li></ul></td>
+      <td data-ice="description"><p>the mime type that should be used for the buffer.
+Defaults to Jimp.AUTO which tries to use the image&apos;s original mime type, and if not available,
+uses png. Supported mime options: &quot;image/png&quot;, &quot;image/jpeg&quot;, &quot;image/bmp&quot;</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" class="code" data-depth="1">options.margin</td>
+      <td data-ice="type" class="code"><span>integer</span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: 0</li></ul></td>
+      <td data-ice="description"><p>number of pixels between tiles and the edge of the tileset
+image</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" class="code" data-depth="1">options.spacing</td>
+      <td data-ice="type" class="code"><span>integer</span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: 0</li></ul></td>
+      <td data-ice="description"><p>number of pixels between neighboring tiles</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" class="code" data-depth="1">options.color</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: 0x00000000</li></ul></td>
+      <td data-ice="description"><p>RGBA hex color to use for the background color, only
+matters if there&apos;s margin or spacing (default: transparent)</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>Buffer</span>&gt;</td>
+          <td class="return-desc" data-ice="returnDescription"><p>A promise that resolves to an image buffer, or rejects with an
+error.</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-extrudeTilesetToImage">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    <span data-ice="async">async</span>
+    
+    <span class="code" data-ice="name">extrudeTilesetToImage</span><span class="code" data-ice="signature">(tileWidth: <span>integer</span>, tileHeight: <span>integer</span>, inputPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, outputPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>Buffer</span>&gt;</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber65">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToImage} from &apos;<span><a href="file/src/index.js.html#lineNumber65">tile-extruder/src/index.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Accepts an image path and saves out an extruded version of the tileset to <code>outputPath</code>. It
+returns a Promise that resolves when the file has finished saving.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">tileWidth</td>
+      <td data-ice="type" class="code"><span>integer</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>tile width in pixels</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">tileHeight</td>
+      <td data-ice="type" class="code"><span>integer</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>tile height in pixels</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">inputPath</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the path to the tileset you want to extrude</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">outputPath</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the path to output the extruded tileset image</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">options</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
+      <td data-ice="description"><p>optional settings</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" class="code" data-depth="1">options.margin</td>
+      <td data-ice="type" class="code"><span>integer</span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: 0</li></ul></td>
+      <td data-ice="description"><p>number of pixels between tiles and the edge of the tileset
+image</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" class="code" data-depth="1">options.spacing</td>
+      <td data-ice="type" class="code"><span>integer</span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: 0</li></ul></td>
+      <td data-ice="description"><p>number of pixels between neighboring tiles</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" class="code" data-depth="1">options.color</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: 0x00000000</li></ul></td>
+      <td data-ice="description"><p>RGBA hex color to use for the background color, only
+matters if there&apos;s margin or spacing (default: transparent)</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>Buffer</span>&gt;</td>
+          <td class="return-desc" data-ice="returnDescription"><p>A promise that resolves to an image buffer, or rejects with an
+error.</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-extrudeTilesetToJimp">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    <span data-ice="async">async</span>
+    
+    <span class="code" data-ice="name">extrudeTilesetToJimp</span><span class="code" data-ice="signature">(tileWidth: <span>integer</span>, tileHeight: <span>integer</span>, inputPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>Image</span>&gt;</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber100">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToJimp} from &apos;<span><a href="file/src/index.js.html#lineNumber100">tile-extruder/src/index.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Accepts an image path and returns a Jimp image object containing the extruded image. This is
+exposed for advanced image processing purposes. For more common uses, see extrudeTilesetToImage
+or extrudeTilesetToBuffer. It returns a Promise that resolves when it is finished extruding the
+image.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">tileWidth</td>
+      <td data-ice="type" class="code"><span>integer</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>tile width in pixels</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">tileHeight</td>
+      <td data-ice="type" class="code"><span>integer</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>tile height in pixels</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">inputPath</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the path to the tileset you want to extrude</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">options</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
+      <td data-ice="description"><p>optional settings</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" class="code" data-depth="1">options.margin</td>
+      <td data-ice="type" class="code"><span>integer</span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: 0</li></ul></td>
+      <td data-ice="description"><p>number of pixels between tiles and the edge of the tileset
+image</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" class="code" data-depth="1">options.spacing</td>
+      <td data-ice="type" class="code"><span>integer</span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: 0</li></ul></td>
+      <td data-ice="description"><p>number of pixels between neighboring tiles</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" class="code" data-depth="1">options.color</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: 0x00000000</li></ul></td>
+      <td data-ice="description"><p>RGBA hex color to use for the background color, only
+matters if there&apos;s margin or spacing (default: transparent)</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>Image</span>&gt;</td>
+          <td class="return-desc" data-ice="returnDescription"><p>A promise that resolves to a Jimp image object, or rejects with an
+error.</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

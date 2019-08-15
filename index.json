@@ -1,0 +1,939 @@
+[
+  {
+    "__docId__": 1,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Infinity",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 2,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~NaN",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 3,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~undefined",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 4,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~null",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 5,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 6,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 7,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 8,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 9,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 10,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 11,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Symbol",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 12,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Error",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 13,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~EvalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 14,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~InternalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 15,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RangeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 16,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ReferenceError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 17,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~SyntaxError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 18,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~TypeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 19,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~URIError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 20,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 21,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 22,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Date",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 23,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~String",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 24,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~string",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 25,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RegExp",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 26,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 27,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8ClampedArray",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float64Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Map",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Set",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakMap",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakSet",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ArrayBuffer",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~DataView",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~JSON",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Promise",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Generator",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~GeneratorFunction",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Reflect",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Proxy",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "src/index.js",
+    "content": "/**\r\n * Utils to  and extrudes the tiles by 1px.\r\n *\r\n * TODO:\r\n *  - Allow for customizable extrusion amount\r\n *  - Repacking large images?\r\n *  - Web app\r\n *  - Restructure this so that the exported module is more easily consumable by other scripts\r\n */\r\n\r\nconst Jimp = require(\"jimp\");\r\n\r\n/**\r\n * Accepts an image path and returns a Promise that resolves to a Buffer containing the extruded\r\n * tileset image.\r\n * @param {integer} tileWidth - tile width in pixels\r\n * @param {integer} tileHeight - tile height in pixels\r\n * @param {string} inputPath - the path to the tileset you want to extrude\r\n * @param {object} [options] - optional settings\r\n * @param {string} [options.mime=Jimp.AUTO] - the mime type that should be used for the buffer.\r\n * Defaults to Jimp.AUTO which tries to use the image's original mime type, and if not available,\r\n * uses png. Supported mime options: \"image/png\", \"image/jpeg\", \"image/bmp\"\r\n * @param {integer} [options.margin=0] - number of pixels between tiles and the edge of the tileset\r\n * image\r\n * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles\r\n * @param {number} [options.color=0x00000000] - RGBA hex color to use for the background color, only\r\n * matters if there's margin or spacing (default: transparent)\r\n * @returns {Promise<Buffer>} - A promise that resolves to an image buffer, or rejects with an\r\n * error.\r\n */\r\nasync function extrudeTilesetToBuffer(\r\n  tileWidth,\r\n  tileHeight,\r\n  inputPath,\r\n  { mime = Jimp.AUTO, margin = 0, spacing = 0, color = 0x00000000 } = {}\r\n) {\r\n  const extrudedImage = await extrudeTilesetToJimp(tileWidth, tileHeight, inputPath, {\r\n    margin,\r\n    spacing,\r\n    color\r\n  });\r\n  const buffer = await extrudedImage.getBufferAsync(mime).catch(err => {\r\n    console.error(\"Buffer could not be created from tileset.\");\r\n    throw err;\r\n  });\r\n  return buffer;\r\n}\r\n\r\n/**\r\n * Accepts an image path and saves out an extruded version of the tileset to `outputPath`. It\r\n * returns a Promise that resolves when the file has finished saving.\r\n * @param {integer} tileWidth - tile width in pixels\r\n * @param {integer} tileHeight - tile height in pixels\r\n * @param {string} inputPath - the path to the tileset you want to extrude\r\n * @param {string} outputPath - the path to output the extruded tileset image\r\n * @param {object} [options] - optional settings\r\n * @param {integer} [options.margin=0] - number of pixels between tiles and the edge of the tileset\r\n * image\r\n * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles\r\n * @param {number} [options.color=0x00000000] - RGBA hex color to use for the background color, only\r\n * matters if there's margin or spacing (default: transparent)\r\n * @returns {Promise<Buffer>} - A promise that resolves to an image buffer, or rejects with an\r\n * error.\r\n */\r\nasync function extrudeTilesetToImage(\r\n  tileWidth,\r\n  tileHeight,\r\n  inputPath,\r\n  outputPath,\r\n  { margin = 0, spacing = 0, color = 0x00000000 } = {}\r\n) {\r\n  const extrudedImage = await extrudeTilesetToJimp(tileWidth, tileHeight, inputPath, {\r\n    margin,\r\n    spacing,\r\n    color\r\n  });\r\n  await extrudedImage.writeAsync(outputPath).catch(err => {\r\n    console.error(`Tileset image could not be saved to: ${outputPath}`);\r\n    throw err;\r\n  });\r\n}\r\n\r\n/**\r\n * Accepts an image path and returns a Jimp image object containing the extruded image. This is\r\n * exposed for advanced image processing purposes. For more common uses, see extrudeTilesetToImage\r\n * or extrudeTilesetToBuffer. It returns a Promise that resolves when it is finished extruding the\r\n * image.\r\n * @param {integer} tileWidth - tile width in pixels\r\n * @param {integer} tileHeight - tile height in pixels\r\n * @param {string} inputPath - the path to the tileset you want to extrude\r\n * @param {object} [options] - optional settings\r\n * @param {integer} [options.margin=0] - number of pixels between tiles and the edge of the tileset\r\n * image\r\n * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles\r\n * @param {number} [options.color=0x00000000] - RGBA hex color to use for the background color, only\r\n * matters if there's margin or spacing (default: transparent)\r\n * @returns {Promise<Image>} - A promise that resolves to a Jimp image object, or rejects with an\r\n * error.\r\n */\r\nasync function extrudeTilesetToJimp(\r\n  tileWidth,\r\n  tileHeight,\r\n  inputPath,\r\n  { margin = 0, spacing = 0, color = 0x00000000 } = {}\r\n) {\r\n  const image = await Jimp.read(inputPath).catch(err => {\r\n    console.error(`Tileset image could not be loaded from: ${inputPath}`);\r\n    throw err;\r\n  });\r\n\r\n  const { width, height } = image.bitmap;\r\n\r\n  // Solve for \"cols\" & \"rows\" to get the formula used here\r\n  //  width = 2 * margin + (cols - 1) * spacing + cols * tileWidth\r\n  //  height = 2 * margin + (rows - 1) * spacing + rows * tileHeight\r\n  const cols = (width - 2 * margin + spacing) / (tileWidth + spacing);\r\n  const rows = (height - 2 * margin + spacing) / (tileHeight + spacing);\r\n\r\n  if (!Number.isInteger(cols) || !Number.isInteger(rows)) {\r\n    throw new Error(\r\n      \"Non-integer number of rows or cols found. The image doesn't match the specified parameters. Double check your margin, spacing, tileWidth and tileHeight.\"\r\n    );\r\n  }\r\n\r\n  // Same calculation but in reverse & inflating the tile size by the extrusion amount\r\n  const newWidth = 2 * margin + (cols - 1) * spacing + cols * (tileWidth + 2);\r\n  const newHeight = 2 * margin + (rows - 1) * spacing + rows * (tileHeight + 2);\r\n\r\n  const extrudedImage = await new Jimp(newWidth, newHeight, color);\r\n\r\n  for (let row = 0; row < rows; row++) {\r\n    for (let col = 0; col < cols; col++) {\r\n      let srcX = margin + col * (tileWidth + spacing); // x of tile top left\r\n      let srcY = margin + row * (tileHeight + spacing); // y of tile top left\r\n      let destX = margin + col * (tileWidth + spacing + 2); // x of the extruded tile top left\r\n      let destY = margin + row * (tileHeight + spacing + 2); // y of the extruded tile top left\r\n      const tw = tileWidth;\r\n      const th = tileHeight;\r\n\r\n      // Copy the tile\r\n      extrudedImage.blit(image, destX + 1, destY + 1, srcX, srcY, tw, th);\r\n\r\n      // Extrude the top row\r\n      extrudedImage.blit(image, destX + 1, destY, srcX, srcY, tw, 1);\r\n\r\n      // Extrude the bottom row\r\n      extrudedImage.blit(image, destX + 1, destY + th + 1, srcX, srcY + th - 1, tw, 1);\r\n\r\n      // Extrude left column\r\n      extrudedImage.blit(image, destX, destY + 1, srcX, srcY, 1, th);\r\n\r\n      // Extrude the right column\r\n      extrudedImage.blit(image, destX + tw + 1, destY + 1, srcX + tw - 1, srcY, 1, th);\r\n\r\n      // Corners, order: TL, TR, BL, BR\r\n      extrudedImage.blit(image, destX, destY, srcX, srcY, 1, 1);\r\n      extrudedImage.blit(image, destX + tw + 1, destY, srcX + tw - 1, srcY, 1, 1);\r\n      extrudedImage.blit(image, destX, destY + th + 1, srcX, srcY + th - 1, 1, 1);\r\n      extrudedImage.blit(image, destX + tw + 1, destY + th + 1, srcX + tw - 1, srcY + th - 1, 1, 1);\r\n    }\r\n  }\r\n\r\n  return extrudedImage;\r\n}\r\n\r\nmodule.exports = {\r\n  extrudeTilesetToBuffer,\r\n  extrudeTilesetToImage,\r\n  extrudeTilesetToJimp\r\n};\r\n",
+    "static": true,
+    "longname": "D:/GitHub/tile-extruder/src/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "function",
+    "name": "extrudeTilesetToBuffer",
+    "memberof": "src/index.js",
+    "generator": false,
+    "async": true,
+    "static": true,
+    "longname": "src/index.js~extrudeTilesetToBuffer",
+    "access": "public",
+    "export": true,
+    "importPath": "tile-extruder/src/index.js",
+    "importStyle": "{extrudeTilesetToBuffer}",
+    "description": "Accepts an image path and returns a Promise that resolves to a Buffer containing the extruded\ntileset image.",
+    "lineNumber": 31,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Promise<Buffer>} - A promise that resolves to an image buffer, or rejects with an\nerror."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "integer"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tileWidth",
+        "description": "tile width in pixels"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "integer"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tileHeight",
+        "description": "tile height in pixels"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "inputPath",
+        "description": "the path to the tileset you want to extrude"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options",
+        "description": "optional settings"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "Jimp.AUTO",
+        "defaultRaw": "Jimp.AUTO",
+        "name": "options.mime",
+        "description": "the mime type that should be used for the buffer.\nDefaults to Jimp.AUTO which tries to use the image's original mime type, and if not available,\nuses png. Supported mime options: \"image/png\", \"image/jpeg\", \"image/bmp\""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "integer"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0",
+        "defaultRaw": 0,
+        "name": "options.margin",
+        "description": "number of pixels between tiles and the edge of the tileset\nimage"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "integer"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0",
+        "defaultRaw": 0,
+        "name": "options.spacing",
+        "description": "number of pixels between neighboring tiles"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0x00000000",
+        "defaultRaw": "0x00000000",
+        "name": "options.color",
+        "description": "RGBA hex color to use for the background color, only\nmatters if there's margin or spacing (default: transparent)"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise<Buffer>"
+      ],
+      "spread": false,
+      "description": "A promise that resolves to an image buffer, or rejects with an\nerror."
+    }
+  },
+  {
+    "__docId__": 50,
+    "kind": "function",
+    "name": "extrudeTilesetToImage",
+    "memberof": "src/index.js",
+    "generator": false,
+    "async": true,
+    "static": true,
+    "longname": "src/index.js~extrudeTilesetToImage",
+    "access": "public",
+    "export": true,
+    "importPath": "tile-extruder/src/index.js",
+    "importStyle": "{extrudeTilesetToImage}",
+    "description": "Accepts an image path and saves out an extruded version of the tileset to `outputPath`. It\nreturns a Promise that resolves when the file has finished saving.",
+    "lineNumber": 65,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Promise<Buffer>} - A promise that resolves to an image buffer, or rejects with an\nerror."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "integer"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tileWidth",
+        "description": "tile width in pixels"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "integer"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tileHeight",
+        "description": "tile height in pixels"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "inputPath",
+        "description": "the path to the tileset you want to extrude"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "outputPath",
+        "description": "the path to output the extruded tileset image"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options",
+        "description": "optional settings"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "integer"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0",
+        "defaultRaw": 0,
+        "name": "options.margin",
+        "description": "number of pixels between tiles and the edge of the tileset\nimage"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "integer"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0",
+        "defaultRaw": 0,
+        "name": "options.spacing",
+        "description": "number of pixels between neighboring tiles"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0x00000000",
+        "defaultRaw": "0x00000000",
+        "name": "options.color",
+        "description": "RGBA hex color to use for the background color, only\nmatters if there's margin or spacing (default: transparent)"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise<Buffer>"
+      ],
+      "spread": false,
+      "description": "A promise that resolves to an image buffer, or rejects with an\nerror."
+    }
+  },
+  {
+    "__docId__": 51,
+    "kind": "function",
+    "name": "extrudeTilesetToJimp",
+    "memberof": "src/index.js",
+    "generator": false,
+    "async": true,
+    "static": true,
+    "longname": "src/index.js~extrudeTilesetToJimp",
+    "access": "public",
+    "export": true,
+    "importPath": "tile-extruder/src/index.js",
+    "importStyle": "{extrudeTilesetToJimp}",
+    "description": "Accepts an image path and returns a Jimp image object containing the extruded image. This is\nexposed for advanced image processing purposes. For more common uses, see extrudeTilesetToImage\nor extrudeTilesetToBuffer. It returns a Promise that resolves when it is finished extruding the\nimage.",
+    "lineNumber": 100,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Promise<Image>} - A promise that resolves to a Jimp image object, or rejects with an\nerror."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "integer"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tileWidth",
+        "description": "tile width in pixels"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "integer"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tileHeight",
+        "description": "tile height in pixels"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "inputPath",
+        "description": "the path to the tileset you want to extrude"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options",
+        "description": "optional settings"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "integer"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0",
+        "defaultRaw": 0,
+        "name": "options.margin",
+        "description": "number of pixels between tiles and the edge of the tileset\nimage"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "integer"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0",
+        "defaultRaw": 0,
+        "name": "options.spacing",
+        "description": "number of pixels between neighboring tiles"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0x00000000",
+        "defaultRaw": "0x00000000",
+        "name": "options.color",
+        "description": "RGBA hex color to use for the background color, only\nmatters if there's margin or spacing (default: transparent)"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise<Image>"
+      ],
+      "spread": false,
+      "description": "A promise that resolves to a Jimp image object, or rejects with an\nerror."
+    }
+  },
+  {
+    "kind": "index",
+    "content": "# Tile Extruder\r\n\r\nA tiny Node app to extrude tiles in tilesets to avoid bleeding issues.\r\n\r\n![demo](./doc-source/images/demo.png)\r\n\r\n![explanation](./doc-source/images/explanation.png)\r\n\r\nYou can read more about the bleeding problem and solution [~~here~~](http://rotorz.com/unity/tile-system/docs/edge-correction) (note: rotorz site is down as of 12/27/18, you can try this [archived version of the page](https://web.archive.org/web/20180411151113/http://rotorz.com/unity/tile-system/docs/edge-correction) until the site is restored). This CLI app handles both tilesets with and without margin & spacing.\r\n\r\nInterested in learning more about how to use tilemaps in Phaser 3? Check out my [blog post series](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6) about building modular worlds with tilemaps. It explains the concept of a tilemap, and of course, it uses extruded tiles 😉.\r\n\r\n## Usage\r\n\r\nThere are two ways to use the tool to extrude a tileset image. If you just need to extrude some tilesets, you can use it as a command line tool. If you need to do something that requires more control (like integrating tile-extruder into build pipeline), you can use it as a JS library.\r\n\r\n### Usage as a Command Line Tool\r\n\r\nMake sure you have [node](https://nodejs.org/en/) installed and then run:\r\n\r\n```\r\nnpm install --global tile-extruder\r\n```\r\n\r\n(Or, you can run tile-extruder directly without globally installing in npm 5.2 and greater via `npx tile-extruder`!)\r\n\r\nOnce you've got it installed, open a terminal and run a command with the following arguments:\r\n\r\n```\r\ntile-extruder [args]\r\n```\r\n\r\nAn example usage for a 8 x 16 tile size tileset with no margin or spacing:\r\n\r\n```\r\ntile-extruder --tileWidth 8 --tileHeight 16 --input ./tilesets/borders-tileset.png --output ./tilesets/borders-tileset-extruded.png\r\n```\r\n\r\nAn example usage for a 16 x 16 tile size tileset with 5px margin and 10px spacing:\r\n\r\n```\r\ntile-extruder --tileWidth 16 --tileHeight 16 --margin 5 --spacing 10 --input ./tilesets/mario-tileset.png --output ./tilesets/mario-tileset-extruded.png\r\n```\r\n\r\nAdditional usage information:\r\n\r\n```\r\nA small CLI to extrude tiles. Use --help for more information.\r\n\r\nOptions:\r\n\r\n  -V, --version                 output the version number\r\n  -w, --tileWidth <integer>     tile width in pixels\r\n  -h, --tileHeight <integer>    tile height in pixels\r\n  -i, --input <path>            the path to the tileset you want to extrude\r\n  -o, --output <path>           the path to output the extruded tileset image\r\n  -c, --color [hex=0x00000000]  RGBA hex color to use for the background color, only matters if there's margin                                or spacing (default: transparent)\r\n  -m, --margin [integer=0]      number of pixels between tiles and the edge of the tileset image (default: 0)\r\n  -s, --spacing [integer=0]     number of pixels between neighboring tiles (default: 0)\r\n  -h, --help                    output usage information\r\n```\r\n\r\nA note on terminology, _spacing_ is the number of pixels between neighboring tiles, while _margin_ is the number of pixels between the edges of the image and the tiles. Or, more visually explained:\r\n\r\n![Margin and spacing](./doc-source/images/margin-and-spacing.png)\r\n\r\n### Usage as a Library\r\n\r\nIf you're reading this on npm/GitHub, you can read the documentation online [here](https://sporadic-labs.github.io/tile-extruder) which includes API documentation. Also, see [node examples](https://github.com/sporadic-labs/tile-extruder/tree/master/examples/node) folder for code.\r\n\r\nInstall the library as a dependency in your Node project:\r\n\r\n```\r\nnpm install tile-extruder\r\n```\r\n\r\nThis exposes three utility functions, which all extrude a given tileset image, but differ in terms of their output.\r\n\r\n```js\r\nconst {\r\n  extrudeTilesetToImage,\r\n  extrudeTilesetToBuffer,\r\n  extrudeTilesetToJimp\r\n} = require(\"tile-extruder\");\r\n```\r\n\r\nSaving to disk:\r\n\r\n```js\r\nconst { extrudeTilesetToImage } = require(\"tile-extruder\");\r\n\r\nasync function main() {\r\n  try {\r\n    await extrudeTilesetToImage(16, 16, \"./buch-tileset.png\", \"./buch-tileset-extruded.png\");\r\n  } catch (err) {\r\n    console.error(err);\r\n  }\r\n}\r\n\r\nmain();\r\n```\r\n\r\nObtaining the extruded tileset as a buffer and then minifying it before saving:\r\n\r\n```js\r\nconst { extrudeTilesetToBuffer } = require(\"../../src/index\");\r\nconst imagemin = require(\"imagemin\");\r\nconst imageminPngquant = require(\"imagemin-pngquant\");\r\nconst fs = require(\"fs\");\r\n\r\nasync function main() {\r\n  const buffer = await extrudeTilesetToBuffer(16, 16, \"./buch-tileset.png\");\r\n  const minifiedBuffer = await imagemin.buffer(buffer, {\r\n    plugins: [\r\n      imageminPngquant({\r\n        quality: [0.6, 0.8] // See https://github.com/imagemin/imagemin-pngquant\r\n      })\r\n    ]\r\n  });\r\n  fs.writeFileSync(\"./buch-tileset-extruded-minified.png\", minifiedBuffer);\r\n}\r\n\r\nmain();\r\n```\r\n\r\n### Using the Extruded Tileset\r\n\r\nThis tool was built for a Phaser & Tiled project, so here's how to integrate with that pipeline.\r\n\r\nIf you've already built a map in Tiled with a non-extruded tileset and are looking to replace it with an extruded tileset, you've got a couple options:\r\n\r\n* Extrude the tileset and then update your existing tileset in Tiled. In the \"Tilesets\" panel, click on the edit tileset icon (the wrench) and then click on \"Tileset Properties\" under the Tileset menu bar item. Edit the \"Image\" field, replacing the tileset image with the new extruded image and updating to the margin and spacing.\r\n* If you'd rather leave your Tiled file alone, you can just adjust things on the Phaser side. See this [example](https://github.com/sporadic-labs/tile-extruder/blob/master/examples/phaser/main.js). You want to load the extruded tileset image, and then when you create your tileset, specify the appropriate margin and spacing:\r\n\r\n```js\r\n// Parameters: name in Tiled, phaser cache key, tile width, tile height, margin, spacing\r\nconst tileset = map.addTilesetImage(\"tileset\", \"tileset-extruded\", 48, 48, 1, 2);\r\n```\r\n\r\nNote: you'll have to adjust your margin & spacing because of the extrusion. If you had no margin & spacing, then the new margin is 1px and the spacing is 2px.\r\n\r\n## Tileset Sources\r\n\r\n* Dungeon Tileset by Buch - [Source](https://opengameart.org/content/top-down-dungeon-tileset)\r\n* Minirouge Tileset by Arachne - [Source](https://forums.tigsource.com/index.php?topic=14166.0)\r\n* Mario Tileset - [Source](http://rmrk.net/index.php?topic=37002.0)\r\n\r\n## Changelog\r\n\r\n* 1.2.0\r\n  * Update jimp dependency to latest (0.6.4)\r\n  * Make underlying library return a promise (to address [#6](https://github.com/sporadic-labs/tile-extruder/issues/6), thanks [@the-simian](https://github.com/the-simian))\r\n  * Cleaner error handling\r\n",
+    "longname": "D:\\GitHub\\tile-extruder\\README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\r\n  \"name\": \"tile-extruder\",\r\n  \"description\":\r\n    \"A tiny Node app to extrude tiles in tilesets to avoid bleeding issues. See relevant [Phaser issue](https://github.com/photonstorm/phaser/issues/3229)\",\r\n  \"version\": \"1.2.0\",\r\n  \"main\": \"index.js\",\r\n  \"scripts\": {\r\n    \"test\": \"node ./test.js\",\r\n    \"start\": \"node ./index.js\",\r\n    \"demo\": \"http-server ./examples/phaser -c-1 -o\",\r\n    \"doc\": \"esdoc -c ./.esdoc.json\",\r\n    \"postdoc\": \"cp -r doc-source/ docs/\",\r\n    \"deploy:doc\": \"gh-pages --branch gh-pages --dist docs\",\r\n    \"predeploy:doc\": \"npm run doc\"\r\n  },\r\n  \"repository\": {\r\n    \"type\": \"git\",\r\n    \"url\": \"git+https://github.com/sporadic-labs/tile-extruder.git\"\r\n  },\r\n  \"prettier\": {\r\n    \"printWidth\": 100\r\n  },\r\n  \"files\": [\"lib\", \"bin\"],\r\n  \"author\": \"\",\r\n  \"license\": \"ISC\",\r\n  \"bin\": {\r\n    \"tile-extruder\": \"./bin/tile-extruder\"\r\n  },\r\n  \"bugs\": {\r\n    \"url\": \"https://github.com/sporadic-labs/tile-extruder/issues\"\r\n  },\r\n  \"homepage\": \"https://github.com/sporadic-labs/tile-extruder#readme\",\r\n  \"dependencies\": {\r\n    \"commander\": \"^2.15.1\",\r\n    \"jimp\": \"^0.6.4\"\r\n  },\r\n  \"devDependencies\": {\r\n    \"esdoc\": \"^1.1.0\",\r\n    \"esdoc-node\": \"^1.0.4\",\r\n    \"esdoc-standard-plugin\": \"^1.0.0\",\r\n    \"gh-pages\": \"^2.1.1\",\r\n    \"http-server\": \"^0.11.1\",\r\n    \"imagemin\": \"^7.0.0\",\r\n    \"imagemin-pngquant\": \"^8.0.0\",\r\n    \"prettier\": \"^1.12.1\"\r\n  }\r\n}\r\n",
+    "longname": "D:\\GitHub\\tile-extruder\\package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  }
+]
