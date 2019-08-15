@@ -8,7 +8,9 @@
     "start": "node ./index.js",
     "demo": "http-server ./examples/phaser -c-1 -o",
     "doc": "esdoc -c ./.esdoc.json",
-    "postdoc": "cp -r doc-source/ docs/"
+    "postdoc": "cp -r doc-source/ docs/",
+    "deploy:doc": "gh-pages --branch gh-pages --dist docs",
+    "predeploy:doc": "npm run doc"
   },
   "repository": {
     "type": "git",
@@ -38,6 +40,7 @@
     "esdoc": "^1.1.0",
     "esdoc-node": "^1.0.4",
     "esdoc-standard-plugin": "^1.0.0",
+    "gh-pages": "^2.1.1",
     "http-server": "^0.11.1",
     "imagemin": "^7.0.0",
     "imagemin-pngquant": "^8.0.0",
