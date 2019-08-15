@@ -7,6 +7,8 @@
     "test": "node ./test.js",
     "start": "node ./index.js",
     "demo": "http-server ./phaser-test -c-1 -o"
+    "doc": "esdoc -c ./.esdoc.json",
+    "postdoc": "cp -r doc-source/ docs/"
   },
   "repository": {
     "type": "git",
@@ -33,6 +35,9 @@
     "jimp": "^0.6.4"
   },
   "devDependencies": {
+    "esdoc": "^1.1.0",
+    "esdoc-node": "^1.0.4",
+    "esdoc-standard-plugin": "^1.0.0",
     "http-server": "^0.11.1",
     "prettier": "^1.12.1"
   }

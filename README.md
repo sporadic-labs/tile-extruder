@@ -2,9 +2,9 @@
 
 A tiny Node app to extrude tiles in tilesets to avoid bleeding issues.
 
-![demo](./images/demo.png)
+![demo](./doc-source/images/demo.png)
 
-![explanation](./images/explanation.png)
+![explanation](./doc-source/images/explanation.png)
 
 You can read more about the bleeding problem and solution [~~here~~](http://rotorz.com/unity/tile-system/docs/edge-correction) (note: rotorz site is down as of 12/27/18, you can try this [archived version of the page](https://web.archive.org/web/20180411151113/http://rotorz.com/unity/tile-system/docs/edge-correction) until the site is restored). This CLI app handles both tilesets with and without margin & spacing.
 
@@ -59,10 +59,10 @@ Options:
 ```
 
 ## Terminology
+![Margin and spacing](./doc-source/images/margin-and-spacing.png)
 
 _Spacing_ is the number of pixels between neighboring tiles. _Margin_ is the number of pixels between the edges of the image and the tiles. Or, more visually explained:
 
-![Margin and spacing](./images/margin-and-spacing.png)
 
 ## Using the Extruded Tileset
 
