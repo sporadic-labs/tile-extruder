@@ -36,11 +36,24 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="tile-extruder">Tile Extruder</h1><p>A tiny Node app to extrude tiles in tilesets to avoid bleeding issues.</p>
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="tile-extruder">Tile Extruder</h1><p>A tiny Node CLI (and library) to extrude tiles in tilesets to avoid bleeding issues.</p>
 <p><img src="./doc-source/images/demo.png" alt="demo"></p>
 <p><img src="./doc-source/images/explanation.png" alt="explanation"></p>
 <p>You can read more about the bleeding problem and solution <a href="http://rotorz.com/unity/tile-system/docs/edge-correction"><del>here</del></a> (note: rotorz site is down as of 12/27/18, you can try this <a href="https://web.archive.org/web/20180411151113/http://rotorz.com/unity/tile-system/docs/edge-correction">archived version of the page</a> until the site is restored). This CLI app handles both tilesets with and without margin &amp; spacing.</p>
 <p>Interested in learning more about how to use tilemaps in Phaser 3? Check out my <a href="https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6">blog post series</a> about building modular worlds with tilemaps. It explains the concept of a tilemap, and of course, it uses extruded tiles &#x1F609;.</p>
+<ul>
+<li><a href="#tile-extruder">Tile Extruder</a><ul>
+<li><a href="#usage">Usage</a><ul>
+<li><a href="#usage-as-a-command-line-tool">Usage as a Command Line Tool</a></li>
+<li><a href="#usage-as-a-library">Usage as a Library</a></li>
+<li><a href="#using-the-extruded-tileset">Using the Extruded Tileset</a></li>
+</ul>
+</li>
+<li><a href="#tileset-credits">Tileset Credits</a></li>
+<li><a href="#changelog">Changelog</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="usage">Usage</h2><p>There are two ways to use the tool to extrude a tileset image. If you just need to extrude some tilesets, you can use it as a command line tool. If you need to do something that requires more control (like integrating tile-extruder into build pipeline), you can use it as a JS library.</p>
 <h3 id="usage-as-a-command-line-tool">Usage as a Command Line Tool</h3><p>Make sure you have <a href="https://nodejs.org/en/">node</a> installed and then run:</p>
 <pre><code><code class="source-code prettyprint">npm install --global tile-extruder</code>
@@ -72,20 +85,16 @@ Options:
 <pre><code><code class="source-code prettyprint">npm install tile-extruder</code>
 </code></pre><p>This exposes three utility functions, which all extrude a given tileset image, but differ in terms of their output.</p>
 <pre><code class="lang-js"><code class="source-code prettyprint">const {
-  extrudeTilesetToImage,
-  extrudeTilesetToBuffer,
-  extrudeTilesetToJimp
+  extrudeTilesetToImage, // Saves an image to disk
+  extrudeTilesetToBuffer, // Returns image in a Buffer (compatible with libraries like imagemin)
+  extrudeTilesetToJimp // Returns the underlying Jimp image object
 } = require(&quot;tile-extruder&quot;);</code>
 </code></pre>
 <p>Saving to disk:</p>
 <pre><code class="lang-js"><code class="source-code prettyprint">const { extrudeTilesetToImage } = require(&quot;tile-extruder&quot;);
 
 async function main() {
-  try {
-    await extrudeTilesetToImage(16, 16, &quot;./buch-tileset.png&quot;, &quot;./buch-tileset-extruded.png&quot;);
-  } catch (err) {
-    console.error(err);
-  }
+  await extrudeTilesetToImage(16, 16, &quot;./buch-tileset.png&quot;, &quot;./buch-tileset-extruded.png&quot;);
 }
 
 main();</code>
@@ -120,7 +129,7 @@ main();</code>
 const tileset = map.addTilesetImage(&quot;tileset&quot;, &quot;tileset-extruded&quot;, 48, 48, 1, 2);</code>
 </code></pre>
 <p>Note: you&apos;ll have to adjust your margin &amp; spacing because of the extrusion. If you had no margin &amp; spacing, then the new margin is 1px and the spacing is 2px.</p>
-<h2 id="tileset-sources">Tileset Sources</h2><ul>
+<h2 id="tileset-credits">Tileset Credits</h2><ul>
 <li>Dungeon Tileset by Buch - <a href="https://opengameart.org/content/top-down-dungeon-tileset">Source</a></li>
 <li>Minirouge Tileset by Arachne - <a href="https://forums.tigsource.com/index.php?topic=14166.0">Source</a></li>
 <li>Mario Tileset - <a href="http://rmrk.net/index.php?topic=37002.0">Source</a></li>
