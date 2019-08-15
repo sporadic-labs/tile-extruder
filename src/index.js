@@ -1,5 +1,5 @@
 /**
- * Takes a tileset and extrudes the tiles by 1px.
+ * Utils to  and extrudes the tiles by 1px.
  *
  * TODO:
  *  - Allow for customizable extrusion amount
@@ -11,7 +11,44 @@
 const Jimp = require("jimp");
 
 /**
- * @async
+ * Accepts an image path and returns a Promise that resolves to a Buffer containing the extruded
+ * tileset image.
+ * @param {integer} tileWidth - tile width in pixels
+ * @param {integer} tileHeight - tile height in pixels
+ * @param {string} inputPath - the path to the tileset you want to extrude
+ * @param {object} [options] - optional settings
+ * @param {string} [options.mime=Jimp.AUTO] - the mime type that should be used for the buffer.
+ * Defaults to Jimp.AUTO which tries to use the image's original mime type, and if not available,
+ * uses png. Supported mime options: "image/png", "image/jpeg", "image/bmp"
+ * @param {integer} [options.margin=0] - number of pixels between tiles and the edge of the tileset
+ * image
+ * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles
+ * @param {number} [options.color=0x00000000] - RGBA hex color to use for the background color, only
+ * matters if there's margin or spacing (default: transparent)
+ * @returns {Promise<Buffer>} - A promise that resolves to an image buffer, or rejects with an
+ * error.
+ */
+async function extrudeTilesetToBuffer(
+  tileWidth,
+  tileHeight,
+  inputPath,
+  { mime = Jimp.AUTO, margin = 0, spacing = 0, color = 0x00000000 } = {}
+) {
+  const extrudedImage = await extrudeTilesetToJimp(tileWidth, tileHeight, inputPath, {
+    margin,
+    spacing,
+    color
+  });
+  const buffer = await extrudedImage.getBufferAsync(mime).catch(err => {
+    console.error("Buffer could not be created from tileset.");
+    throw err;
+  });
+  return buffer;
+}
+
+/**
+ * Accepts an image path and saves out an extruded version of the tileset to `outputPath`. It
+ * returns a Promise that resolves when the file has finished saving.
  * @param {integer} tileWidth - tile width in pixels
  * @param {integer} tileHeight - tile height in pixels
  * @param {string} inputPath - the path to the tileset you want to extrude
@@ -22,12 +59,48 @@ const Jimp = require("jimp");
  * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles
  * @param {number} [options.color=0x00000000] - RGBA hex color to use for the background color, only
  * matters if there's margin or spacing (default: transparent)
+ * @returns {Promise<Buffer>} - A promise that resolves to an image buffer, or rejects with an
+ * error.
  */
-module.exports = async function tileExtruder(
+async function extrudeTilesetToImage(
   tileWidth,
   tileHeight,
   inputPath,
   outputPath,
+  { margin = 0, spacing = 0, color = 0x00000000 } = {}
+) {
+  const extrudedImage = await extrudeTilesetToJimp(tileWidth, tileHeight, inputPath, {
+    margin,
+    spacing,
+    color
+  });
+  await extrudedImage.writeAsync(outputPath).catch(err => {
+    console.error(`Tileset image could not be saved to: ${outputPath}`);
+    throw err;
+  });
+}
+
+/**
+ * Accepts an image path and returns a Jimp image object containing the extruded image. This is
+ * exposed for advanced image processing purposes. For more common uses, see extrudeTilesetToImage
+ * or extrudeTilesetToBuffer. It returns a Promise that resolves when it is finished extruding the
+ * image.
+ * @param {integer} tileWidth - tile width in pixels
+ * @param {integer} tileHeight - tile height in pixels
+ * @param {string} inputPath - the path to the tileset you want to extrude
+ * @param {object} [options] - optional settings
+ * @param {integer} [options.margin=0] - number of pixels between tiles and the edge of the tileset
+ * image
+ * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles
+ * @param {number} [options.color=0x00000000] - RGBA hex color to use for the background color, only
+ * matters if there's margin or spacing (default: transparent)
+ * @returns {Promise<Image>} - A promise that resolves to a Jimp image object, or rejects with an
+ * error.
+ */
+async function extrudeTilesetToJimp(
+  tileWidth,
+  tileHeight,
+  inputPath,
   { margin = 0, spacing = 0, color = 0x00000000 } = {}
 ) {
   const image = await Jimp.read(inputPath).catch(err => {
@@ -87,8 +160,11 @@ module.exports = async function tileExtruder(
     }
   }
 
-  await extrudedImage.writeAsync(outputPath).catch(err => {
-    console.error(`Tileset image could not be saved to: ${outputPath}`);
-    throw err;
-  });
+  return extrudedImage;
+}
+
+module.exports = {
+  extrudeTilesetToBuffer,
+  extrudeTilesetToImage,
+  extrudeTilesetToJimp
 };
