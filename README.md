@@ -85,3 +85,10 @@ Note: you'll have to adjust your margin & spacing because of the extrusion. If y
 * Dungeon Tileset by Buch - [Source](https://opengameart.org/content/top-down-dungeon-tileset)
 * Minirouge Tileset by Arachne - [Source](https://forums.tigsource.com/index.php?topic=14166.0)
 * Mario Tileset - [Source](http://rmrk.net/index.php?topic=37002.0)
+
+## Changelog
+
+- 1.2.0
+  - Update jimp dependency to latest (0.6.4)
+  - Make underlying library return a promise (to address [#6](https://github.com/sporadic-labs/tile-extruder/issues/6), thanks [@the-simian](https://github.com/the-simian))
+  - Cleaner error handling
