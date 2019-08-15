@@ -39,6 +39,8 @@
     "esdoc-node": "^1.0.4",
     "esdoc-standard-plugin": "^1.0.0",
     "http-server": "^0.11.1",
+    "imagemin": "^7.0.0",
+    "imagemin-pngquant": "^8.0.0",
     "prettier": "^1.12.1"
   }
 }
