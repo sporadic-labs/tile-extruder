@@ -89,5 +89,8 @@ module.exports = async function tileExtruder(
     }
   }
 
-  extrudedImage.write(outputPath);
+  await extrudedImage.writeAsync(outputPath).catch(err => {
+    console.error(`Tileset image could not be saved to: ${outputPath}`);
+    throw err;
+  });
 };
