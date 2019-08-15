@@ -92,7 +92,7 @@ const {
 } = require("tile-extruder");
 ```
 
-Saving to disk:
+To save an extruded tileset to disk:
 
 ```js
 const { extrudeTilesetToImage } = require("tile-extruder");
@@ -104,7 +104,7 @@ async function main() {
 main();
 ```
 
-Obtaining the extruded tileset as a buffer and then minifying it before saving:
+To obtain the extruded tileset as a [Buffer](https://nodejs.org/api/buffer.html) and then minify it before saving using [imagemin](https://github.com/imagemin/imagemin):
 
 ```js
 const { extrudeTilesetToBuffer } = require("../../src/index");
