@@ -33,7 +33,7 @@ module.exports = async function tileExtruder(
 ) {
   const image = await Jimp.read(inputPath).catch(err => {
     console.error(`Tileset image could not be loaded from: ${inputPath}`);
-    process.exit(1);
+    throw err;
   });
 
   const { width, height } = image.bitmap;
@@ -45,10 +45,9 @@ module.exports = async function tileExtruder(
   const rows = (height - 2 * margin + spacing) / (tileHeight + spacing);
 
   if (!Number.isInteger(cols) || !Number.isInteger(rows)) {
-    console.error(
+    throw new Error(
       "Non-integer number of rows or cols found. The image doesn't match the specified parameters. Double check your margin, spacing, tileWidth and tileHeight."
     );
-    process.exit(1);
   }
 
   // Same calculation but in reverse & inflating the tile size by the extrusion amount
