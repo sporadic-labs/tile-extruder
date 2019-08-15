@@ -9,7 +9,6 @@
  */
 
 const Jimp = require("jimp");
-const path = require("path");
 
 /**
  *
