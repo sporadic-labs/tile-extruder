@@ -1,20 +1,20 @@
 window.esdocSearchIndex = [
   [
-    "tile-extruder/src/index.js~extrudetilesettobuffer",
+    "tile-extruder~extrudetilesettobuffer",
     "function/index.html#static-function-extrudeTilesetToBuffer",
-    "<span>extrudeTilesetToBuffer</span> <span class=\"search-result-import-path\">tile-extruder/src/index.js</span>",
+    "<span>extrudeTilesetToBuffer</span> <span class=\"search-result-import-path\">tile-extruder</span>",
     "function"
   ],
   [
-    "tile-extruder/src/index.js~extrudetilesettoimage",
+    "tile-extruder~extrudetilesettoimage",
     "function/index.html#static-function-extrudeTilesetToImage",
-    "<span>extrudeTilesetToImage</span> <span class=\"search-result-import-path\">tile-extruder/src/index.js</span>",
+    "<span>extrudeTilesetToImage</span> <span class=\"search-result-import-path\">tile-extruder</span>",
     "function"
   ],
   [
-    "tile-extruder/src/index.js~extrudetilesettojimp",
+    "tile-extruder~extrudetilesettojimp",
     "function/index.html#static-function-extrudeTilesetToJimp",
-    "<span>extrudeTilesetToJimp</span> <span class=\"search-result-import-path\">tile-extruder/src/index.js</span>",
+    "<span>extrudeTilesetToJimp</span> <span class=\"search-result-import-path\">tile-extruder</span>",
     "function"
   ],
   [

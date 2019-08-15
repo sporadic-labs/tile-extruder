@@ -90,7 +90,7 @@ Options:
   extrudeTilesetToJimp // Returns the underlying Jimp image object
 } = require(&quot;tile-extruder&quot;);</code>
 </code></pre>
-<p>Saving to disk:</p>
+<p>To save an extruded tileset to disk:</p>
 <pre><code class="lang-js"><code class="source-code prettyprint">const { extrudeTilesetToImage } = require(&quot;tile-extruder&quot;);
 
 async function main() {
@@ -99,7 +99,7 @@ async function main() {
 
 main();</code>
 </code></pre>
-<p>Obtaining the extruded tileset as a buffer and then minifying it before saving:</p>
+<p>To obtain the extruded tileset as a <a href="https://nodejs.org/api/buffer.html">Buffer</a> and then minify it before saving using <a href="https://github.com/imagemin/imagemin">imagemin</a>:</p>
 <pre><code class="lang-js"><code class="source-code prettyprint">const { extrudeTilesetToBuffer } = require(&quot;../../src/index&quot;);
 const imagemin = require(&quot;imagemin&quot;);
 const imageminPngquant = require(&quot;imagemin-pngquant&quot;);
@@ -135,6 +135,14 @@ const tileset = map.addTilesetImage(&quot;tileset&quot;, &quot;tileset-extruded&
 <li>Mario Tileset - <a href="http://rmrk.net/index.php?topic=37002.0">Source</a></li>
 </ul>
 <h2 id="changelog">Changelog</h2><ul>
+<li>2.0.1<ul>
+<li>Fixed broken deploy (missing needed files) for v2.0.0.</li>
+</ul>
+</li>
+<li>2.0.0<ul>
+<li>Restructure to export three methods - <code>extrudeTilesetToImage</code>, <code>extrudeTilesetToBuffer</code>,<code>extrudeTilesetToJimp</code> - to make it easier to integrate the library into other tools like <a href="https://github.com/simiancraft/create-phaser-app/">create-phaser-app</a>.</li>
+</ul>
+</li>
 <li>1.2.0<ul>
 <li>Update jimp dependency to latest (0.6.4)</li>
 <li>Make underlying library return a promise (to address <a href="https://github.com/sporadic-labs/tile-extruder/issues/6">#6</a>, thanks <a href="https://github.com/the-simian">@the-simian</a>)</li>
