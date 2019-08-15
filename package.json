@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node ./test.js",
     "start": "node ./index.js",
-    "demo": "http-server ./phaser-test -c-1 -o"
+    "demo": "http-server ./examples/phaser -c-1 -o",
     "doc": "esdoc -c ./.esdoc.json",
     "postdoc": "cp -r doc-source/ docs/"
   },

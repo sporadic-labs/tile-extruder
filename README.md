@@ -71,7 +71,7 @@ This tool was built for a Phaser & Tiled project, so here's how to integrate wit
 If you've already built a map in Tiled with a non-extruded tileset and are looking to replace it with an extruded tileset, you've got a couple options:
 
 * Extrude the tileset and then update your existing tileset in Tiled. In the "Tilesets" panel, click on the edit tileset icon (the wrench) and then click on "Tileset Properties" under the Tileset menu bar item. Edit the "Image" field, replacing the tileset image with the new extruded image and updating to the margin and spacing.
-* If you'd rather leave your Tiled file alone, you can just adjust things on the Phaser side. See this [example](https://github.com/sporadic-labs/tile-extruder/blob/master/phaser-test/main.js). You want to load the extruded tileset image, and then when you create your tileset, specify the appropriate margin and spacing:
+* If you'd rather leave your Tiled file alone, you can just adjust things on the Phaser side. See this [example](https://github.com/sporadic-labs/tile-extruder/blob/master/examples/phaser/main.js). You want to load the extruded tileset image, and then when you create your tileset, specify the appropriate margin and spacing:
 
 ```js
 // Parameters: name in Tiled, phaser cache key, tile width, tile height, margin, spacing
