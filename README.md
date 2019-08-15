@@ -1,6 +1,6 @@
 # Tile Extruder
 
-A tiny Node app to extrude tiles in tilesets to avoid bleeding issues.
+A tiny Node CLI (and library) to extrude tiles in tilesets to avoid bleeding issues.
 
 ![demo](./doc-source/images/demo.png)
 
@@ -10,19 +10,29 @@ You can read more about the bleeding problem and solution [~~here~~](http://roto
 
 Interested in learning more about how to use tilemaps in Phaser 3? Check out my [blog post series](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6) about building modular worlds with tilemaps. It explains the concept of a tilemap, and of course, it uses extruded tiles 😉.
 
-## Installation
+- [Tile Extruder](#tile-extruder)
+  - [Usage](#usage)
+    - [Usage as a Command Line Tool](#usage-as-a-command-line-tool)
+    - [Usage as a Library](#usage-as-a-library)
+    - [Using the Extruded Tileset](#using-the-extruded-tileset)
+  - [Tileset Credits](#tileset-credits)
+  - [Changelog](#changelog)
 
-Make sure you have [node](https://nodejs.org/en/) and npm installed:
+## Usage
+
+There are two ways to use the tool to extrude a tileset image. If you just need to extrude some tilesets, you can use it as a command line tool. If you need to do something that requires more control (like integrating tile-extruder into build pipeline), you can use it as a JS library.
+
+### Usage as a Command Line Tool
+
+Make sure you have [node](https://nodejs.org/en/) installed and then run:
 
 ```
 npm install --global tile-extruder
 ```
 
-(Or, you can run tile-extruder directly without globally installing in npm 5.2 and greater via `npx tile-extruder`.)
+(Or, you can run tile-extruder directly without globally installing in npm 5.2 and greater via `npx tile-extruder`!)
 
-## Usage
-
-Open a terminal in the folder and run a command with the following arguments:
+Once you've got it installed, open a terminal and run a command with the following arguments:
 
 ```
 tile-extruder [args]
@@ -58,13 +68,66 @@ Options:
   -h, --help                    output usage information
 ```
 
-## Terminology
+A note on terminology, _spacing_ is the number of pixels between neighboring tiles, while _margin_ is the number of pixels between the edges of the image and the tiles. Or, more visually explained:
+
 ![Margin and spacing](./doc-source/images/margin-and-spacing.png)
 
-_Spacing_ is the number of pixels between neighboring tiles. _Margin_ is the number of pixels between the edges of the image and the tiles. Or, more visually explained:
+### Usage as a Library
 
+If you're reading this on npm/GitHub, you can read the documentation online [here](https://sporadic-labs.github.io/tile-extruder) which includes API documentation. Also, see [node examples](https://github.com/sporadic-labs/tile-extruder/tree/master/examples/node) folder for code.
 
-## Using the Extruded Tileset
+Install the library as a dependency in your Node project:
+
+```
+npm install tile-extruder
+```
+
+This exposes three utility functions, which all extrude a given tileset image, but differ in terms of their output.
+
+```js
+const {
+  extrudeTilesetToImage, // Saves an image to disk
+  extrudeTilesetToBuffer, // Returns image in a Buffer (compatible with libraries like imagemin)
+  extrudeTilesetToJimp // Returns the underlying Jimp image object
+} = require("tile-extruder");
+```
+
+Saving to disk:
+
+```js
+const { extrudeTilesetToImage } = require("tile-extruder");
+
+async function main() {
+  await extrudeTilesetToImage(16, 16, "./buch-tileset.png", "./buch-tileset-extruded.png");
+}
+
+main();
+```
+
+Obtaining the extruded tileset as a buffer and then minifying it before saving:
+
+```js
+const { extrudeTilesetToBuffer } = require("../../src/index");
+const imagemin = require("imagemin");
+const imageminPngquant = require("imagemin-pngquant");
+const fs = require("fs");
+
+async function main() {
+  const buffer = await extrudeTilesetToBuffer(16, 16, "./buch-tileset.png");
+  const minifiedBuffer = await imagemin.buffer(buffer, {
+    plugins: [
+      imageminPngquant({
+        quality: [0.6, 0.8] // See https://github.com/imagemin/imagemin-pngquant
+      })
+    ]
+  });
+  fs.writeFileSync("./buch-tileset-extruded-minified.png", minifiedBuffer);
+}
+
+main();
+```
+
+### Using the Extruded Tileset
 
 This tool was built for a Phaser & Tiled project, so here's how to integrate with that pipeline.
 
@@ -80,7 +143,7 @@ const tileset = map.addTilesetImage("tileset", "tileset-extruded", 48, 48, 1, 2)
 
 Note: you'll have to adjust your margin & spacing because of the extrusion. If you had no margin & spacing, then the new margin is 1px and the spacing is 2px.
 
-## Tileset Sources
+## Tileset Credits
 
 * Dungeon Tileset by Buch - [Source](https://opengameart.org/content/top-down-dungeon-tileset)
 * Minirouge Tileset by Arachne - [Source](https://forums.tigsource.com/index.php?topic=14166.0)
@@ -88,7 +151,7 @@ Note: you'll have to adjust your margin & spacing because of the extrusion. If y
 
 ## Changelog
 
-- 1.2.0
-  - Update jimp dependency to latest (0.6.4)
-  - Make underlying library return a promise (to address [#6](https://github.com/sporadic-labs/tile-extruder/issues/6), thanks [@the-simian](https://github.com/the-simian))
-  - Cleaner error handling
+* 1.2.0
+  * Update jimp dependency to latest (0.6.4)
+  * Make underlying library return a promise (to address [#6](https://github.com/sporadic-labs/tile-extruder/issues/6), thanks [@the-simian](https://github.com/the-simian))
+  * Cleaner error handling
