@@ -151,6 +151,8 @@ Note: you'll have to adjust your margin & spacing because of the extrusion. If y
 
 ## Changelog
 
+* 2.0.1
+  * Fixed broken deploy (missing needed files) for v2.0.0.
 * 2.0.0
   * Restructure to export three methods - `extrudeTilesetToImage`, `extrudeTilesetToBuffer`,`extrudeTilesetToJimp` - to make it easier to integrate the library into other tools like [create-phaser-app](https://github.com/simiancraft/create-phaser-app/).
 * 1.2.0
