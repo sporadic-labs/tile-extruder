@@ -107,7 +107,7 @@ main();
 To obtain the extruded tileset as a [Buffer](https://nodejs.org/api/buffer.html) and then minify it before saving using [imagemin](https://github.com/imagemin/imagemin):
 
 ```js
-const { extrudeTilesetToBuffer } = require("../../src/index");
+const { extrudeTilesetToBuffer } = require("tile-extruder");
 const imagemin = require("imagemin");
 const imageminPngquant = require("imagemin-pngquant");
 const fs = require("fs");
