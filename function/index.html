@@ -85,7 +85,7 @@ tileset image.</p>
           
           <span data-ice="async">async</span>
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToImage">extrudeTilesetToImage</a></span></span><span class="code" data-ice="signature">(tileWidth: <span>integer</span>, tileHeight: <span>integer</span>, inputPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, outputPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>Buffer</span>&gt;</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToImage">extrudeTilesetToImage</a></span></span><span class="code" data-ice="signature">(tileWidth: <span>integer</span>, tileHeight: <span>integer</span>, inputPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, outputPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
         </p>
       </div>
       <div>
@@ -275,15 +275,15 @@ error.</p>
     
     <span data-ice="async">async</span>
     
-    <span class="code" data-ice="name">extrudeTilesetToImage</span><span class="code" data-ice="signature">(tileWidth: <span>integer</span>, tileHeight: <span>integer</span>, inputPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, outputPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>Buffer</span>&gt;</span>
+    <span class="code" data-ice="name">extrudeTilesetToImage</span><span class="code" data-ice="signature">(tileWidth: <span>integer</span>, tileHeight: <span>integer</span>, inputPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, outputPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber64">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber63">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToImage} from &apos;<span><a href="file/src/index.js.html#lineNumber64">tile-extruder</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToImage} from &apos;<span><a href="file/src/index.js.html#lineNumber63">tile-extruder</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Accepts an image path and saves out an extruded version of the tileset to <code>outputPath</code>. It
@@ -371,9 +371,8 @@ matters if there&apos;s margin or spacing (default: transparent)</p>
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span>&lt;<span>Buffer</span>&gt;</td>
-          <td class="return-desc" data-ice="returnDescription"><p>A promise that resolves to an image buffer, or rejects with an
-error.</p>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>A promise that resolves when finished saving, or rejects with an error.</p>
 </td>
         </tr>
       </tbody>
@@ -409,11 +408,11 @@ error.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber99">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber98">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToJimp} from &apos;<span><a href="file/src/index.js.html#lineNumber99">tile-extruder</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToJimp} from &apos;<span><a href="file/src/index.js.html#lineNumber98">tile-extruder</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Accepts an image path and returns a Jimp image object containing the extruded image. This is
