@@ -100,7 +100,7 @@ async function main() {
 main();</code>
 </code></pre>
 <p>To obtain the extruded tileset as a <a href="https://nodejs.org/api/buffer.html">Buffer</a> and then minify it before saving using <a href="https://github.com/imagemin/imagemin">imagemin</a>:</p>
-<pre><code class="lang-js"><code class="source-code prettyprint">const { extrudeTilesetToBuffer } = require(&quot;../../src/index&quot;);
+<pre><code class="lang-js"><code class="source-code prettyprint">const { extrudeTilesetToBuffer } = require(&quot;tile-extruder&quot;);
 const imagemin = require(&quot;imagemin&quot;);
 const imageminPngquant = require(&quot;imagemin-pngquant&quot;);
 const fs = require(&quot;fs&quot;);
