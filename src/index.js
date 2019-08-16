@@ -58,8 +58,7 @@ async function extrudeTilesetToBuffer(
  * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles
  * @param {number} [options.color=0x00000000] - RGBA hex color to use for the background color, only
  * matters if there's margin or spacing (default: transparent)
- * @returns {Promise<Buffer>} - A promise that resolves to an image buffer, or rejects with an
- * error.
+ * @returns {Promise} - A promise that resolves when finished saving, or rejects with an error.
  */
 async function extrudeTilesetToImage(
   tileWidth,
