@@ -151,6 +151,8 @@ Note: you'll have to adjust your margin & spacing because of the extrusion. If y
 
 ## Changelog
 
+* 2.0.2
+  * Updated dependencies.
 * 2.0.1
   * Fixed broken deploy (missing needed files) for v2.0.0.
 * 2.0.0
