@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href>
-  <title data-ice="title">Source | tile-extruder</title>
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/copy-pixels.js | tile-extruder</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -37,41 +37,33 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1>Source <img data-ice="coverageBadge" src="./badge.svg"><span data-ice="totalCoverageCount" class="total-coverage-count">4/4</span></h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/copy-pixels.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * This copies the source pixels to the destination without any alpha blending.
+ * @param {Image} srcImage A Jimp image to copy pixels from.
+ * @param {number} srcX X position to start copying from (left).
+ * @param {number} srcY Y position to start copying from (top).
+ * @param {number} srcW The width of the region to copy.
+ * @param {number} srcH The height of the region to copy.
+ * @param {Image} destImage A Jimp image to paste the pixels to.
+ * @param {number} destX X position to start pasting to (left).
+ * @param {number} destY Y position to start pasting to (top).
+ */
+function copyPixels(srcImage, srcX, srcY, srcW, srcH, destImage, destX, destY) {
+  srcImage.scan(srcX, srcY, srcW, srcH, (curSrcX, curSrcY, curSrcIndex) =&gt; {
+    const curDestX = destX + (curSrcX - srcX);
+    const curDestY = destY + (curSrcY - srcY);
+    const curDestIndex = destImage.getPixelIndex(curDestX, curDestY);
+    destImage.bitmap.data[curDestIndex + 0] = srcImage.bitmap.data[curSrcIndex + 0];
+    destImage.bitmap.data[curDestIndex + 1] = srcImage.bitmap.data[curSrcIndex + 1];
+    destImage.bitmap.data[curDestIndex + 2] = srcImage.bitmap.data[curSrcIndex + 2];
+    destImage.bitmap.data[curDestIndex + 3] = srcImage.bitmap.data[curSrcIndex + 3];
+  });
+}
 
-<table class="files-summary" data-ice="files" data-use-coverage="true">
-  <thead>
-    <tr>
-      <td>File</td>
-      <td>Identifier</td>
-      <td class="coverage">Document</td>
-      <td style="display: none;">Size</td>
-      <td style="display: none;">Lines</td>
-      <td style="display: none;">Updated</td>
-    </tr>
-  </thead>
-  <tbody>
-    
-  <tr data-ice="file">
-      <td data-ice="filePath"><span><a href="file/src/copy-pixels.js.html">src/copy-pixels.js</a></span></td>
-      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-copyPixels">copyPixels</a></span></td>
-      <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">1/1</span></td>
-      <td style="display: none;" data-ice="size">1309 byte</td>
-      <td style="display: none;" data-ice="lines">24</td>
-      <td style="display: none;" data-ice="updated">2019-12-07 18:44:10 (UTC)</td>
-    </tr>
-<tr data-ice="file">
-      <td data-ice="filePath"><span><a href="file/src/index.js.html">src/index.js</a></span></td>
-      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-extrudeTilesetToBuffer">extrudeTilesetToBuffer</a></span>
-<span><a href="function/index.html#static-function-extrudeTilesetToImage">extrudeTilesetToImage</a></span>
-<span><a href="function/index.html#static-function-extrudeTilesetToJimp">extrudeTilesetToJimp</a></span></td>
-      <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">3/3</span></td>
-      <td style="display: none;" data-ice="size">7701 byte</td>
-      <td style="display: none;" data-ice="lines">178</td>
-      <td style="display: none;" data-ice="updated">2019-12-07 19:55:46 (UTC)</td>
-    </tr>
-</tbody>
-</table>
+module.exports = copyPixels;
+</code></pre>
+
 </div>
 
 <footer class="footer">

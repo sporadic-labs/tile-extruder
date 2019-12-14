@@ -1,5 +1,11 @@
 window.esdocSearchIndex = [
   [
+    "tile-extruder/src/copy-pixels.js~copypixels",
+    "function/index.html#static-function-copyPixels",
+    "<span>copyPixels</span> <span class=\"search-result-import-path\">tile-extruder/src/copy-pixels.js</span>",
+    "function"
+  ],
+  [
     "tile-extruder~extrudetilesettobuffer",
     "function/index.html#static-function-extrudeTilesetToBuffer",
     "<span>extrudeTilesetToBuffer</span> <span class=\"search-result-import-path\">tile-extruder</span>",
@@ -298,6 +304,12 @@ window.esdocSearchIndex = [
     "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
     "src/.external-ecmascript.js~undefined",
     "external"
+  ],
+  [
+    "src/copy-pixels.js",
+    "file/src/copy-pixels.js.html",
+    "src/copy-pixels.js",
+    "file"
   ],
   [
     "src/index.js",

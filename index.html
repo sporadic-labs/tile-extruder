@@ -29,7 +29,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToBuffer">extrudeTilesetToBuffer</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-copyPixels">copyPixels</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToBuffer">extrudeTilesetToBuffer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToImage">extrudeTilesetToImage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToJimp">extrudeTilesetToJimp</a></span></span></li>
 </ul>
@@ -73,8 +74,8 @@ Options:
   -w, --tileWidth &lt;integer&gt;     tile width in pixels
   -h, --tileHeight &lt;integer&gt;    tile height in pixels
   -i, --input &lt;path&gt;            the path to the tileset you want to extrude
-  -o, --output &lt;path&gt;           the path to output the extruded tileset image
-  -c, --color [hex=0x00000000]  RGBA hex color to use for the background color, only matters if there is margin or spacing (default: transparent)
+  -o, --output &lt;path&gt;           the path to output the extruded tileset image    
+  -c, --color [hex=0xffffff00]  RGBA color to use for the background color, only matters if there is margin or spacing (default: transparent white)
   -m, --margin [integer=0]      number of pixels between tiles and the edge of the tileset image (default: 0)
   -s, --spacing [integer=0]     number of pixels between neighboring tiles (default: 0)
   -h, --help                    output usage information</code>
@@ -135,6 +136,15 @@ const tileset = map.addTilesetImage(&quot;tileset&quot;, &quot;tileset-extruded&
 <li>Mario Tileset - <a href="http://rmrk.net/index.php?topic=37002.0">Source</a></li>
 </ul>
 <h2 id="changelog">Changelog</h2><ul>
+<li>2.0.3<ul>
+<li>Fix for #8. Jimp&apos;s blit started using alpha-blending, which caused incorrect tile extrusions if a tile had any non-opaque pixels, thanks <a href="https://github.com/FranciscoCaetano88">@FranciscoCaetano88</a>. </li>
+<li>Changed default background color from transparent black to transparent white.</li>
+</ul>
+</li>
+<li>2.0.2<ul>
+<li>Updated dependencies.</li>
+</ul>
+</li>
 <li>2.0.1<ul>
 <li>Fixed broken deploy (missing needed files) for v2.0.0.</li>
 </ul>

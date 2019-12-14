@@ -29,7 +29,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToBuffer">extrudeTilesetToBuffer</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-copyPixels">copyPixels</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToBuffer">extrudeTilesetToBuffer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToImage">extrudeTilesetToImage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToJimp">extrudeTilesetToJimp</a></span></span></li>
 </ul>
@@ -42,6 +43,35 @@
   <tbody>
   
   <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-copyPixels">copyPixels</a></span></span><span class="code" data-ice="signature">(srcImage: <span>Image</span>, srcX: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, srcY: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, srcW: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, srcH: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, destImage: <span>Image</span>, destX: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, destY: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>This copies the source pixels to the destination without any alpha blending.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
     <td>
       <span class="access" data-ice="access">public</span>
       
@@ -135,6 +165,116 @@ tileset image.</p>
 <div data-ice="details"><h2 data-ice="title">Static Public </h2>
 
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-copyPixels">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">copyPixels</span><span class="code" data-ice="signature">(srcImage: <span>Image</span>, srcX: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, srcY: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, srcW: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, srcH: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, destImage: <span>Image</span>, destX: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, destY: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/copy-pixels.js.html#lineNumber12">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import copyPixels from &apos;<span><a href="file/src/copy-pixels.js.html#lineNumber12">tile-extruder/src/copy-pixels.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>This copies the source pixels to the destination without any alpha blending.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">srcImage</td>
+      <td data-ice="type" class="code"><span>Image</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>A Jimp image to copy pixels from.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">srcX</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>X position to start copying from (left).</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">srcY</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Y position to start copying from (top).</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">srcW</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The width of the region to copy.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">srcH</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The height of the region to copy.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">destImage</td>
+      <td data-ice="type" class="code"><span>Image</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>A Jimp image to paste the pixels to.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">destX</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>X position to start pasting to (left).</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">destY</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Y position to start pasting to (top).</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-function-extrudeTilesetToBuffer">
     <span class="access" data-ice="access">public</span>
     
@@ -146,11 +286,11 @@ tileset image.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber30">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber32">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToBuffer} from &apos;<span><a href="file/src/index.js.html#lineNumber30">tile-extruder</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToBuffer} from &apos;<span><a href="file/src/index.js.html#lineNumber32">tile-extruder</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Accepts an image path and returns a Promise that resolves to a Buffer containing the extruded
@@ -226,9 +366,10 @@ image</p>
       <td data-ice="name" class="code" data-depth="1">options.color</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
-<li>default: 0x00000000</li></ul></td>
-      <td data-ice="description"><p>RGBA hex color to use for the background color, only
-matters if there&apos;s margin or spacing (default: transparent)</p>
+<li>default: 0xffffff00</li></ul></td>
+      <td data-ice="description"><p>color to use for the background color, which only
+matters if there is margin or spacing. This is passed directly to jimp which takes RGBA hex or a
+CSS color string, e.g. &apos;#FF0000&apos;. This defaults to transparent white.</p>
 </td>
     </tr>
 </tbody>
@@ -279,11 +420,11 @@ error.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber63">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber68">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToImage} from &apos;<span><a href="file/src/index.js.html#lineNumber63">tile-extruder</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToImage} from &apos;<span><a href="file/src/index.js.html#lineNumber68">tile-extruder</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Accepts an image path and saves out an extruded version of the tileset to <code>outputPath</code>. It
@@ -356,9 +497,10 @@ image</p>
       <td data-ice="name" class="code" data-depth="1">options.color</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
-<li>default: 0x00000000</li></ul></td>
-      <td data-ice="description"><p>RGBA hex color to use for the background color, only
-matters if there&apos;s margin or spacing (default: transparent)</p>
+<li>default: 0xffffff00</li></ul></td>
+      <td data-ice="description"><p>color to use for the background color, which only
+matters if there is margin or spacing. This is passed directly to jimp which takes RGBA hex or a
+CSS color string, e.g. &apos;#FF0000&apos;. This defaults to transparent white.</p>
 </td>
     </tr>
 </tbody>
@@ -408,11 +550,11 @@ matters if there&apos;s margin or spacing (default: transparent)</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber98">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber99">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToJimp} from &apos;<span><a href="file/src/index.js.html#lineNumber98">tile-extruder</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToJimp} from &apos;<span><a href="file/src/index.js.html#lineNumber99">tile-extruder</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Accepts an image path and returns a Jimp image object containing the extruded image. This is
@@ -480,9 +622,10 @@ image</p>
       <td data-ice="name" class="code" data-depth="1">options.color</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
-<li>default: 0x00000000</li></ul></td>
-      <td data-ice="description"><p>RGBA hex color to use for the background color, only
-matters if there&apos;s margin or spacing (default: transparent)</p>
+<li>default: 0xffffff00</li></ul></td>
+      <td data-ice="description"><p>color to use for the background color, which only
+matters if there is margin or spacing. This is passed directly to jimp which takes RGBA hex or a
+CSS color string, e.g. &apos;#FF0000&apos;. This defaults to transparent white.</p>
 </td>
     </tr>
 </tbody>

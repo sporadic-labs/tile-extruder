@@ -29,7 +29,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToBuffer">extrudeTilesetToBuffer</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-copyPixels">copyPixels</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToBuffer">extrudeTilesetToBuffer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToImage">extrudeTilesetToImage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToJimp">extrudeTilesetToJimp</a></span></span></li>
 </ul>
@@ -47,6 +48,7 @@
  */
 
 const Jimp = require(&quot;jimp&quot;);
+const copyPixels = require(&quot;./copy-pixels&quot;);
 
 /**
  * Accepts an image path and returns a Promise that resolves to a Buffer containing the extruded
@@ -61,8 +63,9 @@ const Jimp = require(&quot;jimp&quot;);
  * @param {integer} [options.margin=0] - number of pixels between tiles and the edge of the tileset
  * image
  * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles
- * @param {number} [options.color=0x00000000] - RGBA hex color to use for the background color, only
- * matters if there&apos;s margin or spacing (default: transparent)
+ * @param {number} [options.color=0xffffff00] - color to use for the background color, which only
+ * matters if there is margin or spacing. This is passed directly to jimp which takes RGBA hex or a
+ * CSS color string, e.g. &apos;#FF0000&apos;. This defaults to transparent white.
  * @returns {Promise&lt;Buffer&gt;} - A promise that resolves to an image buffer, or rejects with an
  * error.
  */
@@ -70,13 +73,15 @@ async function extrudeTilesetToBuffer(
   tileWidth,
   tileHeight,
   inputPath,
-  { mime = Jimp.AUTO, margin = 0, spacing = 0, color = 0x00000000 } = {}
+  { mime = Jimp.AUTO, margin, spacing, color } = {}
 ) {
-  const extrudedImage = await extrudeTilesetToJimp(tileWidth, tileHeight, inputPath, {
-    margin,
-    spacing,
-    color
-  });
+  const options = { margin, spacing, color };
+  const extrudedImage = await extrudeTilesetToJimp(tileWidth, tileHeight, inputPath, options).catch(
+    err =&gt; {
+      console.error(&quot;Error extruding tileset: &quot;, err);
+      throw err;
+    }
+  );
   const buffer = await extrudedImage.getBufferAsync(mime).catch(err =&gt; {
     console.error(&quot;Buffer could not be created from tileset.&quot;);
     throw err;
@@ -95,22 +100,18 @@ async function extrudeTilesetToBuffer(
  * @param {integer} [options.margin=0] - number of pixels between tiles and the edge of the tileset
  * image
  * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles
- * @param {number} [options.color=0x00000000] - RGBA hex color to use for the background color, only
- * matters if there&apos;s margin or spacing (default: transparent)
+ * @param {number} [options.color=0xffffff00] - color to use for the background color, which only
+ * matters if there is margin or spacing. This is passed directly to jimp which takes RGBA hex or a
+ * CSS color string, e.g. &apos;#FF0000&apos;. This defaults to transparent white.
  * @returns {Promise} - A promise that resolves when finished saving, or rejects with an error.
  */
-async function extrudeTilesetToImage(
-  tileWidth,
-  tileHeight,
-  inputPath,
-  outputPath,
-  { margin = 0, spacing = 0, color = 0x00000000 } = {}
-) {
-  const extrudedImage = await extrudeTilesetToJimp(tileWidth, tileHeight, inputPath, {
-    margin,
-    spacing,
-    color
-  });
+async function extrudeTilesetToImage(tileWidth, tileHeight, inputPath, outputPath, options) {
+  const extrudedImage = await extrudeTilesetToJimp(tileWidth, tileHeight, inputPath, options).catch(
+    err =&gt; {
+      console.error(&quot;Error extruding tileset: &quot;, err);
+      throw err;
+    }
+  );
   await extrudedImage.writeAsync(outputPath).catch(err =&gt; {
     console.error(`Tileset image could not be saved to: ${outputPath}`);
     throw err;
@@ -129,8 +130,9 @@ async function extrudeTilesetToImage(
  * @param {integer} [options.margin=0] - number of pixels between tiles and the edge of the tileset
  * image
  * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles
- * @param {number} [options.color=0x00000000] - RGBA hex color to use for the background color, only
- * matters if there&apos;s margin or spacing (default: transparent)
+ * @param {number} [options.color=0xffffff00] - color to use for the background color, which only
+ * matters if there is margin or spacing. This is passed directly to jimp which takes RGBA hex or a
+ * CSS color string, e.g. &apos;#FF0000&apos;. This defaults to transparent white.
  * @returns {Promise&lt;Image&gt;} - A promise that resolves to a Jimp image object, or rejects with an
  * error.
  */
@@ -138,7 +140,7 @@ async function extrudeTilesetToJimp(
   tileWidth,
   tileHeight,
   inputPath,
-  { margin = 0, spacing = 0, color = 0x00000000 } = {}
+  { margin = 0, spacing = 0, color = 0xffffff00 } = {}
 ) {
   const image = await Jimp.read(inputPath).catch(err =&gt; {
     console.error(`Tileset image could not be loaded from: ${inputPath}`);
@@ -147,7 +149,7 @@ async function extrudeTilesetToJimp(
 
   const { width, height } = image.bitmap;
 
-  // Solve for &quot;cols&quot; &amp; &quot;rows&quot; to get the formula used here
+  // Solve for &quot;cols&quot; &amp; &quot;rows&quot; to get the formulae used here:
   //  width = 2 * margin + (cols - 1) * spacing + cols * tileWidth
   //  height = 2 * margin + (rows - 1) * spacing + rows * tileHeight
   const cols = (width - 2 * margin + spacing) / (tileWidth + spacing);
@@ -174,26 +176,35 @@ async function extrudeTilesetToJimp(
       const tw = tileWidth;
       const th = tileHeight;
 
-      // Copy the tile
-      extrudedImage.blit(image, destX + 1, destY + 1, srcX, srcY, tw, th);
+      // Copy the tile.
+      copyPixels(image, srcX, srcY, tw, th, extrudedImage, destX + 1, destY + 1);
 
-      // Extrude the top row
-      extrudedImage.blit(image, destX + 1, destY, srcX, srcY, tw, 1);
+      // Extrude the top row.
+      copyPixels(image, srcX, srcY, tw, 1, extrudedImage, destX + 1, destY);
 
-      // Extrude the bottom row
-      extrudedImage.blit(image, destX + 1, destY + th + 1, srcX, srcY + th - 1, tw, 1);
+      // Extrude the bottom row.
+      copyPixels(image, srcX, srcY + th - 1, tw, 1, extrudedImage, destX + 1, destY + th + 1);
 
-      // Extrude left column
-      extrudedImage.blit(image, destX, destY + 1, srcX, srcY, 1, th);
+      // Extrude left column.
+      copyPixels(image, srcX, srcY, 1, th, extrudedImage, destX, destY + 1);
 
-      // Extrude the right column
-      extrudedImage.blit(image, destX + tw + 1, destY + 1, srcX + tw - 1, srcY, 1, th);
+      // Extrude the right column.
+      copyPixels(image, srcX + tw - 1, srcY, 1, th, extrudedImage, destX + tw + 1, destY + 1);
 
-      // Corners, order: TL, TR, BL, BR
-      extrudedImage.blit(image, destX, destY, srcX, srcY, 1, 1);
-      extrudedImage.blit(image, destX + tw + 1, destY, srcX + tw - 1, srcY, 1, 1);
-      extrudedImage.blit(image, destX, destY + th + 1, srcX, srcY + th - 1, 1, 1);
-      extrudedImage.blit(image, destX + tw + 1, destY + th + 1, srcX + tw - 1, srcY + th - 1, 1, 1);
+      // Corners, order: TL, TR, BL, BR.
+      copyPixels(image, srcX, srcY, 1, 1, extrudedImage, destX, destY);
+      copyPixels(image, srcX + tw - 1, srcY, 1, 1, extrudedImage, destX + tw + 1, destY);
+      copyPixels(image, srcX, srcY + th - 1, 1, 1, extrudedImage, destX, destY + th + 1);
+      copyPixels(
+        image,
+        srcX + tw - 1,
+        srcY + th - 1,
+        1,
+        1,
+        extrudedImage,
+        destX + tw + 1,
+        destY + th + 1
+      );
     }
   }
 
