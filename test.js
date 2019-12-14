@@ -1,3 +1,8 @@
+/**
+ * Simple test util that runs a few tilesets through the extrusion and checks the results against
+ * saved snapshots.
+ */
+
 const { execSync } = require("child_process");
 const fs = require("fs");
 const Jimp = require("jimp");
