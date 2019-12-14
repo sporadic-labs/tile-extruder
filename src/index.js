@@ -8,6 +8,7 @@
  */
 
 const Jimp = require("jimp");
+const copyPixels = require("./copy-pixels");
 
 /**
  * Accepts an image path and returns a Promise that resolves to a Buffer containing the extruded
@@ -138,26 +139,35 @@ async function extrudeTilesetToJimp(
       const tw = tileWidth;
       const th = tileHeight;
 
-      // Copy the tile
-      extrudedImage.blit(image, destX + 1, destY + 1, srcX, srcY, tw, th);
+      // Copy the tile.
+      copyPixels(image, srcX, srcY, tw, th, extrudedImage, destX + 1, destY + 1);
 
-      // Extrude the top row
-      extrudedImage.blit(image, destX + 1, destY, srcX, srcY, tw, 1);
+      // Extrude the top row.
+      copyPixels(image, srcX, srcY, tw, 1, extrudedImage, destX + 1, destY);
 
-      // Extrude the bottom row
-      extrudedImage.blit(image, destX + 1, destY + th + 1, srcX, srcY + th - 1, tw, 1);
+      // Extrude the bottom row.
+      copyPixels(image, srcX, srcY + th - 1, tw, 1, extrudedImage, destX + 1, destY + th + 1);
 
-      // Extrude left column
-      extrudedImage.blit(image, destX, destY + 1, srcX, srcY, 1, th);
+      // Extrude left column.
+      copyPixels(image, srcX, srcY, 1, th, extrudedImage, destX, destY + 1);
 
-      // Extrude the right column
-      extrudedImage.blit(image, destX + tw + 1, destY + 1, srcX + tw - 1, srcY, 1, th);
+      // Extrude the right column.
+      copyPixels(image, srcX + tw - 1, srcY, 1, th, extrudedImage, destX + tw + 1, destY + 1);
 
-      // Corners, order: TL, TR, BL, BR
-      extrudedImage.blit(image, destX, destY, srcX, srcY, 1, 1);
-      extrudedImage.blit(image, destX + tw + 1, destY, srcX + tw - 1, srcY, 1, 1);
-      extrudedImage.blit(image, destX, destY + th + 1, srcX, srcY + th - 1, 1, 1);
-      extrudedImage.blit(image, destX + tw + 1, destY + th + 1, srcX + tw - 1, srcY + th - 1, 1, 1);
+      // Corners, order: TL, TR, BL, BR.
+      copyPixels(image, srcX, srcY, 1, 1, extrudedImage, destX, destY);
+      copyPixels(image, srcX + tw - 1, srcY, 1, 1, extrudedImage, destX + tw + 1, destY);
+      copyPixels(image, srcX, srcY + th - 1, 1, 1, extrudedImage, destX, destY + th + 1);
+      copyPixels(
+        image,
+        srcX + tw - 1,
+        srcY + th - 1,
+        1,
+        1,
+        extrudedImage,
+        destX + tw + 1,
+        destY + th + 1
+      );
     }
   }
 
