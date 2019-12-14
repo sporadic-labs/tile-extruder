@@ -112,7 +112,7 @@ async function extrudeTilesetToJimp(
 
   const { width, height } = image.bitmap;
 
-  // Solve for "cols" & "rows" to get the formula used here
+  // Solve for "cols" & "rows" to get the formulae used here:
   //  width = 2 * margin + (cols - 1) * spacing + cols * tileWidth
   //  height = 2 * margin + (rows - 1) * spacing + rows * tileHeight
   const cols = (width - 2 * margin + spacing) / (tileWidth + spacing);
