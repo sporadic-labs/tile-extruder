@@ -1,39 +1,70 @@
-const { exec } = require("child_process");
+const { execSync } = require("child_process");
+const fs = require("fs");
+const Jimp = require("jimp");
 
-const cb = (err, stdout, stderr) => {
-  if (err) {
-    console.error(`exec error: ${err}`);
-    return;
-  }
-  console.log(stdout);
-};
-
-const tilesets = [
-  { i: "./tilesets/buch-tileset.png", o: "./tilesets/extruded/buch-tileset.png", w: 16, h: 16 },
-  { i: "./tilesets/arachne-tileset.png", o: "./tilesets/extruded/arachne-tileset.png", w: 8, h: 8 },
-  { i: "./tilesets/mario-tileset.png", o: "./tilesets/extruded/mario-tileset.png", w: 16, h: 16 },
-  { i: "./tilesets/test-tileset.png", o: "./tilesets/extruded/test-tileset.png", w: 64, h: 64 },
+const tilesetTests = [
+  { file: "buch-tileset.png", args: { w: 16, h: 16 } },
+  { file: "arachne-tileset.png", args: { w: 8, h: 8 } },
+  { file: "mario-tileset.png", args: { w: 16, h: 16 } },
+  { file: "test-tileset.png", args: { w: 64, h: 64 } },
+  { file: "transparency-test-tileset.png", args: { w: 64, h: 64 } },
+  { file: "borders-tileset.png", args: { w: 8, h: 16 } },
   {
-    i: "./tilesets/borders-tileset.png",
-    o: "./tilesets/extruded/borders-tileset.png",
-    w: 8,
-    h: 16
-  },
-  {
-    i: "./tilesets/mario-tileset-10-spacing-5-margin.png",
-    o: "./tilesets/extruded/mario-tileset-10-spacing-5-margin.png",
-    w: 16,
-    h: 16,
-    m: 5,
-    s: 10,
-    c: "0x7088ff"
+    file: "mario-tileset-10-spacing-5-margin.png",
+    args: { w: 16, h: 16, m: 5, s: 10, c: "0x7088ff" }
   }
 ];
 
-tilesets.map(args => {
-  const stringArgs = Object.entries(args)
-    .map(([flag, val]) => `-${flag} ${val}`)
-    .join(" ");
-  console.log(`Running: ${stringArgs}`);
-  exec(`node ./bin/tile-extruder ${stringArgs}`, cb);
-});
+async function areImagesExactMatches(imagePath1, imagePath2) {
+  try {
+    const [image1, image2] = await Promise.all([Jimp.read(imagePath1), Jimp.read(imagePath2)]);
+    return Jimp.diff(image1, image2, 0).percent === 0;
+  } catch {
+    return false;
+  }
+}
+
+async function main() {
+  for (let i = 0; i < tilesetTests.length; i++) {
+    let wasTestSuccessful = true;
+
+    const { file, args } = tilesetTests[i];
+    const tilesetPath = `./tilesets/${file}`;
+    const extrudedTilesetPath = `./tilesets/extruded/${file}`;
+    const snapshotTilesetPath = `./tilesets/snapshots/${file}`;
+
+    console.log(`Running test ${i + 1}/${tilesetTests.length} on ${file}...`);
+
+    // Build the args string for this run.
+    Object.assign(args, { i: tilesetPath, o: extrudedTilesetPath });
+    const stringArgs = Object.entries(args)
+      .map(([flag, val]) => `-${flag} ${val}`)
+      .join(" ");
+
+    execSync(`node ./bin/tile-extruder ${stringArgs}`, (err, stdout, stderr) => {
+      if (err) {
+        wasTestSuccessful = false;
+        console.error(`exec error: ${err}`);
+        return;
+      }
+      if (stderr) {
+        wasTestSuccessful = false;
+        console.log(stderr);
+      }
+      if (stdout) console.log(args.i, args.o);
+    });
+
+    if (!fs.existsSync(snapshotTilesetPath)) {
+      console.log("No snapshot for this test. Saving...");
+      fs.copyFileSync(extrudedTilesetPath, snapshotTilesetPath);
+      continue;
+    }
+
+    const areEqual = await areImagesExactMatches(extrudedTilesetPath, snapshotTilesetPath);
+    if (!areEqual) wasTestSuccessful = false;
+
+    console.log("Test passed: ", wasTestSuccessful);
+  }
+}
+
+main().catch(console.error);
