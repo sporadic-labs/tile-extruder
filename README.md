@@ -151,6 +151,9 @@ Note: you'll have to adjust your margin & spacing because of the extrusion. If y
 
 ## Changelog
 
+* 2.0.3
+  * Fix for #8. Jimp's blit started using alpha-blending, which caused incorrect tile extrusions if a tile had any non-opaque pixels, thanks [@FranciscoCaetano88](https://github.com/FranciscoCaetano88). 
+  * Changed default background color from transparent black to transparent white.
 * 2.0.2
   * Updated dependencies.
 * 2.0.1
