@@ -22,8 +22,9 @@ const Jimp = require("jimp");
  * @param {integer} [options.margin=0] - number of pixels between tiles and the edge of the tileset
  * image
  * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles
- * @param {number} [options.color=0x00000000] - RGBA hex color to use for the background color, only
- * matters if there's margin or spacing (default: transparent)
+ * @param {number} [options.color=0xffffff00] - color to use for the background color, which only
+ * matters if there is margin or spacing. This is passed directly to jimp which takes RGBA hex or a
+ * CSS color string, e.g. '#FF0000'. This defaults to transparent white.
  * @returns {Promise<Buffer>} - A promise that resolves to an image buffer, or rejects with an
  * error.
  */
@@ -31,7 +32,7 @@ async function extrudeTilesetToBuffer(
   tileWidth,
   tileHeight,
   inputPath,
-  { mime = Jimp.AUTO, margin = 0, spacing = 0, color = 0x00000000 } = {}
+  { mime = Jimp.AUTO, margin = 0, spacing = 0, color = 0xffffff00 } = {}
 ) {
   const extrudedImage = await extrudeTilesetToJimp(tileWidth, tileHeight, inputPath, {
     margin,
@@ -56,8 +57,9 @@ async function extrudeTilesetToBuffer(
  * @param {integer} [options.margin=0] - number of pixels between tiles and the edge of the tileset
  * image
  * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles
- * @param {number} [options.color=0x00000000] - RGBA hex color to use for the background color, only
- * matters if there's margin or spacing (default: transparent)
+ * @param {number} [options.color=0xffffff00] - color to use for the background color, which only
+ * matters if there is margin or spacing. This is passed directly to jimp which takes RGBA hex or a
+ * CSS color string, e.g. '#FF0000'. This defaults to transparent white.
  * @returns {Promise} - A promise that resolves when finished saving, or rejects with an error.
  */
 async function extrudeTilesetToImage(
@@ -65,7 +67,7 @@ async function extrudeTilesetToImage(
   tileHeight,
   inputPath,
   outputPath,
-  { margin = 0, spacing = 0, color = 0x00000000 } = {}
+  { margin = 0, spacing = 0, color = 0xffffff00 } = {}
 ) {
   const extrudedImage = await extrudeTilesetToJimp(tileWidth, tileHeight, inputPath, {
     margin,
@@ -90,8 +92,9 @@ async function extrudeTilesetToImage(
  * @param {integer} [options.margin=0] - number of pixels between tiles and the edge of the tileset
  * image
  * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles
- * @param {number} [options.color=0x00000000] - RGBA hex color to use for the background color, only
- * matters if there's margin or spacing (default: transparent)
+ * @param {number} [options.color=0xffffff00] - color to use for the background color, which only
+ * matters if there is margin or spacing. This is passed directly to jimp which takes RGBA hex or a
+ * CSS color string, e.g. '#FF0000'. This defaults to transparent white.
  * @returns {Promise<Image>} - A promise that resolves to a Jimp image object, or rejects with an
  * error.
  */
@@ -99,7 +102,7 @@ async function extrudeTilesetToJimp(
   tileWidth,
   tileHeight,
   inputPath,
-  { margin = 0, spacing = 0, color = 0x00000000 } = {}
+  { margin = 0, spacing = 0, color = 0xffffff00 } = {}
 ) {
   const image = await Jimp.read(inputPath).catch(err => {
     console.error(`Tileset image could not be loaded from: ${inputPath}`);

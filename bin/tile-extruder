@@ -14,8 +14,8 @@ program
   .option("-i, --input <path>", "the path to the tileset you want to extrude")
   .option("-o, --output <path>", "the path to output the extruded tileset image")
   .option(
-    "-c, --color [hex=0x00000000]",
-    "RGBA hex color to use for the background color, only matters if there's margin or spacing (default: transparent)",
+    "-c, --color [hex=0xffffff00]",
+    "RGBA color to use for the background color, only matters if there's margin or spacing (default: transparent white)",
     toHex
   )
   .option(

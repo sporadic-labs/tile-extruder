@@ -61,8 +61,8 @@ Options:
   -w, --tileWidth <integer>     tile width in pixels
   -h, --tileHeight <integer>    tile height in pixels
   -i, --input <path>            the path to the tileset you want to extrude
-  -o, --output <path>           the path to output the extruded tileset image
-  -c, --color [hex=0x00000000]  RGBA hex color to use for the background color, only matters if there is margin or spacing (default: transparent)
+  -o, --output <path>           the path to output the extruded tileset image    
+  -c, --color [hex=0xffffff00]  RGBA color to use for the background color, only matters if there is margin or spacing (default: transparent white)
   -m, --margin [integer=0]      number of pixels between tiles and the edge of the tileset image (default: 0)
   -s, --spacing [integer=0]     number of pixels between neighboring tiles (default: 0)
   -h, --help                    output usage information
