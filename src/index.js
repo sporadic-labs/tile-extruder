@@ -33,13 +33,15 @@ async function extrudeTilesetToBuffer(
   tileWidth,
   tileHeight,
   inputPath,
-  { mime = Jimp.AUTO, margin = 0, spacing = 0, color = 0xffffff00 } = {}
+  { mime = Jimp.AUTO, margin, spacing, color } = {}
 ) {
-  const extrudedImage = await extrudeTilesetToJimp(tileWidth, tileHeight, inputPath, {
-    margin,
-    spacing,
-    color
-  });
+  const options = { margin, spacing, color };
+  const extrudedImage = await extrudeTilesetToJimp(tileWidth, tileHeight, inputPath, options).catch(
+    err => {
+      console.error("Error extruding tileset: ", err);
+      throw err;
+    }
+  );
   const buffer = await extrudedImage.getBufferAsync(mime).catch(err => {
     console.error("Buffer could not be created from tileset.");
     throw err;
@@ -63,18 +65,13 @@ async function extrudeTilesetToBuffer(
  * CSS color string, e.g. '#FF0000'. This defaults to transparent white.
  * @returns {Promise} - A promise that resolves when finished saving, or rejects with an error.
  */
-async function extrudeTilesetToImage(
-  tileWidth,
-  tileHeight,
-  inputPath,
-  outputPath,
-  { margin = 0, spacing = 0, color = 0xffffff00 } = {}
-) {
-  const extrudedImage = await extrudeTilesetToJimp(tileWidth, tileHeight, inputPath, {
-    margin,
-    spacing,
-    color
-  });
+async function extrudeTilesetToImage(tileWidth, tileHeight, inputPath, outputPath, options) {
+  const extrudedImage = await extrudeTilesetToJimp(tileWidth, tileHeight, inputPath, options).catch(
+    err => {
+      console.error("Error extruding tileset: ", err);
+      throw err;
+    }
+  );
   await extrudedImage.writeAsync(outputPath).catch(err => {
     console.error(`Tileset image could not be saved to: ${outputPath}`);
     throw err;
