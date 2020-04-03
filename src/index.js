@@ -8,7 +8,7 @@
  */
 
 const Jimp = require("jimp");
-const copyPixels = require("./copy-pixels");
+const { copyPixels, copyPixelToRect } = require("./copy-pixels");
 
 /**
  * Accepts an image path and returns a Promise that resolves to a Buffer containing the extruded
@@ -100,7 +100,7 @@ async function extrudeTilesetToJimp(
   tileWidth,
   tileHeight,
   inputPath,
-  { margin = 0, spacing = 0, color = 0xffffff00 } = {}
+  { margin = 0, spacing = 0, color = 0xffffff00, extrusion = 1 } = {}
 ) {
   const image = await Jimp.read(inputPath).catch(err => {
     console.error(`Tileset image could not be loaded from: ${inputPath}`);
@@ -122,8 +122,8 @@ async function extrudeTilesetToJimp(
   }
 
   // Same calculation but in reverse & inflating the tile size by the extrusion amount
-  const newWidth = 2 * margin + (cols - 1) * spacing + cols * (tileWidth + 2);
-  const newHeight = 2 * margin + (rows - 1) * spacing + rows * (tileHeight + 2);
+  const newWidth = 2 * margin + (cols - 1) * spacing + cols * (tileWidth + 2 * extrusion);
+  const newHeight = 2 * margin + (rows - 1) * spacing + rows * (tileHeight + 2 * extrusion);
 
   const extrudedImage = await new Jimp(newWidth, newHeight, color);
 
@@ -131,40 +131,39 @@ async function extrudeTilesetToJimp(
     for (let col = 0; col < cols; col++) {
       let srcX = margin + col * (tileWidth + spacing); // x of tile top left
       let srcY = margin + row * (tileHeight + spacing); // y of tile top left
-      let destX = margin + col * (tileWidth + spacing + 2); // x of the extruded tile top left
-      let destY = margin + row * (tileHeight + spacing + 2); // y of the extruded tile top left
+      let destX = margin + col * (tileWidth + spacing + 2 * extrusion); // x of the extruded tile top left
+      let destY = margin + row * (tileHeight + spacing + 2 * extrusion); // y of the extruded tile top left
       const tw = tileWidth;
       const th = tileHeight;
 
       // Copy the tile.
-      copyPixels(image, srcX, srcY, tw, th, extrudedImage, destX + 1, destY + 1);
+      copyPixels(image, srcX, srcY, tw, th, extrudedImage, destX + extrusion, destY + extrusion);
 
-      // Extrude the top row.
-      copyPixels(image, srcX, srcY, tw, 1, extrudedImage, destX + 1, destY);
+      for (let i = 0; i < extrusion; i++) {
+        // Extrude the top row.
+        copyPixels(image, srcX, srcY, tw, 1, extrudedImage, destX + extrusion, destY + i);
 
-      // Extrude the bottom row.
-      copyPixels(image, srcX, srcY + th - 1, tw, 1, extrudedImage, destX + 1, destY + th + 1);
+        // Extrude the bottom row.
+        copyPixels(image, srcX, srcY + th - 1, tw, 1, extrudedImage, destX + extrusion, destY + extrusion + th + (extrusion - i - 1));
 
-      // Extrude left column.
-      copyPixels(image, srcX, srcY, 1, th, extrudedImage, destX, destY + 1);
+        // Extrude left column.
+        copyPixels(image, srcX, srcY, 1, th, extrudedImage, destX + i, destY + extrusion);
 
-      // Extrude the right column.
-      copyPixels(image, srcX + tw - 1, srcY, 1, th, extrudedImage, destX + tw + 1, destY + 1);
+        // Extrude the right column.
+        copyPixels(image, srcX + tw - 1, srcY, 1, th, extrudedImage, destX + extrusion + tw + (extrusion - i - 1), destY + extrusion);
+      }
 
-      // Corners, order: TL, TR, BL, BR.
-      copyPixels(image, srcX, srcY, 1, 1, extrudedImage, destX, destY);
-      copyPixels(image, srcX + tw - 1, srcY, 1, 1, extrudedImage, destX + tw + 1, destY);
-      copyPixels(image, srcX, srcY + th - 1, 1, 1, extrudedImage, destX, destY + th + 1);
-      copyPixels(
-        image,
-        srcX + tw - 1,
-        srcY + th - 1,
-        1,
-        1,
-        extrudedImage,
-        destX + tw + 1,
-        destY + th + 1
-      );
+      // Extrude the top left corner.
+      copyPixelToRect(image, srcX, srcY, extrudedImage, destX, destY, extrusion, extrusion);
+
+      // Extrude the top right corner.
+      copyPixelToRect(image, srcX + tw - 1, srcY, extrudedImage, destX + extrusion + tw, destY, extrusion, extrusion);
+
+      // Extrude the bottom left corner.
+      copyPixelToRect(image, srcX, srcY + th - 1, extrudedImage, destX, destY + extrusion + th, extrusion, extrusion);
+
+      // Extrude the bottom right corner.
+      copyPixelToRect(image, srcX + tw - 1, srcY + th - 1, extrudedImage, destX + extrusion + tw, destY + extrusion + th, extrusion, extrusion);
     }
   }
 

@@ -25,6 +25,7 @@ program
     0
   )
   .option("-s, --spacing [integer=0]", "number of pixels between neighboring tiles", toInt, 0)
+  .option("-e, --extrusion [integer=1]", "number of pixels to extrude by", toInt, 1)
   .parse(process.argv);
 
 const {
@@ -32,6 +33,7 @@ const {
   tileHeight,
   margin,
   spacing,
+  extrusion,
   color,
   input: inputPath,
   output: outputPath
@@ -54,4 +56,4 @@ if (!outputPath) {
   program.help();
 }
 
-extrudeTilesetToImage(tileWidth, tileHeight, inputPath, outputPath, { margin, spacing, color });
+extrudeTilesetToImage(tileWidth, tileHeight, inputPath, outputPath, { margin, spacing, extrusion, color });
