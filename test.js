@@ -20,6 +20,12 @@ const tilesetTests = [
   }
 ];
 
+function cliArgsToString(args) {
+  return Object.entries(args)
+    .map(([key, val]) => `${key}${val}`)
+    .join("");
+}
+
 async function areImagesExactMatches(imagePath1, imagePath2) {
   try {
     const [image1, image2] = await Promise.all([Jimp.read(imagePath1), Jimp.read(imagePath2)]);
@@ -34,9 +40,13 @@ async function main() {
     let wasTestSuccessful = true;
 
     const { file, args } = tilesetTests[i];
+    const [name, extension] = file.split(".");
+    const argsString = cliArgsToString(args);
     const tilesetPath = `./tilesets/${file}`;
     const extrudedTilesetPath = `./tilesets/extruded/${file}`;
-    const snapshotTilesetPath = `./tilesets/snapshots/${file}`;
+
+    // Make the output path unique, so that the same test image can be used with different args.
+    const snapshotTilesetPath = `./tilesets/snapshots/${name}-${argsString}.${extension}`;
 
     console.log(`Running test ${i + 1}/${tilesetTests.length} on ${file}...`);
 
