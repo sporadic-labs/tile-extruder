@@ -12,6 +12,7 @@ const tilesetTests = [
   { file: "arachne-tileset.png", args: { w: 8, h: 8 } },
   { file: "mario-tileset.png", args: { w: 16, h: 16 } },
   { file: "test-tileset.png", args: { w: 64, h: 64 } },
+  { file: "test-tileset.png", args: { w: 64, h: 64, e: 10 } },
   { file: "transparency-test-tileset.png", args: { w: 64, h: 64 } },
   { file: "borders-tileset.png", args: { w: 8, h: 16 } },
   {
