@@ -1,7 +1,7 @@
 {
   "name": "tile-extruder",
   "description": "A tiny Node app to extrude tiles in tilesets to avoid bleeding issues. See relevant [Phaser issue](https://github.com/photonstorm/phaser/issues/3229)",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "main": "src/index.js",
   "scripts": {
     "test": "node ./test.js",
