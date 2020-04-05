@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 
 const program = require("commander");
+const { version } = require("../package.json");
 const { extrudeTilesetToImage } = require("../src/index");
 
 const toInt = v => parseInt(v, 10);
 const toHex = v => parseInt(v, 16);
 
 program
-  .version("1.1.0")
+  .version(version)
   .description("A small CLI to extrude tiles. Use --help for more information.")
   .option("-w, --tileWidth <integer>", "tile width in pixels", toInt)
   .option("-h, --tileHeight <integer>", "tile height in pixels", toInt)
