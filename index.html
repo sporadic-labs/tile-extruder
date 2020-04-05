@@ -29,7 +29,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-copyPixels">copyPixels</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-copyPixelToRect">copyPixelToRect</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-copyPixels">copyPixels</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToBuffer">extrudeTilesetToBuffer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToImage">extrudeTilesetToImage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToJimp">extrudeTilesetToJimp</a></span></span></li>
@@ -78,6 +79,7 @@ Options:
   -c, --color [hex=0xffffff00]  RGBA color to use for the background color, only matters if there is margin or spacing (default: transparent white)
   -m, --margin [integer=0]      number of pixels between tiles and the edge of the tileset image (default: 0)
   -s, --spacing [integer=0]     number of pixels between neighboring tiles (default: 0)
+  -e, --extrusion [integer=1]   number of pixels to extrude by (default: 1)
   -h, --help                    output usage information</code>
 </code></pre><p>A note on terminology, <em>spacing</em> is the number of pixels between neighboring tiles, while <em>margin</em> is the number of pixels between the edges of the image and the tiles. Or, more visually explained:</p>
 <p><img src="./doc-source/images/margin-and-spacing.png" alt="Margin and spacing"></p>
@@ -136,6 +138,10 @@ const tileset = map.addTilesetImage(&quot;tileset&quot;, &quot;tileset-extruded&
 <li>Mario Tileset - <a href="http://rmrk.net/index.php?topic=37002.0">Source</a></li>
 </ul>
 <h2 id="changelog">Changelog</h2><ul>
+<li>2.0.4<ul>
+<li>Feature from <a href="https://github.com/fjolne">@fjolne</a> in #9 - adds an extrusion option to specify a custom extrusion amount. </li>
+</ul>
+</li>
 <li>2.0.3<ul>
 <li>Fix for #8. Jimp&apos;s blit started using alpha-blending, which caused incorrect tile extrusions if a tile had any non-opaque pixels, thanks <a href="https://github.com/FranciscoCaetano88">@FranciscoCaetano88</a>. </li>
 <li>Changed default background color from transparent black to transparent white.</li>

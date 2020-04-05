@@ -1,17 +1,19 @@
 {
-  "coverage": "100%",
-  "expectCount": 4,
-  "actualCount": 4,
+  "coverage": "83.33%",
+  "expectCount": 6,
+  "actualCount": 5,
   "files": {
     "src/copy-pixels.js": {
-      "expectCount": 1,
-      "actualCount": 1,
+      "expectCount": 2,
+      "actualCount": 2,
       "undocumentLines": []
     },
     "src/index.js": {
-      "expectCount": 3,
+      "expectCount": 4,
       "actualCount": 3,
-      "undocumentLines": []
+      "undocumentLines": [
+        12
+      ]
     }
   }
 }

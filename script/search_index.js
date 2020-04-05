@@ -1,5 +1,11 @@
 window.esdocSearchIndex = [
   [
+    "tile-extruder/src/copy-pixels.js~copypixeltorect",
+    "function/index.html#static-function-copyPixelToRect",
+    "<span>copyPixelToRect</span> <span class=\"search-result-import-path\">tile-extruder/src/copy-pixels.js</span>",
+    "function"
+  ],
+  [
     "tile-extruder/src/copy-pixels.js~copypixels",
     "function/index.html#static-function-copyPixels",
     "<span>copyPixels</span> <span class=\"search-result-import-path\">tile-extruder/src/copy-pixels.js</span>",

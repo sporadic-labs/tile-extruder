@@ -29,7 +29,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-copyPixels">copyPixels</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-copyPixelToRect">copyPixelToRect</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-copyPixels">copyPixels</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToBuffer">extrudeTilesetToBuffer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToImage">extrudeTilesetToImage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToJimp">extrudeTilesetToJimp</a></span></span></li>
@@ -43,6 +44,35 @@
   <tbody>
   
   <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-copyPixelToRect">copyPixelToRect</a></span></span><span class="code" data-ice="signature">(srcImage: <span>Image</span>, srcX: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, srcY: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, destImage: <span>Image</span>, destX: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, destY: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, destW: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, destH: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>This copies the source pixel to every pixel in the destination rectangle without any alpha blending.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
     <td>
       <span class="access" data-ice="access">public</span>
       
@@ -165,6 +195,116 @@ tileset image.</p>
 <div data-ice="details"><h2 data-ice="title">Static Public </h2>
 
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-copyPixelToRect">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">copyPixelToRect</span><span class="code" data-ice="signature">(srcImage: <span>Image</span>, srcX: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, srcY: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, destImage: <span>Image</span>, destX: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, destY: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, destW: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, destH: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/copy-pixels.js.html#lineNumber35">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {copyPixelToRect} from &apos;<span><a href="file/src/copy-pixels.js.html#lineNumber35">tile-extruder/src/copy-pixels.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>This copies the source pixel to every pixel in the destination rectangle without any alpha blending.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">srcImage</td>
+      <td data-ice="type" class="code"><span>Image</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>A Jimp image to copy pixel from.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">srcX</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>X position of the source pixel.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">srcY</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Y position of the source pixel.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">destImage</td>
+      <td data-ice="type" class="code"><span>Image</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>A Jimp image to paste the pixel to.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">destX</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>X position to start pasting to (left).</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">destY</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Y position to start pasting to (top).</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">destW</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The width of the destination region.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">destH</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The height of the destination region.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-function-copyPixels">
     <span class="access" data-ice="access">public</span>
     
@@ -180,7 +320,7 @@ tileset image.</p>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import copyPixels from &apos;<span><a href="file/src/copy-pixels.js.html#lineNumber12">tile-extruder/src/copy-pixels.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {copyPixels} from &apos;<span><a href="file/src/copy-pixels.js.html#lineNumber12">tile-extruder/src/copy-pixels.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>This copies the source pixels to the destination without any alpha blending.</p>
@@ -286,11 +426,11 @@ tileset image.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber32">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber34">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToBuffer} from &apos;<span><a href="file/src/index.js.html#lineNumber32">tile-extruder</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToBuffer} from &apos;<span><a href="file/src/index.js.html#lineNumber34">tile-extruder</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Accepts an image path and returns a Promise that resolves to a Buffer containing the extruded
@@ -311,28 +451,28 @@ tileset image.</p>
       <td data-ice="name" class="code" data-depth="0">tileWidth</td>
       <td data-ice="type" class="code"><span>integer</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>tile width in pixels</p>
+      <td data-ice="description"><p>tile width in pixels.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">tileHeight</td>
       <td data-ice="type" class="code"><span>integer</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>tile height in pixels</p>
+      <td data-ice="description"><p>tile height in pixels.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">inputPath</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>the path to the tileset you want to extrude</p>
+      <td data-ice="description"><p>the path to the tileset you want to extrude.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">options</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li></ul></td>
-      <td data-ice="description"><p>optional settings</p>
+      <td data-ice="description"><p>optional settings.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="1">
@@ -342,7 +482,7 @@ tileset image.</p>
 <li>default: Jimp.AUTO</li></ul></td>
       <td data-ice="description"><p>the mime type that should be used for the buffer.
 Defaults to Jimp.AUTO which tries to use the image&apos;s original mime type, and if not available,
-uses png. Supported mime options: &quot;image/png&quot;, &quot;image/jpeg&quot;, &quot;image/bmp&quot;</p>
+uses png. Supported mime options: &quot;image/png&quot;, &quot;image/jpeg&quot;, &quot;image/bmp&quot;.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="1">
@@ -351,7 +491,7 @@ uses png. Supported mime options: &quot;image/png&quot;, &quot;image/jpeg&quot;,
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default: 0</li></ul></td>
       <td data-ice="description"><p>number of pixels between tiles and the edge of the tileset
-image</p>
+image.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="1">
@@ -359,7 +499,15 @@ image</p>
       <td data-ice="type" class="code"><span>integer</span></td>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default: 0</li></ul></td>
-      <td data-ice="description"><p>number of pixels between neighboring tiles</p>
+      <td data-ice="description"><p>number of pixels between neighboring tiles.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" class="code" data-depth="1">options.extrusion</td>
+      <td data-ice="type" class="code"><span>integer</span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: 1</li></ul></td>
+      <td data-ice="description"><p>number of pixels to extrude the tiles.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="1">
@@ -420,11 +568,11 @@ error.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber68">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber71">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToImage} from &apos;<span><a href="file/src/index.js.html#lineNumber68">tile-extruder</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToImage} from &apos;<span><a href="file/src/index.js.html#lineNumber71">tile-extruder</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Accepts an image path and saves out an extruded version of the tileset to <code>outputPath</code>. It
@@ -445,35 +593,35 @@ returns a Promise that resolves when the file has finished saving.</p>
       <td data-ice="name" class="code" data-depth="0">tileWidth</td>
       <td data-ice="type" class="code"><span>integer</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>tile width in pixels</p>
+      <td data-ice="description"><p>tile width in pixels.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">tileHeight</td>
       <td data-ice="type" class="code"><span>integer</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>tile height in pixels</p>
+      <td data-ice="description"><p>tile height in pixels.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">inputPath</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>the path to the tileset you want to extrude</p>
+      <td data-ice="description"><p>the path to the tileset you want to extrude.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">outputPath</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>the path to output the extruded tileset image</p>
+      <td data-ice="description"><p>the path to output the extruded tileset image.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">options</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li></ul></td>
-      <td data-ice="description"><p>optional settings</p>
+      <td data-ice="description"><p>optional settings.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="1">
@@ -482,7 +630,7 @@ returns a Promise that resolves when the file has finished saving.</p>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default: 0</li></ul></td>
       <td data-ice="description"><p>number of pixels between tiles and the edge of the tileset
-image</p>
+image.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="1">
@@ -490,7 +638,15 @@ image</p>
       <td data-ice="type" class="code"><span>integer</span></td>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default: 0</li></ul></td>
-      <td data-ice="description"><p>number of pixels between neighboring tiles</p>
+      <td data-ice="description"><p>number of pixels between neighboring tiles.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" class="code" data-depth="1">options.extrusion</td>
+      <td data-ice="type" class="code"><span>integer</span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: 1</li></ul></td>
+      <td data-ice="description"><p>number of pixels to extrude the tiles.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="1">
@@ -550,11 +706,11 @@ CSS color string, e.g. &apos;#FF0000&apos;. This defaults to transparent white.<
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber99">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/index.js.html#lineNumber103">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToJimp} from &apos;<span><a href="file/src/index.js.html#lineNumber99">tile-extruder</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {extrudeTilesetToJimp} from &apos;<span><a href="file/src/index.js.html#lineNumber103">tile-extruder</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Accepts an image path and returns a Jimp image object containing the extruded image. This is
@@ -577,28 +733,28 @@ image.</p>
       <td data-ice="name" class="code" data-depth="0">tileWidth</td>
       <td data-ice="type" class="code"><span>integer</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>tile width in pixels</p>
+      <td data-ice="description"><p>tile width in pixels.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">tileHeight</td>
       <td data-ice="type" class="code"><span>integer</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>tile height in pixels</p>
+      <td data-ice="description"><p>tile height in pixels.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">inputPath</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>the path to the tileset you want to extrude</p>
+      <td data-ice="description"><p>the path to the tileset you want to extrude.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">options</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li></ul></td>
-      <td data-ice="description"><p>optional settings</p>
+      <td data-ice="description"><p>optional settings.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="1">
@@ -607,7 +763,7 @@ image.</p>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default: 0</li></ul></td>
       <td data-ice="description"><p>number of pixels between tiles and the edge of the tileset
-image</p>
+image.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="1">
@@ -615,7 +771,15 @@ image</p>
       <td data-ice="type" class="code"><span>integer</span></td>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default: 0</li></ul></td>
-      <td data-ice="description"><p>number of pixels between neighboring tiles</p>
+      <td data-ice="description"><p>number of pixels between neighboring tiles.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" class="code" data-depth="1">options.extrusion</td>
+      <td data-ice="type" class="code"><span>integer</span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: 1</li></ul></td>
+      <td data-ice="description"><p>number of pixels to extrude the tiles.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="1">
