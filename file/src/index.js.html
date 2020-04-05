@@ -79,12 +79,12 @@ async function extrudeTilesetToBuffer(
 ) {
   const options = { margin, spacing, color };
   const extrudedImage = await extrudeTilesetToJimp(tileWidth, tileHeight, inputPath, options).catch(
-    err =&gt; {
+    (err) =&gt; {
       console.error(&quot;Error extruding tileset: &quot;, err);
       throw err;
     }
   );
-  const buffer = await extrudedImage.getBufferAsync(mime).catch(err =&gt; {
+  const buffer = await extrudedImage.getBufferAsync(mime).catch((err) =&gt; {
     console.error(&quot;Buffer could not be created from tileset.&quot;);
     throw err;
   });
@@ -110,12 +110,12 @@ async function extrudeTilesetToBuffer(
  */
 async function extrudeTilesetToImage(tileWidth, tileHeight, inputPath, outputPath, options) {
   const extrudedImage = await extrudeTilesetToJimp(tileWidth, tileHeight, inputPath, options).catch(
-    err =&gt; {
+    (err) =&gt; {
       console.error(&quot;Error extruding tileset: &quot;, err);
       throw err;
     }
   );
-  await extrudedImage.writeAsync(outputPath).catch(err =&gt; {
+  await extrudedImage.writeAsync(outputPath).catch((err) =&gt; {
     console.error(`Tileset image could not be saved to: ${outputPath}`);
     throw err;
   });
@@ -146,7 +146,7 @@ async function extrudeTilesetToJimp(
   inputPath,
   { margin = 0, spacing = 0, color = 0xffffff00, extrusion = 1 } = {}
 ) {
-  const image = await Jimp.read(inputPath).catch(err =&gt; {
+  const image = await Jimp.read(inputPath).catch((err) =&gt; {
     console.error(`Tileset image could not be loaded from: ${inputPath}`);
     throw err;
   });
@@ -262,7 +262,7 @@ async function extrudeTilesetToJimp(
 module.exports = {
   extrudeTilesetToBuffer,
   extrudeTilesetToImage,
-  extrudeTilesetToJimp
+  extrudeTilesetToJimp,
 };
 </code></pre>
 
