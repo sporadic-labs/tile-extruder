@@ -152,6 +152,9 @@ Note: you'll have to adjust your margin & spacing because of the extrusion. If y
 
 ## Changelog
 
+* 2.0.5
+  * Update all deps to latest.
+  * Fix: update CLI's --version command to report the current version number.
 * 2.0.4
   * Feature from [@fjolne](https://github.com/fjolne) in #9 - adds an extrusion option to specify a custom extrusion amount. 
 * 2.0.3
