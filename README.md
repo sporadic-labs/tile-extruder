@@ -152,7 +152,7 @@ Note: you'll have to adjust your margin & spacing because of the extrusion. If y
 
 ## Changelog
 
-* 2.0.4 (In Progress)
+* 2.0.4
   * Feature from [@fjolne](https://github.com/fjolne) in #9 - adds an extrusion option to specify a custom extrusion amount. 
 * 2.0.3
   * Fix for #8. Jimp's blit started using alpha-blending, which caused incorrect tile extrusions if a tile had any non-opaque pixels, thanks [@FranciscoCaetano88](https://github.com/FranciscoCaetano88). 
