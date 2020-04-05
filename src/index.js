@@ -13,16 +13,17 @@ const { copyPixels, copyPixelToRect } = require("./copy-pixels");
 /**
  * Accepts an image path and returns a Promise that resolves to a Buffer containing the extruded
  * tileset image.
- * @param {integer} tileWidth - tile width in pixels
- * @param {integer} tileHeight - tile height in pixels
- * @param {string} inputPath - the path to the tileset you want to extrude
- * @param {object} [options] - optional settings
+ * @param {integer} tileWidth - tile width in pixels.
+ * @param {integer} tileHeight - tile height in pixels.
+ * @param {string} inputPath - the path to the tileset you want to extrude.
+ * @param {object} [options] - optional settings.
  * @param {string} [options.mime=Jimp.AUTO] - the mime type that should be used for the buffer.
  * Defaults to Jimp.AUTO which tries to use the image's original mime type, and if not available,
- * uses png. Supported mime options: "image/png", "image/jpeg", "image/bmp"
+ * uses png. Supported mime options: "image/png", "image/jpeg", "image/bmp".
  * @param {integer} [options.margin=0] - number of pixels between tiles and the edge of the tileset
- * image
- * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles
+ * image.
+ * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles.
+ * @param {integer} [options.extrusion=1] - number of pixels to extrude the tiles.
  * @param {number} [options.color=0xffffff00] - color to use for the background color, which only
  * matters if there is margin or spacing. This is passed directly to jimp which takes RGBA hex or a
  * CSS color string, e.g. '#FF0000'. This defaults to transparent white.
@@ -52,14 +53,15 @@ async function extrudeTilesetToBuffer(
 /**
  * Accepts an image path and saves out an extruded version of the tileset to `outputPath`. It
  * returns a Promise that resolves when the file has finished saving.
- * @param {integer} tileWidth - tile width in pixels
- * @param {integer} tileHeight - tile height in pixels
- * @param {string} inputPath - the path to the tileset you want to extrude
- * @param {string} outputPath - the path to output the extruded tileset image
- * @param {object} [options] - optional settings
+ * @param {integer} tileWidth - tile width in pixels.
+ * @param {integer} tileHeight - tile height in pixels.
+ * @param {string} inputPath - the path to the tileset you want to extrude.
+ * @param {string} outputPath - the path to output the extruded tileset image.
+ * @param {object} [options] - optional settings.
  * @param {integer} [options.margin=0] - number of pixels between tiles and the edge of the tileset
- * image
- * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles
+ * image.
+ * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles.
+ * @param {integer} [options.extrusion=1] - number of pixels to extrude the tiles.
  * @param {number} [options.color=0xffffff00] - color to use for the background color, which only
  * matters if there is margin or spacing. This is passed directly to jimp which takes RGBA hex or a
  * CSS color string, e.g. '#FF0000'. This defaults to transparent white.
@@ -83,13 +85,14 @@ async function extrudeTilesetToImage(tileWidth, tileHeight, inputPath, outputPat
  * exposed for advanced image processing purposes. For more common uses, see extrudeTilesetToImage
  * or extrudeTilesetToBuffer. It returns a Promise that resolves when it is finished extruding the
  * image.
- * @param {integer} tileWidth - tile width in pixels
- * @param {integer} tileHeight - tile height in pixels
- * @param {string} inputPath - the path to the tileset you want to extrude
- * @param {object} [options] - optional settings
+ * @param {integer} tileWidth - tile width in pixels.
+ * @param {integer} tileHeight - tile height in pixels.
+ * @param {string} inputPath - the path to the tileset you want to extrude.
+ * @param {object} [options] - optional settings.
  * @param {integer} [options.margin=0] - number of pixels between tiles and the edge of the tileset
- * image
- * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles
+ * image.
+ * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles.
+ * @param {integer} [options.extrusion=1] - number of pixels to extrude the tiles.
  * @param {number} [options.color=0xffffff00] - color to use for the background color, which only
  * matters if there is margin or spacing. This is passed directly to jimp which takes RGBA hex or a
  * CSS color string, e.g. '#FF0000'. This defaults to transparent white.
@@ -144,26 +147,71 @@ async function extrudeTilesetToJimp(
         copyPixels(image, srcX, srcY, tw, 1, extrudedImage, destX + extrusion, destY + i);
 
         // Extrude the bottom row.
-        copyPixels(image, srcX, srcY + th - 1, tw, 1, extrudedImage, destX + extrusion, destY + extrusion + th + (extrusion - i - 1));
+        copyPixels(
+          image,
+          srcX,
+          srcY + th - 1,
+          tw,
+          1,
+          extrudedImage,
+          destX + extrusion,
+          destY + extrusion + th + (extrusion - i - 1)
+        );
 
         // Extrude left column.
         copyPixels(image, srcX, srcY, 1, th, extrudedImage, destX + i, destY + extrusion);
 
         // Extrude the right column.
-        copyPixels(image, srcX + tw - 1, srcY, 1, th, extrudedImage, destX + extrusion + tw + (extrusion - i - 1), destY + extrusion);
+        copyPixels(
+          image,
+          srcX + tw - 1,
+          srcY,
+          1,
+          th,
+          extrudedImage,
+          destX + extrusion + tw + (extrusion - i - 1),
+          destY + extrusion
+        );
       }
 
       // Extrude the top left corner.
       copyPixelToRect(image, srcX, srcY, extrudedImage, destX, destY, extrusion, extrusion);
 
       // Extrude the top right corner.
-      copyPixelToRect(image, srcX + tw - 1, srcY, extrudedImage, destX + extrusion + tw, destY, extrusion, extrusion);
+      copyPixelToRect(
+        image,
+        srcX + tw - 1,
+        srcY,
+        extrudedImage,
+        destX + extrusion + tw,
+        destY,
+        extrusion,
+        extrusion
+      );
 
       // Extrude the bottom left corner.
-      copyPixelToRect(image, srcX, srcY + th - 1, extrudedImage, destX, destY + extrusion + th, extrusion, extrusion);
+      copyPixelToRect(
+        image,
+        srcX,
+        srcY + th - 1,
+        extrudedImage,
+        destX,
+        destY + extrusion + th,
+        extrusion,
+        extrusion
+      );
 
       // Extrude the bottom right corner.
-      copyPixelToRect(image, srcX + tw - 1, srcY + th - 1, extrudedImage, destX + extrusion + tw, destY + extrusion + th, extrusion, extrusion);
+      copyPixelToRect(
+        image,
+        srcX + tw - 1,
+        srcY + th - 1,
+        extrudedImage,
+        destX + extrusion + tw,
+        destY + extrusion + th,
+        extrusion,
+        extrusion
+      );
     }
   }
 
