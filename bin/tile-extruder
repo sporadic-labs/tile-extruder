@@ -63,3 +63,4 @@ extrudeTilesetToImage(tileWidth, tileHeight, inputPath, outputPath, {
   extrusion,
   color,
 });
+
