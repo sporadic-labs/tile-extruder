@@ -152,6 +152,9 @@ Note: you'll have to adjust your margin & spacing because of the extrusion. If y
 
 ## Changelog
 
+* 2.0.6
+  * Update all deps to latest.
+  * Fix for #10: convert bin/tile-extruder to LF to allow it to work under yarn on unix. Thanks [@carystanley](https://github.com/carystanley)!
 * 2.0.5
   * Update all deps to latest.
   * Fix: update CLI's --version command to report the current version number.
