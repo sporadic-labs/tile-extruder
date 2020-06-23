@@ -1,0 +1,4 @@
+* text=auto
+
+# Force the executable to use LF to fix issue on yarn w/ unix.
+bin/tile-extruder eol=lf
