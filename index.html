@@ -53,6 +53,7 @@
 </li>
 <li><a href="#tileset-credits">Tileset Credits</a></li>
 <li><a href="#changelog">Changelog</a></li>
+<li><a href="#contributors">Contributors</a></li>
 </ul>
 </li>
 </ul>
@@ -70,17 +71,18 @@
 <pre><code><code class="source-code prettyprint">A small CLI to extrude tiles. Use --help for more information.
 
 Options:
-
   -V, --version                 output the version number
   -w, --tileWidth &lt;integer&gt;     tile width in pixels
   -h, --tileHeight &lt;integer&gt;    tile height in pixels
   -i, --input &lt;path&gt;            the path to the tileset you want to extrude
-  -o, --output &lt;path&gt;           the path to output the extruded tileset image    
-  -c, --color [hex=0xffffff00]  RGBA color to use for the background color, only matters if there is margin or spacing (default: transparent white)
-  -m, --margin [integer=0]      number of pixels between tiles and the edge of the tileset image (default: 0)
+  -o, --output &lt;path&gt;           the path to output the extruded tileset image (default: inputPath where
+                                filename is extended with &apos;_extruded&apos;)
+  -c, --color [hex=0xffffff00]  RGBA color to use for the background color, only matters if there&apos;s margin or   
+                                spacing (default: transparent white)
+  -m, --margin [integer=0]      number of pixels between tiles and the edge of the tileset image (default: 0)   
   -s, --spacing [integer=0]     number of pixels between neighboring tiles (default: 0)
   -e, --extrusion [integer=1]   number of pixels to extrude by (default: 1)
-  -h, --help                    output usage information</code>
+  --help                        display help for command</code>
 </code></pre><p>A note on terminology, <em>spacing</em> is the number of pixels between neighboring tiles, while <em>margin</em> is the number of pixels between the edges of the image and the tiles. Or, more visually explained:</p>
 <p><img src="./doc-source/images/margin-and-spacing.png" alt="Margin and spacing"></p>
 <h3 id="usage-as-a-library">Usage as a Library</h3><p>If you&apos;re reading this on npm/GitHub, you can read the documentation online <a href="https://sporadic-labs.github.io/tile-extruder">here</a> which includes API documentation. Also, see <a href="https://github.com/sporadic-labs/tile-extruder/tree/master/examples/node">node examples</a> folder for code.</p>
@@ -138,6 +140,11 @@ const tileset = map.addTilesetImage(&quot;tileset&quot;, &quot;tileset-extruded&
 <li>Mario Tileset - <a href="http://rmrk.net/index.php?topic=37002.0">Source</a></li>
 </ul>
 <h2 id="changelog">Changelog</h2><ul>
+<li>2.1.0<ul>
+<li>Update all deps to latest.</li>
+<li>If output path is not specified in CLI arguments, defaults to the original filename + &quot;_extruded&quot;. Thanks <a href="https://github.com/Naxos84">@Naxos84</a>!</li>
+</ul>
+</li>
 <li>2.0.6<ul>
 <li>Update all deps to latest.</li>
 <li>Fix for #10: convert bin/tile-extruder to LF to allow it to work under yarn on unix. Thanks <a href="https://github.com/carystanley">@carystanley</a>!</li>
@@ -175,6 +182,11 @@ const tileset = map.addTilesetImage(&quot;tileset&quot;, &quot;tileset-extruded&
 <li>Cleaner error handling</li>
 </ul>
 </li>
+</ul>
+<h2 id="contributors">Contributors</h2><p>Thank you to the following community contributors:</p>
+<ul>
+<li><a href="https://github.com/Naxos84">@Naxos84</a></li>
+<li><a href="https://github.com/fjolne">@fjolne</a></li>
 </ul>
 </div>
 </div>
