@@ -31,7 +31,8 @@ async function areImagesExactMatches(imagePath1, imagePath2) {
   try {
     const [image1, image2] = await Promise.all([Jimp.read(imagePath1), Jimp.read(imagePath2)]);
     return Jimp.diff(image1, image2, 0).percent === 0;
-  } catch {
+  } catch (error) {
+    console.error(error);
     return false;
   }
 }
