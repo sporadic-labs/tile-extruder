@@ -13,7 +13,10 @@ program
   .option("-w, --tileWidth <integer>", "tile width in pixels", toInt)
   .option("-h, --tileHeight <integer>", "tile height in pixels", toInt)
   .option("-i, --input <path>", "the path to the tileset you want to extrude")
-  .option("-o, --output <path>", "the path to output the extruded tileset image")
+  .option(
+    "-o, --output <path>",
+    "the path to output the extruded tileset image (default: inputPath where filename is extended with '_extruded')"
+  )
   .option(
     "-c, --color [hex=0xffffff00]",
     "RGBA color to use for the background color, only matters if there's margin or spacing (default: transparent white)",
@@ -52,12 +55,15 @@ if (!inputPath) {
   console.log("\nMissing path to tileset image! See help below for usage information:");
   program.help();
 }
+let modifiedOutputPath = outputPath;
 if (!outputPath) {
-  console.log("\nMissing path save extruded tileset image! See help below for usage information:");
-  program.help();
+  const splittedInputPath = inputPath.split(".");
+  const inputFileExtension = splittedInputPath.pop();
+  const reducedInputPath = splittedInputPath.join(".");
+  modifiedOutputPath = `${reducedInputPath}_extruded.${inputFileExtension}`;
 }
 
-extrudeTilesetToImage(tileWidth, tileHeight, inputPath, outputPath, {
+extrudeTilesetToImage(tileWidth, tileHeight, inputPath, modifiedOutputPath, {
   margin,
   spacing,
   extrusion,
