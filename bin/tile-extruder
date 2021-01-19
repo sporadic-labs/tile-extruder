@@ -41,7 +41,7 @@ const {
   color,
   input: inputPath,
   output: outputPath,
-} = program;
+} = program.opts();
 
 if (!tileWidth) {
   console.log("\nMissing tileWidth! See help below for usage information:");
