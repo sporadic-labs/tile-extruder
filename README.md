@@ -17,6 +17,7 @@ Interested in learning more about how to use tilemaps in Phaser 3? Check out my 
     - [Using the Extruded Tileset](#using-the-extruded-tileset)
   - [Tileset Credits](#tileset-credits)
   - [Changelog](#changelog)
+  - [Contributors](#contributors)
 
 ## Usage
 
@@ -56,17 +57,18 @@ Additional usage information:
 A small CLI to extrude tiles. Use --help for more information.
 
 Options:
-
   -V, --version                 output the version number
   -w, --tileWidth <integer>     tile width in pixels
   -h, --tileHeight <integer>    tile height in pixels
   -i, --input <path>            the path to the tileset you want to extrude
-  -o, --output <path>           the path to output the extruded tileset image    
-  -c, --color [hex=0xffffff00]  RGBA color to use for the background color, only matters if there is margin or spacing (default: transparent white)
-  -m, --margin [integer=0]      number of pixels between tiles and the edge of the tileset image (default: 0)
+  -o, --output <path>           the path to output the extruded tileset image (default: inputPath where
+                                filename is extended with '_extruded')
+  -c, --color [hex=0xffffff00]  RGBA color to use for the background color, only matters if there's margin or   
+                                spacing (default: transparent white)
+  -m, --margin [integer=0]      number of pixels between tiles and the edge of the tileset image (default: 0)   
   -s, --spacing [integer=0]     number of pixels between neighboring tiles (default: 0)
   -e, --extrusion [integer=1]   number of pixels to extrude by (default: 1)
-  -h, --help                    output usage information
+  --help                        display help for command
 ```
 
 A note on terminology, _spacing_ is the number of pixels between neighboring tiles, while _margin_ is the number of pixels between the edges of the image and the tiles. Or, more visually explained:
@@ -152,6 +154,9 @@ Note: you'll have to adjust your margin & spacing because of the extrusion. If y
 
 ## Changelog
 
+* 2.1.0
+  * Update all deps to latest.
+  * If output path is not specified in CLI arguments, defaults to the original filename + "_extruded". Thanks [@Naxos84](https://github.com/Naxos84)!
 * 2.0.6
   * Update all deps to latest.
   * Fix for #10: convert bin/tile-extruder to LF to allow it to work under yarn on unix. Thanks [@carystanley](https://github.com/carystanley)!
@@ -173,3 +178,10 @@ Note: you'll have to adjust your margin & spacing because of the extrusion. If y
   * Update jimp dependency to latest (0.6.4)
   * Make underlying library return a promise (to address [#6](https://github.com/sporadic-labs/tile-extruder/issues/6), thanks [@the-simian](https://github.com/the-simian))
   * Cleaner error handling
+
+## Contributors
+
+Thank you to the following community contributors:
+
+- [@Naxos84](https://github.com/Naxos84)
+- [@fjolne](https://github.com/fjolne)
