@@ -33,8 +33,8 @@
   },
   "homepage": "https://github.com/sporadic-labs/tile-extruder#readme",
   "dependencies": {
-    "commander": "^5.1.0",
-    "jimp": "^0.13.0"
+    "commander": "^7.0.0",
+    "jimp": "^0.16.1"
   },
   "devDependencies": {
     "esdoc": "^1.1.0",
@@ -43,8 +43,8 @@
     "gh-pages": "^3.1.0",
     "http-server": "^0.12.3",
     "imagemin": "^7.0.1",
-    "imagemin-pngquant": "^9.0.0",
-    "prettier": "^2.0.5",
+    "imagemin-pngquant": "^9.0.1",
+    "prettier": "^2.2.1",
     "shx": "^0.3.3"
   }
 }
