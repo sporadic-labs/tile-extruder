@@ -7,7 +7,7 @@
     "test": "node ./test.js",
     "demo": "http-server ./examples/phaser -c-1 -o",
     "doc": "esdoc -c ./.esdoc.json",
-    "postdoc": "cp -r doc-source/ docs/",
+    "postdoc": "shx cp -r doc-source/ docs/",
     "deploy:doc": "gh-pages --branch gh-pages --dist docs",
     "predeploy:doc": "npm run doc"
   },
@@ -44,6 +44,7 @@
     "http-server": "^0.12.3",
     "imagemin": "^7.0.1",
     "imagemin-pngquant": "^9.0.0",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "shx": "^0.3.3"
   }
 }
