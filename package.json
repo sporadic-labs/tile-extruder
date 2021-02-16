@@ -11,7 +11,8 @@
     "doc": "esdoc -c ./.esdoc.json",
     "postdoc": "shx cp -r doc-source/ docs/",
     "deploy:doc": "gh-pages --branch gh-pages --dist docs",
-    "predeploy:doc": "npm run doc"
+    "predeploy:doc": "npm run doc",
+    "prettier": "prettier --write \"./{src,tests}/**/*.{js,ts}\""
   },
   "repository": {
     "type": "git",

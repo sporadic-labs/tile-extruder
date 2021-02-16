@@ -17,8 +17,8 @@ const tilesetTests = [
   { file: "borders-tileset.png", args: { w: 8, h: 16 } },
   {
     file: "mario-tileset-10-spacing-5-margin.png",
-    args: { w: 16, h: 16, m: 5, s: 10, c: "0x7088ff" }
-  }
+    args: { w: 16, h: 16, m: 5, s: 10, c: "0x7088ff" },
+  },
 ];
 
 function cliArgsToString(args: any) {
@@ -58,7 +58,7 @@ async function main() {
       .map(([flag, val]) => `-${flag} ${val}`)
       .join(" ");
 
-    execSync(`node ./bin/cli.js ${stringArgs}`, (err:any, stdout:any, stderr:any) => {
+    execSync(`node ./bin/cli.js ${stringArgs}`, (err: any, stdout: any, stderr: any) => {
       if (err) {
         wasTestSuccessful = false;
         console.error(`exec error: ${err}`);
