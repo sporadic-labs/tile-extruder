@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-const program = require("commander");
-const { version } = require("../package.json");
-const { extrudeTilesetToImage } = require("../src/index");
+import program from "commander";
+import {version} from "../package.json";
+import { extrudeTilesetToImage } from "./index";
 
-const toInt = (v) => parseInt(v, 10);
-const toHex = (v) => parseInt(v, 16);
+const toInt = (v: string) => parseInt(v, 10);
+const toHex = (v: string) => parseInt(v, 16);
 
 program
   .version(version)

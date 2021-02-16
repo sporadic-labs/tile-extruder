@@ -9,8 +9,8 @@
  * @param {number} destX X position to start pasting to (left).
  * @param {number} destY Y position to start pasting to (top).
  */
-function copyPixels(srcImage, srcX, srcY, srcW, srcH, destImage, destX, destY) {
-  srcImage.scan(srcX, srcY, srcW, srcH, (curSrcX, curSrcY, curSrcIndex) => {
+function copyPixels(srcImage: any, srcX: any, srcY: any, srcW: any, srcH: any, destImage: any, destX: any, destY: any) {
+  srcImage.scan(srcX, srcY, srcW, srcH, (curSrcX: any, curSrcY: any, curSrcIndex: any) => {
     const curDestX = destX + (curSrcX - srcX);
     const curDestY = destY + (curSrcY - srcY);
     const curDestIndex = destImage.getPixelIndex(curDestX, curDestY);
@@ -32,9 +32,9 @@ function copyPixels(srcImage, srcX, srcY, srcW, srcH, destImage, destX, destY) {
  * @param {number} destW The width of the destination region.
  * @param {number} destH The height of the destination region.
  */
-function copyPixelToRect(srcImage, srcX, srcY, destImage, destX, destY, destW, destH) {
+function copyPixelToRect(srcImage: any, srcX: any, srcY: any, destImage: any, destX: any, destY: any, destW: any, destH: any) {
   const srcIndex = srcImage.getPixelIndex(srcX, srcY);
-  destImage.scan(destX, destY, destW, destH, (curDestX, curDestY, curDestIndex) => {
+  destImage.scan(destX, destY, destW, destH, (curDestX: any, curDestY: any, curDestIndex: any) => {
     destImage.bitmap.data[curDestIndex + 0] = srcImage.bitmap.data[srcIndex + 0];
     destImage.bitmap.data[curDestIndex + 1] = srcImage.bitmap.data[srcIndex + 1];
     destImage.bitmap.data[curDestIndex + 2] = srcImage.bitmap.data[srcIndex + 2];
@@ -42,4 +42,4 @@ function copyPixelToRect(srcImage, srcX, srcY, destImage, destX, destY, destW, d
   });
 }
 
-module.exports = { copyPixels, copyPixelToRect };
+export { copyPixels, copyPixelToRect };

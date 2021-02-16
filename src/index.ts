@@ -7,8 +7,8 @@
  *  - Web app
  */
 
-const Jimp = require("jimp");
-const { copyPixels, copyPixelToRect } = require("./copy-pixels");
+import Jimp from "jimp";
+import { copyPixels, copyPixelToRect } from "./copy-pixels";
 
 /**
  * Accepts an image path and returns a Promise that resolves to a Buffer containing the extruded
@@ -31,10 +31,10 @@ const { copyPixels, copyPixelToRect } = require("./copy-pixels");
  * error.
  */
 async function extrudeTilesetToBuffer(
-  tileWidth,
-  tileHeight,
-  inputPath,
-  { mime = Jimp.AUTO, margin, spacing, color } = {}
+  tileWidth: any,
+  tileHeight: any,
+  inputPath: any,
+  { mime = Jimp.AUTO, margin, spacing, color }:any = {}
 ) {
   const options = { margin, spacing, color };
   const extrudedImage = await extrudeTilesetToJimp(tileWidth, tileHeight, inputPath, options).catch(
@@ -43,7 +43,7 @@ async function extrudeTilesetToBuffer(
       throw err;
     }
   );
-  const buffer = await extrudedImage.getBufferAsync(mime).catch((err) => {
+  const buffer = await extrudedImage.getBufferAsync(mime).catch((err: any) => {
     console.error("Buffer could not be created from tileset.");
     throw err;
   });
@@ -67,14 +67,14 @@ async function extrudeTilesetToBuffer(
  * CSS color string, e.g. '#FF0000'. This defaults to transparent white.
  * @returns {Promise} - A promise that resolves when finished saving, or rejects with an error.
  */
-async function extrudeTilesetToImage(tileWidth, tileHeight, inputPath, outputPath, options) {
+async function extrudeTilesetToImage(tileWidth: any, tileHeight: any, inputPath:any, outputPath:any, options:any) {
   const extrudedImage = await extrudeTilesetToJimp(tileWidth, tileHeight, inputPath, options).catch(
     (err) => {
       console.error("Error extruding tileset: ", err);
       throw err;
     }
   );
-  await extrudedImage.writeAsync(outputPath).catch((err) => {
+  await extrudedImage.writeAsync(outputPath).catch((err: any) => {
     console.error(`Tileset image could not be saved to: ${outputPath}`);
     throw err;
   });
@@ -100,12 +100,12 @@ async function extrudeTilesetToImage(tileWidth, tileHeight, inputPath, outputPat
  * error.
  */
 async function extrudeTilesetToJimp(
-  tileWidth,
-  tileHeight,
-  inputPath,
-  { margin = 0, spacing = 0, color = 0xffffff00, extrusion = 1 } = {}
+  tileWidth: any,
+  tileHeight: any,
+  inputPath: any,
+  { margin = 0, spacing = 0, color = 0xffffff00, extrusion = 1 }: any = {}
 ) {
-  const image = await Jimp.read(inputPath).catch((err) => {
+  const image = await Jimp.read(inputPath).catch((err: any) => {
     console.error(`Tileset image could not be loaded from: ${inputPath}`);
     throw err;
   });
@@ -218,7 +218,7 @@ async function extrudeTilesetToJimp(
   return extrudedImage;
 }
 
-module.exports = {
+export {
   extrudeTilesetToBuffer,
   extrudeTilesetToImage,
   extrudeTilesetToJimp,
