@@ -19,7 +19,6 @@
     "printWidth": 100
   },
   "files": [
-    "lib",
     "bin",
     "src"
   ],
