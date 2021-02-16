@@ -4,6 +4,7 @@
   "version": "2.1.0",
   "main": "bin/index.js",
   "scripts": {
+    "clean": "shx rm -rf bin",
     "build": "tsc",
     "pretest": "npm run build",
     "test": "ts-node ./tests/index.ts",
