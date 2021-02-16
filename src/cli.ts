@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 
 import program from "commander";
-import { version } from "../package.json";
 import { extrudeTilesetToImage } from "./index";
 
 const toInt = (v: string) => parseInt(v, 10);
 const toHex = (v: string) => parseInt(v, 16);
 
 program
-  .version(version)
+  .version("2.1.0")
   .description("A small CLI to extrude tiles. Use --help for more information.")
   .option("-w, --tileWidth <integer>", "tile width in pixels", toInt)
   .option("-h, --tileHeight <integer>", "tile height in pixels", toInt)
