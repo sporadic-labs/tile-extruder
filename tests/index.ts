@@ -3,11 +3,24 @@
  * saved snapshots.
  */
 
-const { execSync } = require("child_process");
-const fs = require("fs");
-const Jimp = require("jimp");
+import { execSync } from "child_process";
+import fs from "fs";
+import Jimp from "jimp";
 
-const tilesetTests = [
+interface TestCliArgs {
+  w: number;
+  h: number;
+  e?: number;
+  m?: number;
+  s?: number;
+  c?: number | string;
+}
+interface TestConfig {
+  file: string;
+  args: TestCliArgs;
+}
+
+const tilesetTests: TestConfig[] = [
   { file: "buch-tileset.png", args: { w: 16, h: 16 } },
   { file: "arachne-tileset.png", args: { w: 8, h: 8 } },
   { file: "mario-tileset.png", args: { w: 16, h: 16 } },
@@ -21,13 +34,13 @@ const tilesetTests = [
   },
 ];
 
-function cliArgsToString(args: any) {
+function cliArgsToString(args: TestCliArgs) {
   return Object.entries(args)
     .map(([key, val]) => `${key}${val}`)
     .join("");
 }
 
-async function areImagesExactMatches(imagePath1: any, imagePath2: any) {
+async function areImagesExactMatches(imagePath1: string, imagePath2: string) {
   try {
     const [image1, image2] = await Promise.all([Jimp.read(imagePath1), Jimp.read(imagePath2)]);
     return Jimp.diff(image1, image2, 0).percent === 0;
@@ -58,18 +71,12 @@ async function main() {
       .map(([flag, val]) => `-${flag} ${val}`)
       .join(" ");
 
-    execSync(`node ./bin/cli.js ${stringArgs}`, (err: any, stdout: any, stderr: any) => {
-      if (err) {
-        wasTestSuccessful = false;
-        console.error(`exec error: ${err}`);
-        return;
-      }
-      if (stderr) {
-        wasTestSuccessful = false;
-        console.log(stderr);
-      }
-      if (stdout) console.log((args as any).i, (args as any).o);
-    });
+    try {
+      execSync(`node ./bin/cli.js ${stringArgs}`);
+    } catch (err) {
+      wasTestSuccessful = false;
+      console.error(err);
+    }
 
     if (!fs.existsSync(snapshotTilesetPath)) {
       console.log("No snapshot for this test. Saving...");
