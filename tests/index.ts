@@ -21,13 +21,13 @@ const tilesetTests = [
   }
 ];
 
-function cliArgsToString(args) {
+function cliArgsToString(args: any) {
   return Object.entries(args)
     .map(([key, val]) => `${key}${val}`)
     .join("");
 }
 
-async function areImagesExactMatches(imagePath1, imagePath2) {
+async function areImagesExactMatches(imagePath1: any, imagePath2: any) {
   try {
     const [image1, image2] = await Promise.all([Jimp.read(imagePath1), Jimp.read(imagePath2)]);
     return Jimp.diff(image1, image2, 0).percent === 0;
@@ -58,7 +58,7 @@ async function main() {
       .map(([flag, val]) => `-${flag} ${val}`)
       .join(" ");
 
-    execSync(`node ./bin/tile-extruder ${stringArgs}`, (err, stdout, stderr) => {
+    execSync(`node ./bin/cli.js ${stringArgs}`, (err:any, stdout:any, stderr:any) => {
       if (err) {
         wasTestSuccessful = false;
         console.error(`exec error: ${err}`);
@@ -68,7 +68,7 @@ async function main() {
         wasTestSuccessful = false;
         console.log(stderr);
       }
-      if (stdout) console.log(args.i, args.o);
+      if (stdout) console.log((args as any).i, (args as any).o);
     });
 
     if (!fs.existsSync(snapshotTilesetPath)) {
