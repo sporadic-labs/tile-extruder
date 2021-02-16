@@ -4,7 +4,9 @@
   "version": "2.1.0",
   "main": "bin/index.js",
   "scripts": {
-    "test": "node ./test.js",
+    "build": "tsc",
+    "pretest": "npm run build",
+    "test": "ts-node ./tests/index.ts",
     "demo": "http-server ./examples/phaser -c-1 -o",
     "doc": "esdoc -c ./.esdoc.json",
     "postdoc": "shx cp -r doc-source/ docs/",
