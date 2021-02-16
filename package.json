@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/sporadic-labs/tile-extruder#readme",
   "dependencies": {
-    "commander": "^7.0.0",
+    "commander": "^7.1.0",
     "jimp": "^0.16.1"
   },
   "devDependencies": {
