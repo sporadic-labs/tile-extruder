@@ -13,5 +13,9 @@
   "bugs": {
     "url": "https://github.com/sporadic-labs/tile-extruder/issues"
   },
-  "homepage": "https://github.com/sporadic-labs/tile-extruder#readme"
+  "homepage": "https://github.com/sporadic-labs/tile-extruder#readme",
+  "resolutions": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
 }
