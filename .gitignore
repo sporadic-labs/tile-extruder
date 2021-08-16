@@ -1,4 +1,10 @@
 node_modules
-docs
-bin
-tilesets/extruded
+
+# Yarn (v2) without plug n' play
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
