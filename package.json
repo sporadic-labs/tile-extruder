@@ -1,56 +1,17 @@
 {
-  "name": "tile-extruder",
-  "description": "A tiny Node app to extrude tiles in tilesets to avoid bleeding issues. See relevant [Phaser issue](https://github.com/photonstorm/phaser/issues/3229)",
-  "version": "2.1.0",
-  "main": "bin/index.js",
-  "types": "bin/index.d.ts",
-  "scripts": {
-    "clean": "shx rm -rf bin",
-    "build": "tsc",
-    "pretest": "npm run build",
-    "test": "ts-node ./tests/index.ts",
-    "demo": "http-server ./examples/phaser -c-1 -o",
-    "doc": "esdoc -c ./.esdoc.json",
-    "postdoc": "shx cp -r doc-source/ docs/",
-    "deploy:doc": "gh-pages --branch gh-pages --dist docs",
-    "predeploy:doc": "npm run doc",
-    "prettier": "prettier --write \"./{src,tests}/**/*.{js,ts}\""
-  },
+  "name": "tile-extruder-root",
+  "workspaces": [
+    "workspaces/*"
+  ],
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sporadic-labs/tile-extruder.git"
   },
-  "prettier": {
-    "printWidth": 100
-  },
-  "files": [
-    "bin",
-    "src"
-  ],
-  "author": "",
+  "author": "Michael Hadley",
   "license": "ISC",
-  "bin": {
-    "tile-extruder": "./bin/cli.js"
-  },
   "bugs": {
     "url": "https://github.com/sporadic-labs/tile-extruder/issues"
   },
-  "homepage": "https://github.com/sporadic-labs/tile-extruder#readme",
-  "dependencies": {
-    "commander": "^7.1.0",
-    "jimp": "^0.16.1"
-  },
-  "devDependencies": {
-    "esdoc": "^1.1.0",
-    "esdoc-node": "^1.0.5",
-    "esdoc-standard-plugin": "^1.0.0",
-    "gh-pages": "^3.1.0",
-    "http-server": "^0.12.3",
-    "imagemin": "^7.0.1",
-    "imagemin-pngquant": "^9.0.1",
-    "prettier": "^2.2.1",
-    "shx": "^0.3.3",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.1.5"
-  }
+  "homepage": "https://github.com/sporadic-labs/tile-extruder#readme"
 }
