@@ -9,13 +9,11 @@ function SiteLayout({ children }: SiteLayoutProps) {
   return (
     <div className={css.siteContainer}>
       <Head>
-        <title>Create Next App</title>
+        <title>Tile Extruder</title>
         <meta name="description" content="Web app to extrude tilesets." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <nav>🧭</nav>
-      <div className={css.container}>{children}</div>
-      <footer>©</footer>
+      {children}
     </div>
   );
 }
