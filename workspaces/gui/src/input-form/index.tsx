@@ -11,6 +11,8 @@ function InputForm() {
   const imageStorage = useImageStorage();
   const [errorMessage, setErrorMessage] = useState("");
 
+  // TODO: handle clearing/removing image.
+
   const onImageChange: ChangeEventHandler<HTMLInputElement> = async (e) => {
     const files = e.target.files;
     if (!files || files.length === 0) {
