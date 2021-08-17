@@ -1,17 +1,5 @@
-html {
-  font-size: 125%;
-}
-
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: monospace;
-}
-
-* {
-  box-sizing: border-box;
-}
+@import "./custom-normalize.scss";
+@import "./typography.scss";
 
 body {
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)),
