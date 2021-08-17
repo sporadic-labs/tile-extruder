@@ -3,14 +3,17 @@ import { store } from "../store";
 import SiteLayout from "../components/site-layout";
 import type { AppProps } from "next/app";
 import "../styles/globals.css";
+import { ImageStorageProvider } from "../image-storage/react-integration";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Provider store={store}>
-      <SiteLayout>
-        <Component {...pageProps} />
-      </SiteLayout>
-    </Provider>
+    <ImageStorageProvider>
+      <Provider store={store}>
+        <SiteLayout>
+          <Component {...pageProps} />
+        </SiteLayout>
+      </Provider>
+    </ImageStorageProvider>
   );
 }
 
