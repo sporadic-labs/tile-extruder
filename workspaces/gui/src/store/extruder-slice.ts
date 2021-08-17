@@ -7,6 +7,10 @@ interface ExtruderState {
   name: string;
   type: string;
   imageStorageId: ImageId | null;
+  tileWidth: number;
+  tileHeight: number;
+  inputMargin: number;
+  inputSpacing: number;
 }
 
 const initialState: ExtruderState = {
@@ -15,6 +19,10 @@ const initialState: ExtruderState = {
   name: "",
   type: "",
   imageStorageId: null,
+  tileWidth: 32,
+  tileHeight: 32,
+  inputMargin: 0,
+  inputSpacing: 0,
 };
 
 interface InputImagePayload {
@@ -43,10 +51,29 @@ const extruderSlice = createSlice({
       state.type = action.payload.type;
       state.imageStorageId = action.payload.imageId;
     },
+    setInputMargin: (state, action: PayloadAction<number>) => {
+      state.inputMargin = action.payload;
+    },
+    setInputSpacing: (state, action: PayloadAction<number>) => {
+      state.inputSpacing = action.payload;
+    },
+    setTileWidth: (state, action: PayloadAction<number>) => {
+      state.tileWidth = action.payload;
+    },
+    setTileHeight: (state, action: PayloadAction<number>) => {
+      state.tileHeight = action.payload;
+    },
   },
 });
 
 export default extruderSlice.reducer;
-export const { setInputImage, clearInputImage } = extruderSlice.actions;
+export const {
+  setInputImage,
+  clearInputImage,
+  setInputMargin,
+  setInputSpacing,
+  setTileWidth,
+  setTileHeight,
+} = extruderSlice.actions;
 export { extruderSlice };
 export type { ExtruderState, InputImagePayload };
