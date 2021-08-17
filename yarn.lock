@@ -69,7 +69,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.7.2":
+"@babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.9.2":
   version: 7.15.3
   resolution: "@babel/runtime@npm:7.15.3"
   dependencies:
@@ -679,6 +679,26 @@ __metadata:
     mkdirp: ^1.0.4
     rimraf: ^3.0.2
   checksum: c96381d4a37448ea280951e46233f7e541058cf57a57d4094dd4bdcaae43fa5872b5f2eb6bfb004591a68e29c5877abe3cdc210cb3588cbf20ab2877f31a7de7
+  languageName: node
+  linkType: hard
+
+"@reduxjs/toolkit@npm:^1.6.1":
+  version: 1.6.1
+  resolution: "@reduxjs/toolkit@npm:1.6.1"
+  dependencies:
+    immer: ^9.0.1
+    redux: ^4.1.0
+    redux-thunk: ^2.3.0
+    reselect: ^4.0.0
+  peerDependencies:
+    react: ^16.14.0 || ^17.0.0
+    react-redux: ^7.2.1
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-redux:
+      optional: true
+  checksum: 487e34003671b4bf3fbb983dd4d6e23ddeea0170aaefee765e38a7942b317895c8fae91a82dd698489a072c4ca8be9d317749a329ad9fb0129c3ed96f6142c18
   languageName: node
   linkType: hard
 
@@ -4152,6 +4172,7 @@ fsevents@~2.3.1:
   version: 0.0.0-use.local
   resolution: "gui@workspace:workspaces/gui"
   dependencies:
+    "@reduxjs/toolkit": ^1.6.1
     "@types/react": 17.0.16
     eslint: 7.32.0
     eslint-config-next: 11.0.1
@@ -4538,6 +4559,13 @@ fsevents@~2.3.1:
     p-pipe: ^3.0.0
     replace-ext: ^1.0.0
   checksum: 66af34cb1ec91df94bb7ce9420625d1e6545ed22fb41182bf4e3516d6d494a45005a242d217e6c5b63ca4599fb19cda4bec5737bba248fb703a9dc1533798317
+  languageName: node
+  linkType: hard
+
+"immer@npm:^9.0.1":
+  version: 9.0.5
+  resolution: "immer@npm:9.0.5"
+  checksum: 8199c092bb2d12de00a2264ee0f5170cd7356427aee6e5e012628057c8d063bf8ac9c318c7b3b41a0228b0ceefdef340f76caf4d95b4e4ca3ec27b4bb42de371
   languageName: node
   linkType: hard
 
@@ -7224,6 +7252,22 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"redux-thunk@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "redux-thunk@npm:2.3.0"
+  checksum: d13f442ffc91249b534bf14884c33feff582894be2562169637dc9d4d70aec6423bfe6d66f88c46ac027ac1c0cd07d6c2dd4a61cf7695b8e43491de679df9bcf
+  languageName: node
+  linkType: hard
+
+"redux@npm:^4.1.0":
+  version: 4.1.1
+  resolution: "redux@npm:4.1.1"
+  dependencies:
+    "@babel/runtime": ^7.9.2
+  checksum: 99519438a5d20b69404ad3816307ccc189f16df04b64c50d82c415ec488ea68b656d7a2fc81b6345e8d90f095344dfea68246500f72613d76464986660bc0485
+  languageName: node
+  linkType: hard
+
 "regenerator-runtime@npm:^0.11.0":
   version: 0.11.1
   resolution: "regenerator-runtime@npm:0.11.1"
@@ -7321,6 +7365,13 @@ fsevents@~2.3.1:
   version: 1.0.0
   resolution: "requires-port@npm:1.0.0"
   checksum: eee0e303adffb69be55d1a214e415cf42b7441ae858c76dfc5353148644f6fd6e698926fc4643f510d5c126d12a705e7c8ed7e38061113bdf37547ab356797ff
+  languageName: node
+  linkType: hard
+
+"reselect@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "reselect@npm:4.0.0"
+  checksum: ac7dfc9ef2cdb42b6fc87a856f3ce904c2e4363a2bc1e6fb7eea5f78902a6f506e4388e6509752984877c6dbfe501100c076671d334799eb5a1bfe9936cb2c12
   languageName: node
   linkType: hard
 
