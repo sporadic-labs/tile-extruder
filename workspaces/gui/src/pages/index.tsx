@@ -1,11 +1,10 @@
-import Image from "next/image";
 import DropZone from "../file-drop-zone";
 import { useImageStorage } from "../image-storage/react-integration";
+import InputForm from "../input-form";
 import { setInputImage } from "../store/extruder-slice";
-import { useAppSelector, useAppDispatch } from "../store/hooks";
+import { useAppDispatch } from "../store/hooks";
 
 export default function Home() {
-  const extruderConfig = useAppSelector((state) => state.extruder);
   const dispatch = useAppDispatch();
   const imageStorage = useImageStorage();
 
@@ -27,34 +26,11 @@ export default function Home() {
     }
   };
 
-  let inputImage;
-  if (extruderConfig.imageStorageId) {
-    const image = imageStorage.get(extruderConfig.imageStorageId)!;
-    inputImage = (
-      <figure>
-        <Image
-          unoptimized
-          src={image.objectUrl}
-          width={extruderConfig.width}
-          height={extruderConfig.height}
-          alt="Input Tileset"
-        />
-        <figcaption>
-          <p>{extruderConfig.name}</p>
-          <p>{extruderConfig.type}</p>
-          <p>
-            {extruderConfig.width}px x {extruderConfig.height}px
-          </p>
-        </figcaption>
-      </figure>
-    );
-  }
-
   return (
     <main>
       <h1>Tile Extruder</h1>
       <DropZone onFileDrop={onFile} />
-      {inputImage}
+      <InputForm />
     </main>
   );
 }
