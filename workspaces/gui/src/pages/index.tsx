@@ -1,7 +1,7 @@
-import DropZone from "../file-drop-zone";
-import { useImageStorage } from "../image-storage/react-integration";
-import InputForm from "../input-form";
-import OutputForm from "../output-form";
+import DropZone from "../features/file-drop-zone";
+import { useImageStorage } from "../store/image-storage/react-integration";
+import InputForm from "../features/input-form";
+import OutputForm from "../features/output-form";
 import { setInputImage, setTileHeight, setTileWidth } from "../store/extruder-slice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import testTileset from "../assets/tilesets/test-tileset.png";

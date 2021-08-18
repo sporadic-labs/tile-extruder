@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
-import { useImageStorage } from "../image-storage/react-integration";
-import { useAppSelector } from "../store/hooks";
+import { useImageStorage } from "../../store/image-storage/react-integration";
+import { useAppSelector } from "../../store/hooks";
 import css from "./canvas-input-preview.module.scss";
 
 function CanvasInputPreview() {

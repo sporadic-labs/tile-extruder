@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ImageId } from "../image-storage/image-storage";
+import { ImageId } from "./image-storage/image-storage";
 
 interface ExtruderState {
   width: number;

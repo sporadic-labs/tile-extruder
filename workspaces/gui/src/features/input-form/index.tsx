@@ -4,8 +4,8 @@ import {
   setInputSpacing,
   setTileHeight,
   setTileWidth,
-} from "../store/extruder-slice";
-import { useAppSelector, useAppDispatch } from "../store/hooks";
+} from "../../store/extruder-slice";
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import CanvasInputPreview from "./canvas-input-preview";
 import css from "./index.module.scss";
 
