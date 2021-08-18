@@ -1,5 +1,5 @@
 interface ImageData {
-  objectUrl: string;
+  url: string;
   image: HTMLImageElement;
   width: number;
   height: number;
@@ -11,11 +11,11 @@ class ImageStorage {
   private currentId: ImageId = 0;
   private map = new Map<ImageId, ImageData>();
 
-  has(id: ImageId) {
+  public has(id: ImageId) {
     return this.map.has(id);
   }
 
-  get(id: ImageId) {
+  public get(id: ImageId) {
     const data = this.map.get(id);
     if (data) {
       return data;
@@ -23,17 +23,18 @@ class ImageStorage {
     return null;
   }
 
-  remove(id: ImageId) {
+  public remove(id: ImageId) {
     const data = this.map.get(id);
     if (data) {
-      URL.revokeObjectURL(data.objectUrl);
+      if (data.url.startsWith("blob")) {
+        URL.revokeObjectURL(data.url);
+      }
       this.map.delete(id);
     }
   }
 
-  async addFromFile(file: File) {
+  public async addFromPath(src: string) {
     const id = ++this.currentId;
-    const objectUrl = URL.createObjectURL(file);
     const image = new Image();
     return new Promise<[ImageId, ImageData]>((resolve, reject) => {
       image.onload = () => {
@@ -43,7 +44,7 @@ class ImageStorage {
           width,
           height,
           image,
-          objectUrl,
+          url: src,
         };
         this.map.set(id, imageData);
         resolve([id, imageData]);
@@ -51,8 +52,13 @@ class ImageStorage {
       image.onerror = () => {
         reject("Error loading image from File.");
       };
-      image.src = objectUrl;
+      image.src = src;
     });
+  }
+
+  public async addFromFile(file: File) {
+    const objectUrl = URL.createObjectURL(file);
+    return this.addFromPath(objectUrl);
   }
 }
 
