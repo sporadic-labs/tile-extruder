@@ -1,8 +1,10 @@
 import DropZone from "../file-drop-zone";
 import { useImageStorage } from "../image-storage/react-integration";
 import InputForm from "../input-form";
-import { setInputImage } from "../store/extruder-slice";
+import OutputForm from "../output-form";
+import { setInputImage, setTileHeight, setTileWidth } from "../store/extruder-slice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
+import testTileset from "../assets/tilesets/test-tileset.png";
 
 export default function Home() {
   const imageStorageId = useAppSelector((state) => state.extruder.imageStorageId);
@@ -10,6 +12,24 @@ export default function Home() {
   const imageStorage = useImageStorage();
 
   const hasUploadedImage = imageStorageId && imageStorage.has(imageStorageId);
+  async function addTest() {
+    const [id, data] = await imageStorage.addFromPath(testTileset.src);
+    dispatch(
+      setInputImage({
+        width: data.width,
+        height: data.height,
+        name: "Test Tileset",
+        type: "image/png",
+        imageId: id,
+      })
+    );
+    dispatch(setTileWidth(64));
+    dispatch(setTileHeight(64));
+  }
+  if (!hasUploadedImage) {
+    addTest();
+    return null;
+  }
 
   const onFile = async (file: File) => {
     try {
