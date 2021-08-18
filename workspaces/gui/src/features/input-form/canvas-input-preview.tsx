@@ -1,24 +1,26 @@
-import { useEffect, useRef } from "react";
 import { useImageStorage } from "../../store/image-storage/react-integration";
 import { useAppSelector } from "../../store/hooks";
-import css from "./canvas-input-preview.module.scss";
+import Canvas, { CanvasDrawFn } from "../../components/canvas";
 
 function CanvasInputPreview() {
   const extruderConfig = useAppSelector((state) => state.extruder);
   const imageStorage = useImageStorage();
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // It's okay to assume image is present - handled by parent.
   const imageData = imageStorage.get(extruderConfig.imageStorageId!)!;
   const { width, height, tileWidth, tileHeight, inputSpacing, inputMargin } = extruderConfig;
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext("2d");
-    if (!canvas || !ctx) {
-      return;
-    }
+  const drawDependencies = [
+    imageData,
+    width,
+    height,
+    tileWidth,
+    tileHeight,
+    inputSpacing,
+    inputMargin,
+  ];
 
+  const draw: CanvasDrawFn = (ctx) => {
     ctx.clearRect(0, 0, width, height);
 
     // TODO: background color here.
@@ -47,13 +49,9 @@ function CanvasInputPreview() {
     ctx.stroke();
 
     ctx.resetTransform();
-  }, [imageData, width, height, tileWidth, tileHeight, inputSpacing, inputMargin]);
+  };
 
-  return (
-    <div className={css.canvasWrapper}>
-      <canvas ref={canvasRef} width={width} height={height}></canvas>
-    </div>
-  );
+  return <Canvas width={width} height={height} draw={draw} drawDependencies={drawDependencies} />;
 }
 
 export default CanvasInputPreview;
