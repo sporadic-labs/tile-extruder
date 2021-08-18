@@ -2,11 +2,14 @@ import DropZone from "../file-drop-zone";
 import { useImageStorage } from "../image-storage/react-integration";
 import InputForm from "../input-form";
 import { setInputImage } from "../store/extruder-slice";
-import { useAppDispatch } from "../store/hooks";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 
 export default function Home() {
+  const imageStorageId = useAppSelector((state) => state.extruder.imageStorageId);
   const dispatch = useAppDispatch();
   const imageStorage = useImageStorage();
+
+  const hasUploadedImage = imageStorageId && imageStorage.has(imageStorageId);
 
   const onFile = async (file: File) => {
     try {
@@ -29,8 +32,7 @@ export default function Home() {
   return (
     <main>
       <h1>Tile Extruder</h1>
-      <DropZone onFileDrop={onFile} />
-      <InputForm />
+      {hasUploadedImage ? <InputForm /> : <DropZone onFileDrop={onFile} />}
     </main>
   );
 }
