@@ -1,7 +1,7 @@
-import Image from "next/image";
-import { CanvasHTMLAttributes, DetailedHTMLProps, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useImageStorage } from "../image-storage/react-integration";
 import { useAppSelector } from "../store/hooks";
+import css from "./canvas-input-preview.module.scss";
 
 function CanvasInputPreview() {
   const extruderConfig = useAppSelector((state) => state.extruder);
@@ -44,18 +44,8 @@ function CanvasInputPreview() {
   }, [imageData, width, height, tileWidth, tileHeight, inputSpacing, inputMargin]);
 
   return (
-    <div>
-      <figure>
-        <canvas ref={canvasRef} width={width} height={height}></canvas>
-        <figcaption>
-          <p>{extruderConfig.name}</p>
-          <p>{extruderConfig.type}</p>
-          <p>
-            {extruderConfig.width}px x {extruderConfig.height}px
-          </p>
-          <pre>{JSON.stringify(extruderConfig, null, 4)}</pre>
-        </figcaption>
-      </figure>
+    <div className={css.canvasWrapper}>
+      <canvas ref={canvasRef} width={width} height={height}></canvas>
     </div>
   );
 }

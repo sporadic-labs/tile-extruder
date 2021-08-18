@@ -1,6 +1,4 @@
-import Image from "next/image";
 import { ChangeEventHandler } from "react";
-import { useImageStorage } from "../image-storage/react-integration";
 import {
   setInputMargin,
   setInputSpacing,
@@ -45,41 +43,50 @@ function InputForm() {
 
   return (
     <>
-      <form className={css.form}>
-        <label htmlFor="tileWidth">Tile Width:</label>
-        <input
-          type="number"
-          id="tileWidth"
-          name="tileWidth"
-          value={extruderConfig.tileWidth}
-          onChange={onChange}
-        />
-        <label htmlFor="tileHeight">Tile Height:</label>
-        <input
-          type="number"
-          id="tileHeight"
-          name="tileHeight"
-          value={extruderConfig.tileHeight}
-          onChange={onChange}
-        />
-        <label htmlFor="margin">Margin:</label>
-        <input
-          type="number"
-          id="margin"
-          name="margin"
-          value={extruderConfig.inputMargin}
-          onChange={onChange}
-        />
-        <label htmlFor="spacing">Spacing:</label>
-        <input
-          type="number"
-          id="spacing"
-          name="spacing"
-          value={extruderConfig.inputSpacing}
-          onChange={onChange}
-        />
-      </form>
+      <h2>Original Image</h2>
       <CanvasInputPreview />
+      <form className={css.form}>
+        <div>
+          <label htmlFor="tileWidth">Tile Width:</label>
+          <input
+            type="number"
+            id="tileWidth"
+            name="tileWidth"
+            value={extruderConfig.tileWidth}
+            onChange={onChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="tileHeight">Tile Height:</label>
+          <input
+            type="number"
+            id="tileHeight"
+            name="tileHeight"
+            value={extruderConfig.tileHeight}
+            onChange={onChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="margin">Margin:</label>
+          <input
+            type="number"
+            id="margin"
+            name="margin"
+            value={extruderConfig.inputMargin}
+            onChange={onChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="spacing">Spacing:</label>
+          <input
+            type="number"
+            id="spacing"
+            name="spacing"
+            value={extruderConfig.inputSpacing}
+            onChange={onChange}
+          />
+        </div>
+      </form>
     </>
   );
 }
