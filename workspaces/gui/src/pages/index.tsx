@@ -52,7 +52,14 @@ export default function Home() {
   return (
     <main>
       <h1>Tile Extruder</h1>
-      {hasUploadedImage ? <InputForm /> : <DropZone onFileDrop={onFile} />}
+      {hasUploadedImage ? (
+        <>
+          <InputForm />
+          <OutputForm />
+        </>
+      ) : (
+        <DropZone onFileDrop={onFile} />
+      )}
     </main>
   );
 }
