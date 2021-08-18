@@ -7,33 +7,34 @@ interface DropZoneProps {
 }
 
 function DropZone({ onFileDrop }: DropZoneProps) {
-  const [isDragging, setIsDragging] = useState(false);
+  const [dragCount, setDragCount] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
+  const isDragging = dragCount !== 0;
 
   const onDragEnter: DragEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsDragging(true);
+    setDragCount((prev) => prev + 1);
   };
 
   const onDragOver: DragEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     e.stopPropagation();
     if (!isDragging) {
-      setIsDragging(true);
+      setDragCount((prev) => prev + 1);
     }
   };
 
   const onDragLeave: DragEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsDragging(false);
+    setDragCount((prev) => prev - 1);
   };
 
   const onDrop: DragEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsDragging(false);
+    setDragCount((prev) => prev - 1);
     const files = e.dataTransfer.files;
     onFileList(files);
   };
