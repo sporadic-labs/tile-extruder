@@ -1,12 +1,10 @@
-import { useEffect, useRef } from "react";
 import { useImageStorage } from "../../store/image-storage/react-integration";
 import { useAppSelector } from "../../store/hooks";
-import css from "./canvas-extrusion.module.scss";
+import Canvas, { CanvasDrawFn } from "../../components/canvas";
 
 function CanvasExtrusion() {
   const extruderConfig = useAppSelector((state) => state.extruder);
   const imageStorage = useImageStorage();
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // It's okay to assume image is present - handled by parent.
   const imageData = imageStorage.get(extruderConfig.imageStorageId!)!;
@@ -26,14 +24,19 @@ function CanvasExtrusion() {
   const newHeight =
     2 * inputMargin + (rows - 1) * inputSpacing + rows * (tileHeight + 2 * extrudeAmount);
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext("2d");
+  const drawDependencies = [
+    imageData,
+    cols,
+    rows,
+    newWidth,
+    newHeight,
+    tileWidth,
+    tileHeight,
+    inputSpacing,
+    inputMargin,
+  ];
 
-    if (!canvas || !ctx) {
-      return;
-    }
-
+  const draw: CanvasDrawFn = (ctx) => {
     // ctx.scale(3, 3);
 
     const copyPixels = (sx: number, sy: number, sw: number, sh: number, dx: number, dy: number) => {
@@ -115,22 +118,10 @@ function CanvasExtrusion() {
       }
     }
     ctx.resetTransform();
-  }, [
-    imageData,
-    cols,
-    rows,
-    newWidth,
-    newHeight,
-    tileWidth,
-    tileHeight,
-    inputSpacing,
-    inputMargin,
-  ]);
+  };
 
   return (
-    <div className={css.canvasWrapper}>
-      <canvas ref={canvasRef} width={newWidth} height={newHeight}></canvas>
-    </div>
+    <Canvas width={newWidth} height={newHeight} draw={draw} drawDependencies={drawDependencies} />
   );
 }
 
