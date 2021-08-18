@@ -32,13 +32,19 @@ function CanvasInputPreview() {
     ctx.lineWidth = 2;
     ctx.strokeStyle = "rgba(0, 0, 0, 0.75)";
 
+    ctx.beginPath();
     const xStep = tileWidth + inputSpacing;
     const yStep = tileHeight + inputSpacing;
     for (let x = inputMargin; x < width; x += xStep) {
       for (let y = inputMargin; y < height; y += yStep) {
-        ctx.strokeRect(x, y, tileWidth, tileHeight);
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + tileWidth, y);
+        ctx.lineTo(x + tileWidth, y + tileHeight);
+        ctx.lineTo(x, y + tileHeight);
+        ctx.lineTo(x, y);
       }
     }
+    ctx.stroke();
 
     ctx.resetTransform();
   }, [imageData, width, height, tileWidth, tileHeight, inputSpacing, inputMargin]);
