@@ -5,31 +5,15 @@ import OutputForm from "../features/output-form";
 import { setInputImage, setTileHeight, setTileWidth } from "../store/extruder-slice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import testTileset from "../assets/tilesets/test-tileset.png";
+import useTestTileset from "../utils/use-test-tileset";
 
 export default function Home() {
   const imageStorageId = useAppSelector((state) => state.extruder.imageStorageId);
   const dispatch = useAppDispatch();
   const imageStorage = useImageStorage();
+  useTestTileset(testTileset.src, 64, 64);
 
   const hasUploadedImage = imageStorageId && imageStorage.has(imageStorageId);
-  async function addTest() {
-    const [id, data] = await imageStorage.addFromPath(testTileset.src);
-    dispatch(
-      setInputImage({
-        width: data.width,
-        height: data.height,
-        name: "Test Tileset",
-        type: "image/png",
-        imageId: id,
-      })
-    );
-    dispatch(setTileWidth(64));
-    dispatch(setTileHeight(64));
-  }
-  if (!hasUploadedImage) {
-    addTest();
-    return null;
-  }
 
   const onFile = async (file: File) => {
     try {
