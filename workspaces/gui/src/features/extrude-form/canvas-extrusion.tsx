@@ -48,11 +48,9 @@ function CanvasExtrusion() {
     ctx.fillRect(0, 0, newWidth, newHeight);
 
     const copy = copyPixels.bind(null, ctx, image);
-    console.log("draw");
 
     for (let row = 0; row < rows; row++) {
       for (let col = 0; col < cols; col++) {
-        console.log({ row, col });
         const tw = tileWidth;
         const th = tileHeight;
         const e = extrudeAmount;

@@ -7,7 +7,7 @@ import {
 } from "../../store/extruder-slice";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import CanvasInputPreview from "./canvas-input-preview";
-import css from "./index.module.scss";
+import css from "./input-form.module.scss";
 
 function InputForm() {
   const extruderConfig = useAppSelector((state) => state.extruder);

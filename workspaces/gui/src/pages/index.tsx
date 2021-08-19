@@ -1,7 +1,6 @@
 import DropZone from "../features/file-drop-zone";
 import { useImageStorage } from "../store/image-storage/react-integration";
-import InputForm from "../features/input-form";
-import OutputForm from "../features/output-form";
+import ExtrudeForm from "../features/extrude-form";
 import { setInputImage, setTileHeight, setTileWidth } from "../store/extruder-slice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import testTileset from "../assets/tilesets/test-tileset.png";
@@ -36,14 +35,7 @@ export default function Home() {
   return (
     <main>
       <h1>Tile Extruder</h1>
-      {hasUploadedImage ? (
-        <>
-          <InputForm />
-          <OutputForm />
-        </>
-      ) : (
-        <DropZone onFileDrop={onFile} />
-      )}
+      {hasUploadedImage ? <ExtrudeForm /> : <DropZone onFileDrop={onFile} />}
     </main>
   );
 }
