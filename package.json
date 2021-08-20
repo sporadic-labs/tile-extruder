@@ -3,7 +3,10 @@
   "workspaces": [
     "workspaces/*"
   ],
-  "scripts": {},
+  "scripts": {
+    "gui": "yarn workspace gui",
+    "cli": "yarn workspace cli"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sporadic-labs/tile-extruder.git"
