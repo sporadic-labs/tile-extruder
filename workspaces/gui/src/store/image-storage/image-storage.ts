@@ -33,6 +33,13 @@ class ImageStorage {
     }
   }
 
+  public clear() {
+    const keys = this.map.keys();
+    for (let id of keys) {
+      this.remove(id);
+    }
+  }
+
   public async addFromPath(src: string) {
     const id = ++this.currentId;
     const image = new Image();
