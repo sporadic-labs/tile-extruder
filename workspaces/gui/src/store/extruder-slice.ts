@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ImageId } from "./image-storage/image-storage";
+import { setImageFromFile } from "./image-storage/image-storage-thunks";
 
 type ImageState = "none" | "loading" | "success" | "error";
 
@@ -69,6 +70,24 @@ const extruderSlice = createSlice({
       state.tileHeight = action.payload;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(setImageFromFile.pending, (state, { payload }) => {
+      clearInputImage();
+      state.imageState = "loading";
+    });
+    builder.addCase(setImageFromFile.fulfilled, (state, { payload }) => {
+      const { id, width, height, name, type } = payload;
+      state.width = width;
+      state.height = height;
+      state.name = name;
+      state.type = type;
+      state.imageStorageId = id;
+    });
+    builder.addCase(setImageFromFile.rejected, (state, { payload }) => {
+      clearInputImage();
+      state.imageState = "error";
+    });
+  },
 });
 
 export default extruderSlice.reducer;
@@ -80,5 +99,6 @@ export const {
   setTileWidth,
   setTileHeight,
 } = extruderSlice.actions;
+export { setImageFromFile };
 export { extruderSlice };
 export type { ExtruderState, InputImagePayload };
