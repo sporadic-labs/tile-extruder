@@ -7,6 +7,8 @@ interface ImageData {
 
 type ImageId = number;
 
+type ImageEntry = [ImageId, ImageData];
+
 class ImageStorage {
   private currentId: ImageId = 0;
   private map = new Map<ImageId, ImageData>();
@@ -43,7 +45,7 @@ class ImageStorage {
   public async addFromPath(src: string) {
     const id = ++this.currentId;
     const image = new Image();
-    return new Promise<[ImageId, ImageData]>((resolve, reject) => {
+    return new Promise<ImageEntry>((resolve, reject) => {
       image.onload = () => {
         const width = image.naturalWidth;
         const height = image.naturalHeight;
@@ -70,4 +72,4 @@ class ImageStorage {
 }
 
 export default ImageStorage;
-export type { ImageData, ImageId };
+export type { ImageData, ImageId, ImageEntry };
