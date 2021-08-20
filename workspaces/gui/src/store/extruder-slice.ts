@@ -1,12 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ImageId } from "./image-storage/image-storage";
 
+type ImageState = "none" | "loading" | "success" | "error";
+
 interface ExtruderState {
   width: number;
   height: number;
   name: string;
   type: string;
   imageStorageId: ImageId | null;
+  imageState: ImageState;
   tileWidth: number;
   tileHeight: number;
   inputMargin: number;
@@ -19,6 +22,7 @@ const initialState: ExtruderState = {
   name: "",
   type: "",
   imageStorageId: null,
+  imageState: "none",
   tileWidth: 32,
   tileHeight: 32,
   inputMargin: 0,
@@ -42,6 +46,7 @@ const extruderSlice = createSlice({
       state.height = 0;
       state.name = "";
       state.type = "";
+      state.imageState = "none";
       state.imageStorageId = null;
     },
     setInputImage: (state, action: PayloadAction<InputImagePayload>) => {
