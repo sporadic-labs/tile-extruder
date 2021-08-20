@@ -1,5 +1,5 @@
-import InputForm from "./input-form";
-import OutputForm from "./output-form";
+import InputForm from "./input-form/";
+import OutputForm from "./output-form/";
 import css from "./index.module.scss";
 
 function ExtrudeForm() {

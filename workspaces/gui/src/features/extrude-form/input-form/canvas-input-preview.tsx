@@ -1,6 +1,6 @@
-import { useImageStorage } from "../../store/image-storage/react-integration";
-import { useAppSelector } from "../../store/hooks";
-import Canvas, { CanvasDrawFn } from "../../components/canvas";
+import { useImageStorage } from "../../../store/image-storage/react-integration";
+import { useAppSelector } from "../../../store/hooks";
+import Canvas, { CanvasDrawFn } from "../../../components/canvas";
 
 function CanvasInputPreview() {
   const extruderConfig = useAppSelector((state) => state.extruder);
@@ -37,6 +37,7 @@ function CanvasInputPreview() {
     ctx.beginPath();
     const xStep = tileWidth + inputSpacing;
     const yStep = tileHeight + inputSpacing;
+    console.log(0, xStep, inputMargin, width);
     for (let x = inputMargin; x < width; x += xStep) {
       for (let y = inputMargin; y < height; y += yStep) {
         ctx.moveTo(x, y);

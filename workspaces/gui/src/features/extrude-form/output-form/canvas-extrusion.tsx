@@ -1,7 +1,12 @@
-import { useImageStorage } from "../../store/image-storage/react-integration";
-import { useAppSelector } from "../../store/hooks";
-import Canvas, { CanvasDrawFn } from "../../components/canvas";
-import { copyPixels, sampleColor } from "./extrusion-utils";
+import { useImageStorage } from "../../../store/image-storage/react-integration";
+import { useAppSelector } from "../../../store/hooks";
+import Canvas, { CanvasDrawFn } from "../../../components/canvas";
+import {
+  copyPixels,
+  createCanvasFromImage,
+  sampleColor,
+  sampleColorFromCanvas,
+} from "./extrusion-utils";
 
 function CanvasExtrusion() {
   const extruderConfig = useAppSelector((state) => state.extruder);
@@ -39,13 +44,15 @@ function CanvasExtrusion() {
   ];
 
   const draw: CanvasDrawFn = (ctx) => {
-    ctx.scale(3, 3);
+    // ctx.scale(3, 3);
 
     ctx.clearRect(0, 0, newWidth, newHeight);
 
     // TODO: background color here.
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, newWidth, newHeight);
+
+    const offscreenImage = createCanvasFromImage(image);
 
     const copy = copyPixels.bind(null, ctx, image);
 
@@ -75,10 +82,10 @@ function CanvasExtrusion() {
         }
 
         // Extrude the corners.
-        const topLeft = sampleColor(image, sx, sy);
-        const topRight = sampleColor(image, sx + tw - 1, sy);
-        const bottomRight = sampleColor(image, sx + tw - 1, sy + th - 1);
-        const bottomLeft = sampleColor(image, sx, sy + th - 1);
+        const topLeft = sampleColorFromCanvas(offscreenImage.ctx, sx, sy);
+        const topRight = sampleColorFromCanvas(offscreenImage.ctx, sx + tw - 1, sy);
+        const bottomRight = sampleColorFromCanvas(offscreenImage.ctx, sx + tw - 1, sy + th - 1);
+        const bottomLeft = sampleColorFromCanvas(offscreenImage.ctx, sx, sy + th - 1);
         ctx.fillStyle = topLeft;
         ctx.fillRect(dx - e, dy - e, e, e);
         ctx.fillStyle = topRight;

@@ -1,5 +1,5 @@
 import { ChangeEventHandler } from "react";
-import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import CanvasExtrusion from "./canvas-extrusion";
 
 function OutputForm() {
