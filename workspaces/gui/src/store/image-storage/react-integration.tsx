@@ -3,8 +3,12 @@ import ImageStorage from "./image-storage";
 
 const ImageStorageContext = createContext<ImageStorage | null>(null);
 
-function ImageStorageProvider({ children }: { children: React.ReactNode }) {
-  const [imageStorage] = useState(() => new ImageStorage());
+interface ImageStorageProviderProps {
+  children: React.ReactNode;
+  imageStorage: ImageStorage;
+}
+
+function ImageStorageProvider({ children, imageStorage }: ImageStorageProviderProps) {
   return (
     <ImageStorageContext.Provider value={imageStorage}>{children}</ImageStorageContext.Provider>
   );

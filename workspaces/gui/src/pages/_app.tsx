@@ -1,5 +1,5 @@
 import { Provider } from "react-redux";
-import { store } from "../store";
+import { store, imageStorage } from "../store";
 import SiteLayout from "../components/site-layout";
 import type { AppProps } from "next/app";
 import { ImageStorageProvider } from "../store/image-storage/react-integration";
@@ -11,7 +11,7 @@ import "../global-styles/index.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ImageStorageProvider>
+    <ImageStorageProvider imageStorage={imageStorage}>
       <Provider store={store}>
         <SiteLayout>
           <Component {...pageProps} />
