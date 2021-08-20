@@ -19,11 +19,11 @@ function OutputForm() {
   };
 
   return (
-    <>
+    <section>
       <h2>Extruded Image</h2>
       <CanvasExtrusion />
       <form></form>
-    </>
+    </section>
   );
 }
 

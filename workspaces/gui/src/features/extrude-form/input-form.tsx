@@ -42,7 +42,7 @@ function InputForm() {
   };
 
   return (
-    <>
+    <section>
       <h2>Original Image</h2>
       <CanvasInputPreview />
       <form className={css.form}>
@@ -87,7 +87,7 @@ function InputForm() {
           />
         </div>
       </form>
-    </>
+    </section>
   );
 }
 
