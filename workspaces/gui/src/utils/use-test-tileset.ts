@@ -1,4 +1,9 @@
-import { setTileWidth, setTileHeight, setImageFromFile } from "../store/extruder-slice";
+import {
+  setTileWidth,
+  setTileHeight,
+  setImageFromFile,
+  setOutputFilename,
+} from "../store/extruder-slice";
 import { useAppDispatch } from "../store/hooks";
 import { useEffect } from "react";
 
@@ -10,9 +15,14 @@ export default function useTestTileset(imagePath: string, tileWidth: number, til
       const res = await fetch(imagePath);
       const blob = await res.blob();
       const file = new File([blob], imagePath);
-      dispatch(setImageFromFile(file));
-      dispatch(setTileWidth(tileWidth));
-      dispatch(setTileHeight(tileHeight));
+      dispatch(setImageFromFile(file))
+        .unwrap()
+        .then(() => {
+          dispatch(setTileWidth(tileWidth));
+          dispatch(setTileHeight(tileHeight));
+          dispatch(setOutputFilename("output.png"));
+        })
+        .catch(console.error);
     }
     addTest();
   }, [dispatch, imagePath, tileWidth, tileHeight]);

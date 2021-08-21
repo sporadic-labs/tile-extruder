@@ -3,7 +3,7 @@ import { useImageStorage } from "../store/image-storage/react-integration";
 import ExtrudeForm from "../features/extrude-form";
 import { setImageFromFile } from "../store/extruder-slice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import testTileset from "../assets/tilesets/test-tileset.png";
+import testTileset from "../assets/tilesets/mario-tileset-10-spacing-5-margin.png";
 import useTestTileset from "../utils/use-test-tileset";
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
   const dispatch = useAppDispatch();
   const imageStorage = useImageStorage();
 
-  useTestTileset(testTileset.src, 64, 64);
+  useTestTileset(testTileset.src, 16, 16);
 
   const hasUploadedImage = imageStorageId && imageStorage.has(imageStorageId);
 
