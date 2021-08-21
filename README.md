@@ -2,9 +2,9 @@
 
 Tile extruder is a web app, and a Node CLI & library, to extrude tiles in tilesets to avoid bleeding issues. You can visit the web app here (**TODO LINK**).
 
-![demo](./doc-source/images/demo.png)
+![demo](./assets/demo.png)
 
-![explanation](./doc-source/images/explanation.png)
+![explanation](./assets/explanation.png)
 
 You can read more about the bleeding problem and solution [~~here~~](http://rotorz.com/unity/tile-system/docs/edge-correction) (note: rotorz site is down as of 12/27/18, you can try this [archived version of the page](https://web.archive.org/web/20180411151113/http://rotorz.com/unity/tile-system/docs/edge-correction) until the site is restored).
 
