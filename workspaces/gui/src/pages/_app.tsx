@@ -8,14 +8,32 @@ import "@fontsource/raleway/400-italic.css";
 import "@fontsource/raleway/700.css";
 import "@fontsource/raleway/700-italic.css";
 import "../global-styles/index.scss";
+import { useAppDispatch } from "../store/hooks";
+import { ReactNode, useEffect } from "react";
+import { getSupportedCanvasBlobTypes } from "../utils/canvas-blob";
+import { setSupportedExportTypes } from "../store/extruder-slice";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function InnerApp({ Component, pageProps }: AppProps) {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    getSupportedCanvasBlobTypes()
+      .then((types) => dispatch(setSupportedExportTypes(types)))
+      .catch(console.error);
+  }, [dispatch]);
+
+  return (
+    <SiteLayout>
+      <Component {...pageProps} />
+    </SiteLayout>
+  );
+}
+
+function MyApp(props: AppProps) {
   return (
     <ImageStorageProvider imageStorage={imageStorage}>
       <Provider store={store}>
-        <SiteLayout>
-          <Component {...pageProps} />
-        </SiteLayout>
+        <InnerApp {...props} />
       </Provider>
     </ImageStorageProvider>
   );
