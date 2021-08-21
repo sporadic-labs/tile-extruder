@@ -730,6 +730,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/file-saver@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "@types/file-saver@npm:2.0.3"
+  checksum: 5f4de5e0dd1f7b48a9da9377b2be853ed4f185768346e529ff1b6ab76ec76c52aa0264029b900dc59b2d8c9a52e2bc7e747985fb2f3517f5ce9a433a0def0c36
+  languageName: node
+  linkType: hard
+
 "@types/glob@npm:^7.1.1":
   version: 7.1.4
   resolution: "@types/glob@npm:7.1.4"
@@ -3685,6 +3692,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"file-saver@npm:^2.0.5":
+  version: 2.0.5
+  resolution: "file-saver@npm:2.0.5"
+  checksum: c62d96e5cebc58b4bdf3ae8a60d5cf9607ad82f75f798c33a4ee63435ac2203002584d5256a2a780eda7feb5e19dc3b6351c2212e58b3f529e63d265a7cc79f7
+  languageName: node
+  linkType: hard
+
 "file-type@npm:5.2.0, file-type@npm:^5.2.0":
   version: 5.2.0
   resolution: "file-type@npm:5.2.0"
@@ -4271,10 +4285,12 @@ __metadata:
   dependencies:
     "@fontsource/raleway": ^4.5.0
     "@reduxjs/toolkit": ^1.6.1
+    "@types/file-saver": ^2.0.3
     "@types/react": 17.0.16
     classnames: ^2.3.1
     eslint: 7.32.0
     eslint-config-next: 11.0.1
+    file-saver: ^2.0.5
     formik: ^2.2.9
     next: 11.1.0
     normalize.css: ^8.0.1

@@ -12,6 +12,7 @@
     "@fontsource/raleway": "^4.5.0",
     "@reduxjs/toolkit": "^1.6.1",
     "classnames": "^2.3.1",
+    "file-saver": "^2.0.5",
     "formik": "^2.2.9",
     "next": "11.1.0",
     "normalize.css": "^8.0.1",
@@ -22,6 +23,7 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
+    "@types/file-saver": "^2.0.3",
     "@types/react": "17.0.16",
     "eslint": "7.32.0",
     "eslint-config-next": "11.0.1",
