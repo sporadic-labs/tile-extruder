@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ImageMimeType, parseImageFilename } from "../utils/image-filename-utils";
 import { ImageId } from "./image-storage/image-storage";
 import { setImageFromFile } from "./image-storage/image-storage-thunks";
 
@@ -20,6 +21,8 @@ interface ExtruderState {
   optimizeOutput: boolean;
   backgroundColor: string;
   outputFilename: string;
+  outputFileType: ImageMimeType;
+  supportedExportTypes: ImageMimeType[];
 }
 
 const initialState: ExtruderState = {
@@ -38,6 +41,8 @@ const initialState: ExtruderState = {
   optimizeOutput: true,
   backgroundColor: "transparent",
   outputFilename: "",
+  outputFileType: "image/png",
+  supportedExportTypes: ["image/png"],
 };
 
 interface InputImagePayload {
@@ -52,6 +57,9 @@ const extruderSlice = createSlice({
   name: "extruder",
   initialState,
   reducers: {
+    setSupportedExportTypes: (state, action: PayloadAction<ImageMimeType[]>) => {
+      state.supportedExportTypes = action.payload;
+    },
     clearInputImage: (state) => {
       state.width = 0;
       state.height = 0;
@@ -108,7 +116,13 @@ const extruderSlice = createSlice({
       state.name = name;
       state.type = type;
       state.imageStorageId = id;
-      state.outputFilename = state.name;
+      const info = parseImageFilename(name);
+      state.outputFilename = info.name;
+      if (state.supportedExportTypes.includes(info.mimeType)) {
+        state.outputFileType = info.mimeType;
+      } else {
+        state.outputFileType = "image/png";
+      }
     });
     builder.addCase(setImageFromFile.rejected, (state, { payload }) => {
       clearInputImage();
@@ -130,6 +144,7 @@ export const {
   setOptimizeOutput,
   setBackgroundColor,
   setOutputFilename,
+  setSupportedExportTypes,
 } = extruderSlice.actions;
 export { setImageFromFile };
 export { extruderSlice };
