@@ -68,14 +68,6 @@ const extruderSlice = createSlice({
       state.imageState = "none";
       state.imageStorageId = null;
     },
-    setInputImage: (state, action: PayloadAction<InputImagePayload>) => {
-      state.width = action.payload.width;
-      state.height = action.payload.height;
-      state.name = action.payload.name;
-      state.type = action.payload.type;
-      state.imageStorageId = action.payload.imageId;
-      state.outputFilename = action.payload.name || "output.png";
-    },
     setInputMargin: (state, action: PayloadAction<number>) => {
       state.inputMargin = action.payload;
     },
@@ -133,7 +125,6 @@ const extruderSlice = createSlice({
 
 export default extruderSlice.reducer;
 export const {
-  setInputImage,
   clearInputImage,
   setInputMargin,
   setInputSpacing,
