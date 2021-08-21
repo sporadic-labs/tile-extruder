@@ -15,6 +15,11 @@ interface ExtruderState {
   tileHeight: number;
   inputMargin: number;
   inputSpacing: number;
+  showTilePreview: boolean;
+  extrudeAmount: number;
+  optimizeOutput: boolean;
+  backgroundColor: string;
+  outputFilename: string;
 }
 
 const initialState: ExtruderState = {
@@ -28,6 +33,11 @@ const initialState: ExtruderState = {
   tileHeight: 32,
   inputMargin: 0,
   inputSpacing: 0,
+  showTilePreview: false,
+  extrudeAmount: 1,
+  optimizeOutput: true,
+  backgroundColor: "transparent",
+  outputFilename: "",
 };
 
 interface InputImagePayload {
@@ -56,6 +66,7 @@ const extruderSlice = createSlice({
       state.name = action.payload.name;
       state.type = action.payload.type;
       state.imageStorageId = action.payload.imageId;
+      state.outputFilename = action.payload.name || "output.png";
     },
     setInputMargin: (state, action: PayloadAction<number>) => {
       state.inputMargin = action.payload;
@@ -68,6 +79,21 @@ const extruderSlice = createSlice({
     },
     setTileHeight: (state, action: PayloadAction<number>) => {
       state.tileHeight = action.payload;
+    },
+    setShowTilePreview: (state, action: PayloadAction<boolean>) => {
+      state.showTilePreview = action.payload;
+    },
+    setExtrudeAmount: (state, action: PayloadAction<number>) => {
+      state.extrudeAmount = action.payload;
+    },
+    setOptimizeOutput: (state, action: PayloadAction<boolean>) => {
+      state.optimizeOutput = action.payload;
+    },
+    setBackgroundColor: (state, action: PayloadAction<string>) => {
+      state.backgroundColor = action.payload;
+    },
+    setOutputFilename: (state, action: PayloadAction<string>) => {
+      state.outputFilename = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -82,6 +108,7 @@ const extruderSlice = createSlice({
       state.name = name;
       state.type = type;
       state.imageStorageId = id;
+      state.outputFilename = state.name;
     });
     builder.addCase(setImageFromFile.rejected, (state, { payload }) => {
       clearInputImage();
@@ -98,6 +125,11 @@ export const {
   setInputSpacing,
   setTileWidth,
   setTileHeight,
+  setShowTilePreview,
+  setExtrudeAmount,
+  setOptimizeOutput,
+  setBackgroundColor,
+  setOutputFilename,
 } = extruderSlice.actions;
 export { setImageFromFile };
 export { extruderSlice };

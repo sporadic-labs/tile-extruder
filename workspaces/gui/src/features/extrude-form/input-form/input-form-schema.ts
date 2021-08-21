@@ -25,6 +25,7 @@ const inputFormSchema = yup.object().shape({
     .min(0, "Spacing needs to be >= 0.")
     .required("Spacing needs to be a number.")
     .typeError("Spacing needs to be a number."),
+  showTilePreview: yup.boolean().required(),
 });
 
 export default inputFormSchema;

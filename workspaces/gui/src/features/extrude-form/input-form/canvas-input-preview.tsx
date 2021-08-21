@@ -10,24 +10,19 @@ function CanvasInputPreview() {
   const imageData = imageStorage.get(extruderConfig.imageStorageId!)!;
   const { width, height, tileWidth, tileHeight, inputSpacing, inputMargin } = extruderConfig;
 
-  const drawDependencies = [
-    imageData,
-    width,
-    height,
-    tileWidth,
-    tileHeight,
-    inputSpacing,
-    inputMargin,
-  ];
+  const drawDependencies = [imageData, extruderConfig];
 
   const draw: CanvasDrawFn = (ctx) => {
     ctx.clearRect(0, 0, width, height);
 
-    // TODO: background color here.
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, width, height);
 
     ctx.drawImage(imageData.image, 0, 0);
+
+    if (!extruderConfig.showTilePreview) {
+      return;
+    }
 
     // Tile outline settings. Translate to (0.5, 0.5) for stroke 1 and (0, 0) for stroke 2.
     ctx.translate(0, 0);

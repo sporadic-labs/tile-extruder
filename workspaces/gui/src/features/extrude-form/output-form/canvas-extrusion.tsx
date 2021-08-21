@@ -16,7 +16,16 @@ function CanvasExtrusion() {
   const imageData = imageStorage.get(extruderConfig.imageStorageId!)!;
   const image = imageData.image;
 
-  const { width, height, tileWidth, tileHeight, inputSpacing, inputMargin } = extruderConfig;
+  const {
+    width,
+    height,
+    tileWidth,
+    tileHeight,
+    inputSpacing,
+    inputMargin,
+    extrudeAmount,
+    backgroundColor,
+  } = extruderConfig;
 
   // Solve for "cols" & "rows" to get the formulae used here:
   //  width = 2 * inputMargin + (cols - 1) * spacing + cols * tileWidth
@@ -25,31 +34,17 @@ function CanvasExtrusion() {
   const rows = (height - 2 * inputMargin + inputSpacing) / (tileHeight + inputSpacing);
 
   // Same calculation but in reverse & inflating the tile size by the extrusion amount
-  const extrudeAmount = 3;
   const newWidth =
     2 * inputMargin + (cols - 1) * inputSpacing + cols * (tileWidth + 2 * extrudeAmount);
   const newHeight =
     2 * inputMargin + (rows - 1) * inputSpacing + rows * (tileHeight + 2 * extrudeAmount);
 
-  const drawDependencies = [
-    image,
-    cols,
-    rows,
-    newWidth,
-    newHeight,
-    tileWidth,
-    tileHeight,
-    inputSpacing,
-    inputMargin,
-  ];
+  const drawDependencies = [image, cols, rows, newWidth, newHeight, extruderConfig];
 
   const draw: CanvasDrawFn = (ctx) => {
-    // ctx.scale(3, 3);
-
     ctx.clearRect(0, 0, newWidth, newHeight);
 
-    // TODO: background color here.
-    ctx.fillStyle = "white";
+    ctx.fillStyle = backgroundColor;
     ctx.fillRect(0, 0, newWidth, newHeight);
 
     const offscreenImage = createCanvasFromImage(image);

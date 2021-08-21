@@ -6,6 +6,7 @@ import {
   setTileHeight,
   setInputMargin,
   setInputSpacing,
+  setShowTilePreview,
 } from "../../../store/extruder-slice";
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import inputFormSchema from "./input-form-schema";
@@ -21,7 +22,7 @@ function ReduxSyncInputForm() {
       return;
     }
 
-    const { tileWidth, tileHeight, margin, spacing } = values;
+    const { tileWidth, tileHeight, margin, spacing, showTilePreview } = values;
 
     if (tileWidth !== extruderConfig.tileWidth) {
       dispatch(setTileWidth(tileWidth));
@@ -34,6 +35,9 @@ function ReduxSyncInputForm() {
     }
     if (spacing !== extruderConfig.inputSpacing) {
       dispatch(setInputSpacing(spacing));
+    }
+    if (showTilePreview !== extruderConfig.showTilePreview) {
+      dispatch(setShowTilePreview(showTilePreview));
     }
   }, [values, dispatch, extruderConfig]);
 

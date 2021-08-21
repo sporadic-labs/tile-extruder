@@ -11,6 +11,7 @@ interface InputFormInputs {
   tileHeight: number;
   margin: number;
   spacing: number;
+  showTilePreview: boolean;
 }
 
 function InputForm() {
@@ -21,36 +22,33 @@ function InputForm() {
     tileHeight: extruderConfig.tileHeight,
     margin: extruderConfig.inputMargin,
     spacing: extruderConfig.inputSpacing,
+    showTilePreview: extruderConfig.showTilePreview,
   };
 
   if (!extruderConfig.imageStorageId) return null;
 
   return (
-    <section>
-      <h2>Original Image</h2>
-      <CanvasInputPreview />
-      <Formik
-        initialValues={initialValues}
-        validationSchema={inputFormSchema}
-        validateOnChange
-        onSubmit={(values) => {
-          console.log(JSON.stringify(values, null, 2));
-        }}
-      >
-        {(formik) => {
-          return (
-            <Form>
-              <LabeledField name="tileWidth" label="Tile Width" type="number" />
-              <LabeledField name="tileHeight" label="Tile Height" type="number" />
-              <LabeledField name="margin" label="Margin" type="number" />
-              <LabeledField name="spacing" label="Spacing" type="number" />
-              <LabeledField name="showPreview" label="Show Preview" type="checkbox" />
-              <ReduxSyncInputForm />
-            </Form>
-          );
-        }}
-      </Formik>
-    </section>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={inputFormSchema}
+      validateOnChange
+      onSubmit={(values) => {
+        console.log(JSON.stringify(values, null, 2));
+      }}
+    >
+      {(formik) => {
+        return (
+          <Form>
+            <LabeledField name="tileWidth" label="Tile Width" type="number" />
+            <LabeledField name="tileHeight" label="Tile Height" type="number" />
+            <LabeledField name="margin" label="Margin" type="number" />
+            <LabeledField name="spacing" label="Spacing" type="number" />
+            <LabeledField name="showTilePreview" label="Show Preview" type="checkbox" />
+            <ReduxSyncInputForm />
+          </Form>
+        );
+      }}
+    </Formik>
   );
 }
 

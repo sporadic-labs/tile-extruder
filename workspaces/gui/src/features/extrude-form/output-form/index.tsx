@@ -1,30 +1,52 @@
-import { ChangeEventHandler } from "react";
+import React from "react";
+import { Formik, Form } from "formik";
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
-import CanvasExtrusion from "./canvas-extrusion";
+import { LabeledField } from "../form-elements";
+import outputFormSchema from "./output-form-schema";
+import ReduxSyncOutputForm from "./redux-sync-output-form";
+
+interface OutputFormValues {
+  backgroundColor: string;
+  extrudeAmount: number;
+  optimizeOutput: boolean;
+  outputFilename: string;
+}
 
 function OutputForm() {
   const extruderConfig = useAppSelector((state) => state.extruder);
-  const dispatch = useAppDispatch();
+
+  const initialValues: OutputFormValues = {
+    backgroundColor: extruderConfig.backgroundColor,
+    extrudeAmount: extruderConfig.extrudeAmount,
+    outputFilename: extruderConfig.outputFilename,
+    optimizeOutput: extruderConfig.optimizeOutput,
+  };
 
   if (!extruderConfig.imageStorageId) return null;
 
-  const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    const key = e.target.name;
-    const value = e.target.value;
-    const parsedValue = parseInt(value, 10);
-    // TODO: input validation
-    if (!Number.isNaN(parsedValue)) {
-      // TODO.
-    }
-  };
-
   return (
-    <section>
-      <h2>Extruded Image</h2>
-      <CanvasExtrusion />
-      <form></form>
-    </section>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={outputFormSchema}
+      validateOnChange
+      onSubmit={(values) => {
+        console.log(JSON.stringify(values, null, 2));
+      }}
+    >
+      {(formik) => {
+        return (
+          <Form>
+            <LabeledField name="extrudeAmount" label="Amount to Extrude" type="number" />
+            <LabeledField name="backgroundColor" label="Background Color" type="string" />
+            <LabeledField name="outputFilename" label="Output Filename" type="string" />
+            <LabeledField name="optimizeOutput" label="Should optimize image?" type="checkbox" />
+            <ReduxSyncOutputForm />
+          </Form>
+        );
+      }}
+    </Formik>
   );
 }
 
 export default OutputForm;
+export type { OutputFormValues };
