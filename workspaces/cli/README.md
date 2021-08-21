@@ -1,4 +1,4 @@
-# Tile Extruder
+# Tile Extruder (Node CLI and Library)
 
 Tile extruder is a Node command line interface and library that extrudes tiles in tilesets to avoid bleeding issues.
 
@@ -10,7 +10,7 @@ You can read more about the bleeding problem and solution [~~here~~](http://roto
 
 Interested in learning more about how to use tilemaps in Phaser 3? Check out my [blog post series](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6) about building modular worlds with tilemaps. It explains the concept of a tilemap, and of course, it uses extruded tiles 😉.
 
-- [Tile Extruder](#tile-extruder)
+- [Tile Extruder (Node CLI and Library)](#tile-extruder-node-cli-and-library)
   - [Usage](#usage)
     - [Usage as a Command Line Tool](#usage-as-a-command-line-tool)
     - [Usage as a Library](#usage-as-a-library)
