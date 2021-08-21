@@ -19,7 +19,6 @@ function ExtrudeForm() {
       <InputForm />
       <h2>Output Settings</h2>
       <OutputForm />
-      <button>Download</button>
     </div>
   );
 }
