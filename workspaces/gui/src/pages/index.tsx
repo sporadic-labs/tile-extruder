@@ -3,7 +3,7 @@ import { useImageStorage } from "../store/image-storage/react-integration";
 import ExtrudeForm from "../features/extrude-form";
 import { setImageFromFile } from "../store/extruder-slice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import testTileset from "../assets/tilesets/mario-tileset-10-spacing-5-margin.png";
+import testTileset from "../assets/tilesets/kenney-pixel-platformer-bigger.png";
 import useTestTileset from "../utils/use-test-tileset";
 
 export default function Home() {
