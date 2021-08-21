@@ -95,6 +95,9 @@ const extruderSlice = createSlice({
     setOutputFilename: (state, action: PayloadAction<string>) => {
       state.outputFilename = action.payload;
     },
+    setOutputFileType: (state, action: PayloadAction<ImageMimeType>) => {
+      state.outputFileType = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(setImageFromFile.pending, (state, { payload }) => {
@@ -136,6 +139,7 @@ export const {
   setBackgroundColor,
   setOutputFilename,
   setSupportedExportTypes,
+  setOutputFileType,
 } = extruderSlice.actions;
 export { setImageFromFile };
 export { extruderSlice };

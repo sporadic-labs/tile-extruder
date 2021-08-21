@@ -10,6 +10,7 @@ import {
   setBackgroundColor,
   setOptimizeOutput,
   setOutputFilename,
+  setOutputFileType,
 } from "../../../store/extruder-slice";
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import outputFormSchema from "./output-form-schema";
@@ -26,7 +27,8 @@ function ReduxSyncOutputForm() {
       return;
     }
 
-    const { extrudeAmount, backgroundColor, optimizeOutput, outputFilename } = values;
+    const { extrudeAmount, backgroundColor, optimizeOutput, outputFilename, outputFileType } =
+      values;
 
     if (extrudeAmount !== extruderConfig.extrudeAmount) {
       dispatch(setExtrudeAmount(extrudeAmount));
@@ -39,6 +41,9 @@ function ReduxSyncOutputForm() {
     }
     if (outputFilename !== extruderConfig.outputFilename) {
       dispatch(setOutputFilename(outputFilename));
+    }
+    if (outputFileType !== extruderConfig.outputFileType) {
+      dispatch(setOutputFileType(outputFileType));
     }
   }, [values, dispatch, extruderConfig]);
 

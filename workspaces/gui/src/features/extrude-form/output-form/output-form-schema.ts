@@ -15,6 +15,10 @@ const outputFormSchema = yup.object().shape({
     .string()
     .required("Output filename is required.")
     .typeError("Output filename is required."),
+  outputFileType: yup
+    .string()
+    .required("Output file type is required.")
+    .typeError("Output file type is required."),
   optimizeOutput: yup
     .boolean()
     .required("Optimize output setting is required.")
