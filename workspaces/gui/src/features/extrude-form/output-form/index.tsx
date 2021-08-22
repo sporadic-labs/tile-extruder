@@ -40,9 +40,7 @@ function OutputForm() {
         initialValues={initialValues}
         validationSchema={outputFormSchema}
         validateOnChange
-        onSubmit={(values) => {
-          console.log(JSON.stringify(values, null, 2));
-        }}
+        onSubmit={() => {}}
       >
         {(formik) => {
           return (

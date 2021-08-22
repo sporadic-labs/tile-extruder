@@ -32,9 +32,7 @@ function InputForm() {
       initialValues={initialValues}
       validationSchema={inputFormSchema}
       validateOnChange
-      onSubmit={(values) => {
-        console.log(JSON.stringify(values, null, 2));
-      }}
+      onSubmit={() => {}}
     >
       {(formik) => {
         return (
