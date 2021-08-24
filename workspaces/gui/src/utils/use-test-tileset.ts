@@ -15,14 +15,10 @@ export default function useTestTileset(imagePath: string, tileWidth: number, til
       const res = await fetch(imagePath);
       const blob = await res.blob();
       const file = new File([blob], imagePath);
-      dispatch(setImageFromFile(file))
-        .unwrap()
-        .then(() => {
-          dispatch(setTileWidth(tileWidth));
-          dispatch(setTileHeight(tileHeight));
-          dispatch(setOutputFilename("output.png"));
-        })
-        .catch(console.error);
+      dispatch(setTileWidth(tileWidth));
+      dispatch(setTileHeight(tileHeight));
+      dispatch(setOutputFilename("output.png"));
+      dispatch(setImageFromFile(file));
     }
     addTest();
   }, [dispatch, imagePath, tileWidth, tileHeight]);
