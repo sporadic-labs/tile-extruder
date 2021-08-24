@@ -22,7 +22,6 @@ function ReduxSyncOutputForm() {
 
   useEffect(() => {
     const isValid = outputFormSchema.isValidSync(values);
-    console.log(isValid);
     if (!isValid) {
       return;
     }
