@@ -4290,8 +4290,10 @@ __metadata:
     classnames: ^2.3.1
     eslint: 7.32.0
     eslint-config-next: 11.0.1
+    fast-deep-equal: ^3.1.3
     file-saver: ^2.0.5
     formik: ^2.2.9
+    konva: ^8.1.3
     next: 11.1.0
     normalize.css: ^8.0.1
     react: 17.0.2
@@ -5379,6 +5381,13 @@ __metadata:
     graceful-fs:
       optional: true
   checksum: 8f69e4797c26e7c3f2426bfa85f38a3da3c2cb1b4c6bd850d2377aed440d41ce9d806f2885c2e2e224372c56af4b1d43b8a499adecf9a05e7373dc6b8b7c52e4
+  languageName: node
+  linkType: hard
+
+"konva@npm:^8.1.3":
+  version: 8.1.3
+  resolution: "konva@npm:8.1.3"
+  checksum: 88d47d10cf564dc61dff954b0dfbf2c2c01a505bc7375139f6b72473e7e19800e667c1291e9800e10157a777c431899a3fb31f7bcddf33dc87daf6c3d6936f1e
   languageName: node
   linkType: hard
 
