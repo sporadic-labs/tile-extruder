@@ -18,5 +18,6 @@ const store = configureStore({
 });
 
 export { store, imageStorage };
+export type AppStore = typeof store;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
