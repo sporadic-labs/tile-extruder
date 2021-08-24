@@ -1,54 +1,44 @@
-import React, {
-  DependencyList,
-  useRef,
-  useEffect,
-  MutableRefObject,
-  ComponentPropsWithoutRef,
-} from "react";
-import css from "./index.module.scss";
-import type Konva from "konva";
-import { useStore } from "react-redux";
-import { useAppSelector, useAppStore } from "../../store/hooks";
+import React, { useRef, useEffect, ComponentPropsWithoutRef } from "react";
+import { useAppStore } from "../../store/hooks";
 import { useImageStorage } from "../../store/image-storage/react-integration";
-import { Store } from "@reduxjs/toolkit";
 import { AppStore } from "../../store";
 import ImageStorage from "../../store/image-storage/image-storage";
 import classNames from "classnames";
+import css from "./index.module.scss";
 
 const noop = () => {};
 
-type KonvaExport = typeof Konva;
-
-interface KonvaFn {
-  (konva: KonvaExport, div: HTMLDivElement, store: AppStore, imageStorage: ImageStorage): void;
+class KonvaApp {
+  constructor(
+    protected container: HTMLDivElement,
+    protected store: AppStore,
+    protected imageStorage: ImageStorage
+  ) {}
+  public start() {}
+  public destroy() {}
 }
-
 interface KonvaCanvasProps extends ComponentPropsWithoutRef<"div"> {
-  start?: KonvaFn;
+  App: typeof KonvaApp;
 }
 
 /**
  * Component that lazy-loads a Konva app into the client-side React app.
  */
-function KonvaCanvas({ start = noop, className, ...props }: KonvaCanvasProps) {
+function KonvaCanvas({ App, className, ...props }: KonvaCanvasProps) {
   const imageStorage = useImageStorage();
   const store = useAppStore();
   const divClass = classNames(className, css.canvasWrapper);
 
   const containerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    import("konva")
-      .then((Konva) => {
-        start(Konva.default, containerRef.current!, store, imageStorage);
-      })
-      .catch((err) => {
-        console.log("Could not import Konva.");
-        console.error(err);
-      });
+    const instance = new App(containerRef.current!, store, imageStorage);
+    instance.start();
+    return () => instance.destroy();
   }, []);
 
   return <div ref={containerRef} className={divClass} {...props} />;
 }
 
 export default KonvaCanvas;
-export type { KonvaCanvasProps, KonvaFn };
+export { KonvaApp };
+export type { KonvaCanvasProps };
