@@ -34,7 +34,7 @@ function KonvaCanvas({ App, className, ...props }: KonvaCanvasProps) {
     const instance = new App(containerRef.current!, store, imageStorage);
     instance.start();
     return () => instance.destroy();
-  }, []);
+  }, [App, imageStorage, store]);
 
   return <div ref={containerRef} className={divClass} {...props} />;
 }
