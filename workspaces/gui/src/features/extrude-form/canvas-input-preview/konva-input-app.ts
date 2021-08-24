@@ -1,10 +1,9 @@
 import Konva from "konva";
-import { original, Unsubscribe } from "@reduxjs/toolkit";
-import { constrain } from "../../../utils/math";
+import { KonvaApp } from "../../../components/konva-canvas";
 import observe from "../../../store/observe";
-import KonvaCanvas, { KonvaApp } from "../../../components/konva-canvas/index";
+import { constrain } from "../../../utils/math";
 
-class InputApp extends KonvaApp {
+class KonvaInputApp extends KonvaApp {
   private unsubscribeStore = () => {};
 
   public start() {
@@ -129,8 +128,4 @@ class InputApp extends KonvaApp {
   }
 }
 
-function CanvasInputPreview() {
-  return <KonvaCanvas App={InputApp} />;
-}
-
-export default CanvasInputPreview;
+export default KonvaInputApp;

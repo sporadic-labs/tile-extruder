@@ -1,9 +1,9 @@
 import InputForm from "./input-form/";
 import OutputForm from "./output-form/";
-import CanvasInputPreview from "./input-form/canvas-input-preview";
 import CanvasExtrusion from "./output-form/canvas-extrusion";
 import { useAppDispatch } from "../../store/hooks";
 import { clearInputImage } from "../../store/extruder-slice";
+import CanvasInputPreview from "./canvas-input-preview/dynamic-canvas-input-preview";
 import css from "./index.module.scss";
 
 function ExtrudeForm() {
