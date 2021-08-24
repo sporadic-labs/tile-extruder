@@ -26,7 +26,8 @@ class KonvaInputApp extends KonvaApp {
     layer.add(tileset);
     layer.imageSmoothingEnabled(false);
 
-    const { width, height, tileWidth, tileHeight, inputSpacing, inputMargin } = extruderConfig;
+    const { width, height, tileWidth, tileHeight, inputSpacing, inputMargin, showTilePreview } =
+      extruderConfig;
 
     const grid = new Konva.Shape({
       x: 0,
@@ -58,6 +59,7 @@ class KonvaInputApp extends KonvaApp {
         context.strokeShape(shape);
       },
     });
+    grid.visible(showTilePreview);
     layer.add(grid);
 
     const zoomWidth = stage.width() / tileset.width();
@@ -108,17 +110,20 @@ class KonvaInputApp extends KonvaApp {
     this.unsubscribeStore = observe(
       store,
       (state) => {
-        const { tileWidth, tileHeight, inputSpacing, inputMargin, width, height } = state.extruder;
-        return { tileWidth, tileHeight, inputSpacing, inputMargin, width, height };
+        const { tileWidth, tileHeight, inputSpacing, inputMargin, width, height, showTilePreview } =
+          state.extruder;
+        return { tileWidth, tileHeight, inputSpacing, inputMargin, width, height, showTilePreview };
       },
       (selection) => {
-        const { tileWidth, tileHeight, inputSpacing, inputMargin, width, height } = selection;
+        const { tileWidth, tileHeight, inputSpacing, inputMargin, width, height, showTilePreview } =
+          selection;
         grid.setAttr("width", width);
         grid.setAttr("height", height);
         grid.setAttr("tileWidth", tileWidth);
         grid.setAttr("tileHeight", tileHeight);
         grid.setAttr("inputSpacing", inputSpacing);
         grid.setAttr("inputMargin", inputMargin);
+        grid.visible(showTilePreview);
       }
     );
   }
