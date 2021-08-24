@@ -1,6 +1,6 @@
 import { useAppSelector } from "../../../store/hooks";
 import { Formik, Form } from "formik";
-import CanvasInputPreview from "./canvas-input-preview";
+import CanvasInputPreview from "../canvas-input-preview/canvas-input-preview";
 import inputFormSchema from "./input-form-schema";
 import ReduxSyncInputForm from "./redux-sync-input-form";
 import { LabeledField } from "../form-elements";
