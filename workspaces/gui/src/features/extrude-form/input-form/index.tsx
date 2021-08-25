@@ -11,7 +11,6 @@ interface InputFormInputs {
   tileHeight: number;
   margin: number;
   spacing: number;
-  showTilePreview: boolean;
 }
 
 function InputForm() {
@@ -22,7 +21,6 @@ function InputForm() {
     tileHeight: extruderConfig.tileHeight,
     margin: extruderConfig.inputMargin,
     spacing: extruderConfig.inputSpacing,
-    showTilePreview: extruderConfig.showTilePreview,
   };
 
   if (!extruderConfig.imageStorageId) return null;
@@ -41,7 +39,6 @@ function InputForm() {
             <LabeledField name="tileHeight" label="Tile Height" type="number" />
             <LabeledField name="margin" label="Margin" type="number" />
             <LabeledField name="spacing" label="Spacing" type="number" />
-            <LabeledField name="showTilePreview" label="Show Preview" type="checkbox" />
             <ReduxSyncInputForm />
           </Form>
         );
