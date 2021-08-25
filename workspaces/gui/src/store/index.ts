@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import extruderSliceReducer from "./extruder-slice";
+import extruderSlice from "./extruder-slice";
 import ImageStorage from "./image-storage/image-storage";
+import visualizationSlice from "./visualization-slice";
 
 const imageStorage = new ImageStorage();
 
 const store = configureStore({
   reducer: {
-    extruder: extruderSliceReducer,
+    extruder: extruderSlice,
+    visualization: visualizationSlice,
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware({
