@@ -16,7 +16,6 @@ interface ExtruderState {
   tileHeight: number;
   inputMargin: number;
   inputSpacing: number;
-  showTilePreview: boolean;
   extrudeAmount: number;
   optimizeOutput: boolean;
   backgroundColor: string;
@@ -36,7 +35,6 @@ const initialState: ExtruderState = {
   tileHeight: 32,
   inputMargin: 0,
   inputSpacing: 0,
-  showTilePreview: false,
   extrudeAmount: 1,
   optimizeOutput: true,
   backgroundColor: "transparent",
@@ -79,9 +77,6 @@ const extruderSlice = createSlice({
     },
     setTileHeight: (state, action: PayloadAction<number>) => {
       state.tileHeight = action.payload;
-    },
-    setShowTilePreview: (state, action: PayloadAction<boolean>) => {
-      state.showTilePreview = action.payload;
     },
     setExtrudeAmount: (state, action: PayloadAction<number>) => {
       state.extrudeAmount = action.payload;
@@ -133,7 +128,6 @@ export const {
   setInputSpacing,
   setTileWidth,
   setTileHeight,
-  setShowTilePreview,
   setExtrudeAmount,
   setOptimizeOutput,
   setBackgroundColor,
