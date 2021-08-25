@@ -61,32 +61,6 @@ class KonvaExtrudeApp extends KonvaApp {
 
     this.panAndZoom = new PanAndZoom(store, this.stage, this.tileset);
 
-    // const zoomWidth = this.stage.width() / this.tileset.width();
-    // const zoomHeight = this.stage.height() / this.tileset.height();
-    // let minZoom = Math.min(zoomWidth, zoomHeight);
-    // let maxZoom = 4;
-
-    // this.stage.on("dragmove", () => {
-    //   const newPos = this.constrainPosition(this.stage.getPosition());
-    //   store.dispatch(setPosition(newPos));
-    //   this.stage.position(newPos); // TODO: write drag logic myself, so we don't have to do this.
-    // });
-
-    // this.stage.on("wheel", (e) => {
-    //   e.evt.preventDefault();
-    //   const oldScale = this.stage.scaleX();
-    //   const pointer = this.stage.getPointerPosition()!;
-    //   let newScale = e.evt.deltaY > 0 ? oldScale * 1.1 : oldScale / 1.1;
-    //   newScale = constrain(newScale, minZoom, maxZoom);
-    //   const relativeX = pointer.x - this.stage.x();
-    //   const relativeY = pointer.y - this.stage.y();
-    //   const newX = pointer.x - (relativeX / oldScale) * newScale;
-    //   const newY = pointer.y - (relativeY / oldScale) * newScale;
-    //   const newPos = this.constrainPosition({ x: newX, y: newY });
-    //   store.dispatch(setPosition(newPos));
-    //   store.dispatch(setZoom(newScale));
-    // });
-
     this.unsubscribeVizStore = observe(
       store,
       (state) => state.visualization,
@@ -200,37 +174,6 @@ class KonvaExtrudeApp extends KonvaApp {
       2 * inputMargin +
       (this.rows - 1) * inputSpacing +
       this.rows * (tileHeight + 2 * extrudeAmount);
-  }
-
-  private onZoomChange(zoom: number) {
-    this.stage.scale({ x: zoom, y: zoom });
-  }
-
-  private onPositionChange(position: Position) {
-    this.stage.position(position);
-  }
-
-  private constrainPosition(position: Position): Position {
-    const pos = this.stage.position();
-    let { x, y } = pos;
-    const zoom = this.stage.scale().x;
-    const tilesetSize = this.tileset.size();
-    const stageSize = this.stage.size();
-    const xBoundLeft = 0;
-    const xBoundRight = stageSize.width - zoom * tilesetSize.width;
-    const yBoundTop = 0;
-    const yBoundBottom = stageSize.height - zoom * tilesetSize.height;
-    if (xBoundLeft < xBoundRight) {
-      x = constrain(x, xBoundLeft, xBoundRight);
-    } else {
-      x = constrain(x, xBoundRight, xBoundLeft);
-    }
-    if (yBoundTop < yBoundBottom) {
-      y = constrain(y, yBoundTop, yBoundBottom);
-    } else {
-      y = constrain(y, yBoundBottom, yBoundTop);
-    }
-    return { x, y };
   }
 }
 
