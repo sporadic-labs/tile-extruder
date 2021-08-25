@@ -2,188 +2,235 @@ import Konva from "konva";
 import { KonvaApp } from "../../../components/konva-canvas";
 import { ExtruderState } from "../../../store/extruder-slice";
 import observe from "../../../store/observe";
+import { Position, setPosition, setZoom } from "../../../store/visualization-slice";
 import { constrain } from "../../../utils/math";
+import { PanAndZoom } from "../canvas-input-preview/konva-input-app";
+
+type InputStateSelection = Pick<
+  ExtruderState,
+  "tileWidth" | "tileHeight" | "inputSpacing" | "inputMargin" | "width" | "height"
+>;
 
 class KonvaExtrudeApp extends KonvaApp {
-  private unsubscribeStore = () => {};
+  private unsubscribeExtruderStore = () => {};
+  private unsubscribeVizStore = () => {};
+  private rows: number = 0;
+  private cols: number = 0;
+  private extrudedWidth: number = 0;
+  private extrudedHeight: number = 0;
+  private stage!: Konva.Stage;
+  private tileset!: Konva.Image;
+  private imageCanvas!: HTMLCanvasElement;
+  private imageCanvasCtx!: CanvasRenderingContext2D;
+  private extrudedCanvas!: HTMLCanvasElement;
+  private extrudedCanvasCtx!: CanvasRenderingContext2D;
+  private panAndZoom!: PanAndZoom;
 
   public start() {
     const { container, store, imageStorage } = this;
-    const extruderConfig = store.getState().extruder;
-    const image = imageStorage.get(extruderConfig.imageStorageId!)!.image;
+    const extruderState = store.getState().extruder;
+    const image = imageStorage.get(extruderState.imageStorageId!)!.image;
 
-    const stage = new Konva.Stage({
+    this.recalculateGrid(extruderState);
+
+    this.stage = new Konva.Stage({
       width: 300,
       height: 300,
       container,
       draggable: true,
     });
-    stage.container().style.cursor = "move";
+    this.stage.container().style.cursor = "move";
 
     const layer = new Konva.Layer();
     layer.imageSmoothingEnabled(false);
-    stage.add(layer);
+    this.stage.add(layer);
 
-    const imageCanvas = document.createElement("canvas");
-    const imageCanvasCtx = imageCanvas.getContext("2d")!;
-    imageCanvas.width = extruderConfig.width;
-    imageCanvas.height = extruderConfig.height;
-    imageCanvasCtx.drawImage(image, 0, 0);
+    this.imageCanvas = document.createElement("canvas");
+    this.imageCanvasCtx = this.imageCanvas.getContext("2d")!;
+    this.imageCanvas.width = extruderState.width;
+    this.imageCanvas.height = extruderState.height;
+    this.imageCanvasCtx.drawImage(image, 0, 0);
 
-    const [extrudedWidth, extrudedHeight] = this.calculateNewSize(extruderConfig);
-    const extrudedCanvas = document.createElement("canvas");
-    const extrudedCanvasCtx = extrudedCanvas.getContext("2d")!;
-    extrudedCanvas.width = extrudedWidth;
-    extrudedCanvas.height = extrudedHeight;
+    this.extrudedCanvas = document.createElement("canvas");
+    this.extrudedCanvasCtx = this.extrudedCanvas.getContext("2d")!;
+    this.extrudedCanvas.width = this.extrudedWidth;
+    this.extrudedCanvas.height = this.extrudedHeight;
 
-    function copyPixels(sx: number, sy: number, sw: number, sh: number, dx: number, dy: number) {
-      extrudedCanvasCtx.drawImage(imageCanvas, sx, sy, sw, sh, dx, dy, sw, sh);
-    }
+    this.tileset = new Konva.Image({ image: this.extrudedCanvas });
+    layer.add(this.tileset);
 
-    function sampleColorFromCanvas(x: number, y: number) {
-      const data = imageCanvasCtx.getImageData(x, y, 1, 1).data;
-      const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
-      return rgba;
-    }
+    this.panAndZoom = new PanAndZoom(store, this.stage, this.tileset);
 
-    const redraw = (extruderConfig: ExtruderState) => {
-      const { tileWidth, tileHeight, inputSpacing, inputMargin, extrudeAmount } = extruderConfig;
+    // const zoomWidth = this.stage.width() / this.tileset.width();
+    // const zoomHeight = this.stage.height() / this.tileset.height();
+    // let minZoom = Math.min(zoomWidth, zoomHeight);
+    // let maxZoom = 4;
 
-      const tw = tileWidth;
-      const th = tileHeight;
-      const e = extrudeAmount;
-      const [rows, cols] = this.calculateRowsCols(extruderConfig);
-      extrudedCanvasCtx.clearRect(0, 0, extrudedCanvas.width, extrudedCanvas.height);
+    // this.stage.on("dragmove", () => {
+    //   const newPos = this.constrainPosition(this.stage.getPosition());
+    //   store.dispatch(setPosition(newPos));
+    //   this.stage.position(newPos); // TODO: write drag logic myself, so we don't have to do this.
+    // });
 
-      const [extrudedWidth, extrudedHeight] = this.calculateNewSize(extruderConfig);
-      extrudedCanvas.width = extrudedWidth;
-      extrudedCanvas.height = extrudedHeight;
+    // this.stage.on("wheel", (e) => {
+    //   e.evt.preventDefault();
+    //   const oldScale = this.stage.scaleX();
+    //   const pointer = this.stage.getPointerPosition()!;
+    //   let newScale = e.evt.deltaY > 0 ? oldScale * 1.1 : oldScale / 1.1;
+    //   newScale = constrain(newScale, minZoom, maxZoom);
+    //   const relativeX = pointer.x - this.stage.x();
+    //   const relativeY = pointer.y - this.stage.y();
+    //   const newX = pointer.x - (relativeX / oldScale) * newScale;
+    //   const newY = pointer.y - (relativeY / oldScale) * newScale;
+    //   const newPos = this.constrainPosition({ x: newX, y: newY });
+    //   store.dispatch(setPosition(newPos));
+    //   store.dispatch(setZoom(newScale));
+    // });
 
-      for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-          // sx and sy are the top left of the tile's position in the original image:
-          const sx = inputMargin + col * (tw + inputSpacing);
-          const sy = inputMargin + row * (th + inputSpacing);
-
-          // dx and dy are the top left of the tile's position in the extruded output:
-          const dx = inputMargin + col * (tw + inputSpacing + 2 * e) + e;
-          const dy = inputMargin + row * (th + inputSpacing + 2 * e) + e;
-
-          // Copy tile.
-          copyPixels(sx, sy, tw, th, dx, dy);
-
-          // Extrude the edges.
-          for (let eStep = 1; eStep <= e; eStep++) {
-            copyPixels(sx, sy, tw, 1, dx, dy - eStep); // Top
-            copyPixels(sx, sy + th - 1, tw, 1, dx, dy + th - 1 + eStep); // Bottom
-            copyPixels(sx, sy, 1, th, dx - eStep, dy); // Left
-            copyPixels(sx + tw - 1, sy, 1, th, dx + tw - 1 + eStep, dy); // Right
-          }
-
-          // Extrude the corners.
-          const topLeft = sampleColorFromCanvas(sx, sy);
-          const topRight = sampleColorFromCanvas(sx + tw - 1, sy);
-          const bottomRight = sampleColorFromCanvas(sx + tw - 1, sy + th - 1);
-          const bottomLeft = sampleColorFromCanvas(sx, sy + th - 1);
-          extrudedCanvasCtx.fillStyle = topLeft;
-          extrudedCanvasCtx.fillRect(dx - e, dy - e, e, e);
-          extrudedCanvasCtx.fillStyle = topRight;
-          extrudedCanvasCtx.fillRect(dx + tw, dy - e, e, e);
-          extrudedCanvasCtx.fillStyle = bottomRight;
-          extrudedCanvasCtx.fillRect(dx + tw, dy + th, e, e);
-          extrudedCanvasCtx.fillStyle = bottomLeft;
-          extrudedCanvasCtx.fillRect(dx - e, dy + th, e, e);
-        }
+    this.unsubscribeVizStore = observe(
+      store,
+      (state) => state.visualization,
+      (viz) => {
+        const { zoom, position } = viz;
+        this.panAndZoom.setZoom(zoom);
+        this.panAndZoom.setPan(position);
       }
+    );
 
-      // Force Konva update.
-      tileset.setAttr("image", extrudedCanvas);
-    };
-
-    const tileset = new Konva.Image({ image: extrudedCanvas });
-    layer.add(tileset);
-
-    redraw(extruderConfig);
-
-    const zoomWidth = stage.width() / tileset.width();
-    const zoomHeight = stage.height() / tileset.height();
-    let minZoom = Math.min(zoomWidth, zoomHeight);
-    let maxZoom = 4;
-
-    function constrainBounds() {
-      const pos = stage.position();
-      let { x, y } = pos;
-      const zoom = stage.scale().x;
-      const tilesetSize = tileset.size();
-      const stageSize = stage.size();
-      const xBoundLeft = 0;
-      const xBoundRight = stageSize.width - zoom * tilesetSize.width;
-      const yBoundTop = 0;
-      const yBoundBottom = stageSize.height - zoom * tilesetSize.height;
-      if (xBoundLeft < xBoundRight) {
-        x = constrain(x, xBoundLeft, xBoundRight);
-      } else {
-        x = constrain(x, xBoundRight, xBoundLeft);
-      }
-      if (yBoundTop < yBoundBottom) {
-        y = constrain(y, yBoundTop, yBoundBottom);
-      } else {
-        y = constrain(y, yBoundBottom, yBoundTop);
-      }
-      stage.position({ x, y });
-    }
-
-    stage.on("dragmove", constrainBounds);
-
-    stage.on("wheel", (e) => {
-      e.evt.preventDefault();
-      const oldScale = stage.scaleX();
-      const pointer = stage.getPointerPosition()!;
-      let newScale = e.evt.deltaY > 0 ? oldScale * 1.1 : oldScale / 1.1;
-      newScale = constrain(newScale, minZoom, maxZoom);
-      const relativeX = pointer.x - stage.x();
-      const relativeY = pointer.y - stage.y();
-      const newX = pointer.x - (relativeX / oldScale) * newScale;
-      const newY = pointer.y - (relativeY / oldScale) * newScale;
-      stage.scale({ x: newScale, y: newScale });
-      stage.position({ x: newX, y: newY });
-      constrainBounds();
-    });
-
-    this.unsubscribeStore = observe(
+    this.unsubscribeExtruderStore = observe(
       store,
       (state) => {
         const { tileWidth, tileHeight, inputSpacing, inputMargin, width, height, extrudeAmount } =
           state.extruder;
-        return { tileWidth, tileHeight, inputSpacing, inputMargin, width, height, extrudeAmount };
+        return {
+          tileWidth,
+          tileHeight,
+          inputSpacing,
+          inputMargin,
+          width,
+          height,
+          extrudeAmount,
+        };
       },
-      (selection) => {
-        const { tileWidth, tileHeight, inputSpacing, inputMargin, width, height, extrudeAmount } =
-          selection;
-        redraw(selection as any);
+      (selection: InputStateSelection) => {
+        this.recalculateGrid(selection as any);
+        this.redrawExtrusion(selection as any);
       }
     );
   }
 
   public destroy() {
-    this.unsubscribeStore();
+    this.panAndZoom.destroy();
+    this.unsubscribeVizStore();
+    this.unsubscribeExtruderStore();
   }
 
-  private calculateRowsCols(config: ExtruderState) {
-    const { width, height, tileWidth, tileHeight, inputSpacing, inputMargin } = config;
-    const cols = (width - 2 * inputMargin + inputSpacing) / (tileWidth + inputSpacing);
-    const rows = (height - 2 * inputMargin + inputSpacing) / (tileHeight + inputSpacing);
-    return [rows, cols];
+  private redrawExtrusion(state: ExtruderState) {
+    const copyPixels = (sx: number, sy: number, sw: number, sh: number, dx: number, dy: number) => {
+      this.extrudedCanvasCtx.drawImage(this.imageCanvas, sx, sy, sw, sh, dx, dy, sw, sh);
+    };
+
+    const sampleColorFromCanvas = (x: number, y: number) => {
+      const data = this.imageCanvasCtx.getImageData(x, y, 1, 1).data;
+      const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
+      return rgba;
+    };
+
+    const { tileWidth, tileHeight, inputSpacing, inputMargin, extrudeAmount } = state;
+
+    const tw = tileWidth;
+    const th = tileHeight;
+    const e = extrudeAmount;
+    this.extrudedCanvasCtx.clearRect(0, 0, this.extrudedCanvas.width, this.extrudedCanvas.height);
+
+    this.extrudedCanvas.width = this.extrudedWidth;
+    this.extrudedCanvas.height = this.extrudedHeight;
+
+    for (let row = 0; row < this.rows; row++) {
+      for (let col = 0; col < this.cols; col++) {
+        // sx and sy are the top left of the tile's position in the original image:
+        const sx = inputMargin + col * (tw + inputSpacing);
+        const sy = inputMargin + row * (th + inputSpacing);
+
+        // dx and dy are the top left of the tile's position in the extruded output:
+        const dx = inputMargin + col * (tw + inputSpacing + 2 * e) + e;
+        const dy = inputMargin + row * (th + inputSpacing + 2 * e) + e;
+
+        // Copy tile.
+        copyPixels(sx, sy, tw, th, dx, dy);
+
+        // Extrude the edges.
+        for (let eStep = 1; eStep <= e; eStep++) {
+          copyPixels(sx, sy, tw, 1, dx, dy - eStep); // Top
+          copyPixels(sx, sy + th - 1, tw, 1, dx, dy + th - 1 + eStep); // Bottom
+          copyPixels(sx, sy, 1, th, dx - eStep, dy); // Left
+          copyPixels(sx + tw - 1, sy, 1, th, dx + tw - 1 + eStep, dy); // Right
+        }
+
+        // Extrude the corners.
+        const topLeft = sampleColorFromCanvas(sx, sy);
+        const topRight = sampleColorFromCanvas(sx + tw - 1, sy);
+        const bottomRight = sampleColorFromCanvas(sx + tw - 1, sy + th - 1);
+        const bottomLeft = sampleColorFromCanvas(sx, sy + th - 1);
+        this.extrudedCanvasCtx.fillStyle = topLeft;
+        this.extrudedCanvasCtx.fillRect(dx - e, dy - e, e, e);
+        this.extrudedCanvasCtx.fillStyle = topRight;
+        this.extrudedCanvasCtx.fillRect(dx + tw, dy - e, e, e);
+        this.extrudedCanvasCtx.fillStyle = bottomRight;
+        this.extrudedCanvasCtx.fillRect(dx + tw, dy + th, e, e);
+        this.extrudedCanvasCtx.fillStyle = bottomLeft;
+        this.extrudedCanvasCtx.fillRect(dx - e, dy + th, e, e);
+      }
+    }
+
+    // Force Konva update.
+    this.tileset.setAttr("image", this.extrudedCanvas);
   }
 
-  private calculateNewSize(config: ExtruderState) {
-    const { tileWidth, tileHeight, inputSpacing, inputMargin, extrudeAmount } = config;
-    const [rows, cols] = this.calculateRowsCols(config);
-    const newWidth =
-      2 * inputMargin + (cols - 1) * inputSpacing + cols * (tileWidth + 2 * extrudeAmount);
-    const newHeight =
-      2 * inputMargin + (rows - 1) * inputSpacing + rows * (tileHeight + 2 * extrudeAmount);
-    return [newWidth, newHeight];
+  private recalculateGrid(config: ExtruderState) {
+    const { width, height, tileWidth, tileHeight, inputSpacing, inputMargin, extrudeAmount } =
+      config;
+    this.cols = (width - 2 * inputMargin + inputSpacing) / (tileWidth + inputSpacing);
+    this.rows = (height - 2 * inputMargin + inputSpacing) / (tileHeight + inputSpacing);
+    this.extrudedWidth =
+      2 * inputMargin +
+      (this.cols - 1) * inputSpacing +
+      this.cols * (tileWidth + 2 * extrudeAmount);
+    this.extrudedHeight =
+      2 * inputMargin +
+      (this.rows - 1) * inputSpacing +
+      this.rows * (tileHeight + 2 * extrudeAmount);
+  }
+
+  private onZoomChange(zoom: number) {
+    this.stage.scale({ x: zoom, y: zoom });
+  }
+
+  private onPositionChange(position: Position) {
+    this.stage.position(position);
+  }
+
+  private constrainPosition(position: Position): Position {
+    const pos = this.stage.position();
+    let { x, y } = pos;
+    const zoom = this.stage.scale().x;
+    const tilesetSize = this.tileset.size();
+    const stageSize = this.stage.size();
+    const xBoundLeft = 0;
+    const xBoundRight = stageSize.width - zoom * tilesetSize.width;
+    const yBoundTop = 0;
+    const yBoundBottom = stageSize.height - zoom * tilesetSize.height;
+    if (xBoundLeft < xBoundRight) {
+      x = constrain(x, xBoundLeft, xBoundRight);
+    } else {
+      x = constrain(x, xBoundRight, xBoundLeft);
+    }
+    if (yBoundTop < yBoundBottom) {
+      y = constrain(y, yBoundTop, yBoundBottom);
+    } else {
+      y = constrain(y, yBoundBottom, yBoundTop);
+    }
+    return { x, y };
   }
 }
 

@@ -1,34 +1,136 @@
 import Konva from "konva";
+import { KonvaEventObject } from "konva/lib/Node";
+import { Image } from "konva/lib/shapes/Image";
+import { Stage } from "konva/lib/Stage";
 import { KonvaApp } from "../../../components/konva-canvas";
+import { AppStore, RootState } from "../../../store";
+import { ExtruderState } from "../../../store/extruder-slice";
 import observe from "../../../store/observe";
+import { Position, setPosition, setZoom } from "../../../store/visualization-slice";
 import { constrain } from "../../../utils/math";
 
+type InputStateSelection = Pick<
+  ExtruderState,
+  "tileWidth" | "tileHeight" | "inputSpacing" | "inputMargin" | "width" | "height"
+>;
+
+export class PanAndZoom {
+  private minZoom: number;
+  private maxZoom: number;
+  private zoom: number;
+  private position: Position;
+
+  constructor(private store: AppStore, private stage: Stage, private tileset: Image) {
+    const zoomWidth = stage.width() / tileset.width();
+    const zoomHeight = stage.height() / tileset.height();
+    this.minZoom = Math.min(zoomWidth, zoomHeight);
+    this.maxZoom = 4;
+    this.zoom = stage.scaleX();
+    this.position = stage.position();
+
+    stage.on("dragmove", this.onDragEvent);
+    stage.on("wheel", this.onWheelEvent);
+  }
+
+  public destroy() {
+    this.stage.off("dragmove", this.onDragEvent);
+    this.stage.off("wheel", this.onWheelEvent);
+  }
+
+  public setZoom(newZoom: number) {
+    const zoom = constrain(newZoom, this.minZoom, this.maxZoom);
+    if (zoom !== this.zoom) {
+      this.zoom = zoom;
+      this.stage.scale({ x: zoom, y: zoom });
+      if (this.store.getState().visualization.zoom !== this.zoom) {
+        this.store.dispatch(setZoom(zoom));
+      }
+    }
+    return this.zoom;
+  }
+
+  public setPan(position: Position) {
+    const pos = this.constrainPosition(position);
+    this.position.x = pos.x;
+    this.position.y = pos.y;
+    this.stage.position(pos);
+    const storePos = this.store.getState().visualization.position;
+    if (storePos.x !== pos.x || storePos.y !== pos.y) {
+      this.store.dispatch(setPosition(pos));
+    }
+  }
+
+  private onDragEvent = () => {
+    // TODO: write drag logic myself, so we don't have to do this.
+    this.setPan(this.stage.position());
+  };
+
+  private onWheelEvent = (e: KonvaEventObject<WheelEvent>) => {
+    e.evt.preventDefault();
+    const oldZoom = this.zoom;
+    const pointer = this.stage.getPointerPosition()!;
+    let newZoom = e.evt.deltaY > 0 ? oldZoom * 1.1 : oldZoom / 1.1;
+    newZoom = this.setZoom(newZoom);
+    const relativeX = pointer.x - this.stage.x();
+    const relativeY = pointer.y - this.stage.y();
+    const x = pointer.x - (relativeX / oldZoom) * newZoom;
+    const y = pointer.y - (relativeY / oldZoom) * newZoom;
+    this.setPan({ x, y });
+  };
+
+  private constrainPosition(pos: Position) {
+    let { x, y } = pos;
+    const tilesetSize = this.tileset.size();
+    const stageSize = this.stage.size();
+    const xBoundLeft = 0;
+    const xBoundRight = stageSize.width - this.zoom * tilesetSize.width;
+    const yBoundTop = 0;
+    const yBoundBottom = stageSize.height - this.zoom * tilesetSize.height;
+    if (xBoundLeft < xBoundRight) {
+      x = constrain(x, xBoundLeft, xBoundRight);
+    } else {
+      x = constrain(x, xBoundRight, xBoundLeft);
+    }
+    if (yBoundTop < yBoundBottom) {
+      y = constrain(y, yBoundTop, yBoundBottom);
+    } else {
+      y = constrain(y, yBoundBottom, yBoundTop);
+    }
+    return { x, y };
+  }
+}
+
 class KonvaInputApp extends KonvaApp {
-  private unsubscribeStore = () => {};
+  private unsubscribeExtruderStore = () => {};
+  private unsubscribeVizStore = () => {};
+  private stage!: Konva.Stage;
+  private grid!: Konva.Shape;
+  private tileset!: Konva.Image;
+  private panAndZoom!: PanAndZoom;
 
   public start() {
     const { container, store, imageStorage } = this;
-    const extruderConfig = store.getState().extruder;
-    const image = imageStorage.get(extruderConfig.imageStorageId!)!.image;
+    const extruderState = store.getState().extruder;
+    const image = imageStorage.get(extruderState.imageStorageId!)!.image;
 
-    const stage = new Konva.Stage({
+    this.stage = new Konva.Stage({
       width: 300,
       height: 300,
       container,
       draggable: true,
     });
-    stage.container().style.cursor = "move";
+    this.stage.container().style.cursor = "move";
 
     const layer = new Konva.Layer();
-    stage.add(layer);
-
-    const tileset = new Konva.Image({ image });
-    layer.add(tileset);
     layer.imageSmoothingEnabled(false);
+    this.stage.add(layer);
 
-    const { width, height, tileWidth, tileHeight, inputSpacing, inputMargin, showTilePreview } =
-      extruderConfig;
+    this.tileset = new Konva.Image({ image });
+    layer.add(this.tileset);
 
+    this.panAndZoom = new PanAndZoom(store, this.stage, this.tileset);
+
+    const { width, height, tileWidth, tileHeight, inputSpacing, inputMargin } = extruderState;
     const grid = new Konva.Shape({
       x: 0,
       y: 0,
@@ -59,77 +161,52 @@ class KonvaInputApp extends KonvaApp {
         context.strokeShape(shape);
       },
     });
-    grid.visible(showTilePreview);
     layer.add(grid);
+    this.grid = grid;
 
-    const zoomWidth = stage.width() / tileset.width();
-    const zoomHeight = stage.height() / tileset.height();
-    let minZoom = Math.min(zoomWidth, zoomHeight);
-    let maxZoom = 4;
-
-    function constrainBounds() {
-      const pos = stage.position();
-      let { x, y } = pos;
-      const zoom = stage.scale().x;
-      const tilesetSize = tileset.size();
-      const stageSize = stage.size();
-      const xBoundLeft = 0;
-      const xBoundRight = stageSize.width - zoom * tilesetSize.width;
-      const yBoundTop = 0;
-      const yBoundBottom = stageSize.height - zoom * tilesetSize.height;
-      if (xBoundLeft < xBoundRight) {
-        x = constrain(x, xBoundLeft, xBoundRight);
-      } else {
-        x = constrain(x, xBoundRight, xBoundLeft);
+    this.unsubscribeVizStore = observe(
+      store,
+      (state) => state.visualization,
+      (viz) => {
+        const { zoom, position, showTilePreview } = viz;
+        this.panAndZoom.setZoom(zoom);
+        this.panAndZoom.setPan(position);
+        this.grid.visible(showTilePreview);
       }
-      if (yBoundTop < yBoundBottom) {
-        y = constrain(y, yBoundTop, yBoundBottom);
-      } else {
-        y = constrain(y, yBoundBottom, yBoundTop);
-      }
-      stage.position({ x, y });
-    }
+    );
 
-    stage.on("dragmove", constrainBounds);
-
-    stage.on("wheel", (e) => {
-      e.evt.preventDefault();
-      const oldScale = stage.scaleX();
-      const pointer = stage.getPointerPosition()!;
-      let newScale = e.evt.deltaY > 0 ? oldScale * 1.1 : oldScale / 1.1;
-      newScale = constrain(newScale, minZoom, maxZoom);
-      const relativeX = pointer.x - stage.x();
-      const relativeY = pointer.y - stage.y();
-      const newX = pointer.x - (relativeX / oldScale) * newScale;
-      const newY = pointer.y - (relativeY / oldScale) * newScale;
-      stage.scale({ x: newScale, y: newScale });
-      stage.position({ x: newX, y: newY });
-      constrainBounds();
-    });
-
-    this.unsubscribeStore = observe(
+    this.unsubscribeExtruderStore = observe<InputStateSelection>(
       store,
       (state) => {
-        const { tileWidth, tileHeight, inputSpacing, inputMargin, width, height, showTilePreview } =
-          state.extruder;
-        return { tileWidth, tileHeight, inputSpacing, inputMargin, width, height, showTilePreview };
+        const { tileWidth, tileHeight, inputSpacing, inputMargin, width, height } = state.extruder;
+        return {
+          tileWidth,
+          tileHeight,
+          inputSpacing,
+          inputMargin,
+          width,
+          height,
+        };
       },
-      (selection) => {
-        const { tileWidth, tileHeight, inputSpacing, inputMargin, width, height, showTilePreview } =
-          selection;
-        grid.setAttr("width", width);
-        grid.setAttr("height", height);
-        grid.setAttr("tileWidth", tileWidth);
-        grid.setAttr("tileHeight", tileHeight);
-        grid.setAttr("inputSpacing", inputSpacing);
-        grid.setAttr("inputMargin", inputMargin);
-        grid.visible(showTilePreview);
+      (selection: InputStateSelection) => {
+        this.onGridSettingChange(selection);
       }
     );
   }
 
   public destroy() {
-    this.unsubscribeStore();
+    this.panAndZoom.destroy();
+    this.unsubscribeVizStore();
+    this.unsubscribeExtruderStore();
+  }
+
+  private onGridSettingChange(state: InputStateSelection) {
+    this.grid.setAttr("width", state.width);
+    this.grid.setAttr("height", state.height);
+    this.grid.setAttr("tileWidth", state.tileWidth);
+    this.grid.setAttr("tileHeight", state.tileHeight);
+    this.grid.setAttr("inputSpacing", state.inputSpacing);
+    this.grid.setAttr("inputMargin", state.inputMargin);
   }
 }
 
