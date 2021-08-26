@@ -3,11 +3,12 @@ import { KonvaEventObject } from "konva/lib/Node";
 import { Image } from "konva/lib/shapes/Image";
 import { Stage } from "konva/lib/Stage";
 import { KonvaApp } from "../../../components/konva-canvas";
-import { AppStore, RootState } from "../../../store";
+import { AppStore } from "../../../store";
 import { ExtruderState } from "../../../store/extruder-slice";
 import observe from "../../../store/observe";
 import { Position, setPosition, setZoom } from "../../../store/visualization-slice";
 import { constrain } from "../../../utils/math";
+import measureElementContentBox from "../../../utils/measure-element-content-box";
 
 type InputStateSelection = Pick<
   ExtruderState,
@@ -100,6 +101,33 @@ export class PanAndZoom {
   }
 }
 
+interface TargetSize {
+  width: number;
+  height: number;
+}
+
+export class ResponsiveStage {
+  constructor(private stage: Konva.Stage, private target: TargetSize) {
+    window.addEventListener("resize", this.onResize);
+    this.onResize();
+  }
+
+  public destroy() {
+    window.removeEventListener("resize", this.onResize);
+  }
+
+  private onResize = () => {
+    const container = this.stage.container();
+    const { width } = measureElementContentBox(container);
+    const aspectRatio = this.target.width / this.target.height;
+    const maxHeight = window.innerHeight / 2;
+    const newWidth = width;
+    const newHeight = Math.min(width / aspectRatio, maxHeight);
+    this.stage.width(newWidth);
+    this.stage.height(newHeight);
+  };
+}
+
 class KonvaInputApp extends KonvaApp {
   private unsubscribeExtruderStore = () => {};
   private unsubscribeVizStore = () => {};
@@ -107,6 +135,7 @@ class KonvaInputApp extends KonvaApp {
   private grid!: Konva.Shape;
   private tileset!: Konva.Image;
   private panAndZoom!: PanAndZoom;
+  private responsiveStage!: ResponsiveStage;
 
   public start() {
     const { container, store, imageStorage } = this;
@@ -119,7 +148,8 @@ class KonvaInputApp extends KonvaApp {
       container,
       draggable: true,
     });
-    this.stage.container().style.cursor = "move";
+    container.style.cursor = "move";
+    this.responsiveStage = new ResponsiveStage(this.stage, image);
 
     const layer = new Konva.Layer();
     layer.imageSmoothingEnabled(false);
@@ -196,6 +226,7 @@ class KonvaInputApp extends KonvaApp {
 
   public destroy() {
     this.panAndZoom.destroy();
+    this.responsiveStage.destroy();
     this.unsubscribeVizStore();
     this.unsubscribeExtruderStore();
   }

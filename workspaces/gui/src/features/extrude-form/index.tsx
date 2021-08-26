@@ -13,8 +13,10 @@ function ExtrudeForm() {
     <div>
       <button onClick={() => dispatch(clearInputImage())}>Back</button>
       <h2>Extrusion Preview</h2>
-      <CanvasInputPreview />
-      <CanvasExtrudePreview />
+      <div className={css.grid}>
+        <CanvasInputPreview />
+        <CanvasExtrudePreview />
+      </div>
       <h2>Input Settings</h2>
       <InputForm />
       <h2>Output Settings</h2>

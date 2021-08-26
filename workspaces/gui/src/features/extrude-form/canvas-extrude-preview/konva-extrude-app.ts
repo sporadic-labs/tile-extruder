@@ -2,9 +2,7 @@ import Konva from "konva";
 import { KonvaApp } from "../../../components/konva-canvas";
 import { ExtruderState } from "../../../store/extruder-slice";
 import observe from "../../../store/observe";
-import { Position, setPosition, setZoom } from "../../../store/visualization-slice";
-import { constrain } from "../../../utils/math";
-import { PanAndZoom } from "../canvas-input-preview/konva-input-app";
+import { PanAndZoom, ResponsiveStage } from "../canvas-input-preview/konva-input-app";
 
 type InputStateSelection = Pick<
   ExtruderState,
@@ -25,6 +23,7 @@ class KonvaExtrudeApp extends KonvaApp {
   private extrudedCanvas!: HTMLCanvasElement;
   private extrudedCanvasCtx!: CanvasRenderingContext2D;
   private panAndZoom!: PanAndZoom;
+  private responsiveStage!: ResponsiveStage;
 
   public start() {
     const { container, store, imageStorage } = this;
@@ -39,7 +38,8 @@ class KonvaExtrudeApp extends KonvaApp {
       container,
       draggable: true,
     });
-    this.stage.container().style.cursor = "move";
+    container.style.cursor = "move";
+    this.responsiveStage = new ResponsiveStage(this.stage, image);
 
     const layer = new Konva.Layer();
     layer.imageSmoothingEnabled(false);
@@ -95,6 +95,7 @@ class KonvaExtrudeApp extends KonvaApp {
 
   public destroy() {
     this.panAndZoom.destroy();
+    this.responsiveStage.destroy();
     this.unsubscribeVizStore();
     this.unsubscribeExtruderStore();
   }
