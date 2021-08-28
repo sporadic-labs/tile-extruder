@@ -1,8 +1,33 @@
+import DropZone from "../features/file-drop-zone";
+import { useImageStorage } from "../store/image-storage/react-integration";
+import ExtrudeForm from "../features/extrude-form";
+import { setImageFromFile } from "../store/extruder-slice";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import testTileset from "../assets/tilesets/buch-tileset.png";
+import useTestTileset from "../utils/use-test-tileset";
+
 export default function Home() {
+  const imageStorageId = useAppSelector((state) => state.extruder.imageStorageId);
+  const dispatch = useAppDispatch();
+  const imageStorage = useImageStorage();
+
+  useTestTileset(testTileset.src, 16, 16);
+
+  const hasUploadedImage = imageStorageId && imageStorage.has(imageStorageId);
+
+  const onFile = async (file: File) => {
+    try {
+      dispatch(setImageFromFile(file));
+    } catch (err) {
+      console.log(err);
+      // TODO: error needs to be passed back to drop zone, or refactored.
+    }
+  };
+
   return (
     <main>
       <h1>Tile Extruder</h1>
-      <p>To do!</p>
+      {hasUploadedImage ? <ExtrudeForm /> : <DropZone onFileDrop={onFile} />}
     </main>
   );
 }

@@ -1,0 +1,37 @@
+.dropZone {
+  width: 500px;
+  height: 300px;
+  border: 6px dashed #5b5b5b;
+  background: #f6f5f5;
+  border-radius: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: all 250ms;
+}
+
+.dropZoneActive {
+  border-color: #4c4c4c;
+  background: #e0e0e0;
+}
+
+.fileLabel {
+  font-size: 1rem;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  background: #c84edb;
+  color: white;
+  border-radius: 0.25rem;
+  // TODO: active, hover, focus styles.
+}
+
+.fileInput {
+  display: none;
+}
+
+.error {
+  color: red;
+  // TODO: color pass.
+}

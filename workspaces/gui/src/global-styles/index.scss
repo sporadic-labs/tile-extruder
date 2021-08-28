@@ -1,0 +1,7 @@
+@import "./custom-normalize.scss";
+@import "./typography.scss";
+
+body {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)),
+    url("./images/gridme_@2X.png");
+}
