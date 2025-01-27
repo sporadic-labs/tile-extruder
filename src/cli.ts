@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import program from "commander";
+import { program } from "commander";
 import { extrudeTilesetToImage } from "./index";
 
 const toInt = (v: string) => parseInt(v, 10);
