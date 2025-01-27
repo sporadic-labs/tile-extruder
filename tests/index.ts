@@ -5,7 +5,7 @@
 
 import { execSync } from "child_process";
 import fs from "fs";
-import Jimp from "jimp";
+import { Jimp, diff } from "jimp";
 
 interface TestCliArgs {
   w: number;
@@ -43,7 +43,7 @@ function cliArgsToString(args: TestCliArgs) {
 async function areImagesExactMatches(imagePath1: string, imagePath2: string) {
   try {
     const [image1, image2] = await Promise.all([Jimp.read(imagePath1), Jimp.read(imagePath2)]);
-    return Jimp.diff(image1, image2, 0).percent === 0;
+    return diff(image1, image2, 0).percent === 0;
   } catch (error) {
     console.error(error);
     return false;

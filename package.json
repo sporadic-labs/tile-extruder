@@ -38,7 +38,7 @@
   "homepage": "https://github.com/sporadic-labs/tile-extruder#readme",
   "dependencies": {
     "commander": "^13.1.0",
-    "jimp": "^0.16.1"
+    "jimp": "^1.6.0"
   },
   "devDependencies": {
     "esdoc": "^1.1.0",

@@ -1,4 +1,4 @@
-import Jimp from "jimp";
+import type { JimpInstance } from "jimp";
 
 /**
  * This copies the source pixels to the destination without any alpha blending.
@@ -12,12 +12,12 @@ import Jimp from "jimp";
  * @param {number} destY Y position to start pasting to (top).
  */
 function copyPixels(
-  srcImage: Jimp,
+  srcImage: JimpInstance,
   srcX: number,
   srcY: number,
   srcW: number,
   srcH: number,
-  destImage: Jimp,
+  destImage: JimpInstance,
   destX: number,
   destY: number,
 ) {
@@ -44,10 +44,10 @@ function copyPixels(
  * @param {number} destH The height of the destination region.
  */
 function copyPixelToRect(
-  srcImage: Jimp,
+  srcImage: JimpInstance,
   srcX: number,
   srcY: number,
-  destImage: Jimp,
+  destImage: JimpInstance,
   destX: number,
   destY: number,
   destW: number,

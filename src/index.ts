@@ -7,7 +7,7 @@
  *  - Web app
  */
 
-import Jimp from "jimp";
+import { Jimp, JimpInstance } from "jimp";
 import { copyPixels, copyPixelToRect } from "./copy-pixels";
 
 interface ExtrusionOptions {
@@ -17,8 +17,16 @@ interface ExtrusionOptions {
   color?: number | string;
 }
 
+type JimpMime =
+  | "image/bmp"
+  | "image/tiff"
+  | "image/x-ms-bmp"
+  | "image/gif"
+  | "image/jpeg"
+  | "image/png";
+
 interface ImageOptions extends ExtrusionOptions {
-  mime?: number | string;
+  mime?: JimpMime;
 }
 
 /**
@@ -28,9 +36,9 @@ interface ImageOptions extends ExtrusionOptions {
  * @param {integer} tileHeight - tile height in pixels.
  * @param {string} inputPath - the path to the tileset you want to extrude.
  * @param {object} [options] - optional settings.
- * @param {string} [options.mime=Jimp.AUTO] - the mime type that should be used for the buffer.
- * Defaults to Jimp.AUTO which tries to use the image's original mime type, and if not available,
- * uses png. Supported mime options: "image/png", "image/jpeg", "image/bmp".
+ * @param {string} [options.mime="image/png"] - the mime type that should be used for the buffer.
+ * Defaults to using the image's original mime type, and if not available,
+ * uses png. Supported mime options, see JimpMime.
  * @param {integer} [options.margin=0] - number of pixels between tiles and the edge of the tileset
  * image.
  * @param {integer} [options.spacing=0] - number of pixels between neighboring tiles.
@@ -45,7 +53,7 @@ async function extrudeTilesetToBuffer(
   tileWidth: number,
   tileHeight: number,
   inputPath: string,
-  { mime = Jimp.AUTO, margin, spacing, extrusion, color }: ImageOptions = {},
+  { mime, margin, spacing, extrusion, color }: ImageOptions = {},
 ) {
   const options = { margin, spacing, extrusion, color };
   let extrudedImage;
@@ -55,10 +63,10 @@ async function extrudeTilesetToBuffer(
     console.error("Error extruding tileset: ", err);
     throw err;
   }
-  // Jimp types are off. -1 is allowed, but the types expect a string.
-  const mimeString: string = mime as string;
   try {
-    const buffer = await extrudedImage.getBufferAsync(mimeString);
+    const buffer = await extrudedImage.getBuffer(
+      mime ?? (extrudedImage.mime as JimpMime) ?? "image/png",
+    );
     return buffer;
   } catch (err) {
     console.error("Buffer could not be created from tileset.");
@@ -87,7 +95,7 @@ async function extrudeTilesetToImage(
   tileWidth: number,
   tileHeight: number,
   inputPath: string,
-  outputPath: string,
+  outputPath: `${string}.${string}`,
   options: ExtrusionOptions,
 ) {
   let extrudedImage;
@@ -98,7 +106,7 @@ async function extrudeTilesetToImage(
     throw err;
   }
   try {
-    await extrudedImage.writeAsync(outputPath);
+    await extrudedImage.write(outputPath);
   } catch (err) {
     console.error(`Tileset image could not be saved to: ${outputPath}`);
     throw err;
@@ -130,9 +138,9 @@ async function extrudeTilesetToJimp(
   inputPath: string,
   { margin = 0, spacing = 0, color = 0xffffff00, extrusion = 1 }: ExtrusionOptions = {},
 ) {
-  let image;
+  let image: JimpInstance;
   try {
-    image = await Jimp.read(inputPath);
+    image = (await Jimp.read(inputPath)) as JimpInstance;
   } catch (err) {
     console.error(`Tileset image could not be loaded from: ${inputPath}`);
     throw err;
@@ -156,7 +164,7 @@ async function extrudeTilesetToJimp(
   const newWidth = 2 * margin + (cols - 1) * spacing + cols * (tileWidth + 2 * extrusion);
   const newHeight = 2 * margin + (rows - 1) * spacing + rows * (tileHeight + 2 * extrusion);
 
-  const extrudedImage = await new Jimp(newWidth, newHeight, color);
+  const extrudedImage = new Jimp({ width: newWidth, height: newHeight, color });
 
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
