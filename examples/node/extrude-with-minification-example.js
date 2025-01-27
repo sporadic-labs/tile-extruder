@@ -3,19 +3,15 @@
  * plugin.
  */
 
-const { extrudeTilesetToBuffer } = require("../../src/index");
-const imagemin = require("imagemin");
-const imageminPngquant = require("imagemin-pngquant");
+const { extrudeTilesetToBuffer } = require("../../bin/index");
+const imagemin = require("imagemin").default;
+const imageminPngquant = require("imagemin-pngquant").default;
 const fs = require("fs");
 
 async function main() {
   const buffer = await extrudeTilesetToBuffer(16, 16, "./buch-tileset.png");
   const minifiedBuffer = await imagemin.buffer(buffer, {
-    plugins: [
-      imageminPngquant({
-        quality: [0.6, 0.8] // See https://github.com/imagemin/imagemin-pngquant
-      })
-    ]
+    plugins: [imageminPngquant()],
   });
   fs.writeFileSync("./buch-tileset-extruded-minified.png", minifiedBuffer);
 }
