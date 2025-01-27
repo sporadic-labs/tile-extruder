@@ -45,7 +45,7 @@
     "esdoc-node": "^1.0.5",
     "esdoc-standard-plugin": "^1.0.0",
     "gh-pages": "^6.3.0",
-    "http-server": "^0.12.3",
+    "http-server": "^14.1.1",
     "imagemin": "^7.0.1",
     "imagemin-pngquant": "^9.0.1",
     "prettier": "^2.2.1",
