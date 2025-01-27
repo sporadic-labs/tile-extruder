@@ -14,18 +14,18 @@ program
   .option("-i, --input <path>", "the path to the tileset you want to extrude")
   .option(
     "-o, --output <path>",
-    "the path to output the extruded tileset image (default: inputPath where filename is extended with '_extruded')"
+    "the path to output the extruded tileset image (default: inputPath where filename is extended with '_extruded')",
   )
   .option(
     "-c, --color [hex=0xffffff00]",
     "RGBA color to use for the background color, only matters if there's margin or spacing (default: transparent white)",
-    toHex
+    toHex,
   )
   .option(
     "-m, --margin [integer=0]",
     "number of pixels between tiles and the edge of the tileset image",
     toInt,
-    0
+    0,
   )
   .option("-s, --spacing [integer=0]", "number of pixels between neighboring tiles", toInt, 0)
   .option("-e, --extrusion [integer=1]", "number of pixels to extrude by", toInt, 1)

@@ -19,7 +19,7 @@ function copyPixels(
   srcH: number,
   destImage: Jimp,
   destX: number,
-  destY: number
+  destY: number,
 ) {
   srcImage.scan(srcX, srcY, srcW, srcH, (curSrcX, curSrcY, curSrcIndex) => {
     const curDestX = destX + (curSrcX - srcX);
@@ -51,7 +51,7 @@ function copyPixelToRect(
   destX: number,
   destY: number,
   destW: number,
-  destH: number
+  destH: number,
 ) {
   const srcIndex = srcImage.getPixelIndex(srcX, srcY);
   destImage.scan(destX, destY, destW, destH, (curDestX, curDestY, curDestIndex) => {

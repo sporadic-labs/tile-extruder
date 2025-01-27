@@ -45,7 +45,7 @@ async function extrudeTilesetToBuffer(
   tileWidth: number,
   tileHeight: number,
   inputPath: string,
-  { mime = Jimp.AUTO, margin, spacing, extrusion, color }: ImageOptions = {}
+  { mime = Jimp.AUTO, margin, spacing, extrusion, color }: ImageOptions = {},
 ) {
   const options = { margin, spacing, extrusion, color };
   let extrudedImage;
@@ -88,7 +88,7 @@ async function extrudeTilesetToImage(
   tileHeight: number,
   inputPath: string,
   outputPath: string,
-  options: ExtrusionOptions
+  options: ExtrusionOptions,
 ) {
   let extrudedImage;
   try {
@@ -128,7 +128,7 @@ async function extrudeTilesetToJimp(
   tileWidth: number,
   tileHeight: number,
   inputPath: string,
-  { margin = 0, spacing = 0, color = 0xffffff00, extrusion = 1 }: ExtrusionOptions = {}
+  { margin = 0, spacing = 0, color = 0xffffff00, extrusion = 1 }: ExtrusionOptions = {},
 ) {
   let image;
   try {
@@ -148,7 +148,7 @@ async function extrudeTilesetToJimp(
 
   if (!Number.isInteger(cols) || !Number.isInteger(rows)) {
     throw new Error(
-      "Non-integer number of rows or cols found. The image doesn't match the specified parameters. Double check your margin, spacing, tileWidth and tileHeight."
+      "Non-integer number of rows or cols found. The image doesn't match the specified parameters. Double check your margin, spacing, tileWidth and tileHeight.",
     );
   }
 
@@ -183,7 +183,7 @@ async function extrudeTilesetToJimp(
           1,
           extrudedImage,
           destX + extrusion,
-          destY + extrusion + th + (extrusion - i - 1)
+          destY + extrusion + th + (extrusion - i - 1),
         );
 
         // Extrude left column.
@@ -198,7 +198,7 @@ async function extrudeTilesetToJimp(
           th,
           extrudedImage,
           destX + extrusion + tw + (extrusion - i - 1),
-          destY + extrusion
+          destY + extrusion,
         );
       }
 
@@ -214,7 +214,7 @@ async function extrudeTilesetToJimp(
         destX + extrusion + tw,
         destY,
         extrusion,
-        extrusion
+        extrusion,
       );
 
       // Extrude the bottom left corner.
@@ -226,7 +226,7 @@ async function extrudeTilesetToJimp(
         destX,
         destY + extrusion + th,
         extrusion,
-        extrusion
+        extrusion,
       );
 
       // Extrude the bottom right corner.
@@ -238,7 +238,7 @@ async function extrudeTilesetToJimp(
         destX + extrusion + tw,
         destY + extrusion + th,
         extrusion,
-        extrusion
+        extrusion,
       );
     }
   }

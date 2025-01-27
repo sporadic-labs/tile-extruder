@@ -48,7 +48,7 @@
     "http-server": "^14.1.1",
     "imagemin": "^7.0.1",
     "imagemin-pngquant": "^9.0.1",
-    "prettier": "^2.2.1",
+    "prettier": "^3.4.2",
     "shx": "^0.3.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
