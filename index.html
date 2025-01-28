@@ -29,20 +29,14 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-copyPixelToRect">copyPixelToRect</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-copyPixels">copyPixels</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToBuffer">extrudeTilesetToBuffer</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToImage">extrudeTilesetToImage</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extrudeTilesetToJimp">extrudeTilesetToJimp</a></span></span></li>
-</ul>
+  </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="tile-extruder">Tile Extruder</h1><p>A tiny Node CLI (and library) to extrude tiles in tilesets to avoid bleeding issues.</p>
 <p><img src="./doc-source/images/demo.png" alt="demo"></p>
 <p><img src="./doc-source/images/explanation.png" alt="explanation"></p>
-<p>You can read more about the bleeding problem and solution <a href="http://rotorz.com/unity/tile-system/docs/edge-correction"><del>here</del></a> (note: rotorz site is down as of 12/27/18, you can try this <a href="https://web.archive.org/web/20180411151113/http://rotorz.com/unity/tile-system/docs/edge-correction">archived version of the page</a> until the site is restored). This CLI app handles both tilesets with and without margin &amp; spacing.</p>
-<p>Interested in learning more about how to use tilemaps in Phaser 3? Check out my <a href="https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6">blog post series</a> about building modular worlds with tilemaps. It explains the concept of a tilemap, and of course, it uses extruded tiles &#x1F609;.</p>
+<p>You can read more about the bleeding problem and solution <a href="https://web.archive.org/web/20180411151113/http://rotorz.com/unity/tile-system/docs/edge-correction">here</a>. This CLI app handles both tilesets with and without margin &amp; spacing. Check out my <a href="https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6">blog post series</a> about building modular worlds with tilemaps for more information on using tilemaps and extruding tiles.</p>
 <ul>
 <li><a href="#tile-extruder">Tile Extruder</a><ul>
 <li><a href="#usage">Usage</a><ul>
@@ -140,6 +134,10 @@ const tileset = map.addTilesetImage(&quot;tileset&quot;, &quot;tileset-extruded&
 <li>Mario Tileset - <a href="http://rmrk.net/index.php?topic=37002.0">Source</a></li>
 </ul>
 <h2 id="changelog">Changelog</h2><ul>
+<li>2.1.1<ul>
+<li>Update all deps to latest.</li>
+</ul>
+</li>
 <li>2.1.0<ul>
 <li>Update all deps to latest.</li>
 <li>If output path is not specified in CLI arguments, defaults to the original filename + &quot;_extruded&quot;. Thanks <a href="https://github.com/Naxos84">@Naxos84</a>!</li>

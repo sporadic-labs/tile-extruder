@@ -1,35 +1,5 @@
 window.esdocSearchIndex = [
   [
-    "tile-extruder/src/copy-pixels.js~copypixeltorect",
-    "function/index.html#static-function-copyPixelToRect",
-    "<span>copyPixelToRect</span> <span class=\"search-result-import-path\">tile-extruder/src/copy-pixels.js</span>",
-    "function"
-  ],
-  [
-    "tile-extruder/src/copy-pixels.js~copypixels",
-    "function/index.html#static-function-copyPixels",
-    "<span>copyPixels</span> <span class=\"search-result-import-path\">tile-extruder/src/copy-pixels.js</span>",
-    "function"
-  ],
-  [
-    "tile-extruder~extrudetilesettobuffer",
-    "function/index.html#static-function-extrudeTilesetToBuffer",
-    "<span>extrudeTilesetToBuffer</span> <span class=\"search-result-import-path\">tile-extruder</span>",
-    "function"
-  ],
-  [
-    "tile-extruder~extrudetilesettoimage",
-    "function/index.html#static-function-extrudeTilesetToImage",
-    "<span>extrudeTilesetToImage</span> <span class=\"search-result-import-path\">tile-extruder</span>",
-    "function"
-  ],
-  [
-    "tile-extruder~extrudetilesettojimp",
-    "function/index.html#static-function-extrudeTilesetToJimp",
-    "<span>extrudeTilesetToJimp</span> <span class=\"search-result-import-path\">tile-extruder</span>",
-    "function"
-  ],
-  [
     "src/.external-ecmascript.js~array",
     "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
     "src/.external-ecmascript.js~Array",
@@ -310,17 +280,5 @@ window.esdocSearchIndex = [
     "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
     "src/.external-ecmascript.js~undefined",
     "external"
-  ],
-  [
-    "src/copy-pixels.js",
-    "file/src/copy-pixels.js.html",
-    "src/copy-pixels.js",
-    "file"
-  ],
-  [
-    "src/index.js",
-    "file/src/index.js.html",
-    "src/index.js",
-    "file"
   ]
 ]
