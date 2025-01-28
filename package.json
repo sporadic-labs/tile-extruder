@@ -5,13 +5,13 @@
   "main": "bin/index.js",
   "types": "bin/index.d.ts",
   "scripts": {
-    "clean": "shx rm -rf bin",
+    "clean": "rm -rf bin",
     "build": "tsc",
     "pretest": "npm run build",
     "test": "ts-node ./tests/index.ts",
     "demo": "http-server ./examples/phaser -c-1 -o",
     "doc": "esdoc -c ./.esdoc.json",
-    "postdoc": "shx cp -r doc-source/ docs/",
+    "postdoc": "cp -r doc-source/ docs/",
     "deploy:doc": "gh-pages --branch gh-pages --dist docs",
     "predeploy:doc": "npm run doc",
     "prettier": "prettier --write \"./{src,tests}/**/*.{js,ts}\""
@@ -49,7 +49,6 @@
     "imagemin": "^9.0.0",
     "imagemin-pngquant": "^10.0.0",
     "prettier": "^3.4.2",
-    "shx": "^0.3.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   }
