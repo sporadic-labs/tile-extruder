@@ -3,7 +3,7 @@
  * containing an extruded tileset.
  */
 
-const { extrudeTilesetToImage } = require("../../src/index");
+const { extrudeTilesetToImage } = require("../../bin/index");
 
 async function main() {
   console.log("Starting an extrusion...");
