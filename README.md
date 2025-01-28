@@ -154,6 +154,8 @@ Note: you'll have to adjust your margin & spacing because of the extrusion. If y
 
 ## Changelog
 
+* 2.1.1
+  * Update all deps to latest.
 * 2.1.0
   * Update all deps to latest.
   * If output path is not specified in CLI arguments, defaults to the original filename + "_extruded". Thanks [@Naxos84](https://github.com/Naxos84)!
