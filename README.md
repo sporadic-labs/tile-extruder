@@ -1,12 +1,12 @@
 # Tile Extruder
 
-A tiny Node CLI (and library) to extrude tiles in tilesets to avoid bleeding issues.
+A CLI and JS library to extrude tiles in tilesets to avoid "bleeding" issues where tiles are rendered with the wrong color at the edges of tiles.
 
 ![demo](./doc-source/images/demo.png)
 
 ![explanation](./doc-source/images/explanation.png)
 
-You can read more about the bleeding problem and solution [here](https://web.archive.org/web/20180411151113/http://rotorz.com/unity/tile-system/docs/edge-correction). This CLI app handles both tilesets with and without margin & spacing. Check out my [blog post series](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6) about building modular worlds with tilemaps for more information on using tilemaps and extruding tiles.
+You can read more about the bleeding problem and solution [here](https://web.archive.org/web/20180411151113/http://rotorz.com/unity/tile-system/docs/edge-correction). The TLDR is that there are many ways this type of rendering artifact can occur, e.g. from pixels being incorrectly blended when the edge of a tile in a tilemap texture is rendered. This CLI app handles both tilesets with and without margin & spacing. Check out my [blog post series](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6) about building modular worlds with tilemaps for more information on using tilemaps and extruding tiles.
 
 - [Tile Extruder](#tile-extruder)
   - [Usage](#usage)
@@ -26,24 +26,18 @@ There are two ways to use the tool to extrude a tileset image. If you just need 
 Make sure you have [node](https://nodejs.org/en/) installed and then run:
 
 ```
-npm install --global tile-extruder
+npx tile-extruder [args]
 ```
 
-(Or, you can run tile-extruder directly without globally installing in npm 5.2 and greater via `npx tile-extruder`!)
+(You can also install tile-extruder globally with `npm install --global tile-extruder` and then you can run it via `tile-extruder [args]`.)
 
-Once you've got it installed, open a terminal and run a command with the following arguments:
-
-```
-tile-extruder [args]
-```
-
-An example usage for a 8 x 16 tile size tileset with no margin or spacing:
+Here is an example usage for extruding a 8 x 16 tile size tileset with no margin or spacing:
 
 ```
 tile-extruder --tileWidth 8 --tileHeight 16 --input ./tilesets/borders-tileset.png --output ./tilesets/borders-tileset-extruded.png
 ```
 
-An example usage for a 16 x 16 tile size tileset with 5px margin and 10px spacing:
+Here is an example usage for a 16 x 16 tile size tileset with 5px margin and 10px spacing:
 
 ```
 tile-extruder --tileWidth 16 --tileHeight 16 --margin 5 --spacing 10 --input ./tilesets/mario-tileset.png --output ./tilesets/mario-tileset-extruded.png
@@ -142,7 +136,10 @@ If you've already built a map in Tiled with a non-extruded tileset and are looki
 const tileset = map.addTilesetImage("tileset", "tileset-extruded", 48, 48, 1, 2);
 ```
 
-Note: you'll have to adjust your margin & spacing because of the extrusion. If you had no margin & spacing, then the new margin is 1px and the spacing is 2px.
+Note: you'll have to adjust your margin & spacing because of the extrusion. If you had no margin & spacing, then a tileset that has been extruded by 1px will have a margin of 1px and a spacing of 2px.
+
+Tips:
+- depending on your use case, you may need to extrude the tileset by more than 1px. E.g. if you are zooming the camera in Phaser, you may still end up with rendering artifacts. See the [example](https://github.com/sporadic-labs/tile-extruder/blob/master/examples/phaser/main.js) for usage with panning/zooming.
 
 ## Tileset Credits
 
