@@ -6,8 +6,6 @@ import { extrudeTilesetToImage } from "./index";
 const toInt = (v: string) => parseInt(v, 10);
 const toHex = (v: string) => parseInt(v, 16);
 
-x;
-
 program
   .version("2.1.1")
   .description("A small CLI to extrude tiles. Use --help for more information.")
