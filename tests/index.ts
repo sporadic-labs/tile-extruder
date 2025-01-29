@@ -1,6 +1,6 @@
 /**
- * Simple test util that runs a few tilesets through the extrusion and checks the results against
- * saved snapshots.
+ * Simple test util that runs a few tilesets through the extrusion and checks
+ * the results against saved snapshots.
  */
 
 import { execSync } from "child_process";
@@ -50,20 +50,27 @@ async function areImagesExactMatches(imagePath1: string, imagePath2: string) {
   }
 }
 
+function failTest(error: unknown) {
+  console.error(error);
+  process.exit(1);
+}
+
 async function main() {
   for (let i = 0; i < tilesetTests.length; i++) {
-    let wasTestSuccessful = true;
-
     const { file, args } = tilesetTests[i];
     const [name, extension] = file.split(".");
     const argsString = cliArgsToString(args);
     const tilesetPath = `./tilesets/${file}`;
     const extrudedTilesetPath = `./tilesets/extruded/${file}`;
 
+    if (!fs.existsSync("./tilesets/extruded")) {
+      fs.mkdirSync("./tilesets/extruded", { recursive: true });
+    }
+
     // Make the output path unique, so that the same test image can be used with different args.
     const snapshotTilesetPath = `./tilesets/snapshots/${name}-${argsString}.${extension}`;
 
-    console.log(`Running test ${i + 1}/${tilesetTests.length} on ${file}...`);
+    console.log(`Running test ${i + 1}/${tilesetTests.length} on ${file} ${argsString}...`);
 
     // Build the args string for this run.
     Object.assign(args, { i: tilesetPath, o: extrudedTilesetPath });
@@ -74,8 +81,7 @@ async function main() {
     try {
       execSync(`node ./bin/cli.js ${stringArgs}`);
     } catch (err) {
-      wasTestSuccessful = false;
-      console.error(err);
+      failTest(err);
     }
 
     if (!fs.existsSync(snapshotTilesetPath)) {
@@ -85,10 +91,12 @@ async function main() {
     }
 
     const areEqual = await areImagesExactMatches(extrudedTilesetPath, snapshotTilesetPath);
-    if (!areEqual) wasTestSuccessful = false;
-
-    console.log("Test passed: ", wasTestSuccessful);
+    if (!areEqual) {
+      failTest(new Error(`Test failed! Extruded image does not match saved snapshot.`));
+    } else {
+      console.log(`Test passed.`);
+    }
   }
 }
 
-main().catch(console.error);
+main().catch(failTest);
