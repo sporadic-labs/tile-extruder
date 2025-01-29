@@ -1,0 +1,54 @@
+{
+  "name": "tile-extruder",
+  "description": "A tiny Node app to extrude tiles in tilesets to avoid bleeding issues. See relevant [Phaser issue](https://github.com/photonstorm/phaser/issues/3229)",
+  "version": "2.1.1",
+  "main": "bin/index.js",
+  "types": "bin/index.d.ts",
+  "scripts": {
+    "clean": "rm -rf bin",
+    "build": "tsc",
+    "pretest": "pnpm run build",
+    "test": "ts-node ./tests/index.ts",
+    "demo": "http-server ./examples/phaser -c-1 -o",
+    "doc": "esdoc -c ./.esdoc.json",
+    "postdoc": "cp -r doc-source/ docs/",
+    "deploy:doc": "gh-pages --branch gh-pages --dist docs",
+    "predeploy:doc": "pnpm run doc",
+    "prettier": "prettier --write \"./{src,tests}/**/*.{js,ts}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sporadic-labs/tile-extruder.git"
+  },
+  "prettier": {
+    "printWidth": 100
+  },
+  "files": [
+    "bin",
+    "src"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "tile-extruder": "./bin/cli.js"
+  },
+  "bugs": {
+    "url": "https://github.com/sporadic-labs/tile-extruder/issues"
+  },
+  "homepage": "https://github.com/sporadic-labs/tile-extruder#readme",
+  "dependencies": {
+    "commander": "^13.1.0",
+    "jimp": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.12.0",
+    "esdoc": "^1.1.0",
+    "esdoc-node": "^1.0.5",
+    "esdoc-standard-plugin": "^1.0.0",
+    "gh-pages": "^6.3.0",
+    "http-server": "^14.1.1",
+    "prettier": "^3.4.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
