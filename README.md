@@ -9,7 +9,7 @@ A tiny Node CLI (and library) to extrude tiles in tilesets to avoid bleeding iss
 You can read more about the bleeding problem and solution [here](https://web.archive.org/web/20180411151113/http://rotorz.com/unity/tile-system/docs/edge-correction). This CLI app handles both tilesets with and without margin & spacing. Check out my [blog post series](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6) about building modular worlds with tilemaps for more information on using tilemaps and extruding tiles.
 
 - [Tile Extruder](#tile-extruder)
-  - [Usage](#usage)
+  - [Usage!](#usage)
     - [Usage as a Command Line Tool](#usage-as-a-command-line-tool)
     - [Usage as a Library](#usage-as-a-library)
     - [Using the Extruded Tileset](#using-the-extruded-tileset)
@@ -17,7 +17,7 @@ You can read more about the bleeding problem and solution [here](https://web.arc
   - [Changelog](#changelog)
   - [Contributors](#contributors)
 
-## Usage
+## Usage!
 
 There are two ways to use the tool to extrude a tileset image. If you just need to extrude some tilesets, you can use it as a command line tool. If you need to do something that requires more control (like integrating tile-extruder into build pipeline), you can use it as a JS library.
 
