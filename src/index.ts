@@ -137,7 +137,7 @@ async function extrudeTilesetToJimp(
   tileHeight: number,
   inputPath: string,
   { margin = 0, spacing = 0, color = 0xffffff00, extrusion = 1 }: ExtrusionOptions = {},
-): Promise<JimpInstance> {
+) {
   let image: JimpInstance;
   try {
     image = (await Jimp.read(inputPath)) as JimpInstance;
