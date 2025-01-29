@@ -7,13 +7,13 @@
   "scripts": {
     "clean": "rm -rf bin",
     "build": "tsc",
-    "pretest": "npm run build",
+    "pretest": "pnpm run build",
     "test": "ts-node ./tests/index.ts",
     "demo": "http-server ./examples/phaser -c-1 -o",
     "doc": "esdoc -c ./.esdoc.json",
     "postdoc": "cp -r doc-source/ docs/",
     "deploy:doc": "gh-pages --branch gh-pages --dist docs",
-    "predeploy:doc": "npm run doc",
+    "predeploy:doc": "pnpm run doc",
     "prettier": "prettier --write \"./{src,tests}/**/*.{js,ts}\""
   },
   "repository": {
