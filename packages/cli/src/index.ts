@@ -113,6 +113,23 @@ async function extrudeTilesetToImage(
   }
 }
 
+async function extrudeBufferTilesetToJimp(
+  tileWidth: number,
+  tileHeight: number,
+  buffer: Buffer | ArrayBuffer,
+  { margin = 0, spacing = 0, color = 0xffffff00, extrusion = 1 }: ExtrusionOptions = {},
+): Promise<JimpInstance> {
+  let image: JimpInstance;
+  try {
+    image = (await Jimp.fromBuffer(buffer)) as JimpInstance;
+  } catch (err) {
+    console.error(`Tileset image could not be loaded from buffer`);
+    throw err;
+  }
+
+  return extrudeJimpImage(tileWidth, tileHeight, image, { margin, spacing, color, extrusion });
+}
+
 /**
  * Accepts an image path and returns a Jimp image object containing the extruded image. This is
  * exposed for advanced image processing purposes. For more common uses, see extrudeTilesetToImage
@@ -146,6 +163,15 @@ async function extrudeTilesetToJimp(
     throw err;
   }
 
+  return extrudeJimpImage(tileWidth, tileHeight, image, { margin, spacing, color, extrusion });
+}
+
+function extrudeJimpImage(
+  tileWidth: number,
+  tileHeight: number,
+  image: JimpInstance,
+  { margin = 0, spacing = 0, color = 0xffffff00, extrusion = 1 }: ExtrusionOptions = {},
+): Promise<JimpInstance> {
   const { width, height } = image.bitmap;
 
   // Solve for "cols" & "rows" to get the formulae used here:
@@ -256,6 +282,7 @@ async function extrudeTilesetToJimp(
 
 export {
   extrudeTilesetToBuffer,
+  extrudeBufferTilesetToJimp,
   extrudeTilesetToImage,
   extrudeTilesetToJimp,
   ExtrusionOptions,

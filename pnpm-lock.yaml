@@ -17,6 +17,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
+      tile-extruder:
+        specifier: workspace:^
+        version: link:../cli
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3
