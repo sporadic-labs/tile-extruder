@@ -63,6 +63,10 @@ async function main() {
     const tilesetPath = `./tilesets/${file}`;
     const extrudedTilesetPath = `./tilesets/extruded/${file}`;
 
+    if (!fs.existsSync("./tilesets/extruded")) {
+      fs.mkdirSync("./tilesets/extruded", { recursive: true });
+    }
+
     // Make the output path unique, so that the same test image can be used with different args.
     const snapshotTilesetPath = `./tilesets/snapshots/${name}-${argsString}.${extension}`;
 
