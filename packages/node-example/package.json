@@ -1,0 +1,16 @@
+{
+  "name": "node-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "pnpm --filter tile-extruder build && node ./index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "tile-extruder": "workspace:^"
+  }
+}
