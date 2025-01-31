@@ -1,0 +1,11 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  gap: 32px;
+}
+
+.fileInput {
+  margin: 20px 0;
+}
