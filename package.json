@@ -10,10 +10,9 @@
     "pretest": "pnpm run build",
     "test": "ts-node ./tests/index.ts",
     "demo": "http-server ./examples/phaser -c-1 -o",
-    "doc": "esdoc -c ./.esdoc.json",
-    "postdoc": "cp -r doc-source/ docs/",
-    "deploy:doc": "gh-pages --branch gh-pages --dist docs",
-    "predeploy:doc": "pnpm run doc",
+    "docs:build": "typedoc",
+    "docs:run": "pnpm run docs:build && http-server ./docs -c-1 -o",
+    "docs:deploy": "pnpm run docs:build && gh-pages --branch gh-pages --dist docs",
     "prettier": "prettier --write \"./{src,tests}/**/*.{js,ts}\""
   },
   "repository": {
@@ -42,15 +41,14 @@
   },
   "devDependencies": {
     "@types/node": "^22.12.0",
-    "esdoc": "^1.1.0",
-    "esdoc-node": "^1.0.5",
-    "esdoc-standard-plugin": "^1.0.0",
     "gh-pages": "^6.3.0",
     "http-server": "^14.1.1",
     "imagemin": "^9.0.0",
     "imagemin-pngquant": "^10.0.0",
     "prettier": "^3.4.2",
     "ts-node": "^10.9.2",
+    "typedoc": "^0.27.6",
+    "typedoc-material-theme": "^1.3.0",
     "typescript": "^5.7.3"
   }
 }
