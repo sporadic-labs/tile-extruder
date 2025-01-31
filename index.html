@@ -1,45 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">Home | tile-extruder</title>
-  <link type="text/css" rel="stylesheet" href="css/style.css">
-  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
-  <script src="script/prettify/prettify.js"></script>
-  <script src="script/manual.js"></script>
-<meta name="description" content="A tiny Node app to extrude tiles in tilesets to avoid bleeding issues. See relevant [Phaser issue](https://github.com/photonstorm/phaser/issues/3229)"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="tile-extruder"><meta property="twitter:description" content="A tiny Node app to extrude tiles in tilesets to avoid bleeding issues. See relevant [Phaser issue](https://github.com/photonstorm/phaser/issues/3229)"></head>
-<body class="layout-container" data-ice="rootContainer">
-
-<header>
-  <a href="./">Home</a>
-  
-  <a href="identifiers.html">Reference</a>
-  <a href="source.html">Source</a>
-  
-  <div class="search-box">
-  <span>
-    <img src="./image/search.png">
-    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
-  </span>
-    <ul class="search-result"></ul>
-  </div>
-<a style="position:relative; top:3px;" href="https://github.com/sporadic-labs/tile-extruder"><img width="20px" src="./image/github.png"></a></header>
-
-<nav class="navigation" data-ice="nav"><div>
-  <ul>
-    
-  </ul>
-</div>
-</nav>
-
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="tile-extruder">Tile Extruder</h1><p>A tiny Node CLI (and library) to extrude tiles in tilesets to avoid bleeding issues.</p>
-<p><img src="./doc-source/images/demo.png" alt="demo"></p>
-<p><img src="./doc-source/images/explanation.png" alt="explanation"></p>
-<p>You can read more about the bleeding problem and solution <a href="https://web.archive.org/web/20180411151113/http://rotorz.com/unity/tile-system/docs/edge-correction">here</a>. This CLI app handles both tilesets with and without margin &amp; spacing. Check out my <a href="https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6">blog post series</a> about building modular worlds with tilemaps for more information on using tilemaps and extruding tiles.</p>
+<!DOCTYPE html><html class="default" lang="en" data-base="."><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>tile-extruder</title><meta name="description" content="Documentation for tile-extruder"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script><script async src="assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><div class="table-cell" id="tsd-search"><div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-search"></use></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div><div class="field"><div id="tsd-toolbar-links"></div></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">tile-extruder</a></div><div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h1>tile-extruder</h1></div><div class="tsd-panel tsd-typography"><a id="tile-extruder" class="tsd-anchor"></a><h1 class="tsd-anchor-link">Tile Extruder<a href="#tile-extruder" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p>A CLI and JS library to extrude tiles in tilesets to avoid &quot;bleeding&quot; issues where tiles are rendered with the wrong color at the edges of tiles.</p>
+<p><img src="media/demo.png" alt="demo"></p>
+<p><img src="media/explanation.png" alt="explanation"></p>
+<p>You can read more about the bleeding problem and solution <a href="https://web.archive.org/web/20180411151113/http://rotorz.com/unity/tile-system/docs/edge-correction">here</a>. The TLDR is that there are many ways this type of rendering artifact can occur, e.g. from pixels being incorrectly blended when the edge of a tile in a tilemap texture is rendered. This CLI app handles both tilesets with and without margin &amp; spacing. Check out my <a href="https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6">blog post series</a> about building modular worlds with tilemaps for more information on using tilemaps and extruding tiles.</p>
 <ul>
-<li><a href="#tile-extruder">Tile Extruder</a><ul>
-<li><a href="#usage">Usage</a><ul>
+<li><a href="#tile-extruder">Tile Extruder</a>
+<ul>
+<li><a href="#usage">Usage</a>
+<ul>
 <li><a href="#usage-as-a-command-line-tool">Usage as a Command Line Tool</a></li>
 <li><a href="#usage-as-a-library">Usage as a Library</a></li>
 <li><a href="#using-the-extruded-tileset">Using the Extruded Tileset</a></li>
@@ -51,154 +18,123 @@
 </ul>
 </li>
 </ul>
-<h2 id="usage">Usage</h2><p>There are two ways to use the tool to extrude a tileset image. If you just need to extrude some tilesets, you can use it as a command line tool. If you need to do something that requires more control (like integrating tile-extruder into build pipeline), you can use it as a JS library.</p>
-<h3 id="usage-as-a-command-line-tool">Usage as a Command Line Tool</h3><p>Make sure you have <a href="https://nodejs.org/en/">node</a> installed and then run:</p>
-<pre><code><code class="source-code prettyprint">npm install --global tile-extruder</code>
-</code></pre><p>(Or, you can run tile-extruder directly without globally installing in npm 5.2 and greater via <code>npx tile-extruder</code>!)</p>
-<p>Once you&apos;ve got it installed, open a terminal and run a command with the following arguments:</p>
-<pre><code><code class="source-code prettyprint">tile-extruder [args]</code>
-</code></pre><p>An example usage for a 8 x 16 tile size tileset with no margin or spacing:</p>
-<pre><code><code class="source-code prettyprint">tile-extruder --tileWidth 8 --tileHeight 16 --input ./tilesets/borders-tileset.png --output ./tilesets/borders-tileset-extruded.png</code>
-</code></pre><p>An example usage for a 16 x 16 tile size tileset with 5px margin and 10px spacing:</p>
-<pre><code><code class="source-code prettyprint">tile-extruder --tileWidth 16 --tileHeight 16 --margin 5 --spacing 10 --input ./tilesets/mario-tileset.png --output ./tilesets/mario-tileset-extruded.png</code>
-</code></pre><p>Additional usage information:</p>
-<pre><code><code class="source-code prettyprint">A small CLI to extrude tiles. Use --help for more information.
+<a id="usage" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Usage<a href="#usage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>There are two ways to use the tool to extrude a tileset image. If you just need to extrude some tilesets, you can use it as a command line tool. If you need to do something that requires more control (like integrating tile-extruder into build pipeline), you can use it as a JS library.</p>
+<a id="usage-as-a-command-line-tool" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Usage as a Command Line Tool<a href="#usage-as-a-command-line-tool" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Make sure you have <a href="https://nodejs.org/en/">node</a> installed and then run:</p>
+<pre><code><span class="hl-0">npx</span><span class="hl-1"> </span><span class="hl-0">tile</span><span class="hl-1">-</span><span class="hl-0">extruder</span><span class="hl-1"> [</span><span class="hl-0">args</span><span class="hl-1">]</span>
+</code><button>Copy</button></pre>
 
-Options:
-  -V, --version                 output the version number
-  -w, --tileWidth &lt;integer&gt;     tile width in pixels
-  -h, --tileHeight &lt;integer&gt;    tile height in pixels
-  -i, --input &lt;path&gt;            the path to the tileset you want to extrude
-  -o, --output &lt;path&gt;           the path to output the extruded tileset image (default: inputPath where
-                                filename is extended with &apos;_extruded&apos;)
-  -c, --color [hex=0xffffff00]  RGBA color to use for the background color, only matters if there&apos;s margin or   
-                                spacing (default: transparent white)
-  -m, --margin [integer=0]      number of pixels between tiles and the edge of the tileset image (default: 0)   
-  -s, --spacing [integer=0]     number of pixels between neighboring tiles (default: 0)
-  -e, --extrusion [integer=1]   number of pixels to extrude by (default: 1)
-  --help                        display help for command</code>
-</code></pre><p>A note on terminology, <em>spacing</em> is the number of pixels between neighboring tiles, while <em>margin</em> is the number of pixels between the edges of the image and the tiles. Or, more visually explained:</p>
-<p><img src="./doc-source/images/margin-and-spacing.png" alt="Margin and spacing"></p>
-<h3 id="usage-as-a-library">Usage as a Library</h3><p>If you&apos;re reading this on npm/GitHub, you can read the documentation online <a href="https://sporadic-labs.github.io/tile-extruder">here</a> which includes API documentation. Also, see <a href="https://github.com/sporadic-labs/tile-extruder/tree/master/examples/node">node examples</a> folder for code.</p>
+<p>(You can also install tile-extruder globally with <code>npm install --global tile-extruder</code> and then you can run it via <code>tile-extruder [args]</code>.)</p>
+<p>Here is an example usage for extruding a 8 x 16 tile size tileset with no margin or spacing:</p>
+<pre><code><span class="hl-0">tile</span><span class="hl-1">-</span><span class="hl-0">extruder</span><span class="hl-1"> --</span><span class="hl-0">tileWidth</span><span class="hl-1"> </span><span class="hl-2">8</span><span class="hl-1"> --</span><span class="hl-0">tileHeight</span><span class="hl-1"> </span><span class="hl-2">16</span><span class="hl-1"> --</span><span class="hl-0">input</span><span class="hl-1"> ./</span><span class="hl-0">tilesets</span><span class="hl-1">/</span><span class="hl-0">borders</span><span class="hl-1">-</span><span class="hl-0">tileset</span><span class="hl-1">.</span><span class="hl-0">png</span><span class="hl-1"> --</span><span class="hl-0">output</span><span class="hl-1"> ./</span><span class="hl-0">tilesets</span><span class="hl-1">/</span><span class="hl-0">borders</span><span class="hl-1">-</span><span class="hl-0">tileset</span><span class="hl-1">-</span><span class="hl-0">extruded</span><span class="hl-1">.</span><span class="hl-0">png</span>
+</code><button>Copy</button></pre>
+
+<p>Here is an example usage for a 16 x 16 tile size tileset with 5px margin and 10px spacing:</p>
+<pre><code><span class="hl-0">tile</span><span class="hl-1">-</span><span class="hl-0">extruder</span><span class="hl-1"> --</span><span class="hl-0">tileWidth</span><span class="hl-1"> </span><span class="hl-2">16</span><span class="hl-1"> --</span><span class="hl-0">tileHeight</span><span class="hl-1"> </span><span class="hl-2">16</span><span class="hl-1"> --</span><span class="hl-0">margin</span><span class="hl-1"> </span><span class="hl-2">5</span><span class="hl-1"> --</span><span class="hl-0">spacing</span><span class="hl-1"> </span><span class="hl-2">10</span><span class="hl-1"> --</span><span class="hl-0">input</span><span class="hl-1"> ./</span><span class="hl-0">tilesets</span><span class="hl-1">/</span><span class="hl-0">mario</span><span class="hl-1">-</span><span class="hl-0">tileset</span><span class="hl-1">.</span><span class="hl-0">png</span><span class="hl-1"> --</span><span class="hl-0">output</span><span class="hl-1"> ./</span><span class="hl-0">tilesets</span><span class="hl-1">/</span><span class="hl-0">mario</span><span class="hl-1">-</span><span class="hl-0">tileset</span><span class="hl-1">-</span><span class="hl-0">extruded</span><span class="hl-1">.</span><span class="hl-0">png</span>
+</code><button>Copy</button></pre>
+
+<p>Additional usage information:</p>
+<pre><code><span class="hl-3">A</span><span class="hl-1"> </span><span class="hl-0">small</span><span class="hl-1"> </span><span class="hl-3">CLI</span><span class="hl-1"> </span><span class="hl-0">to</span><span class="hl-1"> </span><span class="hl-0">extrude</span><span class="hl-1"> </span><span class="hl-0">tiles</span><span class="hl-1">. </span><span class="hl-0">Use</span><span class="hl-1"> --</span><span class="hl-0">help</span><span class="hl-1"> </span><span class="hl-0">for</span><span class="hl-1"> </span><span class="hl-0">more</span><span class="hl-1"> </span><span class="hl-0">information</span><span class="hl-1">.</span><br/><br/><span class="hl-4">Options</span><span class="hl-1">:</span><br/><span class="hl-1">  -</span><span class="hl-3">V</span><span class="hl-1">, --</span><span class="hl-0">version</span><span class="hl-1">                 </span><span class="hl-0">output</span><span class="hl-1"> </span><span class="hl-0">the</span><span class="hl-1"> </span><span class="hl-0">version</span><span class="hl-1"> </span><span class="hl-0">number</span><br/><span class="hl-1">  -</span><span class="hl-0">w</span><span class="hl-1">, --</span><span class="hl-0">tileWidth</span><span class="hl-1"> &lt;</span><span class="hl-0">integer</span><span class="hl-1">&gt;     </span><span class="hl-0">tile</span><span class="hl-1"> </span><span class="hl-0">width</span><span class="hl-1"> </span><span class="hl-5">in</span><span class="hl-1"> </span><span class="hl-0">pixels</span><br/><span class="hl-1">  -</span><span class="hl-0">h</span><span class="hl-1">, --</span><span class="hl-0">tileHeight</span><span class="hl-1"> &lt;</span><span class="hl-0">integer</span><span class="hl-1">&gt;    </span><span class="hl-0">tile</span><span class="hl-1"> </span><span class="hl-0">height</span><span class="hl-1"> </span><span class="hl-5">in</span><span class="hl-1"> </span><span class="hl-0">pixels</span><br/><span class="hl-1">  -</span><span class="hl-0">i</span><span class="hl-1">, --</span><span class="hl-0">input</span><span class="hl-1"> &lt;</span><span class="hl-0">path</span><span class="hl-1">&gt;            </span><span class="hl-0">the</span><span class="hl-1"> </span><span class="hl-0">path</span><span class="hl-1"> </span><span class="hl-0">to</span><span class="hl-1"> </span><span class="hl-0">the</span><span class="hl-1"> </span><span class="hl-0">tileset</span><span class="hl-1"> </span><span class="hl-0">you</span><span class="hl-1"> </span><span class="hl-0">want</span><span class="hl-1"> </span><span class="hl-0">to</span><span class="hl-1"> </span><span class="hl-0">extrude</span><br/><span class="hl-1">  -</span><span class="hl-0">o</span><span class="hl-1">, --</span><span class="hl-0">output</span><span class="hl-1"> &lt;</span><span class="hl-0">path</span><span class="hl-1">&gt;           </span><span class="hl-0">the</span><span class="hl-1"> </span><span class="hl-0">path</span><span class="hl-1"> </span><span class="hl-0">to</span><span class="hl-1"> </span><span class="hl-0">output</span><span class="hl-1"> </span><span class="hl-0">the</span><span class="hl-1"> </span><span class="hl-0">extruded</span><span class="hl-1"> </span><span class="hl-0">tileset</span><span class="hl-1"> </span><span class="hl-6">image</span><span class="hl-1"> (</span><span class="hl-0">default</span><span class="hl-1">: </span><span class="hl-0">inputPath</span><span class="hl-1"> </span><span class="hl-0">where</span><br/><span class="hl-1">                                </span><span class="hl-0">filename</span><span class="hl-1"> </span><span class="hl-0">is</span><span class="hl-1"> </span><span class="hl-0">extended</span><span class="hl-1"> </span><span class="hl-0">with</span><span class="hl-1"> </span><span class="hl-7">&#39;_extruded&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">  -</span><span class="hl-0">c</span><span class="hl-1">, --</span><span class="hl-0">color</span><span class="hl-1"> [</span><span class="hl-0">hex</span><span class="hl-1">=</span><span class="hl-2">0xffffff00</span><span class="hl-1">]  </span><span class="hl-3">RGBA</span><span class="hl-1"> </span><span class="hl-0">color</span><span class="hl-1"> </span><span class="hl-0">to</span><span class="hl-1"> </span><span class="hl-0">use</span><span class="hl-1"> </span><span class="hl-0">for</span><span class="hl-1"> </span><span class="hl-0">the</span><span class="hl-1"> </span><span class="hl-0">background</span><span class="hl-1"> </span><span class="hl-0">color</span><span class="hl-1">, </span><span class="hl-0">only</span><span class="hl-1"> </span><span class="hl-0">matters</span><span class="hl-1"> </span><span class="hl-8">if</span><span class="hl-1"> </span><span class="hl-0">there</span><span class="hl-7">&#39;s margin or  </span><span class="hl-9"> </span><br/><span class="hl-1">                                </span><span class="hl-6">spacing</span><span class="hl-1"> (</span><span class="hl-0">default</span><span class="hl-1">: </span><span class="hl-0">transparent</span><span class="hl-1"> </span><span class="hl-0">white</span><span class="hl-1">)</span><br/><span class="hl-1">  -</span><span class="hl-0">m</span><span class="hl-1">, --</span><span class="hl-0">margin</span><span class="hl-1"> [</span><span class="hl-0">integer</span><span class="hl-1">=</span><span class="hl-2">0</span><span class="hl-1">]      </span><span class="hl-0">number</span><span class="hl-1"> </span><span class="hl-5">of</span><span class="hl-1"> </span><span class="hl-0">pixels</span><span class="hl-1"> </span><span class="hl-0">between</span><span class="hl-1"> </span><span class="hl-0">tiles</span><span class="hl-1"> </span><span class="hl-0">and</span><span class="hl-1"> </span><span class="hl-0">the</span><span class="hl-1"> </span><span class="hl-0">edge</span><span class="hl-1"> </span><span class="hl-5">of</span><span class="hl-1"> </span><span class="hl-0">the</span><span class="hl-1"> </span><span class="hl-0">tileset</span><span class="hl-1"> </span><span class="hl-6">image</span><span class="hl-1"> (</span><span class="hl-0">default</span><span class="hl-1">: </span><span class="hl-2">0</span><span class="hl-1">)   </span><br/><span class="hl-1">  -</span><span class="hl-0">s</span><span class="hl-1">, --</span><span class="hl-0">spacing</span><span class="hl-1"> [</span><span class="hl-0">integer</span><span class="hl-1">=</span><span class="hl-2">0</span><span class="hl-1">]     </span><span class="hl-0">number</span><span class="hl-1"> </span><span class="hl-5">of</span><span class="hl-1"> </span><span class="hl-0">pixels</span><span class="hl-1"> </span><span class="hl-0">between</span><span class="hl-1"> </span><span class="hl-0">neighboring</span><span class="hl-1"> </span><span class="hl-6">tiles</span><span class="hl-1"> (</span><span class="hl-0">default</span><span class="hl-1">: </span><span class="hl-2">0</span><span class="hl-1">)</span><br/><span class="hl-1">  -</span><span class="hl-0">e</span><span class="hl-1">, --</span><span class="hl-0">extrusion</span><span class="hl-1"> [</span><span class="hl-0">integer</span><span class="hl-1">=</span><span class="hl-2">1</span><span class="hl-1">]   </span><span class="hl-0">number</span><span class="hl-1"> </span><span class="hl-5">of</span><span class="hl-1"> </span><span class="hl-0">pixels</span><span class="hl-1"> </span><span class="hl-0">to</span><span class="hl-1"> </span><span class="hl-0">extrude</span><span class="hl-1"> </span><span class="hl-6">by</span><span class="hl-1"> (</span><span class="hl-0">default</span><span class="hl-1">: </span><span class="hl-2">1</span><span class="hl-1">)</span><br/><span class="hl-1">  --</span><span class="hl-0">help</span><span class="hl-1">                        </span><span class="hl-0">display</span><span class="hl-1"> </span><span class="hl-0">help</span><span class="hl-1"> </span><span class="hl-0">for</span><span class="hl-1"> </span><span class="hl-0">command</span>
+</code><button>Copy</button></pre>
+
+<p>A note on terminology, <em>spacing</em> is the number of pixels between neighboring tiles, while <em>margin</em> is the number of pixels between the edges of the image and the tiles. Or, more visually explained:</p>
+<p><img src="media/margin-and-spacing.png" alt="Margin and spacing"></p>
+<a id="usage-as-a-library" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Usage as a Library<a href="#usage-as-a-library" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>If you're reading this on npm/GitHub, you can read the documentation online <a href="https://sporadic-labs.github.io/tile-extruder">here</a> which includes API documentation. Also, see <a href="https://github.com/sporadic-labs/tile-extruder/tree/master/examples/node">node examples</a> folder for code.</p>
 <p>Install the library as a dependency in your Node project:</p>
-<pre><code><code class="source-code prettyprint">npm install tile-extruder</code>
-</code></pre><p>This exposes three utility functions, which all extrude a given tileset image, but differ in terms of their output.</p>
-<pre><code class="lang-js"><code class="source-code prettyprint">const {
-  extrudeTilesetToImage, // Saves an image to disk
-  extrudeTilesetToBuffer, // Returns image in a Buffer (compatible with libraries like imagemin)
-  extrudeTilesetToJimp // Returns the underlying Jimp image object
-} = require(&quot;tile-extruder&quot;);</code>
-</code></pre>
+<pre><code><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-0">install</span><span class="hl-1"> </span><span class="hl-0">tile</span><span class="hl-1">-</span><span class="hl-0">extruder</span>
+</code><button>Copy</button></pre>
+
+<p>This exposes three utility functions, which all extrude a given tileset image, but differ in terms of their output.</p>
+<pre><code class="js"><span class="hl-5">const</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-3">extrudeTilesetToImage</span><span class="hl-1">, </span><span class="hl-10">// Saves an image to disk</span><br/><span class="hl-1">  </span><span class="hl-3">extrudeTilesetToBuffer</span><span class="hl-1">, </span><span class="hl-10">// Returns image in a Buffer (compatible with libraries like imagemin)</span><br/><span class="hl-1">  </span><span class="hl-3">extrudeTilesetToJimp</span><span class="hl-1"> </span><span class="hl-10">// Returns the underlying Jimp image object</span><br/><span class="hl-1">} = </span><span class="hl-6">require</span><span class="hl-1">(</span><span class="hl-7">&quot;tile-extruder&quot;</span><span class="hl-1">);</span>
+</code><button type="button">Copy</button></pre>
+
 <p>To save an extruded tileset to disk:</p>
-<pre><code class="lang-js"><code class="source-code prettyprint">const { extrudeTilesetToImage } = require(&quot;tile-extruder&quot;);
+<pre><code class="js"><span class="hl-5">const</span><span class="hl-1"> { </span><span class="hl-3">extrudeTilesetToImage</span><span class="hl-1"> } = </span><span class="hl-6">require</span><span class="hl-1">(</span><span class="hl-7">&quot;tile-extruder&quot;</span><span class="hl-1">);</span><br/><br/><span class="hl-5">async</span><span class="hl-1"> </span><span class="hl-5">function</span><span class="hl-1"> </span><span class="hl-6">main</span><span class="hl-1">() {</span><br/><span class="hl-1">  </span><span class="hl-8">await</span><span class="hl-1"> </span><span class="hl-6">extrudeTilesetToImage</span><span class="hl-1">(</span><span class="hl-2">16</span><span class="hl-1">, </span><span class="hl-2">16</span><span class="hl-1">, </span><span class="hl-7">&quot;./buch-tileset.png&quot;</span><span class="hl-1">, </span><span class="hl-7">&quot;./buch-tileset-extruded.png&quot;</span><span class="hl-1">);</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-6">main</span><span class="hl-1">();</span>
+</code><button type="button">Copy</button></pre>
 
-async function main() {
-  await extrudeTilesetToImage(16, 16, &quot;./buch-tileset.png&quot;, &quot;./buch-tileset-extruded.png&quot;);
-}
-
-main();</code>
-</code></pre>
 <p>To obtain the extruded tileset as a <a href="https://nodejs.org/api/buffer.html">Buffer</a> and then minify it before saving using <a href="https://github.com/imagemin/imagemin">imagemin</a>:</p>
-<pre><code class="lang-js"><code class="source-code prettyprint">const { extrudeTilesetToBuffer } = require(&quot;tile-extruder&quot;);
-const imagemin = require(&quot;imagemin&quot;);
-const imageminPngquant = require(&quot;imagemin-pngquant&quot;);
-const fs = require(&quot;fs&quot;);
+<pre><code class="js"><span class="hl-5">const</span><span class="hl-1"> { </span><span class="hl-3">extrudeTilesetToBuffer</span><span class="hl-1"> } = </span><span class="hl-6">require</span><span class="hl-1">(</span><span class="hl-7">&quot;tile-extruder&quot;</span><span class="hl-1">);</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-3">imagemin</span><span class="hl-1"> = </span><span class="hl-6">require</span><span class="hl-1">(</span><span class="hl-7">&quot;imagemin&quot;</span><span class="hl-1">);</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-3">imageminPngquant</span><span class="hl-1"> = </span><span class="hl-6">require</span><span class="hl-1">(</span><span class="hl-7">&quot;imagemin-pngquant&quot;</span><span class="hl-1">);</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-3">fs</span><span class="hl-1"> = </span><span class="hl-6">require</span><span class="hl-1">(</span><span class="hl-7">&quot;fs&quot;</span><span class="hl-1">);</span><br/><br/><span class="hl-5">async</span><span class="hl-1"> </span><span class="hl-5">function</span><span class="hl-1"> </span><span class="hl-6">main</span><span class="hl-1">() {</span><br/><span class="hl-1">  </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-3">buffer</span><span class="hl-1"> = </span><span class="hl-8">await</span><span class="hl-1"> </span><span class="hl-6">extrudeTilesetToBuffer</span><span class="hl-1">(</span><span class="hl-2">16</span><span class="hl-1">, </span><span class="hl-2">16</span><span class="hl-1">, </span><span class="hl-7">&quot;./buch-tileset.png&quot;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-3">minifiedBuffer</span><span class="hl-1"> = </span><span class="hl-8">await</span><span class="hl-1"> </span><span class="hl-0">imagemin</span><span class="hl-1">.</span><span class="hl-6">buffer</span><span class="hl-1">(</span><span class="hl-0">buffer</span><span class="hl-1">, {</span><br/><span class="hl-1">    </span><span class="hl-0">plugins:</span><span class="hl-1"> [</span><br/><span class="hl-1">      </span><span class="hl-6">imageminPngquant</span><span class="hl-1">({</span><br/><span class="hl-1">        </span><span class="hl-0">quality:</span><span class="hl-1"> [</span><span class="hl-2">0.6</span><span class="hl-1">, </span><span class="hl-2">0.8</span><span class="hl-1">] </span><span class="hl-10">// See https://github.com/imagemin/imagemin-pngquant</span><br/><span class="hl-1">      })</span><br/><span class="hl-1">    ]</span><br/><span class="hl-1">  });</span><br/><span class="hl-1">  </span><span class="hl-0">fs</span><span class="hl-1">.</span><span class="hl-6">writeFileSync</span><span class="hl-1">(</span><span class="hl-7">&quot;./buch-tileset-extruded-minified.png&quot;</span><span class="hl-1">, </span><span class="hl-0">minifiedBuffer</span><span class="hl-1">);</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-6">main</span><span class="hl-1">();</span>
+</code><button type="button">Copy</button></pre>
 
-async function main() {
-  const buffer = await extrudeTilesetToBuffer(16, 16, &quot;./buch-tileset.png&quot;);
-  const minifiedBuffer = await imagemin.buffer(buffer, {
-    plugins: [
-      imageminPngquant({
-        quality: [0.6, 0.8] // See https://github.com/imagemin/imagemin-pngquant
-      })
-    ]
-  });
-  fs.writeFileSync(&quot;./buch-tileset-extruded-minified.png&quot;, minifiedBuffer);
-}
-
-main();</code>
-</code></pre>
-<h3 id="using-the-extruded-tileset">Using the Extruded Tileset</h3><p>This tool was built for a Phaser &amp; Tiled project, so here&apos;s how to integrate with that pipeline.</p>
-<p>If you&apos;ve already built a map in Tiled with a non-extruded tileset and are looking to replace it with an extruded tileset, you&apos;ve got a couple options:</p>
+<a id="using-the-extruded-tileset" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Using the Extruded Tileset<a href="#using-the-extruded-tileset" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>This tool was built for a Phaser &amp; Tiled project, so here's how to integrate with that pipeline.</p>
+<p>If you've already built a map in Tiled with a non-extruded tileset and are looking to replace it with an extruded tileset, you've got a couple options:</p>
 <ul>
 <li>Extrude the tileset and then update your existing tileset in Tiled. In the &quot;Tilesets&quot; panel, click on the edit tileset icon (the wrench) and then click on &quot;Tileset Properties&quot; under the Tileset menu bar item. Edit the &quot;Image&quot; field, replacing the tileset image with the new extruded image and updating to the margin and spacing.</li>
-<li>If you&apos;d rather leave your Tiled file alone, you can just adjust things on the Phaser side. See this <a href="https://github.com/sporadic-labs/tile-extruder/blob/master/examples/phaser/main.js">example</a>. You want to load the extruded tileset image, and then when you create your tileset, specify the appropriate margin and spacing:</li>
+<li>If you'd rather leave your Tiled file alone, you can just adjust things on the Phaser side. See this <a href="https://github.com/sporadic-labs/tile-extruder/blob/master/examples/phaser/main.js">example</a>. You want to load the extruded tileset image, and then when you create your tileset, specify the appropriate margin and spacing:</li>
 </ul>
-<pre><code class="lang-js"><code class="source-code prettyprint">// Parameters: name in Tiled, phaser cache key, tile width, tile height, margin, spacing
-const tileset = map.addTilesetImage(&quot;tileset&quot;, &quot;tileset-extruded&quot;, 48, 48, 1, 2);</code>
-</code></pre>
-<p>Note: you&apos;ll have to adjust your margin &amp; spacing because of the extrusion. If you had no margin &amp; spacing, then the new margin is 1px and the spacing is 2px.</p>
-<h2 id="tileset-credits">Tileset Credits</h2><ul>
+<pre><code class="js"><span class="hl-10">// Parameters: name in Tiled, phaser cache key, tile width, tile height, margin, spacing</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-3">tileset</span><span class="hl-1"> = </span><span class="hl-0">map</span><span class="hl-1">.</span><span class="hl-6">addTilesetImage</span><span class="hl-1">(</span><span class="hl-7">&quot;tileset&quot;</span><span class="hl-1">, </span><span class="hl-7">&quot;tileset-extruded&quot;</span><span class="hl-1">, </span><span class="hl-2">48</span><span class="hl-1">, </span><span class="hl-2">48</span><span class="hl-1">, </span><span class="hl-2">1</span><span class="hl-1">, </span><span class="hl-2">2</span><span class="hl-1">);</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Note: you'll have to adjust your margin &amp; spacing because of the extrusion. If you had no margin &amp; spacing, then a tileset that has been extruded by 1px will have a margin of 1px and a spacing of 2px.</p>
+<p>Tips:</p>
+<ul>
+<li>depending on your use case, you may need to extrude the tileset by more than 1px. E.g. if you are zooming the camera in Phaser, you may still end up with rendering artifacts. See the <a href="https://github.com/sporadic-labs/tile-extruder/blob/master/examples/phaser/main.js">example</a> for usage with panning/zooming.</li>
+</ul>
+<a id="tileset-credits" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Tileset Credits<a href="#tileset-credits" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
 <li>Dungeon Tileset by Buch - <a href="https://opengameart.org/content/top-down-dungeon-tileset">Source</a></li>
 <li>Minirouge Tileset by Arachne - <a href="https://forums.tigsource.com/index.php?topic=14166.0">Source</a></li>
 <li>Mario Tileset - <a href="http://rmrk.net/index.php?topic=37002.0">Source</a></li>
 </ul>
-<h2 id="changelog">Changelog</h2><ul>
-<li>2.1.1<ul>
+<a id="changelog" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Changelog<a href="#changelog" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li>2.1.1
+<ul>
 <li>Update all deps to latest.</li>
 </ul>
 </li>
-<li>2.1.0<ul>
+<li>2.1.0
+<ul>
 <li>Update all deps to latest.</li>
 <li>If output path is not specified in CLI arguments, defaults to the original filename + &quot;_extruded&quot;. Thanks <a href="https://github.com/Naxos84">@Naxos84</a>!</li>
 </ul>
 </li>
-<li>2.0.6<ul>
+<li>2.0.6
+<ul>
 <li>Update all deps to latest.</li>
 <li>Fix for #10: convert bin/tile-extruder to LF to allow it to work under yarn on unix. Thanks <a href="https://github.com/carystanley">@carystanley</a>!</li>
 </ul>
 </li>
-<li>2.0.5<ul>
+<li>2.0.5
+<ul>
 <li>Update all deps to latest.</li>
-<li>Fix: update CLI&apos;s --version command to report the current version number.</li>
+<li>Fix: update CLI's --version command to report the current version number.</li>
 </ul>
 </li>
-<li>2.0.4<ul>
-<li>Feature from <a href="https://github.com/fjolne">@fjolne</a> in #9 - adds an extrusion option to specify a custom extrusion amount. </li>
+<li>2.0.4
+<ul>
+<li>Feature from <a href="https://github.com/fjolne">@fjolne</a> in #9 - adds an extrusion option to specify a custom extrusion amount.</li>
 </ul>
 </li>
-<li>2.0.3<ul>
-<li>Fix for #8. Jimp&apos;s blit started using alpha-blending, which caused incorrect tile extrusions if a tile had any non-opaque pixels, thanks <a href="https://github.com/FranciscoCaetano88">@FranciscoCaetano88</a>. </li>
+<li>2.0.3
+<ul>
+<li>Fix for #8. Jimp's blit started using alpha-blending, which caused incorrect tile extrusions if a tile had any non-opaque pixels, thanks <a href="https://github.com/FranciscoCaetano88">@FranciscoCaetano88</a>.</li>
 <li>Changed default background color from transparent black to transparent white.</li>
 </ul>
 </li>
-<li>2.0.2<ul>
+<li>2.0.2
+<ul>
 <li>Updated dependencies.</li>
 </ul>
 </li>
-<li>2.0.1<ul>
+<li>2.0.1
+<ul>
 <li>Fixed broken deploy (missing needed files) for v2.0.0.</li>
 </ul>
 </li>
-<li>2.0.0<ul>
+<li>2.0.0
+<ul>
 <li>Restructure to export three methods - <code>extrudeTilesetToImage</code>, <code>extrudeTilesetToBuffer</code>,<code>extrudeTilesetToJimp</code> - to make it easier to integrate the library into other tools like <a href="https://github.com/simiancraft/create-phaser-app/">create-phaser-app</a>.</li>
 </ul>
 </li>
-<li>1.2.0<ul>
+<li>1.2.0
+<ul>
 <li>Update jimp dependency to latest (0.6.4)</li>
 <li>Make underlying library return a promise (to address <a href="https://github.com/sporadic-labs/tile-extruder/issues/6">#6</a>, thanks <a href="https://github.com/the-simian">@the-simian</a>)</li>
 <li>Cleaner error handling</li>
 </ul>
 </li>
 </ul>
-<h2 id="contributors">Contributors</h2><p>Thank you to the following community contributors:</p>
+<a id="contributors" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Contributors<a href="#contributors" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Thank you to the following community contributors:</p>
 <ul>
 <li><a href="https://github.com/Naxos84">@Naxos84</a></li>
 <li><a href="https://github.com/fjolne">@fjolne</a></li>
 </ul>
-</div>
-</div>
-
-<footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
-</footer>
-
-<script src="script/search_index.js"></script>
-<script src="script/search.js"></script>
-<script src="script/pretty-print.js"></script>
-<script src="script/inherited-summary.js"></script>
-<script src="script/test-summary.js"></script>
-<script src="script/inner-link.js"></script>
-<script src="script/patch-for-local.js"></script>
-</body>
-</html>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#tile-extruder"><span>Tile <wbr/>Extruder</span></a><ul><li><a href="#usage"><span>Usage</span></a></li><li><ul><li><a href="#usage-as-a-command-line-tool"><span>Usage as a <wbr/>Command <wbr/>Line <wbr/>Tool</span></a></li><li><a href="#usage-as-a-library"><span>Usage as a <wbr/>Library</span></a></li><li><a href="#using-the-extruded-tileset"><span>Using the <wbr/>Extruded <wbr/>Tileset</span></a></li></ul></li><li><a href="#tileset-credits"><span>Tileset <wbr/>Credits</span></a></li><li><a href="#changelog"><span>Changelog</span></a></li><li><a href="#contributors"><span>Contributors</span></a></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html">tile-extruder</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>
