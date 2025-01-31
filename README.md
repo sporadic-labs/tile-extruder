@@ -149,6 +149,10 @@ Tips:
 
 ## Changelog
 
+* Next release (unreleased)
+  * Breaking change to library. `extrudeTilesetToBuffer`,
+    `extrudeTilesetToImage`, and `extrudeTilesetToJimp` take object arguments
+    instead of positional arguments.
 * 2.1.1
   * Update all deps to latest.
 * 2.1.0
