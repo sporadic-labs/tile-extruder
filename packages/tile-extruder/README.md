@@ -15,3 +15,5 @@ The current test setup is a simple snapshot test that compares the output of the
 ## Publishing
 
 TBD
+
+![](./doc-source/images/demo.png)

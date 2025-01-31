@@ -2,9 +2,9 @@
 
 A CLI and JS library to extrude tiles in tilesets to avoid "bleeding" issues where tiles are rendered with the wrong color at the edges of tiles.
 
-![demo](./packages/cli/doc-source/images/demo.png)
+![demo](./images/demo.png)
 
-![explanation](./packages/cli/doc-source/images/explanation.png)
+![explanation](./images/explanation.png)
 
 You can read more about the bleeding problem and solution [here](https://web.archive.org/web/20180411151113/http://rotorz.com/unity/tile-system/docs/edge-correction). The TLDR is that there are many ways this type of rendering artifact can occur, e.g. from pixels being incorrectly blended when the edge of a tile in a tilemap texture is rendered. This CLI app handles both tilesets with and without margin & spacing. Check out my [blog post series](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6) about building modular worlds with tilemaps for more information on using tilemaps and extruding tiles.
 
@@ -65,7 +65,7 @@ Options:
 
 A note on terminology, _spacing_ is the number of pixels between neighboring tiles, while _margin_ is the number of pixels between the edges of the image and the tiles. Or, more visually explained:
 
-![Margin and spacing](./packages/cli/doc-source/images/margin-and-spacing.png)
+![Margin and spacing](./images/margin-and-spacing.png)
 
 ### Usage as a Library
 

@@ -3,3 +3,4 @@ docs
 bin
 tilesets/extruded
 .next
+.DS_Store
