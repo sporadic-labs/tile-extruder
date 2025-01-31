@@ -62,7 +62,11 @@ if (!outputPath) {
   modifiedOutputPath = `${reducedInputPath}_extruded.${inputFileExtension}`;
 }
 
-extrudeTilesetToImage(tileWidth, tileHeight, inputPath, modifiedOutputPath, {
+extrudeTilesetToImage({
+  tileWidth,
+  tileHeight,
+  inputPath,
+  outputPath: modifiedOutputPath,
   margin,
   spacing,
   extrusion,

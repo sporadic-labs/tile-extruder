@@ -1,26 +1,36 @@
 import type { JimpInstance } from "jimp";
 
 /**
- * This copies the source pixels to the destination without any alpha blending.
- * @param {Image} srcImage A Jimp image to copy pixels from.
- * @param {number} srcX X position to start copying from (left).
- * @param {number} srcY Y position to start copying from (top).
- * @param {number} srcW The width of the region to copy.
- * @param {number} srcH The height of the region to copy.
- * @param {Image} destImage A Jimp image to paste the pixels to.
- * @param {number} destX X position to start pasting to (left).
- * @param {number} destY Y position to start pasting to (top).
+ * This copies the source pixels from a rectangular region of a Jimp image to a
+ * destination rectangle in another Jimp image, without any alpha blending.
  */
-function copyPixels(
-  srcImage: JimpInstance,
-  srcX: number,
-  srcY: number,
-  srcW: number,
-  srcH: number,
-  destImage: JimpInstance,
-  destX: number,
-  destY: number,
-) {
+function copyPixels({
+  srcImage,
+  srcX,
+  srcY,
+  srcW,
+  srcH,
+  destImage,
+  destX,
+  destY,
+}: {
+  /** A Jimp image to copy pixels from. */
+  srcImage: JimpInstance;
+  /** X position to start copying from (left). */
+  srcX: number;
+  /** Y position to start copying from (top). */
+  srcY: number;
+  /** The width of the region to copy. */
+  srcW: number;
+  /** The height of the region to copy. */
+  srcH: number;
+  /** A Jimp image to paste the pixels to. */
+  destImage: JimpInstance;
+  /** X position to start pasting to (left). */
+  destX: number;
+  /** Y position to start pasting to (top). */
+  destY: number;
+}) {
   srcImage.scan(srcX, srcY, srcW, srcH, (curSrcX, curSrcY, curSrcIndex) => {
     const curDestX = destX + (curSrcX - srcX);
     const curDestY = destY + (curSrcY - srcY);
@@ -33,28 +43,38 @@ function copyPixels(
 }
 
 /**
- * This copies the source pixel to every pixel in the destination rectangle without any alpha blending.
- * @param {Image} srcImage A Jimp image to copy pixel from.
- * @param {number} srcX X position of the source pixel.
- * @param {number} srcY Y position of the source pixel.
- * @param {Image} destImage A Jimp image to paste the pixel to.
- * @param {number} destX X position to start pasting to (left).
- * @param {number} destY Y position to start pasting to (top).
- * @param {number} destW The width of the destination region.
- * @param {number} destH The height of the destination region.
+ * This copies the source pixel from a Jimp image to every pixel in a
+ * destination rectangle within another Jimp image, without any alpha blending.
  */
-function copyPixelToRect(
-  srcImage: JimpInstance,
-  srcX: number,
-  srcY: number,
-  destImage: JimpInstance,
-  destX: number,
-  destY: number,
-  destW: number,
-  destH: number,
-) {
+function copyPixelToRect({
+  srcImage,
+  srcX,
+  srcY,
+  destImage,
+  destX,
+  destY,
+  destW,
+  destH,
+}: {
+  /** A Jimp image to copy pixels from. */
+  srcImage: JimpInstance;
+  /** X position of the pixel to copy. */
+  srcX: number;
+  /** Y position of the pixel to copy. */
+  srcY: number;
+  /** A Jimp image to paste the pixels to. */
+  destImage: JimpInstance;
+  /** X position to start pasting to (left). */
+  destX: number;
+  /** Y position to start pasting to (top). */
+  destY: number;
+  /** The width of the destination region. */
+  destW: number;
+  /** The height of the destination region. */
+  destH: number;
+}) {
   const srcIndex = srcImage.getPixelIndex(srcX, srcY);
-  destImage.scan(destX, destY, destW, destH, (curDestX, curDestY, curDestIndex) => {
+  destImage.scan(destX, destY, destW, destH, (_, __, curDestIndex) => {
     destImage.bitmap.data[curDestIndex + 0] = srcImage.bitmap.data[srcIndex + 0];
     destImage.bitmap.data[curDestIndex + 1] = srcImage.bitmap.data[srcIndex + 1];
     destImage.bitmap.data[curDestIndex + 2] = srcImage.bitmap.data[srcIndex + 2];
