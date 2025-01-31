@@ -24,4 +24,4 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
       - run: pnpm install
-      - run: pnpm run test
+      - run: pnpm --filter tile-extruder test

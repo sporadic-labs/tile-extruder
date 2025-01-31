@@ -1,6 +1,6 @@
 {
   "tsconfig": "./tsconfig.json",
-  "readme": "./README.md",
+  "readme": "../../README.md",
   "plugin": ["typedoc-material-theme"],
   "themeColor": "#cb9820"
 }

@@ -6,7 +6,19 @@ settings:
 
 importers:
 
-  .:
+  packages/node-example:
+    dependencies:
+      tile-extruder:
+        specifier: workspace:^
+        version: link:../tile-extruder
+
+  packages/phaser-example:
+    devDependencies:
+      http-server:
+        specifier: ^14.1.1
+        version: 14.1.1
+
+  packages/tile-extruder:
     dependencies:
       commander:
         specifier: ^13.1.0
@@ -45,6 +57,8 @@ importers:
       typescript:
         specifier: ^5.7.3
         version: 5.7.3
+
+  packages/tile-extruder-app: {}
 
 packages:
 
