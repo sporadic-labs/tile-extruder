@@ -69,7 +69,7 @@ A note on terminology, _spacing_ is the number of pixels between neighboring til
 
 ### Usage as a Library
 
-If you're reading this on npm/GitHub, you can read the documentation online [here](https://sporadic-labs.github.io/tile-extruder) which includes API documentation. Also, see [node examples](https://github.com/sporadic-labs/tile-extruder/tree/master/examples/node) folder for code.
+If you're reading this on npm/GitHub, you can read the documentation online [here](https://sporadic-labs.github.io/tile-extruder) which includes API documentation. Also, see [node examples](https://github.com/sporadic-labs/tile-extruder/tree/main/packages/node-example) folder for code.
 
 Install the library as a dependency in your Node project:
 
@@ -129,7 +129,7 @@ This tool was built for a Phaser & Tiled project, so here's how to integrate wit
 If you've already built a map in Tiled with a non-extruded tileset and are looking to replace it with an extruded tileset, you've got a couple options:
 
 * Extrude the tileset and then update your existing tileset in Tiled. In the "Tilesets" panel, click on the edit tileset icon (the wrench) and then click on "Tileset Properties" under the Tileset menu bar item. Edit the "Image" field, replacing the tileset image with the new extruded image and updating to the margin and spacing.
-* If you'd rather leave your Tiled file alone, you can just adjust things on the Phaser side. See this [example](https://github.com/sporadic-labs/tile-extruder/blob/master/examples/phaser/main.js). You want to load the extruded tileset image, and then when you create your tileset, specify the appropriate margin and spacing:
+* If you'd rather leave your Tiled file alone, you can just adjust things on the Phaser side. See this [example](https://github.com/sporadic-labs/tile-extruder/tree/main/packages/phaser-example). You want to load the extruded tileset image, and then when you create your tileset, specify the appropriate margin and spacing:
 
 ```js
 // Parameters: name in Tiled, phaser cache key, tile width, tile height, margin, spacing
@@ -139,7 +139,7 @@ const tileset = map.addTilesetImage("tileset", "tileset-extruded", 48, 48, 1, 2)
 Note: you'll have to adjust your margin & spacing because of the extrusion. If you had no margin & spacing, then a tileset that has been extruded by 1px will have a margin of 1px and a spacing of 2px.
 
 Tips:
-- depending on your use case, you may need to extrude the tileset by more than 1px. E.g. if you are zooming the camera in Phaser, you may still end up with rendering artifacts. See the [example](https://github.com/sporadic-labs/tile-extruder/blob/master/examples/phaser/main.js) for usage with panning/zooming.
+- depending on your use case, you may need to extrude the tileset by more than 1px. E.g. if you are zooming the camera in Phaser, you may still end up with rendering artifacts. See the [example](https://github.com/sporadic-labs/tile-extruder/tree/main/packages/phaser-example) for usage with panning/zooming.
 
 ## Tileset Credits
 
