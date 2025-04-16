@@ -1,0 +1,29 @@
+{
+  "name": "tile-extruder-web-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "15.3.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "ts-outcome": "^0.1.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@tailwindcss/postcss": "^4.1.4",
+    "@types/node": "^22.14.1",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "eslint": "^9.24.0",
+    "eslint-config-next": "15.3.0",
+    "raw-loader": "^4.0.2",
+    "tailwindcss": "^4.1.4",
+    "typescript": "^5.8.3"
+  }
+}
