@@ -9,59 +9,75 @@ uniform vec2 u_tileSize;
 uniform float u_extrusion;
 uniform vec2 u_canvasSize;
 uniform vec2 u_imageSize;
+
+/*
+  Margin is padding between tiles and spacing is padding between tiles and edge
+  of image. That looks like this this in the input tileset image:
+
+  | m | tile | s | tile | s | tile | m |
+
+  And this in the extruded tileset image:
+
+  | m | e | tile | e | s | e | tile | e | s | e | tile | e | m |
+
+  Where m is margin, e is extrusion, s is spacing.
+*/
 uniform float u_margin;
 uniform float u_spacing;
 
 out vec4 fragColor;
 
 void main() {
+  // TODO: handle margin.
+
   // Calculate pixel position
-  vec2 pixelPos = v_texCoord * u_canvasSize;
+  vec2 extrudedPixelPos = v_texCoord * u_canvasSize;
 
-  // Adjust for margin
-  pixelPos -= vec2(u_margin);
+  // Break down the extruded image into repeating tile chunks that look like
+  // this: | e | tile | e | s | e | tile | e | s | e | tile | e |
+  vec2 adjustedTileSize = u_tileSize + 2.0f * u_extrusion + u_spacing;
+  // Remove the margin so we can deal with a coordinate system of repeating tile
+  // chunks.
+  vec2 adjustedPixelPos = extrudedPixelPos - u_margin;
+  vec2 posInTileCoords = floor(adjustedPixelPos / adjustedTileSize);
+  vec2 pixelPosInTile = adjustedPixelPos - (posInTileCoords * adjustedTileSize);
 
-  // Calculate tile position
-  vec2 totalTileSize = u_tileSize + 2.0f * u_extrusion + u_spacing;
-  vec2 tilePos = floor(pixelPos / totalTileSize);
+  // Calculate the pixel we should sample from the tileset image based on the
+  // chunk position.
+  vec2 uvPosInTile = vec2(0.0f, 0.0f);
 
-  // Calculate position within the tile
-  vec2 tilePixelPos = pixelPos - tilePos * totalTileSize - u_extrusion;
-
-  // Calculate source UV
-  vec2 sourceUV;
-
-  // Handle corners first
-  if(tilePixelPos.x < 0.0f && tilePixelPos.y < 0.0f) {
-      // Top-left corner
-    sourceUV = (tilePos * u_tileSize + vec2(0.0f, 0.0f)) / u_imageSize;
-  } else if(tilePixelPos.x >= u_tileSize.x && tilePixelPos.y < 0.0f) {
-      // Top-right corner
-    sourceUV = (tilePos * u_tileSize + vec2(u_tileSize.x - 1.0f, 0.0f)) / u_imageSize;
-  } else if(tilePixelPos.x < 0.0f && tilePixelPos.y >= u_tileSize.y) {
-      // Bottom-left corner
-    sourceUV = (tilePos * u_tileSize + vec2(0.0f, u_tileSize.y - 1.0f)) / u_imageSize;
-  } else if(tilePixelPos.x >= u_tileSize.x && tilePixelPos.y >= u_tileSize.y) {
-      // Bottom-right corner
-    sourceUV = (tilePos * u_tileSize + vec2(u_tileSize.x - 1.0f, u_tileSize.y - 1.0f)) / u_imageSize;
-  } else if(tilePixelPos.x < 0.0f) {
-      // Left edge
-    sourceUV = (tilePos * u_tileSize + vec2(0.0f, tilePixelPos.y)) / u_imageSize;
-  } else if(tilePixelPos.x >= u_tileSize.x) {
-      // Right edge
-    sourceUV = (tilePos * u_tileSize + vec2(u_tileSize.x - 1.0f, tilePixelPos.y)) / u_imageSize;
-  } else if(tilePixelPos.y < 0.0f) {
-      // Top edge
-    sourceUV = (tilePos * u_tileSize + vec2(tilePixelPos.x, 0.0f)) / u_imageSize;
-  } else if(tilePixelPos.y >= u_tileSize.y) {
-      // Bottom edge
-    sourceUV = (tilePos * u_tileSize + vec2(tilePixelPos.x, u_tileSize.y - 1.0f)) / u_imageSize;
+  // Handle the X axis first.
+  if(pixelPosInTile.x < u_extrusion) {
+    // Left extrusion
+    uvPosInTile.x = 0.0f;
+  } else if(pixelPosInTile.x < u_extrusion + u_tileSize.x) {
+    // Inside tile
+    uvPosInTile.x = pixelPosInTile.x - u_extrusion;
+  } else if(pixelPosInTile.x < 2.0f * u_extrusion + u_tileSize.x) {
+    // Right extrusion
+    uvPosInTile.x = u_tileSize.x - 1.0f;
   } else {
-      // Main tile area
-    sourceUV = (tilePos * u_tileSize + tilePixelPos) / u_imageSize;
+    // Right spacing
+    uvPosInTile.x = pixelPosInTile.x - 2.0f * u_extrusion;
   }
 
-  vec4 texColor = texture(u_tilesetImage, sourceUV);
+  // Handle the Y axis.
+  if(pixelPosInTile.y < u_extrusion) {
+    // Top extrusion
+    uvPosInTile.y = 0.0f;
+  } else if(pixelPosInTile.y < u_extrusion + u_tileSize.y) {
+    // Inside tile
+    uvPosInTile.y = pixelPosInTile.y - u_extrusion;
+  } else if(pixelPosInTile.y < 2.0f * u_extrusion + u_tileSize.y) {
+    // Bottom extrusion
+    uvPosInTile.y = u_tileSize.y - 1.0f;
+  } else {
+    // Bottom spacing
+    uvPosInTile.y = pixelPosInTile.y - 2.0f * u_extrusion;
+  }
 
-  fragColor = texColor;
+  vec2 uvPos = u_margin + uvPosInTile + posInTileCoords * (u_tileSize + u_spacing);
+
+  ivec2 texelCoord = ivec2(uvPos);
+  fragColor = texelFetch(u_tilesetImage, texelCoord, 0);
 }
