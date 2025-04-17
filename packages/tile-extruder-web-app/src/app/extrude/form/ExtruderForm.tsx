@@ -1,12 +1,14 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { useTilesetImage } from "./TilesetImageProvider";
 import { createExtrusionProgram, ShaderProgram } from "../extrusionProgram/createExtrusionProgram";
 import { isError } from "ts-outcome";
 import ImageDropZone from "@/app/ImageDropZone";
+import { useForm } from "react-hook-form";
+import { IntegerField } from "./IntegerField";
 
-type TileExtrusionOptions = {
+export type FormValues = {
   tileWidth: number;
   tileHeight: number;
   extrusionAmount: number;
@@ -14,18 +16,30 @@ type TileExtrusionOptions = {
   spacing: number;
 };
 
+const defaultValues: FormValues = {
+  tileWidth: 16,
+  tileHeight: 16,
+  extrusionAmount: 1,
+  margin: 0,
+  spacing: 0,
+};
+
 export default function ExtruderForm() {
-  const [options, setOptions] = useState<TileExtrusionOptions>({
-    tileWidth: 16,
-    tileHeight: 16,
-    extrusionAmount: 1,
-    margin: 0,
-    spacing: 0,
-  });
   const sourceCanvasRef = useRef<HTMLCanvasElement>(null);
   const shaderCanvasRef = useRef<HTMLCanvasElement>(null);
   const shaderProgramRef = useRef<ShaderProgram | null>(null);
   const { imageElement, isImageLoading, setImageFile } = useTilesetImage();
+
+  const {
+    register,
+    watch,
+    formState: { errors, isValid, isValidating },
+  } = useForm<FormValues>({
+    defaultValues,
+    mode: "onChange",
+  });
+  const options = watch();
+  const hasValidValues = isValid && !isValidating;
 
   // Update the tileset preview canvas when the image element changes.
   useEffect(() => {
@@ -49,10 +63,16 @@ export default function ExtruderForm() {
 
   // Update the extruded tileset preview canvas when the image element changes.
   useEffect(() => {
+    if (!imageElement) {
+      return;
+    }
+
+    if (!hasValidValues) {
+      return;
+    }
+
     const canvas = shaderCanvasRef.current;
     if (!canvas) return;
-
-    if (!imageElement) return;
 
     const gl = canvas.getContext("webgl2");
     if (!gl) {
@@ -60,12 +80,27 @@ export default function ExtruderForm() {
       return;
     }
 
-    // TODO: we need to set up margin and spacing here and then in the shader.
-    const tilesPerRow = Math.floor(imageElement.width / options.tileWidth);
-    const tilesPerCol = Math.floor(imageElement.height / options.tileHeight);
+    // Solve for "cols" & "rows" to get the formulae used here:
+    //  width = 2 * margin + (cols - 1) * spacing + cols * tileWidth
+    //  height = 2 * margin + (rows - 1) * spacing + rows * tileHeight
+    const cols =
+      (imageElement.width - 2 * options.margin + options.spacing) /
+      (options.tileWidth + options.spacing);
+    const rows =
+      (imageElement.height - 2 * options.margin + options.spacing) /
+      (options.tileHeight + options.spacing);
 
-    canvas.width = tilesPerRow * (options.tileWidth + 2 * options.extrusionAmount);
-    canvas.height = tilesPerCol * (options.tileHeight + 2 * options.extrusionAmount);
+    // Same calculation but in reverse & inflating the tile size by the extrusion amount
+    const newWidth =
+      2 * options.margin +
+      (cols - 1) * options.spacing +
+      cols * (options.tileWidth + 2 * options.extrusionAmount);
+    const newHeight =
+      2 * options.margin +
+      (rows - 1) * options.spacing +
+      rows * (options.tileHeight + 2 * options.extrusionAmount);
+    canvas.width = newWidth;
+    canvas.height = newHeight;
 
     const programResult = createExtrusionProgram({
       gl,
@@ -90,7 +125,7 @@ export default function ExtruderForm() {
     render();
 
     return destroy;
-  }, [imageElement, options]);
+  }, [imageElement, hasValidValues, options]);
 
   const handleDownload = () => {
     if (!shaderCanvasRef.current || !shaderProgramRef.current) return;
@@ -137,7 +172,7 @@ export default function ExtruderForm() {
               </button>
             )}
           </div>
-          <div className="cursor-pointer bg-white h-[250px] border-2 border-gray-200 p-2 rounded-sm hover:border-blue-500 hover:bg-blue-50 transition-colors flex flex-col items-center justify-center overflow-hidden">
+          <div className="cursor-pointer h-[250px] border-2 border-gray-200 p-2 rounded-sm hover:border-blue-500 hover:bg-blue-50 transition-colors flex flex-col items-center justify-center overflow-hidden">
             <ImageDropZone onDrop={handleImageDrop} className="w-full aspect-square">
               {isImageLoading ? (
                 <div className="mt-2 text-sm text-gray-500 flex items-center">
@@ -203,58 +238,48 @@ export default function ExtruderForm() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-900 mb-1">Tile Width</label>
-          <input
-            type="number"
-            min={1}
-            value={options.tileWidth}
-            onChange={(e) => setOptions({ ...options, tileWidth: parseInt(e.target.value) })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-900 mb-1">Tile Height</label>
-          <input
-            type="number"
-            min={1}
-            value={options.tileHeight}
-            onChange={(e) => setOptions({ ...options, tileHeight: parseInt(e.target.value) })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-900 mb-1">Extrusion Amount</label>
-          <input
-            type="number"
-            min={1}
-            value={options.extrusionAmount}
-            onChange={(e) => setOptions({ ...options, extrusionAmount: parseInt(e.target.value) })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-900 mb-1">Margin</label>
-          <input
-            type="number"
-            min={0}
-            value={options.margin}
-            onChange={(e) => setOptions({ ...options, margin: parseInt(e.target.value) })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-900 mb-1">Spacing</label>
-          <input
-            type="number"
-            min={0}
-            value={options.spacing}
-            onChange={(e) => setOptions({ ...options, spacing: parseInt(e.target.value) })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-      </div>
+      <form className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <IntegerField
+          name="tileWidth"
+          label="Tile Width"
+          min={1}
+          max={1000}
+          register={register}
+          errors={errors}
+        />
+        <IntegerField
+          name="tileHeight"
+          label="Tile Height"
+          min={1}
+          max={1000}
+          register={register}
+          errors={errors}
+        />
+        <IntegerField
+          name="extrusionAmount"
+          label="Extrusion Amount"
+          min={1}
+          max={1000}
+          register={register}
+          errors={errors}
+        />
+        <IntegerField
+          name="margin"
+          label="Margin"
+          min={0}
+          max={1000}
+          register={register}
+          errors={errors}
+        />
+        <IntegerField
+          name="spacing"
+          label="Spacing"
+          min={0}
+          max={1000}
+          register={register}
+          errors={errors}
+        />
+      </form>
 
       <button
         onClick={handleDownload}

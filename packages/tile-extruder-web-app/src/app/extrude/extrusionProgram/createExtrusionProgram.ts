@@ -43,6 +43,8 @@ export function createExtrusionProgram({
   const extrusionLocation = gl.getUniformLocation(program, "u_extrusion");
   const canvasSizeLocation = gl.getUniformLocation(program, "u_canvasSize");
   const imageSizeLocation = gl.getUniformLocation(program, "u_imageSize");
+  const spacingLocation = gl.getUniformLocation(program, "u_spacing");
+  const marginLocation = gl.getUniformLocation(program, "u_margin");
 
   // Vertex positions for a quad covering the render area. (-1, -1) is the is
   // the bottom left in clip space.
@@ -120,6 +122,8 @@ export function createExtrusionProgram({
       // Set uniforms
       gl.uniform2f(tileSizeLocation, options.tileWidth, options.tileHeight);
       gl.uniform1f(extrusionLocation, options.extrusionAmount);
+      gl.uniform1f(spacingLocation, options.spacing);
+      gl.uniform1f(marginLocation, options.margin);
       gl.uniform2f(canvasSizeLocation, gl.canvas.width, gl.canvas.height);
       gl.uniform2f(imageSizeLocation, tilesetImage.width, tilesetImage.height);
 
