@@ -27,7 +27,10 @@ export default function Home() {
         </div>
 
         <div className="max-w-[500px] w-full mx-auto">
-          <ImageDropZone onDrop={handleImageDrop} className="w-full p-8">
+          <ImageDropZone
+            onDrop={handleImageDrop}
+            className="w-full p-8 border-2 border-gray-200 p-2 rounded-sm hover:border-blue-500 hover:bg-blue-50 transition-colors"
+          >
             <div className="flex flex-col items-center justify-center h-full text-gray-500">
               <svg
                 className="mx-auto h-12 w-12"

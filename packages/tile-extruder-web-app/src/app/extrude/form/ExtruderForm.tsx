@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { useTilesetImage } from "./TilesetImageProvider";
 import { createExtrusionProgram, ShaderProgram } from "../extrusionProgram/createExtrusionProgram";
 import { isError } from "ts-outcome";
+import ImageDropZone from "@/app/ImageDropZone";
 
 type TileExtrusionOptions = {
   tileWidth: number;
@@ -24,7 +25,7 @@ export default function ExtruderForm() {
   const sourceCanvasRef = useRef<HTMLCanvasElement>(null);
   const shaderCanvasRef = useRef<HTMLCanvasElement>(null);
   const shaderProgramRef = useRef<ShaderProgram | null>(null);
-  const { imageElement, isImageLoading } = useTilesetImage();
+  const { imageElement, isImageLoading, setImageFile } = useTilesetImage();
 
   // Update the tileset preview canvas when the image element changes.
   useEffect(() => {
@@ -103,38 +104,106 @@ export default function ExtruderForm() {
     link.click();
   };
 
+  const handleImageDrop = (files: File[]) => {
+    if (files.length > 0) {
+      setImageFile(files[0]);
+    }
+  };
+
+  const handleClearImage = () => {
+    setImageFile(null);
+  };
+
   return (
     <div className="max-w-4xl mx-auto p-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
         <div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Original Tileset</h3>
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-            <canvas
-              ref={sourceCanvasRef}
-              className="max-w-full h-auto"
-              style={{ imageRendering: "pixelated" }}
-            />
-            {isImageLoading && (
-              <div className="mt-2 text-sm text-gray-500 flex items-center">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-500 mr-2"></div>
-                Loading image...
-              </div>
+          <div className="flex justify-between items-center mb-2">
+            <h3 className="text-lg font-medium text-gray-900">Original Tileset</h3>
+            {imageElement && (
+              <button
+                onClick={handleClearImage}
+                className="text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100 transition-colors cursor-pointer"
+                title="Clear image"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
             )}
+          </div>
+          <div className="cursor-pointer bg-white h-[250px] border-2 border-gray-200 p-2 rounded-sm hover:border-blue-500 hover:bg-blue-50 transition-colors flex flex-col items-center justify-center overflow-hidden">
+            <ImageDropZone onDrop={handleImageDrop} className="w-full aspect-square">
+              {isImageLoading ? (
+                <div className="mt-2 text-sm text-gray-500 flex items-center">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-500 mr-2"></div>
+                  Loading image...
+                </div>
+              ) : null}
+              {imageElement ? (
+                <canvas
+                  ref={sourceCanvasRef}
+                  className="w-full h-full object-contain [image-rendering:pixelated]"
+                />
+              ) : (
+                <div className="flex flex-col items-center justify-center h-full text-gray-500">
+                  <svg
+                    className="mx-auto h-12 w-12"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  <div>
+                    <p className="text-lg mb-1">Drag and drop your tileset image here,</p>
+                    <p className="text-sm">Or, click to select a file</p>
+                  </div>
+                </div>
+              )}
+            </ImageDropZone>
           </div>
         </div>
         <div>
           <h3 className="text-lg font-medium text-gray-900 mb-2">Extruded Preview</h3>
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-            <canvas
-              ref={shaderCanvasRef}
-              className="max-w-full h-auto"
-              style={{ imageRendering: "pixelated" }}
-            />
+          <div className="bg-white h-[250px] border-2 border-gray-200 p-2 rounded-sm flex flex-col items-center justify-center overflow-hidden">
+            {imageElement ? (
+              <canvas
+                ref={shaderCanvasRef}
+                className="w-full h-full object-contain [image-rendering:pixelated]"
+              />
+            ) : (
+              <div className="flex flex-col items-center justify-center h-full text-gray-500">
+                <svg
+                  className="mx-auto h-12 w-12"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+            )}
           </div>
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-gray-900 mb-1">Tile Width</label>
           <input
