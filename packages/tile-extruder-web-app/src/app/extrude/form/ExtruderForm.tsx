@@ -101,7 +101,7 @@ export default function ExtruderForm() {
       rows * (options.tileHeight + 2 * options.extrusionAmount);
     canvas.width = newWidth;
     canvas.height = newHeight;
-    console.log("render", options);
+
     const programResult = createExtrusionProgram({
       gl,
       tilesetImage: imageElement,
