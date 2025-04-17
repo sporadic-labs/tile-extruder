@@ -17,7 +17,7 @@ export function TilesetImageProvider({ children }: { children: ReactNode }) {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [isImageLoading, setIsImageLoading] = useState(false);
   const [imageElement, setImageElement] = useState<HTMLImageElement | null>(null);
-  const { setObjectUrlFromFile, objectUrl: imageObjectUrl } = useObjectUrl();
+  const { setObjectUrlFromFile, objectUrl: imageObjectUrl, clearObjectUrl } = useObjectUrl();
 
   useEffect(() => {
     if (imageObjectUrl) {
@@ -38,8 +38,12 @@ export function TilesetImageProvider({ children }: { children: ReactNode }) {
   const handleSetImage = (newImage: File | null) => {
     if (newImage) {
       setObjectUrlFromFile(newImage);
+      setImageFile(newImage);
+    } else {
+      clearObjectUrl();
+      setImageElement(null);
+      setImageFile(null);
     }
-    setImageFile(newImage);
   };
 
   return (

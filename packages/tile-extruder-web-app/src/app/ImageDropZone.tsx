@@ -49,7 +49,7 @@ export default function ImageDropZone({ onDrop, children, className = "" }: Imag
 
   return (
     <div
-      className={`h-full border-2 border-gray-200 p-2 rounded-sm text-center cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-colors flex items-center justify-center ${className}`}
+      className={`h-full text-center cursor-pointer flex items-center justify-center ${className}`}
       onClick={handleClick}
       onDragEnter={handleDrag}
       onDragLeave={handleDrag}

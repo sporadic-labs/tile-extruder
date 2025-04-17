@@ -17,6 +17,13 @@ export function useObjectUrl() {
     return url;
   };
 
+  const clearObjectUrl = () => {
+    if (objectUrl) {
+      URL.revokeObjectURL(objectUrl);
+      setObjectUrl(null);
+    }
+  };
+
   useEffect(() => {
     return () => {
       if (objectUrl) {
@@ -25,5 +32,5 @@ export function useObjectUrl() {
     };
   }, [objectUrl]);
 
-  return { objectUrl, setObjectUrlFromFile };
+  return { objectUrl, setObjectUrlFromFile, clearObjectUrl };
 }
