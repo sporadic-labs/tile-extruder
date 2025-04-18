@@ -5,6 +5,7 @@ import { useObjectUrl } from "@/app/extrude/form/useObjectUrl";
 
 interface TilesetImageContextType {
   imageFile: File | null;
+  imageName: string;
   imageObjectUrl: string | null;
   setImageFile: (imageFile: File | null) => void;
   isImageLoading: boolean;
@@ -13,10 +14,13 @@ interface TilesetImageContextType {
 
 const TilesetImageContext = createContext<TilesetImageContextType | undefined>(undefined);
 
+const defaultImageName = "unknown.png";
+
 export function TilesetImageProvider({ children }: { children: ReactNode }) {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [isImageLoading, setIsImageLoading] = useState(false);
   const [imageElement, setImageElement] = useState<HTMLImageElement | null>(null);
+  const [imageName, setImageName] = useState<string>(defaultImageName);
   const { setObjectUrlFromFile, objectUrl: imageObjectUrl, clearObjectUrl } = useObjectUrl();
 
   useEffect(() => {
@@ -39,10 +43,12 @@ export function TilesetImageProvider({ children }: { children: ReactNode }) {
     if (newImage) {
       setObjectUrlFromFile(newImage);
       setImageFile(newImage);
+      setImageName(newImage.name ?? "unknown.png");
     } else {
       clearObjectUrl();
       setImageElement(null);
       setImageFile(null);
+      setImageName(defaultImageName);
     }
   };
 
@@ -50,6 +56,7 @@ export function TilesetImageProvider({ children }: { children: ReactNode }) {
     <TilesetImageContext.Provider
       value={{
         imageFile,
+        imageName,
         imageObjectUrl,
         setImageFile: handleSetImage,
         isImageLoading,
