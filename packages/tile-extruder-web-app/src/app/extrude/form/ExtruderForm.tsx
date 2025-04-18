@@ -183,6 +183,7 @@ export default function ExtruderForm() {
               {imageElement ? (
                 <canvas
                   ref={sourceCanvasRef}
+                  data-cy="original-tileset-canvas"
                   className="w-full h-full object-contain [image-rendering:pixelated]"
                 />
               ) : (
@@ -215,6 +216,7 @@ export default function ExtruderForm() {
             {imageElement ? (
               <canvas
                 ref={shaderCanvasRef}
+                data-cy="extruded-tileset-canvas"
                 className="w-full h-full object-contain [image-rendering:pixelated]"
               />
             ) : (
