@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useMemo, useState } from "react";
 import { useTilesetImage } from "./TilesetImageProvider";
 import { createExtrusionProgram, ShaderProgram } from "../extrusionProgram/createExtrusionProgram";
+import { createGridProgram } from "../gridProgram/createGridProgram";
 import { isError } from "ts-outcome";
 import ImageDropZone from "@/app/ImageDropZone";
 import { useForm } from "react-hook-form";
@@ -24,11 +25,47 @@ const defaultValues: FormValues = {
   spacing: 0,
 };
 
+function ImageInfo({ name, width, height }: { name: string; width: number; height: number }) {
+  return (
+    <div className="mt-2 text-sm text-gray-500 text-center">
+      {name} ({width} x {height}px)
+    </div>
+  );
+}
+
+const calculateExtrudedTilesetDimensions = (
+  imageElement: HTMLImageElement,
+  options: FormValues
+) => {
+  // Solve for "cols" & "rows" to get the formulae used here:
+  //  width = 2 * margin + (cols - 1) * spacing + cols * tileWidth
+  //  height = 2 * margin + (rows - 1) * spacing + rows * tileHeight
+  const cols =
+    (imageElement.width - 2 * options.margin + options.spacing) /
+    (options.tileWidth + options.spacing);
+  const rows =
+    (imageElement.height - 2 * options.margin + options.spacing) /
+    (options.tileHeight + options.spacing);
+
+  // Same calculation but in reverse & inflating the tile size by the extrusion amount
+  const newWidth =
+    2 * options.margin +
+    (cols - 1) * options.spacing +
+    cols * (options.tileWidth + 2 * options.extrusionAmount);
+  const newHeight =
+    2 * options.margin +
+    (rows - 1) * options.spacing +
+    rows * (options.tileHeight + 2 * options.extrusionAmount);
+
+  return { width: newWidth, height: newHeight };
+};
+
 export default function ExtruderForm() {
   const sourceCanvasRef = useRef<HTMLCanvasElement>(null);
   const shaderCanvasRef = useRef<HTMLCanvasElement>(null);
   const shaderProgramRef = useRef<ShaderProgram | null>(null);
-  const { imageElement, isImageLoading, setImageFile } = useTilesetImage();
+  const { imageElement, isImageLoading, setImageFile, imageName } = useTilesetImage();
+  const [showGrid, setShowGrid] = useState(false);
 
   const {
     register,
@@ -41,6 +78,11 @@ export default function ExtruderForm() {
   const options = watch();
   const hasValidValues = isValid && !isValidating;
 
+  const extrudedShaderDimensions = useMemo(() => {
+    if (!imageElement) return { width: 0, height: 0 };
+    return calculateExtrudedTilesetDimensions(imageElement, options);
+  }, [imageElement, options]);
+
   // Update the tileset preview canvas when the image element changes.
   useEffect(() => {
     async function updateCanvases() {
@@ -52,14 +94,39 @@ export default function ExtruderForm() {
       const sourceCanvas = sourceCanvasRef.current;
       sourceCanvas.width = image.width;
       sourceCanvas.height = image.height;
-      const sourceCtx = sourceCanvas.getContext("2d", { willReadFrequently: true });
-      if (!sourceCtx) return;
-      sourceCtx.clearRect(0, 0, sourceCanvas.width, sourceCanvas.height);
-      sourceCtx.drawImage(image, 0, 0);
+      const gl = sourceCanvas.getContext("webgl2");
+      if (!gl) {
+        console.error("WebGL not supported");
+        return;
+      }
+
+      const programResult = createGridProgram({
+        gl,
+        tilesetImage: image,
+        options: {
+          tileWidth: options.tileWidth,
+          tileHeight: options.tileHeight,
+          margin: options.margin,
+          spacing: options.spacing,
+        },
+        showGrid,
+        gridColor: { r: 0, g: 1, b: 0, a: 1 },
+      });
+
+      if (isError(programResult)) {
+        console.error("Error creating grid program:", programResult.error);
+        return;
+      }
+
+      const { render, destroy } = programResult.value;
+
+      render();
+
+      return destroy;
     }
 
     updateCanvases();
-  }, [imageElement, options]);
+  }, [imageElement, options, showGrid]);
 
   // Update the extruded tileset preview canvas when the image element changes.
   useEffect(() => {
@@ -79,28 +146,9 @@ export default function ExtruderForm() {
       console.error("WebGL not supported");
       return;
     }
-
-    // Solve for "cols" & "rows" to get the formulae used here:
-    //  width = 2 * margin + (cols - 1) * spacing + cols * tileWidth
-    //  height = 2 * margin + (rows - 1) * spacing + rows * tileHeight
-    const cols =
-      (imageElement.width - 2 * options.margin + options.spacing) /
-      (options.tileWidth + options.spacing);
-    const rows =
-      (imageElement.height - 2 * options.margin + options.spacing) /
-      (options.tileHeight + options.spacing);
-
-    // Same calculation but in reverse & inflating the tile size by the extrusion amount
-    const newWidth =
-      2 * options.margin +
-      (cols - 1) * options.spacing +
-      cols * (options.tileWidth + 2 * options.extrusionAmount);
-    const newHeight =
-      2 * options.margin +
-      (rows - 1) * options.spacing +
-      rows * (options.tileHeight + 2 * options.extrusionAmount);
-    canvas.width = newWidth;
-    canvas.height = newHeight;
+    const { width, height } = calculateExtrudedTilesetDimensions(imageElement, options);
+    canvas.width = width;
+    canvas.height = height;
 
     const programResult = createExtrusionProgram({
       gl,
@@ -173,7 +221,7 @@ export default function ExtruderForm() {
             )}
           </div>
           <div className="cursor-pointer h-[250px] border-2 border-gray-200 p-2 rounded-sm hover:border-blue-500 hover:bg-blue-50 transition-colors flex flex-col items-center justify-center overflow-hidden">
-            <ImageDropZone onDrop={handleImageDrop} className="w-full aspect-square">
+            <ImageDropZone onDrop={handleImageDrop} className="w-full h-full">
               {isImageLoading ? (
                 <div className="mt-2 text-sm text-gray-500 flex items-center">
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-500 mr-2"></div>
@@ -209,6 +257,9 @@ export default function ExtruderForm() {
               )}
             </ImageDropZone>
           </div>
+          {imageElement && (
+            <ImageInfo name={imageName} width={imageElement.width} height={imageElement.height} />
+          )}
         </div>
         <div>
           <h3 className="text-lg font-medium text-gray-900 mb-2">Extruded Preview</h3>
@@ -237,6 +288,13 @@ export default function ExtruderForm() {
               </div>
             )}
           </div>
+          {imageElement && (
+            <ImageInfo
+              name="Extruded Tileset"
+              width={extrudedShaderDimensions.width}
+              height={extrudedShaderDimensions.height}
+            />
+          )}
         </div>
       </div>
 
@@ -281,6 +339,20 @@ export default function ExtruderForm() {
           register={register}
           errors={errors}
         />
+        <div className="flex items-center h-full mt-3">
+          <div className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              id="showGrid"
+              checked={showGrid}
+              onChange={(e) => setShowGrid(e.target.checked)}
+              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            />
+            <label htmlFor="showGrid" className="text-sm font-medium text-gray-700">
+              Toggle tile grid visualization
+            </label>
+          </div>
+        </div>
       </form>
 
       <button
