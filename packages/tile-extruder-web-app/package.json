@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "next": "15.3.0",
@@ -21,6 +23,7 @@
     "@types/node": "^22.14.1",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
+    "cypress": "^14.3.1",
     "eslint": "^9.24.0",
     "eslint-config-next": "15.3.0",
     "raw-loader": "^4.0.2",
