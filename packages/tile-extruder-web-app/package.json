@@ -13,8 +13,10 @@
   "dependencies": {
     "next": "15.3.0",
     "react": "^19.1.0",
+    "react-aria-components": "^1.8.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.55.0",
+    "react-icons": "^5.5.0",
     "ts-outcome": "^0.1.0"
   },
   "devDependencies": {
