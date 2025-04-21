@@ -8,6 +8,7 @@ import { isError } from "ts-outcome";
 import ImageDropZone from "@/app/ImageDropZone";
 import { useForm } from "react-hook-form";
 import { IntegerField } from "./IntegerField";
+import Image from "next/image";
 
 export type FormValues = {
   tileWidth: number;
@@ -322,6 +323,7 @@ export default function ExtruderForm() {
           max={1000}
           register={register}
           errors={errors}
+          tooltip="How many pixels to extrude each tile. 1px should be enough for most cases."
         />
         <IntegerField
           name="margin"
@@ -330,6 +332,18 @@ export default function ExtruderForm() {
           max={1000}
           register={register}
           errors={errors}
+          tooltip={
+            <div className="flex flex-col gap-2">
+              <p>The margin around the original tileset.</p>
+              <Image
+                src="/margin-and-spacing.png"
+                alt="Margin and spacing diagram"
+                width={250}
+                height={187}
+                className="w-[250px] h-auto"
+              />
+            </div>
+          }
         />
         <IntegerField
           name="spacing"
@@ -338,6 +352,18 @@ export default function ExtruderForm() {
           max={1000}
           register={register}
           errors={errors}
+          tooltip={
+            <div className="flex flex-col gap-2">
+              <p>The spacing between tiles in the original tileset.</p>
+              <Image
+                src="/margin-and-spacing.png"
+                alt="Margin and spacing diagram"
+                width={250}
+                height={187}
+                className="w-[250px] h-auto"
+              />
+            </div>
+          }
         />
         <div className="flex items-center h-full mt-3">
           <div className="flex items-center space-x-2">
