@@ -3,6 +3,7 @@ import vertexShaderSource from "./vertexShader.glsl";
 import fragmentShaderSource from "./fragmentShader.glsl";
 import { makeSuccess, makeError, isError, Outcome } from "ts-outcome";
 import { createTexture } from "@/app/webgl/createTexture";
+import { createRafLoop } from "@/app/webgl/createRafLoop";
 
 export interface GridProgram {
   render: () => void;
@@ -49,6 +50,7 @@ export function createGridProgram({
   const marginLocation = gl.getUniformLocation(program, "u_margin");
   const gridColorLocation = gl.getUniformLocation(program, "u_gridColor");
   const showGridLocation = gl.getUniformLocation(program, "u_showGrid");
+  const timeLocation = gl.getUniformLocation(program, "u_time");
 
   // Vertex positions for a quad covering the render area. (-1, -1) is the is
   // the bottom left in clip space.
@@ -102,30 +104,41 @@ export function createGridProgram({
   gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
   gl.vertexAttribPointer(texCoordLocation, 2, gl.FLOAT, false, 0, 0);
 
+  const draw = (time: { elapsedMs: number; currentMs: number }) => {
+    if (isDestroyed) {
+      return;
+    }
+
+    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+    gl.clearColor(0, 0, 0, 0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.useProgram(program);
+    gl.bindVertexArray(vertexArrayObject);
+
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, tilesetImageTexture);
+    gl.uniform1i(tilesetImageLocation, 0);
+
+    gl.uniform2f(tileSizeLocation, options.tileWidth, options.tileHeight);
+    gl.uniform1f(spacingLocation, options.spacing);
+    gl.uniform1f(marginLocation, options.margin);
+    gl.uniform2f(canvasSizeLocation, gl.canvas.width, gl.canvas.height);
+    gl.uniform4f(gridColorLocation, gridColor.r, gridColor.g, gridColor.b, gridColor.a);
+    gl.uniform1f(showGridLocation, showGrid ? 1.0 : 0.0);
+
+    gl.uniform1f(timeLocation, time.elapsedMs / 1000);
+
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  };
+
+  const rafLoop = createRafLoop(draw);
+
   return makeSuccess({
     render: () => {
       if (isDestroyed) {
         return;
       }
-
-      gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-      gl.clearColor(0, 0, 0, 0);
-      gl.clear(gl.COLOR_BUFFER_BIT);
-      gl.useProgram(program);
-      gl.bindVertexArray(vertexArrayObject);
-
-      gl.activeTexture(gl.TEXTURE0);
-      gl.bindTexture(gl.TEXTURE_2D, tilesetImageTexture);
-      gl.uniform1i(tilesetImageLocation, 0);
-
-      gl.uniform2f(tileSizeLocation, options.tileWidth, options.tileHeight);
-      gl.uniform1f(spacingLocation, options.spacing);
-      gl.uniform1f(marginLocation, options.margin);
-      gl.uniform2f(canvasSizeLocation, gl.canvas.width, gl.canvas.height);
-      gl.uniform4f(gridColorLocation, gridColor.r, gridColor.g, gridColor.b, gridColor.a);
-      gl.uniform1f(showGridLocation, showGrid ? 1.0 : 0.0);
-
-      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      rafLoop.start();
     },
     destroy: () => {
       if (isDestroyed) {
@@ -133,6 +146,7 @@ export function createGridProgram({
       }
 
       isDestroyed = true;
+      rafLoop.stop();
       gl.deleteBuffer(positionBuffer);
       gl.deleteBuffer(texCoordBuffer);
       gl.deleteVertexArray(vertexArrayObject);

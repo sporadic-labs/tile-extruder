@@ -9,6 +9,7 @@ import ImageDropZone from "@/app/ImageDropZone";
 import { useForm } from "react-hook-form";
 import { IntegerField } from "./IntegerField";
 import Image from "next/image";
+import { MdError } from "react-icons/md";
 
 export type FormValues = {
   tileWidth: number;
@@ -61,12 +62,31 @@ const calculateExtrudedTilesetDimensions = (
   return { width: newWidth, height: newHeight };
 };
 
+function useCheckDimensions({ width, height }: { width: number; height: number }) {
+  const isValidWidth = Number.isInteger(width);
+  const isValidHeight = Number.isInteger(height);
+
+  if (!isValidWidth && !isValidHeight) {
+    return "The extruded image width and height would not be whole numbers based on your margin, spacing and tileWidth or tileHeight. Double check your settings.";
+  }
+
+  if (!isValidWidth) {
+    return "The extruded image width would not be a whole number based on your margin, spacing and tileWidth. Double check your settings.";
+  }
+
+  if (!isValidHeight) {
+    return "The extruded image height would not be a whole number based on your margin, spacing and tileHeight. Double check your settings.";
+  }
+
+  return null;
+}
+
 export default function ExtruderForm() {
   const sourceCanvasRef = useRef<HTMLCanvasElement>(null);
   const shaderCanvasRef = useRef<HTMLCanvasElement>(null);
   const shaderProgramRef = useRef<ShaderProgram | null>(null);
   const { imageElement, isImageLoading, setImageFile, imageName } = useTilesetImage();
-  const [showGrid, setShowGrid] = useState(false);
+  const [showGrid, setShowGrid] = useState(true);
 
   const {
     register,
@@ -80,9 +100,11 @@ export default function ExtruderForm() {
   const hasValidValues = isValid && !isValidating;
 
   const extrudedShaderDimensions = useMemo(() => {
-    if (!imageElement) return { width: 0, height: 0 };
+    if (!imageElement) return { width: 0, height: 0, cols: 0, rows: 0 };
     return calculateExtrudedTilesetDimensions(imageElement, options);
   }, [imageElement, options]);
+
+  const dimensionError = useCheckDimensions(extrudedShaderDimensions);
 
   // Update the tileset preview canvas when the image element changes.
   useEffect(() => {
@@ -300,9 +322,20 @@ export default function ExtruderForm() {
       </div>
 
       <form className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {dimensionError && (
+          <div
+            className="col-span-2 bg-red-50 border border-red-200 text-red-700 px-3 py-2 rounded relative text-sm"
+            role="alert"
+          >
+            <div className="flex items-center">
+              <MdError className="w-4 h-4 mr-2" />
+              <span>{dimensionError}</span>
+            </div>
+          </div>
+        )}
         <IntegerField
           name="tileWidth"
-          label="Tile Width"
+          label="Tile width"
           min={1}
           max={1000}
           register={register}
@@ -310,7 +343,7 @@ export default function ExtruderForm() {
         />
         <IntegerField
           name="tileHeight"
-          label="Tile Height"
+          label="Tile height"
           min={1}
           max={1000}
           register={register}
@@ -318,7 +351,7 @@ export default function ExtruderForm() {
         />
         <IntegerField
           name="extrusionAmount"
-          label="Extrusion Amount"
+          label="Extrusion amount"
           min={1}
           max={1000}
           register={register}

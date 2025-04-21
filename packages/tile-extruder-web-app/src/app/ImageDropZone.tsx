@@ -16,7 +16,11 @@ export default function ImageDropZone({ onDrop, children, className = "" }: Imag
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleClick = useCallback(() => {
-    fileInputRef.current?.click();
+    if (fileInputRef.current) {
+      // Clear input value to allow re-uploading the same file.
+      fileInputRef.current.value = "";
+      fileInputRef.current.click();
+    }
   }, []);
 
   const handleFileChange = useCallback(

@@ -1,4 +1,5 @@
 #version 300 es
+#define PI 3.1415926538
 
 precision highp float;
 
@@ -11,6 +12,7 @@ uniform float u_margin;
 uniform float u_spacing;
 uniform vec4 u_gridColor;
 uniform bool u_showGrid;
+uniform float u_time;
 
 out vec4 fragColor;
 
@@ -36,7 +38,10 @@ void main() {
     pixelPosInTile.y >= 0.0f && pixelPosInTile.y < u_tileSize.y &&
     (pixelPosInTile.x < 1.0f || pixelPosInTile.x > u_tileSize.x - 1.0f ||
     pixelPosInTile.y < 1.0f || pixelPosInTile.y > u_tileSize.y - 1.0f)) {
-    fragColor = mix(imageColor, u_gridColor, 0.7f);
+    // Generate a value between 0 and 1 that will take 2 seconds.
+    float t = 0.5f + 0.5f * sin(u_time * 0.5f * PI);
+    float gridColorAmount = mix(0.1f, 0.8f, t);
+    fragColor = mix(imageColor, u_gridColor, gridColorAmount);
     return;
   }
 
