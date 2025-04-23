@@ -35,6 +35,4 @@ jobs:
           cache: "pnpm"
       - run: pnpm install
       - run: pnpm --filter tile-extruder-web-app build
-      - run: pnpm --filter tile-extruder-web-app start
-      - name: Run e2e tests
-        run: pnpm --filter tile-extruder-web-app e2e
+      - run: pnpm --filter tile-extruder-web-app cypress:ci
