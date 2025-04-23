@@ -40,8 +40,10 @@ jobs:
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
-          command: pnpm --filter tile-extruder-web-app cypress:ci
+          runTests: true
+          working-directory: packages/tile-extruder-web-app
+          command: pnpm cypress:ci
           browser: chrome
-          start: pnpm --filter tile-extruder-web-app start
+          start: pnpm start
           wait-on: "http://localhost:3000"
           wait-on-timeout: 30
