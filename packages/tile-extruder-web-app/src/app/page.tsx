@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useTilesetImage } from "@/app/extrude/form/TilesetImageProvider";
 import ImageDropZone from "./ImageDropZone";
+import Link from "next/link";
 
 export default function Home() {
   const router = useRouter();
@@ -22,7 +23,11 @@ export default function Home() {
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Tile Extruder</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Upload your tileset image and adjust the settings to create an extruded version that
-            prevents rendering artifacts in game engines.
+            prevents rendering artifacts in game engines. Learn more{" "}
+            <Link href="/info" className="text-blue-500 hover:text-blue-600">
+              here
+            </Link>
+            .
           </p>
         </div>
 
