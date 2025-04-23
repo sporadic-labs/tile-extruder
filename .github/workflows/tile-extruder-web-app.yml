@@ -35,6 +35,8 @@ jobs:
           cache: "pnpm"
       - run: pnpm install
       - run: pnpm --filter tile-extruder-web-app build
+      - name: Install Cypress
+        run: pnpm --filter tile-extruder-web-app cypress install
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
