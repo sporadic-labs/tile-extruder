@@ -46,8 +46,8 @@ export default function Home() {
                 />
               </svg>
               <div>
-                <p className="text-lg mb-1">Drag and drop your tileset image here,</p>
-                <p className="text-sm">Or, click to select a file</p>
+                <p className="text-lg mb-1">Drag and drop your tileset image here</p>
+                <p className="text-sm">or, click to select a file</p>
               </div>
             </div>
           </ImageDropZone>
