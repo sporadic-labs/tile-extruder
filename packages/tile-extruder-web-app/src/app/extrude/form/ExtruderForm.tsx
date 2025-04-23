@@ -356,7 +356,21 @@ export default function ExtruderForm() {
           max={1000}
           register={register}
           errors={errors}
-          tooltip="How many pixels to extrude each tile. 1px should be enough for most cases."
+          tooltip={
+            <div className="flex flex-col gap-2">
+              <p>
+                How many pixels to extrude each tile. 1px should be enough for most cases. Extrusion
+                looks like this:
+              </p>
+              <Image
+                src="/images/explanation.png"
+                alt="Visual explanation of tile extrusion"
+                width={200}
+                height={100}
+                className="w-[150px] h-auto"
+              />
+            </div>
+          }
         />
         <IntegerField
           name="margin"
