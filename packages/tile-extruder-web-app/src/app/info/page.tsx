@@ -18,9 +18,9 @@ export default function InfoPage() {
           <Image
             src="/images/demo.png"
             alt="Demo of tile extrusion"
-            width={600}
-            height={300}
-            className="mx-auto border border-gray-200 rounded-lg"
+            width={861}
+            height={487}
+            className="mx-auto max-w-[600px] border border-gray-200 rounded-lg"
           />
           <p>
             You can read more about the bleeding problem and solution{" "}
@@ -43,7 +43,7 @@ export default function InfoPage() {
             src="/images/explanation.png"
             alt="Visual explanation of tile extrusion"
             width={200}
-            height={100}
+            height={200}
             className="mx-auto border border-gray-200 rounded-lg"
           />
           <p>

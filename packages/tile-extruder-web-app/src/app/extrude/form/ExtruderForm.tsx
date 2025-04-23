@@ -366,7 +366,7 @@ export default function ExtruderForm() {
                 src="/images/explanation.png"
                 alt="Visual explanation of tile extrusion"
                 width={200}
-                height={100}
+                height={200}
                 className="w-[150px] h-auto"
               />
             </div>
