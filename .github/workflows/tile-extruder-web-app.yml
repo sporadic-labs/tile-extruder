@@ -17,7 +17,7 @@ on:
       - ".github/**"
 
 jobs:
-  build-and-test:
+  cypress:
     runs-on: ubuntu-latest
     strategy:
       matrix:
