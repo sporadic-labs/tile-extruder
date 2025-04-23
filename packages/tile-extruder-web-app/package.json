@@ -9,7 +9,7 @@
     "lint": "next lint",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "cypress:ci": "ts-node --project tsconfig.scripts.json scripts/run-cypress.ts"
+    "cypress:ci": "cypress run --browser chrome --headless"
   },
   "dependencies": {
     "next": "15.3.0",

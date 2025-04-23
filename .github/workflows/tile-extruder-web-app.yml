@@ -35,13 +35,11 @@ jobs:
           cache: "pnpm"
       - run: pnpm install
       - run: pnpm --filter tile-extruder-web-app build
-      - name: Start Next.js server
-        run: pnpm --filter tile-extruder-web-app start &
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
-          working-directory: packages/tile-extruder-web-app
+          command: pnpm --filter tile-extruder-web-app cypress:ci
           browser: chrome
-          start: false
+          start: pnpm --filter tile-extruder-web-app start
           wait-on: "http://localhost:3000"
           wait-on-timeout: 30
