@@ -9,7 +9,7 @@
     "lint": "next lint",
     "cypress": "cypress open",
     "cypress:run": "cypress run",
-    "cypress:ci": "next start && cypress run --browser chrome --headless"
+    "cypress:ci": "next start & cypress run --browser chrome --headless"
   },
   "dependencies": {
     "next": "15.3.0",

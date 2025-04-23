@@ -35,4 +35,19 @@ jobs:
           cache: "pnpm"
       - run: pnpm install
       - run: pnpm --filter tile-extruder-web-app build
-      - run: pnpm --filter tile-extruder-web-app cypress:ci
+      - name: Start Next.js server
+        run: pnpm --filter tile-extruder-web-app start &
+      - name: Wait for server to be ready
+        run: |
+          for i in {1..30}; do
+            if curl -s http://localhost:3000 > /dev/null; then
+              echo "Server is ready!"
+              exit 0
+            fi
+            echo "Waiting for server to start... ($i/30)"
+            sleep 1
+          done
+          echo "Server failed to start"
+          exit 1
+      - name: Run Cypress tests
+        run: pnpm --filter tile-extruder-web-app cypress:ci
