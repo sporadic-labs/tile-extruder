@@ -7,9 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cypress": "cypress open",
+    "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "cypress:ci": "next start & cypress run --browser chrome --headless"
+    "cypress:ci": "ts-node --project tsconfig.scripts.json scripts/run-cypress.ts"
   },
   "dependencies": {
     "next": "15.3.0",
@@ -32,6 +32,7 @@
     "eslint-config-next": "15.3.0",
     "raw-loader": "^4.0.2",
     "tailwindcss": "^4.1.4",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
 }
