@@ -33,7 +33,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
-      # Install dependencies at the root.
+      # Install dependencies at the root. The cypress action doesn't support
+      # monorepos completely. If you pass working-directory and try to install
+      # dependencies in a subpackage, the action will fail because it can't find
+      # the lockfile. To resolve this, run the action twice: once to install
+      # dependencies at the root, and once to run the tests.
+      # Note: the cypress version is pinned to an exact version in the
+      # package.json because running the action twice can lead to a version
+      # mismatch across the two runs.
       - name: Install dependencies
         uses: cypress-io/github-action@v6
         with:
