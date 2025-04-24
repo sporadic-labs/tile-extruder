@@ -28,11 +28,6 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: 10
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
       # Install dependencies at the root.
       - name: Install dependencies
         uses: cypress-io/github-action@v6
