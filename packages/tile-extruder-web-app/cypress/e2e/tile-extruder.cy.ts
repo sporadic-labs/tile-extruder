@@ -50,7 +50,7 @@ describe("Tile Extruder", () => {
       cy.get('input[name="margin"]').clear().type(testCase.margin);
       cy.get('input[name="spacing"]').clear().type(testCase.spacing);
 
-      cy.get("button").contains("Download").click();
+      cy.get("button").contains("upload").click();
 
       cy.compareImages(
         "cypress/downloads/extruded-tileset.png",
