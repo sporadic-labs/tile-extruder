@@ -33,6 +33,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           runTests: false
+          working-directory: ./
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
