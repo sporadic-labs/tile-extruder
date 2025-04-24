@@ -37,11 +37,11 @@ jobs:
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
-          install-command: pnpm exec cypress install
+          install: false
           runTests: true
           working-directory: packages/tile-extruder-web-app
           browser: chrome
           build: pnpm build
-          start: pnpm start
+          start: pnpm exec cypress install && pnpm start
           wait-on: "http://localhost:3000"
           wait-on-timeout: 30
