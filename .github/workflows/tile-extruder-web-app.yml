@@ -1,0 +1,59 @@
+name: Tile Extruder Web App CI
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "packages/tile-extruder-web-app/**"
+      - "pnpm-lock.yaml"
+      - "config/**"
+      - ".github/**"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "packages/tile-extruder-web-app/**"
+      - "pnpm-lock.yaml"
+      - "config/**"
+      - ".github/**"
+
+jobs:
+  cypress:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22.x]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      # Install dependencies at the root. The cypress action doesn't support
+      # monorepos completely. If you pass working-directory and try to install
+      # dependencies in a subpackage, the action will fail because it can't find
+      # the lockfile. To resolve this, run the action twice: once to install
+      # dependencies at the root, and once to run the tests.
+      # Note: the cypress version is pinned to an exact version in the
+      # package.json because running the action twice can lead to a version
+      # mismatch across the two runs.
+      - name: Install dependencies
+        uses: cypress-io/github-action@v6
+        with:
+          runTests: false
+          working-directory: ./
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          install: false
+          runTests: true
+          working-directory: packages/tile-extruder-web-app
+          browser: chrome
+          build: pnpm build
+          start: pnpm start
+          wait-on: "http://localhost:3000"
+          wait-on-timeout: 30
