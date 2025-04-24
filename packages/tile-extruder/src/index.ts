@@ -108,6 +108,8 @@ async function extrudeTilesetToImage({
   /** The path to save the extruded tileset image to. */
   outputPath: `${string}.${string}`;
 }) {
+  throw new Error("Break");
+
   let extrudedImage;
   try {
     extrudedImage = await extrudeTilesetToJimp({
