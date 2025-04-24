@@ -33,17 +33,19 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
-      - run: pnpm install
-      - run: pnpm --filter tile-extruder-web-app build
-      - name: Install Cypress
-        run: pnpm --filter tile-extruder-web-app cypress install
+      # Install dependencies at the root.
+      - name: Install dependencies
+        uses: cypress-io/github-action@v6
+        with:
+          runTests: false
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
+          install: false
           runTests: true
           working-directory: packages/tile-extruder-web-app
-          command: pnpm cypress:ci
           browser: chrome
+          build: pnpm build
           start: pnpm start
           wait-on: "http://localhost:3000"
           wait-on-timeout: 30
