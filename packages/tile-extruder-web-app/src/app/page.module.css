@@ -1,7 +1,6 @@
 .main {
   max-width: 80rem;
   margin: 0 auto;
-  padding: 1rem 1rem;
   gap: 1rem;
   display: flex;
   flex-direction: column;
@@ -17,14 +16,14 @@
 }
 
 .title {
-  font-size: 2.25rem;
+  font-size: var(--font-size-h1);
   font-weight: 700;
-  color: var(--gray-900);
+  color: var(--gray-default);
 }
 
 .description {
-  font-size: 1.125rem;
-  color: var(--gray-600);
+  font-size: var(--font-size-p);
+  color: var(--gray-default);
   max-width: 42rem;
 }
 

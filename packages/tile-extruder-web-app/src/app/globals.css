@@ -1,16 +1,48 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --gray-900: #111827;
-  --gray-700: #374151;
+  --gray-lighter: #1b262d;
+  --gray-default: #081219;
+  --gray-darker: #091720;
+
+  --space-unit: 8px;
+  --space-half: calc(0.5 * var(--space-unit));
+  --space-1: calc(1 * var(--space-unit));
+  --space-2: calc(2 * var(--space-unit));
+  --space-3: calc(3 * var(--space-unit));
+  --space-4: calc(4 * var(--space-unit));
+  --space-5: calc(5 * var(--space-unit));
+  --space-6: calc(6 * var(--space-unit));
+
+  --font-size-base: 18px;
+  --font-size-scale: 1.2;
+  --font-size-small: calc(pow(var(--font-size-scale), -1) * var(--font-size-base));
+  --font-size-p: calc(pow(var(--font-size-scale), 0) * var(--font-size-base));
+  --font-size-h6: calc(pow(var(--font-size-scale), 1) * var(--font-size-base));
+  --font-size-h5: calc(pow(var(--font-size-scale), 2) * var(--font-size-base));
+  --font-size-h4: calc(pow(var(--font-size-scale), 3) * var(--font-size-base));
+  --font-size-h3: calc(pow(var(--font-size-scale), 4) * var(--font-size-base));
+  --font-size-h2: calc(pow(var(--font-size-scale), 5) * var(--font-size-base));
+  --font-size-h1: calc(pow(var(--font-size-scale), 6) * var(--font-size-base));
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  padding: 0;
+  padding: 0 var(--space-1);
+  max-width: 1200px;
+  margin: 0 auto;
+  font-size: var(--font-size-base);
+  color: var(--gray-default);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+@media (min-width: 1350px) {
+  body {
+    padding: 0 0;
+  }
 }
 
 * {
@@ -32,13 +64,13 @@ html {
 }
 
 body {
-  line-height: 1.65;
+  line-height: 1.5;
 }
 
 p {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  font-size: 1rem;
+  margin-top: 1rem 0;
+  font-size: var(--font-size-p);
+  line-height: 1.5;
 }
 
 h1,
@@ -46,31 +78,30 @@ h2,
 h3,
 h4,
 h5 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 1.15;
+  margin: 0;
+  line-height: 1;
 }
 
 h1 {
-  font-size: 3.05rem;
+  font-size: var(--font-size-h1);
 }
 
 h2 {
-  font-size: 2.44rem;
+  font-size: var(--font-size-h2);
 }
 
 h3 {
-  font-size: 1.95rem;
+  font-size: var(--font-size-h3);
 }
 
 h4 {
-  font-size: 1.56rem;
+  font-size: var(--font-size-h4);
 }
 
 h5 {
-  font-size: 1.25rem;
+  font-size: var(--font-size-h5);
 }
 
-small {
-  font-size: 0.64rem;
+h6 {
+  font-size: var(--font-size-h6);
 }

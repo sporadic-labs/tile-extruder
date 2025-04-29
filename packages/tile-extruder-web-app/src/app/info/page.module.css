@@ -1,45 +1,21 @@
-.main {
-  min-height: 100vh;
-}
-
 .container {
   max-width: 80rem;
   margin: 0 auto;
-  padding: 2rem 1rem;
-}
-
-.header {
-  text-align: center;
-  margin-bottom: 3rem;
 }
 
 .title {
-  font-size: 2.25rem;
-  font-weight: 700;
-  color: #111827;
-}
-
-.content {
-  max-width: 53.125rem;
-  margin: 0 auto;
+  text-align: center;
+  font-size: var(--font-size-h1);
 }
 
 .sectionTitle {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #111827;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-}
-
-.sectionTitle:first-child {
-  margin-top: 0;
+  font-size: var(--font-size-h5);
+  padding-top: var(--space-3);
 }
 
 .image {
   margin: 0 auto;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
 }
 
 .demoImage {
