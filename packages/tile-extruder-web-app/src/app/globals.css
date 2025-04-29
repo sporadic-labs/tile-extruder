@@ -1,7 +1,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --gray-lighter: #1b262d;
+  --gray-lightest: #b9c2c8;
+  --gray-lighter: #5d6d77;
   --gray-default: #081219;
   --gray-darker: #091720;
 

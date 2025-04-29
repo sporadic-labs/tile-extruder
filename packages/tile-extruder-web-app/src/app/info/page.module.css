@@ -1,5 +1,5 @@
 .container {
-  max-width: 80rem;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -14,16 +14,18 @@
 }
 
 .image {
-  margin: 0 auto;
+  display: block;
   border-radius: 0.25rem;
+  margin: var(--space-4) auto;
+  border: 1px solid var(--gray-lightest);
 }
 
 .demoImage {
-  max-width: 37.5rem;
+  max-width: 600px;
 }
 
 .explanationImage {
-  max-width: 12.5rem;
+  max-width: 200px;
 }
 
 .link {
