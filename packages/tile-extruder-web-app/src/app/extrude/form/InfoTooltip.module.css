@@ -1,0 +1,26 @@
+.button {
+  color: #374151;
+  transition: color 150ms ease-in-out;
+}
+
+.button:hover {
+  color: #111827;
+}
+
+.icon {
+  height: 1rem;
+  width: 1rem;
+}
+
+.tooltip {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 1rem;
+  max-width: 20rem;
+}
+
+.arrow {
+  fill: #ffffff;
+} 

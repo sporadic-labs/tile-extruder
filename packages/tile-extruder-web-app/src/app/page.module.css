@@ -1,0 +1,61 @@
+.main {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 1rem 1rem;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.intro {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0rem;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.description {
+  font-size: 1.125rem;
+  color: var(--gray-600);
+  max-width: 42rem;
+}
+
+.dropzone {
+  max-width: 500px;
+  width: 100%;
+  padding: 2rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.25rem;
+  transition: all 150ms ease-in-out;
+}
+
+.dropzone:hover {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.dropzoneContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 100%;
+  color: #6b7280;
+}
+
+.dropzoneText {
+  font-size: 1.125rem;
+}
+
+.dropzoneSubtext {
+  font-size: 0.875rem;
+}

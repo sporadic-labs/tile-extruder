@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useRef } from "react";
+import styles from "./ImageDropZone.module.css";
+import { classnames } from "../utils/classnames";
 
 interface ImageDropZoneProps {
   onDrop: (files: File[]) => void;
@@ -53,7 +55,7 @@ export default function ImageDropZone({ onDrop, children, className = "" }: Imag
 
   return (
     <div
-      className={`h-full text-center cursor-pointer flex items-center justify-center ${className}`}
+      className={classnames(styles.dropzone, className)}
       onClick={handleClick}
       onDragEnter={handleDrag}
       onDragLeave={handleDrag}
@@ -66,7 +68,7 @@ export default function ImageDropZone({ onDrop, children, className = "" }: Imag
         accept="image/*"
         multiple
         onChange={handleFileChange}
-        className="hidden"
+        className={styles.fileInput}
       />
       {children}
     </div>

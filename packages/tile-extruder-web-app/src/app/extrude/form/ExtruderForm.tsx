@@ -5,11 +5,11 @@ import { useTilesetImage } from "./TilesetImageProvider";
 import { createExtrusionProgram, ShaderProgram } from "../extrusionProgram/createExtrusionProgram";
 import { createGridProgram } from "../gridProgram/createGridProgram";
 import { isError } from "ts-outcome";
-import ImageDropZone from "@/app/ImageDropZone";
+import ImageDropZone from "@/app/components/ImageDropZone";
 import { useForm } from "react-hook-form";
 import { IntegerField } from "./IntegerField";
-import Image from "next/image";
-import { MdError } from "react-icons/md";
+import { MdClose, MdError, MdOutlineImage } from "react-icons/md";
+import styles from "./ExtruderForm.module.css";
 
 export type FormValues = {
   tileWidth: number;
@@ -29,7 +29,7 @@ const defaultValues: FormValues = {
 
 function ImageInfo({ name, width, height }: { name: string; width: number; height: number }) {
   return (
-    <div className="mt-2 text-sm text-gray-500 text-center">
+    <div className={styles.imageInfo}>
       {name} ({width} x {height}px)
     </div>
   );
@@ -221,219 +221,152 @@ export default function ExtruderForm() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-        <div>
-          <div className="flex justify-between items-center mb-2">
-            <h3 className="text-lg font-medium text-gray-900">Original Tileset</h3>
+    <div className={styles.container}>
+      <div className={styles.tilesetImagesSection}>
+        <div className={styles.imageContainer}>
+          <div className={styles.imageHeader}>
+            <h3 className={styles.imageTitle}>Original Tileset</h3>
             {imageElement && (
-              <button
-                onClick={handleClearImage}
-                className="text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100 transition-colors cursor-pointer"
-                title="Clear image"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+              <button onClick={handleClearImage} className={styles.clearButton} title="Clear image">
+                <MdClose size={16} />
               </button>
             )}
           </div>
-          <div className="cursor-pointer h-[250px] border-2 border-gray-200 p-2 rounded-sm hover:border-blue-500 hover:bg-blue-50 transition-colors flex flex-col items-center justify-center overflow-hidden">
-            <ImageDropZone onDrop={handleImageDrop} className="w-full h-full">
-              {isImageLoading ? (
-                <div className="mt-2 text-sm text-gray-500 flex items-center">
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-500 mr-2"></div>
-                  Loading image...
-                </div>
-              ) : null}
-              {imageElement ? (
-                <canvas
-                  ref={sourceCanvasRef}
-                  data-cy="original-tileset-canvas"
-                  className="w-full h-full object-contain [image-rendering:pixelated]"
-                />
-              ) : (
-                <div className="flex flex-col items-center justify-center h-full text-gray-500">
-                  <svg
-                    className="mx-auto h-12 w-12"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    />
-                  </svg>
-                  <div>
-                    <p className="text-lg mb-1">Drag and drop your tileset image here,</p>
-                    <p className="text-sm">Or, click to select a file</p>
-                  </div>
-                </div>
-              )}
-            </ImageDropZone>
-          </div>
-          {imageElement && (
-            <ImageInfo name={imageName} width={imageElement.width} height={imageElement.height} />
-          )}
-        </div>
-        <div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Extruded Preview</h3>
-          <div className="bg-white h-[250px] border-2 border-gray-200 p-2 rounded-sm flex flex-col items-center justify-center overflow-hidden">
-            {imageElement ? (
-              <canvas
-                ref={shaderCanvasRef}
-                data-cy="extruded-tileset-canvas"
-                className="w-full h-full object-contain [image-rendering:pixelated]"
-              />
+          <ImageDropZone onDrop={handleImageDrop} className={styles.image}>
+            {isImageLoading ? (
+              <div className={styles.loading}>
+                <div className={styles.spinner}></div>
+                Loading...
+              </div>
             ) : (
-              <div className="flex flex-col items-center justify-center h-full text-gray-500">
-                <svg
-                  className="mx-auto h-12 w-12"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
+              <>
+                {imageElement ? (
+                  <canvas ref={sourceCanvasRef} className={styles.imageCanvas} />
+                ) : (
+                  <div className={styles.dropzoneContent}>
+                    <MdOutlineImage size={32} />
+                    <div>
+                      <div className={styles.dropzoneText}>
+                        Drag and drop your tileset image here
+                      </div>
+                      <div className={styles.dropzoneSubtext}>or, click to select a file</div>
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
+          </ImageDropZone>
+          {imageElement ? (
+            <ImageInfo
+              name={imageName || "Tileset"}
+              width={imageElement.width}
+              height={imageElement.height}
+            />
+          ) : null}
+        </div>
+
+        <div className={styles.imageContainer}>
+          <div className={styles.imageHeader}>
+            <h3 className={styles.imageTitle}>Extruded Tileset</h3>
+          </div>
+          <div className={styles.image}>
+            {imageElement && hasValidValues ? (
+              <canvas ref={shaderCanvasRef} className={styles.imageCanvas} />
+            ) : (
+              <div className={styles.dropzoneContent}>
+                {!imageElement
+                  ? "Upload a tileset to see the extruded version"
+                  : !hasValidValues
+                  ? "Fix the form errors to see the extruded version"
+                  : null}
               </div>
             )}
           </div>
-          {imageElement && (
+          {imageElement ? (
             <ImageInfo
               name="Extruded Tileset"
               width={extrudedShaderDimensions.width}
               height={extrudedShaderDimensions.height}
             />
-          )}
+          ) : null}
         </div>
       </div>
 
-      <form className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className={styles.form}>
         {dimensionError && (
-          <div
-            className="col-span-2 bg-red-50 border border-red-200 text-red-700 px-3 py-2 rounded relative text-sm"
-            role="alert"
-          >
-            <div className="flex items-center">
-              <MdError className="w-4 h-4 mr-2" />
-              <span>{dimensionError}</span>
-            </div>
+          <div role="alert" className={styles.error}>
+            <MdError size={24} />
+            <span>{dimensionError}</span>
           </div>
         )}
-        <IntegerField
-          name="tileWidth"
-          label="Tile width"
-          min={1}
-          max={1000}
-          register={register}
-          errors={errors}
-        />
-        <IntegerField
-          name="tileHeight"
-          label="Tile height"
-          min={1}
-          max={1000}
-          register={register}
-          errors={errors}
-        />
-        <IntegerField
-          name="extrusionAmount"
-          label="Extrusion amount"
-          min={1}
-          max={1000}
-          register={register}
-          errors={errors}
-          tooltip={
-            <div className="flex flex-col gap-2">
-              <p>
-                How many pixels to extrude each tile. 1px should be enough for most cases. Extrusion
-                looks like this:
-              </p>
-              <Image
-                src="/images/explanation.png"
-                alt="Visual explanation of tile extrusion"
-                width={200}
-                height={200}
-                className="w-[150px] h-auto"
-              />
-            </div>
-          }
-        />
-        <IntegerField
-          name="margin"
-          label="Margin"
-          min={0}
-          max={1000}
-          register={register}
-          errors={errors}
-          tooltip={
-            <div className="flex flex-col gap-2">
-              <p>The margin around the original tileset.</p>
-              <Image
-                src="/margin-and-spacing.png"
-                alt="Margin and spacing diagram"
-                width={250}
-                height={187}
-                className="w-[250px] h-auto"
-              />
-            </div>
-          }
-        />
-        <IntegerField
-          name="spacing"
-          label="Spacing"
-          min={0}
-          max={1000}
-          register={register}
-          errors={errors}
-          tooltip={
-            <div className="flex flex-col gap-2">
-              <p>The spacing between tiles in the original tileset.</p>
-              <Image
-                src="/margin-and-spacing.png"
-                alt="Margin and spacing diagram"
-                width={250}
-                height={187}
-                className="w-[250px] h-auto"
-              />
-            </div>
-          }
-        />
-        <div className="flex items-center h-full mt-3">
-          <div className="flex items-center space-x-2">
+
+        <div className={styles.formInputs}>
+          <IntegerField
+            name="tileWidth"
+            label="Tile Width"
+            min={1}
+            max={1000}
+            register={register}
+            errors={errors}
+          />
+
+          <IntegerField
+            name="tileHeight"
+            label="Tile Height"
+            min={1}
+            max={1000}
+            register={register}
+            errors={errors}
+          />
+
+          <IntegerField
+            name="extrusionAmount"
+            label="Extrusion Amount"
+            min={1}
+            max={1000}
+            register={register}
+            errors={errors}
+          />
+
+          <IntegerField
+            name="margin"
+            label="Margin"
+            min={0}
+            max={1000}
+            register={register}
+            errors={errors}
+          />
+
+          <IntegerField
+            name="spacing"
+            label="Spacing"
+            min={0}
+            max={1000}
+            register={register}
+            errors={errors}
+          />
+
+          <label className={styles.gridCheckbox}>
             <input
               type="checkbox"
-              id="showGrid"
               checked={showGrid}
               onChange={(e) => setShowGrid(e.target.checked)}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
             />
-            <label htmlFor="showGrid" className="text-sm font-medium text-gray-700">
-              Toggle tile grid visualization
-            </label>
-          </div>
+            Toggle tile grid visualization
+          </label>
         </div>
-      </form>
 
-      <button
-        onClick={handleDownload}
-        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        Download Extruded Tileset
-      </button>
+        <div className={styles.actions}>
+          <button
+            type="button"
+            onClick={handleDownload}
+            disabled={!imageElement || !hasValidValues || !!dimensionError}
+            className={`${styles.button} ${styles.primaryButton}`}
+          >
+            Download Extruded Tileset
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

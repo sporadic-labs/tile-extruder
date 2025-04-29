@@ -1,0 +1,86 @@
+.main {
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.content {
+  max-width: 53.125rem;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle:first-child {
+  margin-top: 0;
+}
+
+.image {
+  margin: 0 auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+}
+
+.demoImage {
+  max-width: 37.5rem;
+}
+
+.explanationImage {
+  max-width: 12.5rem;
+}
+
+.link {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #1e40af;
+}
+
+.codeBlock {
+  background-color: #1f2937;
+  color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  font-family: monospace;
+}
+
+.note {
+  background-color: #fefce8;
+  border-left: 4px solid #facc15;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.noteText {
+  color: #854d0e;
+}
+
+.noteText strong {
+  font-weight: 600;
+}
