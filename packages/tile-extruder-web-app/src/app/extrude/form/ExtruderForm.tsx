@@ -270,7 +270,11 @@ export default function ExtruderForm() {
           </div>
           <div className={styles.image}>
             {imageElement && hasValidValues ? (
-              <canvas ref={shaderCanvasRef} className={styles.imageCanvas} />
+              <canvas
+                ref={shaderCanvasRef}
+                className={styles.imageCanvas}
+                data-cy="extruded-tileset-canvas"
+              />
             ) : (
               <div className={styles.dropzoneContent}>
                 {!imageElement
