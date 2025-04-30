@@ -1,0 +1,48 @@
+.main {
+  gap: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.intro {
+  text-align: center;
+}
+
+.title {
+  font-size: var(--font-size-h1);
+}
+
+.description {
+  font-size: var(--font-size-p);
+  color: var(--gray-default);
+  max-width: 700px;
+}
+
+.dropzone {
+  max-width: 475px;
+  width: 100%;
+  padding: var(--space-5);
+  border: 2px solid var(--background-gray-darker);
+  border-radius: 0.25rem;
+  transition: all 150ms ease-in-out;
+}
+
+.dropzone:hover {
+  border-color: var(--blue-default);
+  background-color: var(--background-blue);
+}
+
+.dropzoneContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-half);
+  color: var(--gray-lighter);
+  min-height: 150px;
+}
+
+.dropzoneText {
+  font-size: var(--font-size-p);
+}

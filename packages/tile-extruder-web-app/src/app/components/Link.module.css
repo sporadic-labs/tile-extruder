@@ -1,0 +1,39 @@
+.link {
+  transition: all 150ms ease-in-out;
+  border-radius: 0.25rem;
+  background-size: 0% 100%;
+  margin: calc(var(--space-half) * -1);
+  padding: var(--space-half);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.blue {
+  color: var(--blue-default);
+}
+
+.blue:hover {
+  color: var(--blue-darker);
+  background-color: var(--background-blue);
+  background-size: 100% 100%;
+}
+
+.blue:active {
+  color: var(--blue-darker);
+  background-color: var(--background-blue-darker);
+}
+
+.gray {
+  color: var(--gray-default);
+}
+
+.gray:hover {
+  color: var(--gray-darker);
+  background-color: var(--background-gray);
+  background-size: 100% 100%;
+}
+
+.gray:active {
+  color: var(--gray-darkest);
+  background-color: var(--background-gray-darker);
+}

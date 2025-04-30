@@ -1,0 +1,68 @@
+.button {
+  color: var(--gray-default);
+  transition: color 150ms ease-in-out;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.button:hover {
+  color: var(--gray-darkest);
+}
+
+.tooltip {
+  position: relative;
+  background-color: var(--background);
+  border: 2px solid var(--gray-lightest);
+  border-radius: 0.25rem;
+  padding: var(--space-2);
+  max-width: 20rem;
+  font-size: var(--font-size-small);
+  box-shadow: 0 8px 20px rgba(0 0 0 / 0.1);
+  transform: translate3d(0, 0, 0);
+  transition: transform 200ms, opacity 200ms;
+}
+
+.tooltip[data-entering],
+.tooltip[data-exiting] {
+  transform: var(--origin);
+  opacity: 0;
+}
+
+.tooltip[data-placement="top"] {
+  margin-bottom: 5px;
+  --origin: translateY(5px);
+}
+
+.tooltip[data-placement="bottom"] {
+  margin-top: 5px;
+  --origin: translateY(-5px);
+  & .react-aria-OverlayArrow svg {
+    transform: rotate(180deg);
+  }
+}
+
+.tooltip[data-placement="right"] {
+  margin-left: 5px;
+  --origin: translateX(-5px);
+  & .react-aria-OverlayArrow svg {
+    transform: rotate(90deg);
+  }
+}
+
+.tooltip[data-placement="left"] {
+  margin-right: 5px;
+  --origin: translateX(5px);
+  & .react-aria-OverlayArrow svg {
+    transform: rotate(-90deg);
+  }
+}
+
+.tooltip :global(.react-aria-OverlayArrow) svg {
+  display: block;
+  fill: var(--gray-lightest);
+}

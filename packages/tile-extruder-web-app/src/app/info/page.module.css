@@ -1,0 +1,55 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  font-size: var(--font-size-h1);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-h5);
+  padding-top: var(--space-3);
+}
+
+.image {
+  display: block;
+  border-radius: 0.25rem;
+  margin: var(--space-4) auto;
+  border: 1px solid var(--gray-lightest);
+}
+
+.demoImage {
+  max-width: 600px;
+}
+
+.explanationImage {
+  max-width: 200px;
+}
+
+.codeBlock {
+  background-color: #1f2937;
+  color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  font-family: monospace;
+}
+
+.note {
+  background-color: #fefce8;
+  border-left: 4px solid #facc15;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.noteText {
+  color: #854d0e;
+}
+
+.noteText strong {
+  font-weight: 600;
+}

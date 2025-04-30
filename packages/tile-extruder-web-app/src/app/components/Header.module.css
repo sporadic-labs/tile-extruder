@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) 0;
+  font-size: var(--font-size-p);
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-half);
+}
+
+.logoText {
+  font-weight: 500;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.navLinkGithub {
+  display: flex;
+}
