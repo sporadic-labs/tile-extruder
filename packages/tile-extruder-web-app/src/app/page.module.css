@@ -1,7 +1,5 @@
 .main {
-  max-width: 80rem;
-  margin: 0 auto;
-  gap: 1rem;
+  gap: var(--space-3);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,36 +7,30 @@
 
 .intro {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0rem;
 }
 
 .title {
   font-size: var(--font-size-h1);
-  font-weight: 700;
-  color: var(--gray-default);
 }
 
 .description {
   font-size: var(--font-size-p);
   color: var(--gray-default);
-  max-width: 42rem;
+  max-width: 700px;
 }
 
 .dropzone {
-  max-width: 500px;
+  max-width: 475px;
   width: 100%;
-  padding: 2rem;
-  border: 2px solid #e5e7eb;
+  padding: var(--space-5);
+  border: 2px solid var(--background-gray-darker);
   border-radius: 0.25rem;
   transition: all 150ms ease-in-out;
 }
 
 .dropzone:hover {
-  border-color: #3b82f6;
-  background-color: #eff6ff;
+  border-color: var(--blue-default);
+  background-color: var(--background-blue);
 }
 
 .dropzoneContent {
@@ -46,15 +38,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  height: 100%;
-  color: #6b7280;
+  gap: var(--space-half);
+  color: var(--gray-lighter);
+  min-height: 150px;
 }
 
 .dropzoneText {
-  font-size: 1.125rem;
-}
-
-.dropzoneSubtext {
-  font-size: 0.875rem;
+  font-size: var(--font-size-p);
 }

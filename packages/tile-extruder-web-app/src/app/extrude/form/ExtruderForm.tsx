@@ -9,6 +9,8 @@ import ImageDropZone from "@/app/components/ImageDropZone";
 import { useForm } from "react-hook-form";
 import { IntegerField } from "./IntegerField";
 import { MdClose, MdError, MdOutlineImage } from "react-icons/md";
+import Image from "next/image";
+import { Button } from "@/app/components/Button";
 import styles from "./ExtruderForm.module.css";
 
 export type FormValues = {
@@ -245,11 +247,8 @@ export default function ExtruderForm() {
                 ) : (
                   <div className={styles.dropzoneContent}>
                     <MdOutlineImage size={32} />
-                    <div>
-                      <div className={styles.dropzoneText}>
-                        Drag and drop your tileset image here
-                      </div>
-                      <div className={styles.dropzoneSubtext}>or, click to select a file</div>
+                    <div className={styles.dropzoneText}>
+                      Drag and drop your tileset image here, or click to select a file
                     </div>
                   </div>
                 )}
@@ -326,6 +325,21 @@ export default function ExtruderForm() {
             max={1000}
             register={register}
             errors={errors}
+            tooltip={
+              <div className={styles.tooltipContent}>
+                <div>
+                  How many pixels to extrude each tile. 1px should be enough for most cases.
+                  Extrusion looks like this:
+                </div>
+                <Image
+                  src="/images/explanation.png"
+                  alt="Visual explanation of tile extrusion"
+                  width={200}
+                  height={200}
+                  className={styles.tooltipImage}
+                />
+              </div>
+            }
           />
 
           <IntegerField
@@ -335,6 +349,18 @@ export default function ExtruderForm() {
             max={1000}
             register={register}
             errors={errors}
+            tooltip={
+              <div className={styles.tooltipContent}>
+                <div>The margin around the original tileset.</div>
+                <Image
+                  src="/margin-and-spacing.png"
+                  alt="Margin and spacing diagram"
+                  width={250}
+                  height={187}
+                  className={styles.tooltipImageLarge}
+                />
+              </div>
+            }
           />
 
           <IntegerField
@@ -344,6 +370,18 @@ export default function ExtruderForm() {
             max={1000}
             register={register}
             errors={errors}
+            tooltip={
+              <div className={styles.tooltipContent}>
+                <div>The spacing between tiles in the original tileset.</div>
+                <Image
+                  src="/margin-and-spacing.png"
+                  alt="Margin and spacing diagram"
+                  width={250}
+                  height={187}
+                  className={styles.tooltipImageLarge}
+                />
+              </div>
+            }
           />
 
           <label className={styles.gridCheckbox}>
@@ -357,14 +395,13 @@ export default function ExtruderForm() {
         </div>
 
         <div className={styles.actions}>
-          <button
+          <Button
             type="button"
             onClick={handleDownload}
             disabled={!imageElement || !hasValidValues || !!dimensionError}
-            className={`${styles.button} ${styles.primaryButton}`}
           >
             Download Extruded Tileset
-          </button>
+          </Button>
         </div>
       </div>
     </div>

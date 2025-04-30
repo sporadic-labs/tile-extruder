@@ -28,15 +28,6 @@
   max-width: 200px;
 }
 
-.link {
-  color: #2563eb;
-  text-decoration: none;
-}
-
-.link:hover {
-  color: #1e40af;
-}
-
 .codeBlock {
   background-color: #1f2937;
   color: #f3f4f6;

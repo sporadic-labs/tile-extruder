@@ -1,16 +1,13 @@
 .container {
-  max-width: 56rem;
-  margin: 0 auto;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: var(--space-4);
 }
 
 .tilesetImagesSection {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: var(--space-2);
 }
 
 @media (min-width: 768px) {
@@ -22,7 +19,7 @@
 .imageContainer {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: var(--space-1);
 }
 
 .imageHeader {
@@ -33,9 +30,8 @@
 }
 
 .imageTitle {
-  font-size: 1.125rem;
+  font-size: var(--font-size-p);
   font-weight: 500;
-  color: #111827;
 }
 
 .clearButton {
@@ -44,7 +40,7 @@
   justify-content: center;
   width: 1.5rem;
   height: 1.5rem;
-  color: #6b7280;
+  color: var(--gray-default);
   background: transparent;
   border: none;
   border-radius: 9999px;
@@ -54,13 +50,13 @@
 }
 
 .clearButton:hover {
-  color: #374151;
-  background-color: #f3f4f6;
+  color: var(--gray-darker);
+  background-color: var(--background-gray);
 }
 
 .clearButton:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #3b82f6;
+  box-shadow: 0 0 0 2px var(--blue-default);
 }
 
 .clearButton:active {
@@ -68,8 +64,8 @@
 }
 
 .imageInfo {
-  font-size: 0.875rem;
-  color: #6b7280;
+  font-size: var(--font-size-small);
+  color: var(--gray-lighter);
   text-align: center;
 }
 
@@ -77,9 +73,9 @@
   cursor: pointer;
   width: 100%;
   height: 250px;
-  border: 2px solid #e5e7eb;
-  padding: 0.5rem;
-  border-radius: 0.125rem;
+  border: 2px solid var(--background-gray-darker);
+  padding: var(--space-1);
+  border-radius: 0.25rem;
   transition: all 150ms ease-in-out;
   display: flex;
   flex-direction: column;
@@ -96,8 +92,8 @@
 }
 
 .image:hover {
-  border-color: #3b82f6;
-  background-color: #eff6ff;
+  border-color: var(--blue-default);
+  background-color: var(--background-blue);
 }
 
 .dropzoneContent {
@@ -105,22 +101,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: var(--space-half);
   height: 100%;
-  color: #6b7280;
+  color: var(--gray-lighter);
 }
 
 .dropzoneText {
-  font-size: 1.125rem;
-}
-
-.dropzoneSubtext {
-  font-size: 0.875rem;
+  max-width: 75%;
+  font-size: var(--font-size-p);
 }
 
 .loading {
-  font-size: 1.125rem;
-  color: #6b7280;
+  font-size: var(--font-size-p);
+  color: var(--gray-lighter);
   display: flex;
   align-items: center;
 }
@@ -130,8 +123,8 @@
   border-radius: 9999px;
   height: 1rem;
   width: 1rem;
-  border-bottom: 2px solid #6b7280;
-  margin-right: 0.5rem;
+  border-bottom: 2px solid var(--gray-lighter);
+  margin-right: var(--space-half);
 }
 
 @keyframes spin {
@@ -143,47 +136,36 @@
   }
 }
 
-/* <div
-className="col-span-2 bg-red-50 border border-red-200 text-red-700 px-3 py-2 rounded relative text-sm"
-role="alert"
->
-<div className="flex items-center">
-  <MdError className="w-4 h-4 mr-2" />
-  <span>{dimensionError}</span>
-</div>
-</div> */
-
 .error {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  color: #dc2626;
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
-  background-color: #fef2f2;
-  border: 1px solid #ffc9c9;
-  padding: 0.5rem;
+  gap: var(--space-half);
+  color: var(--red-default);
+  font-size: var(--font-size-small);
+  margin-top: var(--space-1);
+  background-color: var(--background-red);
+  border: 1px solid var(--red-darker);
+  padding: var(--space-1);
   border-radius: 0.25rem;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--space-3);
 }
 
 .formInputs {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: var(--space-2);
 }
 
 .gridCheckbox {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  color: #374151;
+  gap: var(--space-half);
+  font-size: var(--font-size-small);
   cursor: pointer;
   padding-top: 1.6rem;
 }
@@ -191,80 +173,38 @@ role="alert"
 .gridCheckbox input[type="checkbox"] {
   width: 1rem;
   height: 1rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--background-gray-darker);
   border-radius: 0.25rem;
   cursor: pointer;
   transition: all 150ms ease-in-out;
 }
 
 .gridCheckbox input[type="checkbox"]:checked {
-  background-color: #3b82f6;
-  border-color: #3b82f6;
+  background-color: var(--blue-default);
+  border-color: var(--blue-default);
 }
 
 .gridCheckbox input[type="checkbox"]:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #3b82f6;
-}
-
-.label {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #111827;
-}
-
-.input {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  font-size: 0.875rem;
-  color: #111827;
-  background-color: #ffffff;
-}
-
-.input:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 1px #3b82f6;
+  box-shadow: 0 0 0 2px var(--blue-default);
 }
 
 .actions {
   display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
 }
 
-.button {
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 150ms ease-in-out;
-  cursor: pointer;
+.tooltipContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
 }
 
-.primaryButton {
-  background-color: #3b82f6;
-  color: #ffffff;
-  border: none;
+.tooltipImage {
+  width: 150px;
+  height: auto;
 }
 
-.primaryButton:hover {
-  background-color: #2563eb;
-}
-
-.secondaryButton {
-  background-color: #ffffff;
-  color: #374151;
-  border: 1px solid #d1d5db;
-}
-
-.secondaryButton:hover {
-  background-color: #f9fafb;
-}
-
-.button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+.tooltipImageLarge {
+  width: 250px;
+  height: auto;
 }

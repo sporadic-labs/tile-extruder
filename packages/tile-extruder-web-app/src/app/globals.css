@@ -1,6 +1,23 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --background-gray: #dadee0;
+  --background-gray-darker: #c3c9cc;
+
+  --background-blue: #bfcef2;
+  --background-blue-darker: #9fb8e9;
+
+  --background-red: #f9dada;
+  --background-red-darker: #c17b7b;
+
+  --blue-default: #3074e3;
+  --blue-darker: #1f52be;
+
+  --red-lighter: #aa4545;
+  --red-default: #a92727;
+  --red-darker: #7a1d1d;
+
   --gray-lightest: #b9c2c8;
   --gray-lighter: #5d6d77;
   --gray-default: #081219;
@@ -30,7 +47,7 @@
 body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-  padding: 0 var(--space-1);
+  padding: 0 var(--space-3);
   max-width: 1200px;
   margin: 0 auto;
   font-size: var(--font-size-base);

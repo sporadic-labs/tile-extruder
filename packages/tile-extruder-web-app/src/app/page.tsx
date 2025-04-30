@@ -31,9 +31,8 @@ export default function Home() {
       <ImageDropZone onDrop={handleImageDrop} className={styles.dropzone}>
         <div className={styles.dropzoneContent}>
           <MdOutlineImage size={32} />
-          <div>
-            <div className={styles.dropzoneText}>Drag and drop your tileset image here</div>
-            <div className={styles.dropzoneSubtext}>or, click to select a file</div>
+          <div className={styles.dropzoneText}>
+            Drag and drop your tileset image here, or click to select a file
           </div>
         </div>
       </ImageDropZone>

@@ -24,8 +24,8 @@ export function IntegerField({
   tooltip,
 }: IntegerFieldProps) {
   return (
-    <div>
-      <div className={styles.field}>
+    <div className={styles.field}>
+      <div className={styles.labelAndTooltip}>
         <label className={styles.label}>{label}</label>
         {tooltip ? <InfoTooltip>{tooltip}</InfoTooltip> : null}
       </div>
@@ -40,7 +40,7 @@ export function IntegerField({
         })}
         className={`${styles.input} ${errors[name] ? styles.inputError : ""}`}
       />
-      {errors[name] && <p className={styles.error}>{errors[name]?.message}</p>}
+      {errors[name] && <div className={styles.error}>{errors[name]?.message}</div>}
     </div>
   );
 }

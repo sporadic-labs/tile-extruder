@@ -1,5 +1,5 @@
 .main {
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

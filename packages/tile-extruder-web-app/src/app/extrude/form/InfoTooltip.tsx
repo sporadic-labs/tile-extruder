@@ -11,11 +11,11 @@ export function InfoTooltip({ children }: InfoTooltipProps) {
   return (
     <TooltipTrigger delay={100}>
       <Button className={styles.button}>
-        <MdInfoOutline className={styles.icon} />
+        <MdInfoOutline size={18} />
       </Button>
       <Tooltip className={styles.tooltip}>
         <OverlayArrow>
-          <svg width={8} height={8} viewBox="0 0 8 8" className={styles.arrow}>
+          <svg width={10} height={10} viewBox="0 0 8 8" className={styles.arrow}>
             <path d="M0 0 L4 4 L8 0" />
           </svg>
         </OverlayArrow>
