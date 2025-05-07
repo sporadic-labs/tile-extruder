@@ -74,6 +74,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
+      - run: pnpm install
       - run: pnpm --filter tile-extruder-web-app typecheck
 
   jest:
@@ -92,4 +93,5 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
+      - run: pnpm install
       - run: pnpm --filter tile-extruder-web-app jest
