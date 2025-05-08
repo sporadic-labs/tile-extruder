@@ -12,6 +12,7 @@ import { MdClose, MdError, MdOutlineImage } from "react-icons/md";
 import Image from "next/image";
 import { Button } from "@/app/components/Button";
 import styles from "./ExtruderForm.module.css";
+import { WebGL2Canvas } from "@/app/components/WebGL2Canvas";
 
 export type FormValues = {
   tileWidth: number;
@@ -84,8 +85,8 @@ function useCheckDimensions({ width, height }: { width: number; height: number }
 }
 
 export default function ExtruderForm() {
-  const sourceCanvasRef = useRef<HTMLCanvasElement>(null);
-  const shaderCanvasRef = useRef<HTMLCanvasElement>(null);
+  const [sourceCtx, setSourceCtx] = useState<WebGL2RenderingContext | null>(null);
+  const [extrusionCtx, setExtrusionCtx] = useState<WebGL2RenderingContext | null>(null);
   const shaderProgramRef = useRef<ShaderProgram | null>(null);
   const { imageElement, isImageLoading, setImageFile, imageName } = useTilesetImage();
   const [showGrid, setShowGrid] = useState(true);
@@ -108,25 +109,20 @@ export default function ExtruderForm() {
 
   const dimensionError = useCheckDimensions(extrudedShaderDimensions);
 
-  // Update the tileset preview canvas when the image element changes.
+  // Update the tileset preview canvas when the image element or GL context
+  // changes.
   useEffect(() => {
     async function updateCanvases() {
       const image = imageElement;
-      if (!sourceCanvasRef.current || !image) {
+      if (!sourceCtx || !image) {
         return;
       }
 
-      const sourceCanvas = sourceCanvasRef.current;
-      sourceCanvas.width = image.width;
-      sourceCanvas.height = image.height;
-      const gl = sourceCanvas.getContext("webgl2");
-      if (!gl) {
-        console.error("WebGL not supported");
-        return;
-      }
+      sourceCtx.canvas.width = image.width;
+      sourceCtx.canvas.height = image.height;
 
       const programResult = createGridProgram({
-        gl,
+        gl: sourceCtx,
         tilesetImage: image,
         options: {
           tileWidth: options.tileWidth,
@@ -151,32 +147,20 @@ export default function ExtruderForm() {
     }
 
     updateCanvases();
-  }, [imageElement, options, showGrid]);
+  }, [imageElement, options, showGrid, sourceCtx]);
 
-  // Update the extruded tileset preview canvas when the image element changes.
+  // Update the extruded tileset preview canvas when the image element or GL context changes
   useEffect(() => {
-    if (!imageElement) {
+    if (!imageElement || !hasValidValues || !extrusionCtx) {
       return;
     }
 
-    if (!hasValidValues) {
-      return;
-    }
-
-    const canvas = shaderCanvasRef.current;
-    if (!canvas) return;
-
-    const gl = canvas.getContext("webgl2");
-    if (!gl) {
-      console.error("WebGL not supported");
-      return;
-    }
     const { width, height } = calculateExtrudedTilesetDimensions(imageElement, options);
-    canvas.width = width;
-    canvas.height = height;
+    extrusionCtx.canvas.width = width;
+    extrusionCtx.canvas.height = height;
 
     const programResult = createExtrusionProgram({
-      gl,
+      gl: extrusionCtx,
       tilesetImage: imageElement,
       options: {
         tileWidth: options.tileWidth,
@@ -194,21 +178,23 @@ export default function ExtruderForm() {
 
     shaderProgramRef.current = programResult.value;
     const { render, destroy } = programResult.value;
-
     render();
 
-    return destroy;
-  }, [imageElement, hasValidValues, options]);
+    return () => {
+      destroy();
+      shaderProgramRef.current = null;
+    };
+  }, [imageElement, hasValidValues, options, extrusionCtx]);
 
   const handleDownload = () => {
-    if (!shaderCanvasRef.current || !shaderProgramRef.current) return;
+    if (!extrusionCtx || !shaderProgramRef.current) return;
 
     // Ensure the canvas is up to date before downloading.
     shaderProgramRef.current.render();
 
     const link = document.createElement("a");
     link.download = "extruded-tileset.png";
-    link.href = shaderCanvasRef.current.toDataURL("image/png");
+    link.href = (extrusionCtx.canvas as HTMLCanvasElement).toDataURL("image/png");
     link.click();
   };
 
@@ -243,7 +229,11 @@ export default function ExtruderForm() {
             ) : (
               <>
                 {imageElement ? (
-                  <canvas ref={sourceCanvasRef} className={styles.imageCanvas} />
+                  <WebGL2Canvas
+                    onContextChange={setSourceCtx}
+                    className={styles.imageCanvas}
+                    data-cy="source-tileset-canvas"
+                  />
                 ) : (
                   <div className={styles.dropzoneContent}>
                     <MdOutlineImage size={32} />
@@ -270,8 +260,8 @@ export default function ExtruderForm() {
           </div>
           <div className={styles.image}>
             {imageElement && hasValidValues ? (
-              <canvas
-                ref={shaderCanvasRef}
+              <WebGL2Canvas
+                onContextChange={setExtrusionCtx}
                 className={styles.imageCanvas}
                 data-cy="extruded-tileset-canvas"
               />
