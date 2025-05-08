@@ -11,8 +11,8 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "incremental": true,
     "jsx": "preserve",
+    "incremental": true,
     "plugins": [
       {
         "name": "next"
@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "src/**/*",  "types/**/*", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "src/**/*", "types/**/*", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
