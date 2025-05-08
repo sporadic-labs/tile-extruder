@@ -3,35 +3,19 @@ name: Tile Extruder CI
 on:
   push:
     branches: ["main"]
-    paths:
-      - "packages/tile-extruder/**"
-      - "pnpm-lock.yaml"
-      - "config/**"
-      - ".github/**"
   pull_request:
     branches: ["main"]
-    paths:
-      - "packages/tile-extruder/**"
-      - "pnpm-lock.yaml"
-      - "config/**"
-      - ".github/**"
 
 jobs:
   test:
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [22.x]
     steps:
       - uses: actions/checkout@v4
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+      - uses: ./.github/actions/setup-node-pnpm
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
-      - run: pnpm install
       - run: pnpm --filter tile-extruder test
