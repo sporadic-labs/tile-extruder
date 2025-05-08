@@ -85,8 +85,8 @@ function useCheckDimensions({ width, height }: { width: number; height: number }
 }
 
 export default function ExtruderForm() {
-  const [sourceGl, setSourceGl] = useState<WebGL2RenderingContext | null>(null);
-  const [shaderGl, setShaderGl] = useState<WebGL2RenderingContext | null>(null);
+  const [sourceCtx, setSourceCtx] = useState<WebGL2RenderingContext | null>(null);
+  const [extrusionCtx, setExtrusionCtx] = useState<WebGL2RenderingContext | null>(null);
   const shaderProgramRef = useRef<ShaderProgram | null>(null);
   const { imageElement, isImageLoading, setImageFile, imageName } = useTilesetImage();
   const [showGrid, setShowGrid] = useState(true);
@@ -114,15 +114,15 @@ export default function ExtruderForm() {
   useEffect(() => {
     async function updateCanvases() {
       const image = imageElement;
-      if (!sourceGl || !image) {
+      if (!sourceCtx || !image) {
         return;
       }
 
-      sourceGl.canvas.width = image.width;
-      sourceGl.canvas.height = image.height;
+      sourceCtx.canvas.width = image.width;
+      sourceCtx.canvas.height = image.height;
 
       const programResult = createGridProgram({
-        gl: sourceGl,
+        gl: sourceCtx,
         tilesetImage: image,
         options: {
           tileWidth: options.tileWidth,
@@ -147,20 +147,20 @@ export default function ExtruderForm() {
     }
 
     updateCanvases();
-  }, [imageElement, options, showGrid, sourceGl]);
+  }, [imageElement, options, showGrid, sourceCtx]);
 
   // Update the extruded tileset preview canvas when the image element or GL context changes
   useEffect(() => {
-    if (!imageElement || !hasValidValues || !shaderGl) {
+    if (!imageElement || !hasValidValues || !extrusionCtx) {
       return;
     }
 
     const { width, height } = calculateExtrudedTilesetDimensions(imageElement, options);
-    shaderGl.canvas.width = width;
-    shaderGl.canvas.height = height;
+    extrusionCtx.canvas.width = width;
+    extrusionCtx.canvas.height = height;
 
     const programResult = createExtrusionProgram({
-      gl: shaderGl,
+      gl: extrusionCtx,
       tilesetImage: imageElement,
       options: {
         tileWidth: options.tileWidth,
@@ -184,17 +184,17 @@ export default function ExtruderForm() {
       destroy();
       shaderProgramRef.current = null;
     };
-  }, [imageElement, hasValidValues, options, shaderGl]);
+  }, [imageElement, hasValidValues, options, extrusionCtx]);
 
   const handleDownload = () => {
-    if (!shaderGl || !shaderProgramRef.current) return;
+    if (!extrusionCtx || !shaderProgramRef.current) return;
 
     // Ensure the canvas is up to date before downloading.
     shaderProgramRef.current.render();
 
     const link = document.createElement("a");
     link.download = "extruded-tileset.png";
-    link.href = (shaderGl.canvas as HTMLCanvasElement).toDataURL("image/png");
+    link.href = (extrusionCtx.canvas as HTMLCanvasElement).toDataURL("image/png");
     link.click();
   };
 
@@ -230,7 +230,7 @@ export default function ExtruderForm() {
               <>
                 {imageElement ? (
                   <WebGL2Canvas
-                    onContextChange={setSourceGl}
+                    onContextChange={setSourceCtx}
                     className={styles.imageCanvas}
                     data-cy="source-tileset-canvas"
                   />
@@ -261,7 +261,7 @@ export default function ExtruderForm() {
           <div className={styles.image}>
             {imageElement && hasValidValues ? (
               <WebGL2Canvas
-                onContextChange={setShaderGl}
+                onContextChange={setExtrusionCtx}
                 className={styles.imageCanvas}
                 data-cy="extruded-tileset-canvas"
               />
