@@ -3,18 +3,8 @@ name: Tile Extruder CI
 on:
   push:
     branches: ["main"]
-    paths:
-      - "packages/tile-extruder/**"
-      - "pnpm-lock.yaml"
-      - "config/**"
-      - ".github/**"
   pull_request:
     branches: ["main"]
-    paths:
-      - "packages/tile-extruder/**"
-      - "pnpm-lock.yaml"
-      - "config/**"
-      - ".github/**"
 
 jobs:
   test:

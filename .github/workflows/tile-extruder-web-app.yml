@@ -3,18 +3,8 @@ name: Tile Extruder Web App CI
 on:
   push:
     branches: ["main"]
-    paths:
-      - "packages/tile-extruder-web-app/**"
-      - "pnpm-lock.yaml"
-      - "config/**"
-      - ".github/**"
   pull_request:
     branches: ["main"]
-    paths:
-      - "packages/tile-extruder-web-app/**"
-      - "pnpm-lock.yaml"
-      - "config/**"
-      - ".github/**"
 
 jobs:
   cypress:
@@ -65,6 +55,7 @@ jobs:
       - uses: ./.github/actions/setup-node-pnpm
         with:
           node-version: ${{ matrix.node-version }}
+          installDependencies: "true"
       - run: pnpm --filter tile-extruder-web-app typecheck
 
   jest:
@@ -78,4 +69,5 @@ jobs:
       - uses: ./.github/actions/setup-node-pnpm
         with:
           node-version: ${{ matrix.node-version }}
+          installDependencies: "true"
       - run: pnpm --filter tile-extruder-web-app jest
