@@ -21,7 +21,10 @@ export default function InfoPage() {
       />
       <p>
         You can read more about the bleeding problem and solution{" "}
-        <Link href="https://web.archive.org/web/20180411151113/http://rotorz.com/unity/tile-system/docs/edge-correction">
+        <Link
+          target="_blank"
+          href="https://web.archive.org/web/20180411151113/http://rotorz.com/unity/tile-system/docs/edge-correction"
+        >
           here
         </Link>
         . The TL DR is that there are many ways this type of rendering artifact can occur, e.g. from
@@ -42,7 +45,10 @@ export default function InfoPage() {
       <p>
         You can extrude a tileset using this web app, or via the sister command line tool (CLI). For
         more info on the CLI, see the{" "}
-        <Link href="https://github.com/sporadic-labs/tile-extruder">GitHub repository</Link>.
+        <Link target="_blank" href="https://github.com/sporadic-labs/tile-extruder">
+          GitHub repository
+        </Link>
+        .
       </p>
       <h2 className={styles.sectionTitle}>Using an Extruded Tileset</h2>
       <p>
@@ -64,7 +70,10 @@ export default function InfoPage() {
         <li>
           If you&apos;d rather leave your Tiled file alone, you can just adjust things on the Phaser
           side. See this{" "}
-          <Link href="https://github.com/sporadic-labs/tile-extruder/tree/main/packages/phaser-example">
+          <Link
+            target="_blank"
+            href="https://github.com/sporadic-labs/tile-extruder/tree/main/packages/phaser-example"
+          >
             example
           </Link>
           . You want to load the extruded tileset image, and then when you create your tileset,
