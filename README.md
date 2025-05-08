@@ -1,15 +1,16 @@
 # Tile Extruder
 
-A CLI and JS library to extrude tiles in tilesets to avoid "bleeding" issues where tiles are rendered with the wrong color at the edges of tiles.
+A [web app](https://tile-extruder.vercel.app/), CLI and JS library to extrude tiles in tilesets to avoid "bleeding" issues where tiles are rendered with the wrong color at the edges of tiles.
 
 ![demo](./images/demo.png)
 
 ![explanation](./images/explanation.png)
 
-You can read more about the bleeding problem and solution [here](https://web.archive.org/web/20180411151113/http://rotorz.com/unity/tile-system/docs/edge-correction). The TLDR is that there are many ways this type of rendering artifact can occur, e.g. from pixels being incorrectly blended when the edge of a tile in a tilemap texture is rendered. This CLI app handles both tilesets with and without margin & spacing. Check out my [blog post series](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6) about building modular worlds with tilemaps for more information on using tilemaps and extruding tiles.
+You can read more about the bleeding problem and solution [here](https://tile-extruder.vercel.app/info). The TLDR is that there are many ways this type of rendering artifact can occur, e.g. from pixels being incorrectly blended when the edge of a tile in a tilemap texture is rendered. Check out my [blog post series](https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6) about building modular worlds with tilemaps for more information on using tilemaps and extruding tiles.
 
 - [Tile Extruder](#tile-extruder)
   - [Usage](#usage)
+    - [Usage as a Web App](#usage-as-a-web-app)
     - [Usage as a Command Line Tool](#usage-as-a-command-line-tool)
     - [Usage as a Library](#usage-as-a-library)
     - [Using the Extruded Tileset](#using-the-extruded-tileset)
@@ -19,7 +20,11 @@ You can read more about the bleeding problem and solution [here](https://web.arc
 
 ## Usage
 
-There are two ways to use the tool to extrude a tileset image. If you just need to extrude some tilesets, you can use it as a command line tool. If you need to do something that requires more control (like integrating tile-extruder into build pipeline), you can use it as a JS library.
+There are three ways to use the tool to extrude a tileset image. If you just need to extrude some tilesets, you can use the [web app](https://tile-extruder.vercel.app/). If you need to do something that requires more control (like integrating tile-extruder into build pipeline), you can use it as a CLI or JS library.
+
+### Usage as a Web App
+
+Visit https://tile-extruder.vercel.app/, upload your image and extrude.
 
 ### Usage as a Command Line Tool
 
