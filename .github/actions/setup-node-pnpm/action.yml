@@ -5,10 +5,6 @@ inputs:
   node-version:
     description: "Node.js version to use"
     required: true
-  pnpm-version:
-    description: "pnpm version to use"
-    required: true
-    default: "10"
   installDependencies:
     description: "Whether to run pnpm install after setup"
     required: false
@@ -20,7 +16,7 @@ runs:
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: ${{ inputs.pnpm-version }}
+        version: "10"
       shell: bash
 
     - name: Use Node.js
