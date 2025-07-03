@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit && tsc --noEmit --project cypress/tsconfig.json"
   },
   "dependencies": {
-    "next": "15.3.0",
+    "next": "15.3.3",
     "react": "^19.1.0",
     "react-aria-components": "^1.8.0",
     "react-dom": "^19.1.0",
