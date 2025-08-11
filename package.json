@@ -1,0 +1,11 @@
+{
+  "name": "tile-extruder-root",
+  "version": "1.0.0",
+  "description": "A [web app](https://tile-extruder.vercel.app/), CLI and JS library to extrude tiles in tilesets to avoid \"bleeding\" issues where tiles are rendered with the wrong color at the edges of tiles.",
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=8"
+  } 
+}
