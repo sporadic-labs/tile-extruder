@@ -33,6 +33,9 @@ const testCases = [
 
 describe("Tile Extruder", () => {
   beforeEach(() => {
+    // Downloads are only cleared once per run, so without this a test can read
+    // the previous test's extruded-tileset.png before its own download lands.
+    cy.task("clearDownloads");
     cy.visit("/");
   });
 
