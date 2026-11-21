@@ -9,8 +9,6 @@ allowBuilds:
   # scripts aren't needed.
   sharp: false
   unrs-resolver: false
-  # Only used by imagemin-pngquant, which nothing in the repo runs.
-  pngquant-bin: false
 
 # Don't resolve package versions published less than 7 days ago (in minutes).
 # Gives the community time to catch compromised releases before they land here.
