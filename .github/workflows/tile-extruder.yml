@@ -3,8 +3,8 @@ name: Tile Extruder CI
 on:
   push:
     branches: ["main"]
+  # Run on PRs against any base branch so stacked PRs get CI too.
   pull_request:
-    branches: ["main"]
 
 jobs:
   test:
