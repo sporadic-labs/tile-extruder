@@ -14,7 +14,7 @@ jobs:
       matrix:
         node-version: [22.x]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: ./.github/actions/setup-node-pnpm
         with:
           node-version: ${{ matrix.node-version }}
