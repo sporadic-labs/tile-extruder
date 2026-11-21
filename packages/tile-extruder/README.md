@@ -16,6 +16,8 @@ The current test setup is a simple snapshot test that compares the output of the
 
 ## Publishing
 
+The package's README on npm is the user-facing [root README](../../README.md), not this file. The `prepack`/`postpack` scripts swap it in while packing, so `pnpm pack` and `pnpm publish` both ship the right one.
+
 It is useful to do a dry run of publishing to test that the build works as intended:
 - `pnpm --filter tile-extruder publish --dry-run`
 - use of the tilesets from this repo to attempt running tile-extrusion against the bin

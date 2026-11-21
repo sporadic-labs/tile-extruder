@@ -190,8 +190,8 @@ importers:
   packages/tile-extruder:
     dependencies:
       commander:
-        specifier: ^13.1.0
-        version: 13.1.0
+        specifier: ^15.1.0
+        version: 15.1.0
       jimp:
         specifier: ^1.6.1
         version: 1.6.1(supports-color@8.1.1)
@@ -1832,6 +1832,10 @@ packages:
   commander@13.1.0:
     resolution: {integrity: sha512-/rFeCpNJQbhSZjGVwO9RFV3xPqbnERS8MmIQzCtD/zl6gpJuV/bMLuN92oG3F7d8oDEHHRrujSXNUr8fpjntKw==}
     engines: {node: '>=18'}
+
+  commander@15.1.0:
+    resolution: {integrity: sha512-cgnQ88TRrWcC7pVq46RzJVRMktu3W2RcbnoidnfBsl1bmDCBwJS/udcIZpKoCrbAYYaCqsz1yZCVIgbIaU3ddQ==}
+    engines: {node: '>=22.12.0'}
 
   commander@2.11.0:
     resolution: {integrity: sha512-b0553uYA5YAEGgyYIGYROzKQ7X5RAqedkfjiZxwi0kL1g3bOaBNNZfYkzt/CL0umgD5wc9Jec2FbB98CjkMRvQ==}
@@ -5927,6 +5931,8 @@ snapshots:
       delayed-stream: 1.0.0
 
   commander@13.1.0: {}
+
+  commander@15.1.0: {}
 
   commander@2.11.0: {}
 

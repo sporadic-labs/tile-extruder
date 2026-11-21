@@ -1,3 +1,5 @@
 node_modules
 bin
 tilesets/extruded
+# Temporary backup of README.md while packing (see prepack/postpack).
+dev-readme.tmp.md
