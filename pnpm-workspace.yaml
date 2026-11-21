@@ -1,2 +1,13 @@
 packages:
   - "packages/*"
+
+# pnpm 11+ blocks dependency install scripts unless they're listed here.
+allowBuilds:
+  # Downloads the Cypress test runner binary.
+  cypress: true
+  # Native binaries ship as platform-specific optional deps, so the install
+  # scripts aren't needed.
+  sharp: false
+  unrs-resolver: false
+  # Only used by imagemin-pngquant, which nothing in the repo runs.
+  pngquant-bin: false
