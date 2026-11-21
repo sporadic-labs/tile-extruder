@@ -31,7 +31,11 @@ export function WebGL2Canvas({
   const ref = useRef<HTMLCanvasElement>(null);
   const onContextChangeRef = useRef(onContextChange);
 
-  onContextChangeRef.current = onContextChange;
+  // Keep the ref pointing at the latest callback. Declared before the effect
+  // below so it's up to date by the time that effect runs.
+  useEffect(() => {
+    onContextChangeRef.current = onContextChange;
+  }, [onContextChange]);
 
   useEffect(() => {
     const canvas = ref.current;

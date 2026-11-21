@@ -18,26 +18,31 @@ const defaultImageName = "unknown.png";
 
 export function TilesetImageProvider({ children }: { children: ReactNode }) {
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const [isImageLoading, setIsImageLoading] = useState(false);
-  const [imageElement, setImageElement] = useState<HTMLImageElement | null>(null);
+  // The most recently loaded object URL and the resulting image (null if it
+  // failed to load). Loading state and the current image are derived from this.
+  const [loadResult, setLoadResult] = useState<{
+    url: string;
+    image: HTMLImageElement | null;
+  } | null>(null);
   const [imageName, setImageName] = useState<string>(defaultImageName);
   const { setObjectUrlFromFile, objectUrl: imageObjectUrl, clearObjectUrl } = useObjectUrl();
 
   useEffect(() => {
-    if (imageObjectUrl) {
-      setIsImageLoading(true);
-      const img = new Image();
-      img.onload = () => {
-        setImageElement(img);
-        setIsImageLoading(false);
-      };
-      img.onerror = () => {
-        setIsImageLoading(false);
-        setImageElement(null);
-      };
-      img.src = imageObjectUrl;
-    }
+    if (!imageObjectUrl) return;
+    const img = new Image();
+    img.onload = () => setLoadResult({ url: imageObjectUrl, image: img });
+    img.onerror = () => setLoadResult({ url: imageObjectUrl, image: null });
+    img.src = imageObjectUrl;
+    return () => {
+      // Ignore a stale load if the URL changes before it finishes.
+      img.onload = null;
+      img.onerror = null;
+    };
   }, [imageObjectUrl]);
+
+  const isImageLoading = imageObjectUrl !== null && loadResult?.url !== imageObjectUrl;
+  // While a new image loads, keep showing the previous one.
+  const imageElement = imageObjectUrl ? (loadResult?.image ?? null) : null;
 
   const handleSetImage = (newImage: File | null) => {
     if (newImage) {
@@ -46,7 +51,6 @@ export function TilesetImageProvider({ children }: { children: ReactNode }) {
       setImageName(newImage.name ?? "unknown.png");
     } else {
       clearObjectUrl();
-      setImageElement(null);
       setImageFile(null);
       setImageName(defaultImageName);
     }
