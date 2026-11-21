@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useMemo, useState } from "react";
+import { useRef, useEffect, useMemo, useState, useLayoutEffect } from "react";
 import { useTilesetImage } from "./TilesetImageProvider";
 import { createExtrusionProgram, ShaderProgram } from "../extrusionProgram/createExtrusionProgram";
 import { createGridProgram } from "../gridProgram/createGridProgram";
@@ -149,8 +149,11 @@ export default function ExtruderForm() {
     updateCanvases();
   }, [imageElement, options, showGrid, sourceCtx]);
 
-  // Update the extruded tileset preview canvas when the image element or GL context changes
-  useEffect(() => {
+  // Update the extruded tileset preview canvas when the image element or GL context changes.
+  // This is a layout effect so the shader program is recreated in the same commit as the
+  // re-render. With a regular effect, a click on Download could land between the commit and
+  // the effect, while shaderProgramRef is null, and handleDownload would silently do nothing.
+  useLayoutEffect(() => {
     if (!imageElement || !hasValidValues || !extrusionCtx) {
       return;
     }

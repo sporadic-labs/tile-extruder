@@ -9,6 +9,7 @@ allowBuilds:
   # scripts aren't needed.
   sharp: false
   unrs-resolver: false
+  "@parcel/watcher": false
 
 # Don't resolve package versions published less than 7 days ago (in minutes).
 # Gives the community time to catch compromised releases before they land here.
