@@ -28,7 +28,7 @@ Visit https://tile-extruder.vercel.app/, upload your image and extrude.
 
 ### Usage as a Command Line Tool
 
-Make sure you have [node](https://nodejs.org/en/) installed and then run:
+Make sure you have [node](https://nodejs.org/en/) 22.12 or newer installed and then run:
 
 ```
 npx tile-extruder [args]
@@ -76,7 +76,7 @@ A note on terminology, _spacing_ is the number of pixels between neighboring til
 
 If you're reading this on npm/GitHub, you can read the documentation online [here](https://sporadic-labs.github.io/tile-extruder) which includes API documentation. Also, see [node examples](https://github.com/sporadic-labs/tile-extruder/tree/main/packages/node-example) folder for code.
 
-Install the library as a dependency in your Node project:
+Install the library as a dependency in your Node project (requires Node.js 22.12 or newer):
 
 ```
 npm install tile-extruder
@@ -98,11 +98,18 @@ To save an extruded tileset to disk:
 const { extrudeTilesetToImage } = require("tile-extruder");
 
 async function main() {
-  await extrudeTilesetToImage(16, 16, "./buch-tileset.png", "./buch-tileset-extruded.png");
+  await extrudeTilesetToImage({
+    tileWidth: 16,
+    tileHeight: 16,
+    inputPath: "./buch-tileset.png",
+    outputPath: "./buch-tileset-extruded.png",
+  });
 }
 
 main();
 ```
+
+All three functions take a single options object. Besides the fields shown above, they accept `margin` (default `0`), `spacing` (default `0`), `extrusion` (default `1`) and `color` (default `0xffffff00`, transparent white). `extrudeTilesetToBuffer` also accepts `mime` to choose the output format. See the [API docs](https://sporadic-labs.github.io/tile-extruder) for details.
 
 To obtain the extruded tileset as a [Buffer](https://nodejs.org/api/buffer.html) and then minify it before saving using [imagemin](https://github.com/imagemin/imagemin):
 
@@ -113,7 +120,11 @@ const imageminPngquant = require("imagemin-pngquant");
 const fs = require("fs");
 
 async function main() {
-  const buffer = await extrudeTilesetToBuffer(16, 16, "./buch-tileset.png");
+  const buffer = await extrudeTilesetToBuffer({
+    tileWidth: 16,
+    tileHeight: 16,
+    inputPath: "./buch-tileset.png",
+  });
   const minifiedBuffer = await imagemin.buffer(buffer, {
     plugins: [
       imageminPngquant({
@@ -126,6 +137,27 @@ async function main() {
 
 main();
 ```
+
+#### Migrating from 2.x
+
+In 3.0.0, the library functions take a single options object instead of positional arguments:
+
+```js
+// 2.x
+await extrudeTilesetToImage(16, 16, "./in.png", "./out.png", { margin: 5, spacing: 10 });
+
+// 3.x
+await extrudeTilesetToImage({
+  tileWidth: 16,
+  tileHeight: 16,
+  inputPath: "./in.png",
+  outputPath: "./out.png",
+  margin: 5,
+  spacing: 10,
+});
+```
+
+The same applies to `extrudeTilesetToBuffer` and `extrudeTilesetToJimp`. The CLI's arguments are unchanged.
 
 ### Using the Extruded Tileset
 
@@ -154,10 +186,13 @@ Tips:
 
 ## Changelog
 
-* Next release (unreleased)
+* 3.0.0
   * Breaking change to library. `extrudeTilesetToBuffer`,
     `extrudeTilesetToImage`, and `extrudeTilesetToJimp` take object arguments
-    instead of positional arguments.
+    instead of positional arguments. See [Migrating from 2.x](#migrating-from-2x).
+  * Breaking: requires Node.js 22.12 or newer.
+  * CLI arguments are unchanged.
+  * Update all deps to latest.
 * 2.1.1
   * Update all deps to latest.
 * 2.1.0

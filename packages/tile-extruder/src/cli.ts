@@ -3,11 +3,16 @@
 import { program } from "commander";
 import { extrudeTilesetToImage } from "./index";
 
+// Resolves to the package root from both src/ (ts-node) and bin/ (published).
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { version } = require("../package.json") as { version: string };
+
 const toInt = (v: string) => parseInt(v, 10);
 const toHex = (v: string) => parseInt(v, 16);
 
 program
-  .version("2.1.1")
+  .name("tile-extruder")
+  .version(version)
   .description("A small CLI to extrude tiles. Use --help for more information.")
   .option("-w, --tileWidth <integer>", "tile width in pixels", toInt)
   .option("-h, --tileHeight <integer>", "tile height in pixels", toInt)
